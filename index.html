@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Natalli | Technical Audio Designer</title>
+    <title>Benjamin Natalli | Technical Audio & Dialogue Designer</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts (Inter för ren design, Fira Code för tekniska accenter) -->
+    <!-- Google Fonts (Inter for clean aesthetics, Fira Code for technical accents) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
@@ -22,7 +22,7 @@
             font-family: 'Fira Code', monospace;
         }
 
-        /* Ambient Glow (Guld/Bärnsten) */
+        /* Enhanced Ambient Glow (Amber/Gold Studio Feel) */
         #mouse-glow {
             position: fixed;
             top: 0;
@@ -32,11 +32,11 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            background: radial-gradient(600px at 50% 50%, rgba(245, 158, 11, 0.03), transparent 80%);
-            transition: opacity 0.3s;
+            background: radial-gradient(500px at 50% 50%, rgba(245, 158, 11, 0.07), transparent 70%);
+            transition: opacity 0.4s ease;
         }
 
-        /* Snygg scrollbar */
+        /* Sleek custom scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #08070a; }
         ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
@@ -45,6 +45,14 @@
 <body class="antialiased selection:bg-amber-500/30 selection:text-amber-200">
 
     <div id="mouse-glow"></div>
+
+    <!-- FLOATING LEFT NAVIGATION (Desktop only) -->
+    <div class="hidden xl:flex fixed left-12 top-1/2 -translate-y-1/2 flex-col gap-5 z-40 text-left border-l border-white/5 pl-4 py-4">
+        <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Home</a>
+        <a href="#showreel" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Showreel</a>
+        <a href="#workflow" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Workflow</a>
+        <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">04. Tech Stack</a>
+    </div>
 
     <!-- TOP NAVIGATION -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
@@ -59,20 +67,20 @@
         </div>
     </nav>
 
-    <!-- HUVUDCONTAINER -->
-    <main class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-24 flex flex-col gap-32">
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-24 flex flex-col gap-32 relative">
 
         <!-- HERO SECTION -->
         <header id="hero" class="min-h-[50vh] flex flex-col justify-center">
-            <span class="code-font text-amber-500 text-sm tracking-widest mb-3 uppercase">// Systems, Sound & Pipelines</span>
+            <span class="code-font text-amber-500 text-sm tracking-widest mb-3 uppercase">// Pipelines, Systems & Dialogue Logic</span>
             <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
                 Benjamin Natalli
             </h1>
             <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
-                Technical Audio Designer
+                Technical Audio & Dialogue Designer
             </h2>
             <p class="mt-6 max-w-xl text-slate-400 leading-relaxed text-base">
-                I build scalable audio infrastructure, custom automation tools, and interactive systems that bridge the gap between complex game logic and creative sound design.
+                I design scalable audio infrastructure, automated dialogue pipelines, and interactive narrative logic that bridges the gap between complex mechanics and creative implementation.
             </p>
         </header>
 
@@ -84,22 +92,22 @@
             </div>
         </section>
 
-        <!-- WORKFLOW (Fokus på tidsekonomi och systembygge) -->
+        <!-- WORKFLOW (Focusing on Dialogue Economy and Time-Saving Architecture) -->
         <section id="workflow" class="scroll-mt-24">
             <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
             <p class="text-sm text-slate-400 max-w-xl mb-12">
-                Ett ostrukturerat ljudteam slösar hundratals timmar på manuellt arbete. Jag designar pipelines och verktyg som automatiserar bort flaskhalsar så att ni kan skeppa snabbare.
+                An unstructured audio and dialogue pipeline wastes hundreds of hours on manual labor. I design pipelines and automated systems that eliminate production bottlenecks so you can ship faster.
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
                 
-                <!-- Pipeline-meny (vänster) -->
+                <!-- Pipeline Menu (Left) -->
                 <div class="md:col-span-4 flex md:flex-col gap-4 relative">
                     <div class="hidden md:block absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-800">
                         <div id="pipeline-progress" class="w-full h-1/3 bg-amber-500 transition-all duration-500 rounded-full"></div>
                     </div>
 
-                    <button onclick="changeStep(1, 'preprod')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                    <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
                         <div class="node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font">01</div>
                         <span class="text-xs uppercase tracking-widest code-font text-white group-hover:text-amber-400 transition-colors">Architecture</span>
                     </button>
@@ -114,23 +122,23 @@
                         <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Systems</span>
                     </button>
 
-                    <button onclick="changeStep(4, 'integration')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                    <button onclick="changeStep(4, 'optimization')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
                         <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">04</div>
                         <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Optimization</span>
                     </button>
                 </div>
 
-                <!-- Dynamisk innehållsruta med mjuk fade (höger) -->
-                <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transition-opacity duration-300" id="pipeline-card">
+                <!-- Content Card with Smooth Fade & Shift (Right) -->
+                <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transition-all duration-500 ease-in-out transform" id="pipeline-card">
                     
                     <div id="pipeline-content" class="space-y-4">
-                        <!-- Laddas via JS -->
+                        <!-- Loaded via JS -->
                     </div>
 
                     <!-- Media Placeholder -->
                     <div class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
                         <div id="pipeline-media" class="text-xs text-slate-600 code-font">
-                            <!-- Laddas via JS -->
+                            <!-- Loaded via JS -->
                         </div>
                     </div>
 
@@ -138,7 +146,7 @@
             </div>
         </section>
 
-        <!-- TECH STACK (Städad, kategoriserad och professionell) -->
+        <!-- TECH STACK -->
         <section id="tech-stack" class="scroll-mt-24">
             <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>
             
@@ -159,7 +167,7 @@
                     <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Engines & Integration</h4>
                     <ul class="space-y-2 text-sm text-slate-300">
                         <li><strong class="text-white">Primary Engines:</strong> Unity, Godot</li>
-                        <li><strong class="text-white">Implementation:</strong> Adaptive music systems, dynamic mixing, spatial audio systems.</li>
+                        <li><strong class="text-white">Implementation:</strong> Interactive dialogue routing, localization assets, adaptive systems, and spatial dynamic mixing.</li>
                     </ul>
                 </div>
 
@@ -186,15 +194,15 @@
 
             </div>
 
-            <!-- Kompakt Day-to-day info längst ner -->
+            <!-- Translated Compact Day-to-day Section -->
             <div class="mt-16 pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed">
                 <div>
-                    <p>• Solid förståelse för tvärfunktionella spel-loopar och tät kommunikation med designers och programmerare.</p>
-                    <p class="mt-2">• Trivs lika bra med stort eget ansvar och systemarkitektur som i sammansvetsade team.</p>
+                    <p>• Solid understanding of cross-functional game loops and close, seamless communication with both designers and programmers.</p>
+                    <p class="mt-2">• Equally comfortable spearheading complex system architecture independently or collaborating within tight-knit production teams.</p>
                 </div>
                 <div>
-                    <p>• Brinner extra mycket för RPGs, systemtunga spel och Co-Op-upplevelser.</p>
-                    <p class="mt-2">• Flytande i svenska och engelska, grundläggande förståelse i portugisiska.</p>
+                    <p>• Intensely passionate about RPGs, mechanics-heavy titles, and deep co-op gaming experiences.</p>
+                    <p class="mt-2">• Fluent in English and Swedish, with an elementary understanding of Portuguese.</p>
                 </div>
             </div>
         </section>
@@ -202,54 +210,78 @@
     </main>
 
     <script>
-        // Mouse Glow Logic
+        // Mouse Glow Tracking Logic
         const glow = document.getElementById('mouse-glow');
         document.addEventListener('mousemove', (e) => {
-            glow.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.04), transparent 80%)`;
+            glow.style.background = `radial-gradient(500px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.06), transparent 70%)`;
         });
 
-        // Pipeline Content Data (Fokus på vad studion sparar för tid)
+        // Left Navigation Active State Highlighter on Scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['hero', 'showreel', 'workflow', 'tech-stack'];
+            const navLinks = document.querySelectorAll('.xl\\:flex a');
+            
+            let currentSection = 'hero';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && window.scrollY >= el.offsetTop - 150) {
+                    currentSection = id;
+                }
+            });
+
+            navLinks.forEach((link, i) => {
+                if (sections[i] === currentSection) {
+                    link.classList.remove('text-slate-500');
+                    link.classList.add('text-amber-500/100');
+                } else {
+                    link.classList.remove('text-amber-500/100');
+                    link.classList.add('text-slate-500');
+                }
+            });
+        });
+
+        // Pipeline Dialogue-Focused Data
         const steps = {
-            preprod: {
-                title: "Pipeline Architecture",
-                desc: "Genom att sätta strikta namngivningskonventioner, strukturer och mappsystem innan produktionen startar elimineras framtida teknisk skuld. Jag bygger strukturen så att integrationen blir sömlös för hela teamet.",
-                code: "// Eliminerar manuellt sorteringsarbete i Wwise/Spelmotor",
-                media: "[ Skärmklipp/GIF: Projektstruktur / Mappträd ]"
+            architecture: {
+                title: "Dialogue & System Architecture",
+                desc: "Setting up ironclad metadata templates and naming conventions before recording starts prevents localization chaos. I build pipeline structures that connect raw voice scripts directly to audio engine endpoints smoothly.",
+                code: "// Automated metadata linking: VoiceID_Char_Locale_01.wav",
+                media: "[ Visual Placeholder: Data schema linking scripts to localized audio databases ]"
             },
             automation: {
-                title: "Custom Tooling & Automation",
-                desc: "Jag skriver skript (t.ex. ReaScripts i Reaper eller Python) för att automatisera monotona processer. Att batch-exportera hundratals filer och automatiskt generera ljudcontainrar sparar dagsverken av dötid.",
-                code: "ReaScript / WAAPI: Automatiskt skapande av ljudcontainrar",
-                media: "[ Skärmklipp/GIF: Skript som automatiskt exporterar till spelmotorn ]"
+                title: "Custom Scripting & Automation",
+                desc: "I script tools (via Reaper ReaScripts, WAAPI, or Python) to automate voice workflows. Manually creating events for thousands of spoken lines is a massive bottleneck; my scripts auto-batch, trim, and generate structures instantly.",
+                code: "Wwise WAAPI Script: Batch-generating Voice Elements & Language Sub-folders",
+                media: "[ Visual Placeholder: Clip showing a script auto-importing and grouping VO assets ]"
             },
             systems: {
-                title: "Interactive Systems & Logic",
-                desc: "Jag bygger logiken bakom ljudet. Genom att koppla samman ljudsystem med spelmekanik (t.ex. via C++, Lua eller state-machines i Articy/Ink) skapar jag adaptiva ljudmiljöer som reagerar intelligent på gameplay.",
-                code: "Integration: Dynamisk musik som styrs av spelsituation och story-states",
-                media: "[ Skärmklipp/GIF: Nod-baserat logiksystem i Articy eller spelmotor ]"
+                title: "Narrative & Logic Integration",
+                desc: "I program the underlying narrative voice systems. By wiring audio middleware with node-based logic tools like Articy:draft or Ink, I build dynamic routing, priority interruption logic, and contextual voice-line systems.",
+                code: "Integration: Processing real-time priority queues for player dialogue trees",
+                media: "[ Visual Placeholder: Node layout showing conditional voice interrupts in game logic ]"
             },
-            integration: {
-                title: "Profiling & Optimization",
-                desc: "Ett bra system måste rulla i 60 FPS. Jag profilerar och optimerar ljudbanker, hanterar minnesbudgetar och bygger smarta system för ocklusion och dämpning för att hålla nere CPU-belastningen.",
-                code: "Wwise Profiler: Övervakning av CPU-röster och minnesströmmar",
-                media: "[ Skärmklipp/GIF: Live-profilering i spelmotor under körning ]"
+            optimization: {
+                title: "Profiling & Memory Management",
+                desc: "Dialogue can heavily bloat game builds. I profile and manage runtime streaming behaviors, structure soundbanks dynamically per chapter/zone, and budget voice compression ratios to maintain crystal clear audio within safe memory caps.",
+                code: "Profiler Matrix: Monitoring active rtpcs, dialogue streaming threads, and voice pools",
+                media: "[ Visual Placeholder: Real-time optimization profiling graph for localization banks ]"
             }
         };
 
-        // Funktion för att byta steg med en mjuk fade-effekt
+        // Ultra-smooth Fade and Subtle Vertical Transition Shift
         function changeStep(stepIndex, stepKey) {
             const card = document.getElementById('pipeline-card');
             
-            // 1. Fade ut kortet
-            card.classList.add('opacity-0');
+            // 1. Fade out and slightly shift down
+            card.classList.add('opacity-0', 'translate-y-2');
             
-            // 2. Vänta tills fade-out är klar, byt sedan innehåll
+            // 2. Wait for transition duration, update content, then fade in
             setTimeout(() => {
-                // Uppdatera linjen till vänster
+                // Adjust left visual line progress
                 const progress = document.getElementById('pipeline-progress');
                 progress.style.height = `${(stepIndex / 4) * 100}%`;
 
-                // Uppdatera nodernas utseende
+                // Update navigation dots styles
                 const nodes = document.querySelectorAll('.pipeline-node');
                 nodes.forEach((node, index) => {
                     const dot = node.querySelector('.node-dot');
@@ -264,7 +296,7 @@
                     }
                 });
 
-                // Injicera det nya innehållet
+                // Update active step text
                 const data = steps[stepKey];
                 document.getElementById('pipeline-content').innerHTML = `
                     <h4 class="text-xl font-bold text-white tracking-tight">${data.title}</h4>
@@ -275,14 +307,14 @@
                 `;
                 document.getElementById('pipeline-media').innerHTML = data.media;
 
-                // 3. Fade in kortet igen
-                card.classList.remove('opacity-0');
-            }, 200); // Matchar Tailwind duration-300 ganska lagom
+                // 3. Smoothly fade back in and restore position
+                card.classList.remove('opacity-0', 'translate-y-2');
+            }, 250); // Balanced timing for a professional, unhurried fade
         }
 
-        // Initiera första steget vid start
+        // Initialize first step on launch
         window.addEventListener('DOMContentLoaded', () => {
-            changeStep(1, 'preprod');
+            changeStep(1, 'architecture');
         });
     </script>
 </body>
