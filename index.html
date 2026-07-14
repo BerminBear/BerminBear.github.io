@@ -38,20 +38,73 @@
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #08070a; }
         ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
+
+        /* Navigation elegant fade and slide entry from top to bottom */
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-slide {
+            animation: fadeSlideIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* --- NYA INTRO EFFEKTER FÖR SIDORNA --- */
+        @keyframes introSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-intro-home {
+            animation: introSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes introSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(120px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .animate-intro-projects {
+            animation: introSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* Fade för hela Projects-vyn första gången den öppnas (1 sekund) */
+        .animate-fade-1s {
+            animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
 
     <div id="mouse-glow"></div>
 
-    <div id="portfolio-nav" class="hidden xl:flex fixed left-6 top-40 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2">
+    <div id="portfolio-nav" class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
         <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Home</a>
         <a href="#showreel" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Showreel</a>
         <a href="#workflow" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Workflow</a>
         <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">04. Tech Stack</a>
     </div>
 
-    <div id="projects-nav" class="hidden xl:flex fixed left-6 top-40 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2">
+    <div id="projects-nav" class="hidden xl:flex fixed left-8 bottom-16 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
         <a href="#projects" onclick="setTimeout(() => scrollToProject(0), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-amber-500 hover:text-amber-400 transition-colors">00. Intro</a>
         <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">01. Void RPG</a>
         <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. VO Tool</a>
@@ -82,9 +135,10 @@
     </nav>
 
     <div id="view-portfolio">
-        <main class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-12 flex flex-col gap-32 relative">
+        <main id="portfolio-content-wrapper" class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-12 flex flex-col gap-32 relative">
 
-            <header id="hero" class="min-h-[50vh] flex flex-col justify-center">
+            <!-- FIX: scroll-mt-32 lagts till för att inte dölja namnet bakom nav-baren -->
+            <header id="hero" class="min-h-[50vh] flex flex-col justify-center scroll-mt-32">
                 <span class="code-font text-amber-500 text-sm tracking-widest mb-3 uppercase">// Pipelines, Systems & Dialogue Logic</span>
                 <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
                     Benjamin Natalli
@@ -93,7 +147,7 @@
                     Technical Audio & Dialogue Designer
                 </h2>
                 <p class="mt-6 max-w-xl text-slate-400 leading-relaxed text-base">
-                    I design scalable audio infrastructure, automated dialogue pipelines, and interactive narrative logic that bridges the gap between complex mechanics and creative implementation.
+                    I design scalable audio infrastructure and automated dialogue pipelines, bridging the gap between complex mechanics and creative implementation.
                 </p>
 
                 <div class="mt-8 flex flex-wrap gap-6 text-xs code-font text-slate-500">
@@ -117,9 +171,9 @@
                 </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                    <div class="md:col-span-4 flex md:flex-col gap-4 relative">
+                    <div class="md:col-span-4 flex md:flex-col gap-4 relative pt-0">
                         <div class="hidden md:block absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-800">
-                            <div id="pipeline-progress" class="w-full h-1/3 bg-amber-500 transition-all duration-500 rounded-full"></div>
+                            <div id="pipeline-progress" class="w-full h-1/4 bg-amber-500 transition-all duration-1000 rounded-full"></div>
                         </div>
 
                         <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
@@ -143,10 +197,10 @@
                         </button>
                     </div>
 
-                    <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transform transition-all" style="transition-duration: 650ms; transition-timing-function: ease-in-out;" id="pipeline-card">
-                        <div id="pipeline-content" class="space-y-4"></div>
+                    <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transform transition-all duration-1000 mt-0 pt-8" id="pipeline-card">
+                        <div id="pipeline-content" class="space-y-4 transition-opacity duration-1000"></div>
                         <div class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
-                            <div id="pipeline-media" class="text-xs text-slate-600 code-font"></div>
+                            <div id="pipeline-media" class="text-xs text-slate-600 code-font transition-opacity duration-1000"></div>
                         </div>
                     </div>
                 </div>
@@ -159,9 +213,9 @@
                     <div>
                         <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Middleware</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Middleware:</strong> Wwise, FMOD</li>
+                            <li><strong class="text-white">Middleware:</strong> Wwise, FMOD, Dolby Atmos</li>
                             <li><strong class="text-white">DAWs:</strong> Reaper, Pro Tools, Logic Pro X</li>
-                            <li><strong class="text-white">Audio Tools:</strong> Pure Data</li>
+                            <li><strong class="text-white">Audio Tools:</strong> iZotope RX11, Pure Data, FabFilter</li>
                         </ul>
                     </div>
 
@@ -181,7 +235,7 @@
                             <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
                             <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Java</span>
                             <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Unreal Engine (Blueprints)</span>
+                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine (Blueprints)</span>
                         </div>
                     </div>
 
@@ -205,29 +259,37 @@
                         <p class="mt-2 hover:text-slate-300 transition-colors">• Fluent in English and Swedish, with an elementary understanding of Portuguese.</p>
                     </div>
                 </div>
+
+                <div class="mt-20 pt-10 border-t border-white/5 flex justify-center">
+                    <a href="#projects" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500 hover:text-black hover:border-transparent transition-all duration-300 text-xs tracking-widest uppercase code-font text-amber-400 font-semibold shadow-lg hover:shadow-amber-500/10">
+                        Explore My Projects
+                        <span class="text-sm">→</span>
+                    </a>
+                </div>
             </section>
 
-            <footer class="mt-24 border-t border-white/5 pt-8 pb-16 text-center text-[11px] code-font text-slate-600">
+            <footer class="mt-16 border-t border-white/5 pt-8 pb-16 text-center text-[11px] code-font text-slate-600">
                 <p>© 2026 Benjamin Natalli. Built with code-focused aesthetics.</p>
             </footer>
         </main>
     </div>
 
-    <div id="view-projects" class="hidden">
-        <div id="projects-scroll-wrapper" class="relative w-full h-[350vh]">
+    <div id="view-projects" class="hidden animate-fade-1s">
+        <div id="projects-scroll-wrapper" class="relative w-full h-[450vh]">
             <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-[#08070a]">
                 
-                <div id="projects-horizontal-track" class="flex items-center gap-20 px-[15vw] h-full transition-transform duration-75 ease-out will-change-transform" style="width: max-content;">
+                <!-- FIX: transition-transform har tagits bort härifrån då den krockade med JS LERP-loopen -->
+                <div id="projects-horizontal-track" class="flex items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
                     
-                    <div class="w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center">
+                    <div class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
                         <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Collage Exhibition</span>
                         <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Featured<br>Projects</h2>
                         <p class="mt-4 text-slate-400 text-xs leading-relaxed max-w-sm">
-                            Scroll vertically or use your mouse wheel to navigate horizontally through my technical installations, game integrations, and specialized audio tools.
+                            Scroll vertically or use your mouse wheel to navigate horizontally through my technical installations, game integrations, and specialized audio tools. Click a project to read case study.
                         </p>
                     </div>
 
-                    <div class="w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.04)] transition-all duration-300">
+                    <div onclick="openProjectDetail('echoes-void')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Unreal 5 & Wwise</span>
                             <h3 class="text-2xl font-bold text-white mt-1">Echoes of the Void</h3>
@@ -242,17 +304,13 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-3 mt-6">
-                            <a href="https://store.steampowered.com" target="_blank" class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font hover:bg-amber-400 transition-all">
-                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 .007c-6.155 0-11.233 4.671-11.895 10.665l4.908 1.983c.361-.264.805-.43 1.293-.45l2.254-3.238V8.91c0-1.893 1.547-3.439 3.444-3.439 1.898 0 3.445 1.546 3.445 3.439 0 1.893-1.547 3.44-3.445 3.44-.06 0-.12-.007-.18-.01l-3.21 2.278v.041c0 .907-.357 1.73-.938 2.345l1.979 4.904c5.992-.667 10.665-5.743 10.665-11.895C24 5.38 18.62.007 12 .007zm-4.006 13.56c0-.853.692-1.546 1.546-1.546.853 0 1.546.693 1.546 1.546 0 .853-.693 1.546-1.546 1.546-.854 0-1.546-.693-1.546-1.546zm3.439-4.649a1.894 1.894 0 0 0-1.893-1.893 1.894 1.894 0 0 0-1.893 1.893c0 1.042.851 1.893 1.893 1.893 1.042 0 1.893-.851 1.893-1.893z"/></svg>
-                                Steam Page
-                            </a>
-                            <a href="https://linkedin.com" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold code-font hover:bg-white/10 transition-all">
-                                Portfolio Case
-                            </a>
+                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                View Case Study
+                            </span>
                         </div>
                     </div>
 
-                    <div class="w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.04)] transition-all duration-300">
+                    <div onclick="openProjectDetail('waapi-dialogue')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Automation Tool</span>
                             <h3 class="text-2xl font-bold text-white mt-1">WAAPI Dialogue Batcher</h3>
@@ -267,17 +325,13 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-3 mt-6">
-                            <a href="https://github.com" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold code-font hover:bg-white/10 transition-all">
-                                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                                GitHub Repo
-                            </a>
-                            <a href="https://yourdemo.com" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font hover:bg-amber-400 transition-all">
-                                Try Web Demo
-                            </a>
+                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                View Case Study
+                            </span>
                         </div>
                     </div>
 
-                    <div class="w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.04)] transition-all duration-300">
+                    <div onclick="openProjectDetail('aura-audio')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Mobile Integration</span>
                             <h3 class="text-2xl font-bold text-white mt-1">Aura: Generative Audio</h3>
@@ -292,12 +346,9 @@
                         </div>
                         
                         <div class="flex flex-wrap gap-3 mt-6">
-                            <a href="https://apple.com/app-store" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold code-font hover:bg-white/10 transition-all">
-                                App Store
-                            </a>
-                            <a href="https://play.google.com" target="_blank" class="flex items-center gap-1.5 px-3 py-2 rounded bg-white/5 border border-white/10 text-slate-300 text-[10px] font-bold code-font hover:bg-white/10 transition-all">
-                                Google Play
-                            </a>
+                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                View Case Study
+                            </span>
                         </div>
                     </div>
 
@@ -308,6 +359,15 @@
         </div>
     </div>
 
+    <div id="project-detail-modal" class="fixed inset-0 bg-[#08070a]/98 backdrop-blur-xl z-50 hidden opacity-0 transition-all duration-300 flex items-center justify-center p-4 md:p-8 overflow-y-auto">
+        <div class="max-w-3xl w-full bg-[#0c0a0f] border border-white/10 rounded-2xl p-6 md:p-10 relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-wrapper">
+            <button onclick="closeProjectDetail()" class="absolute top-6 right-6 text-slate-500 hover:text-amber-500 transition-colors code-font text-xs tracking-wider">
+                [ ESC / Close ]
+            </button>
+            <div id="modal-body" class="space-y-6"></div>
+        </div>
+    </div>
+
     <script>
         // Focused Mouse Glow Tracking Logic
         const glow = document.getElementById('mouse-glow');
@@ -315,31 +375,49 @@
             glow.style.background = `radial-gradient(200px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.08), transparent 70%)`;
         });
 
-        // SPA View & URL Hash Router
+        // Håll koll på om det är första gången vi besöker Projects
+        let hasVisitedProjects = false;
+
+        // --- LERP SCROLL VARIABLES ---
+        let targetScrollY = 0;
+        let currentScrollY = 0;
+        const easeFactor = 0.04;
+
+        // SPA View & URL Hash Router med smidiga intro-animeringar
         function handleRouting() {
             const hash = window.location.hash || '#hero';
             
             const portfolioView = document.getElementById('view-portfolio');
+            const portfolioContent = document.getElementById('portfolio-content-wrapper');
             const projectsView = document.getElementById('view-projects');
+            const projectsTrack = document.getElementById('projects-horizontal-track');
             const portfolioNav = document.getElementById('portfolio-nav');
             const projectsNav = document.getElementById('projects-nav');
             
             if (hash === '#projects' || hash.startsWith('#project-')) {
-                // Activate Projects View
                 portfolioView.classList.add('hidden');
                 projectsView.classList.remove('hidden');
                 
-                // Switch Sidebar Navigation
                 portfolioNav.classList.add('xl:hidden');
                 portfolioNav.classList.remove('xl:flex');
                 projectsNav.classList.add('xl:flex');
                 projectsNav.classList.remove('xl:hidden');
                 
-                // Initialize horizontal scroll listener
-                setupHorizontalScroll();
                 updateTopNavActive('projects');
+
+                // 1s fade-in vid allra första laddningen av Projects
+                if (!hasVisitedProjects) {
+                    projectsView.classList.add('animate-fade-1s');
+                    hasVisitedProjects = true;
+                } else {
+                    projectsView.classList.remove('animate-fade-1s');
+                }
+
+                // INTRO-EFFEKT: Elementen flyger in från höger till vänster
+                projectsTrack.classList.remove('animate-intro-projects');
+                void projectsTrack.offsetWidth; // Trigger reflow för omstart av animering
+                projectsTrack.classList.add('animate-intro-projects');
                 
-                // If a specific project was clicked in dropdown
                 if (hash.startsWith('#project-')) {
                     const idx = parseInt(hash.replace('#project-', ''));
                     if (!isNaN(idx)) {
@@ -348,20 +426,26 @@
                 } else {
                     window.scrollTo({ top: 0, behavior: 'instant' });
                 }
+
+                // FIX: Nollställ/synka lerp-värden direkt så att inte gamla värden låser spåret
+                targetScrollY = window.scrollY;
+                currentScrollY = window.scrollY;
             } else {
-                // Activate Main Portfolio View
                 projectsView.classList.add('hidden');
                 portfolioView.classList.remove('hidden');
                 
-                // Switch Sidebar Navigation
                 projectsNav.classList.add('xl:hidden');
                 projectsNav.classList.remove('xl:flex');
                 portfolioNav.classList.add('xl:flex');
                 portfolioNav.classList.remove('xl:hidden');
                 
                 updateTopNavActive('home');
+
+                // INTRO-EFFEKT: Elementen på Home åker nedifrån och upp
+                portfolioContent.classList.remove('animate-intro-home');
+                void portfolioContent.offsetWidth; // Trigger reflow för omstart av animering
+                portfolioContent.classList.add('animate-intro-home');
                 
-                // Scroll smoothly to portfolio section
                 const targetId = hash.replace('#', '');
                 const targetEl = document.getElementById(targetId);
                 if (targetEl) {
@@ -372,7 +456,9 @@
             }
         }
 
-        // Active State Link Decorator for Top Navbar
+        window.addEventListener('hashchange', handleRouting);
+        window.addEventListener('DOMContentLoaded', handleRouting);
+
         function updateTopNavActive(activeView) {
             const homeLink = document.querySelector('nav a[href="#hero"]');
             const projectsLink = document.querySelector('nav a[href="#projects"]');
@@ -398,8 +484,6 @@
             const navLinks = document.querySelectorAll('#portfolio-nav a');
             
             let currentSection = 'hero';
-            
-            // Smart trigger check for physical bottom of page (highlights last element reliably)
             const scrolledToBottom = (window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight - 100;
             
             if (scrolledToBottom) {
@@ -424,79 +508,65 @@
             });
         });
 
-        // Horizontal Scroll Engine for Projects View
-        let scrollListenerAdded = false;
-        function setupHorizontalScroll() {
-            if (scrollListenerAdded) return;
-            scrollListenerAdded = true;
+        // --- HIERARCHICAL LERP SCROLL SYSTEM ("On Ice" Glid-effekt) ---
+        window.addEventListener('scroll', () => {
+            if (document.getElementById('view-projects').classList.contains('hidden')) return;
+            targetScrollY = window.scrollY;
+        });
 
-            const wrapper = document.getElementById('projects-scroll-wrapper');
-            const track = document.getElementById('projects-horizontal-track');
-            
-            window.addEventListener('scroll', () => {
-                if (document.getElementById('view-projects').classList.contains('hidden')) return;
+        function smoothScrollLoop() {
+            const projectsView = document.getElementById('view-projects');
+            if (projectsView && !projectsView.classList.contains('hidden')) {
+                currentScrollY += (targetScrollY - currentScrollY) * easeFactor;
                 
-                const rect = wrapper.getBoundingClientRect();
-                const totalHeight = rect.height - window.innerHeight;
+                const wrapper = document.getElementById('projects-scroll-wrapper');
+                const track = document.getElementById('projects-horizontal-track');
                 
-                // Calculate scroll progress (0 to 1)
-                let progress = -rect.top / totalHeight;
-                progress = Math.max(0, Math.min(1, progress));
-                
-                // Horizontal scroll length
-                const maxTranslate = track.scrollWidth - window.innerWidth;
-                const translateX = progress * maxTranslate;
-                
-                track.style.transform = `translateX(${-translateX}px)`;
-                
-                // Highlight active Left Nav index on horizontal track scroll
-                updateProjectsLeftNav(progress);
-            });
-        }
+                if (wrapper && track) {
+                    const maxScroll = wrapper.offsetHeight - window.innerHeight;
+                    const maxTrack = track.scrollWidth - window.innerWidth;
+                    
+                    if (maxScroll > 0) {
+                        const percentage = currentScrollY / maxScroll;
+                        const translateX = -percentage * maxTrack;
+                        track.style.transform = `translateX(${translateX}px)`;
+                        
+                        updateProjectsSidebarNav(percentage);
 
-        // Projects Horizontal Position Jumper
-        function scrollToProject(index) {
-            const wrapper = document.getElementById('projects-scroll-wrapper');
-            const track = document.getElementById('projects-horizontal-track');
-            const cards = track.querySelectorAll('.shrink-0');
-            
-            if (index >= 0 && index < cards.length) {
-                const targetCard = cards[index];
-                const cardLeft = targetCard.offsetLeft;
-                const maxTranslate = track.scrollWidth - window.innerWidth;
-                
-                const progress = cardLeft / maxTranslate;
-                const totalHeight = wrapper.offsetHeight - window.innerHeight;
-                const targetScrollY = wrapper.offsetTop + (progress * totalHeight);
-                
-                window.scrollTo({
-                    top: targetScrollY,
-                    behavior: 'smooth'
-                });
-            }
-        }
-
-        // Active State Decorator for Projects Left Nav
-        function updateProjectsLeftNav(progress) {
-            const track = document.getElementById('projects-horizontal-track');
-            const cards = track.querySelectorAll('.shrink-0');
-            const maxTranslate = track.scrollWidth - window.innerWidth;
-            const currentTranslate = progress * maxTranslate;
-            
-            let activeIndex = 0;
-            let minDistance = Infinity;
-            
-            cards.forEach((card, idx) => {
-                const distance = Math.abs(card.offsetLeft - currentTranslate - (window.innerWidth / 4));
-                if (distance < minDistance) {
-                    minDistance = distance;
-                    activeIndex = idx;
+                        // Mjuk ut-fade av elementen när de glider mot skärmkanten
+                        const cards = track.querySelectorAll('.project-card');
+                        cards.forEach(card => {
+                            const rect = card.getBoundingClientRect();
+                            const cardCenter = rect.left + rect.width / 2;
+                            const screenCenter = window.innerWidth / 2;
+                            const dist = Math.abs(cardCenter - screenCenter);
+                            
+                            const maxDist = window.innerWidth * 0.6;
+                            let opacity = 1 - (dist / maxDist);
+                            opacity = Math.max(0.15, Math.min(1, opacity));
+                            
+                            let scale = 1 - (dist / (window.innerWidth * 2));
+                            scale = Math.max(0.9, Math.min(1.05, scale));
+                            
+                            card.style.opacity = opacity;
+                            card.style.transform = `scale(${scale})`;
+                        });
+                    }
                 }
-            });
-            
-            const navLinks = document.querySelectorAll('.projects-nav-link');
-            navLinks.forEach((link, idx) => {
-                if (idx === activeIndex) {
+            }
+            requestAnimationFrame(smoothScrollLoop);
+        }
+        requestAnimationFrame(smoothScrollLoop);
+
+        function updateProjectsSidebarNav(percentage) {
+            const navLinks = document.querySelectorAll('#projects-nav a');
+            let activeIdx = 0;
+            if (percentage > 0.15 && percentage <= 0.48) activeIdx = 1;
+            else if (percentage > 0.48 && percentage <= 0.8) activeIdx = 2;
+            else if (percentage > 0.8) activeIdx = 3;
+
+            navLinks.forEach((link, i) => {
+                if (i === activeIdx) {
                     link.classList.remove('text-slate-500');
                     link.classList.add('text-amber-500');
                 } else {
@@ -506,75 +576,159 @@
             });
         }
 
-        // Pipeline Diagram Step Switcher (Vanilla Logic)
+        function scrollToProject(index) {
+            const wrapper = document.getElementById('projects-scroll-wrapper');
+            if (!wrapper) return;
+            const maxScroll = wrapper.offsetHeight - window.innerHeight;
+            let scrollTarget = 0;
+            
+            if (index === 1) scrollTarget = maxScroll * 0.33;
+            else if (index === 2) scrollTarget = maxScroll * 0.64;
+            else if (index === 3) scrollTarget = maxScroll * 1.0;
+            
+            window.scrollTo({
+                top: scrollTarget,
+                behavior: 'smooth'
+            });
+        }
+
+        // --- WORKFLOW DATA & LOGIC ---
         const steps = {
             architecture: {
-                title: "Dialogue & System Architecture",
-                desc: "Setting up ironclad metadata templates and naming conventions before recording starts prevents localization chaos. I build pipeline structures that connect raw voice scripts directly to audio engine endpoints smoothly.",
-                code: "// Automated metadata linking: VoiceID_Char_Locale_01.wav",
-                media: "[ Visual Placeholder: Data schema linking scripts to localized audio databases ]"
+                title: "01 Architecture & Logic",
+                subtitle: "// Foundation Planning",
+                desc: "Creating solid logic designs before audio production. This involves structuring event systems, dialogue hierarchies and global variables in Wwise/FMOD to ensure they are robust and scalable.",
+                media: "[ Architecture blueprint loading... ]"
             },
             automation: {
-                title: "Custom Scripting & Automation",
-                desc: "I script tools (via Reaper ReaScripts, WAAPI, or Python) to automate voice workflows. Manually creating events for thousands of spoken lines is a massive bottleneck; my scripts auto-batch, trim, and generate structures instantly.",
-                code: "Wwise WAAPI Script: Batch-generating Voice Elements & Language Sub-folders",
-                media: "[ Visual Placeholder: Clip showing a script auto-importing and grouping VO assets ]"
+                title: "02 Automated Delivery Pipelines",
+                subtitle: "// Fast Iteration Pipelines",
+                desc: "Replacing repetitive export routines with streamlined scripts. Using Python and custom DAWs setups (Reaper APIs) to automatically trim, rename, level, and inject raw speech files into the engine.",
+                media: "[ Running pipeline_sync_v4.py... ]"
             },
             systems: {
-                title: "Narrative & Logic Integration",
-                desc: "I program the underlying narrative voice systems. By wiring audio middleware with node-based logic tools like Articy:draft or Ink, I build dynamic routing, priority interruption logic, and contextual voice-line systems.",
-                code: "Integration: Processing real-time priority queues for player dialogue trees",
-                media: "[ Visual Placeholder: Node layout showing conditional voice interrupts in game logic ]"
+                title: "03 Dynamic & Systemic Audio",
+                subtitle: "// Deep Game Integration",
+                desc: "Constructing reactive dialogue trees and state-driven soundscapes that adapt to real-time gameplay. This bridges structural scripting directly with immersive world-building.",
+                media: "[ Real-time systemic event debugger: ACTIVE ]"
             },
             optimization: {
-                title: "Profiling & Memory Management",
-                desc: "Dialogue can heavily bloat game builds. I profile and manage runtime streaming behaviors, structure soundbanks dynamically per chapter/zone, and budget voice compression ratios to maintain crystal clear audio within safe memory caps.",
-                code: "Profiler Matrix: Monitoring active rtpcs, dialogue streaming threads, and voice pools",
-                media: "[ Visual Placeholder: Real-time optimization profiling graph for localization banks ]"
+                title: "04 Profiling & Optimization",
+                subtitle: "// Profiling & Budgets",
+                desc: "Rigorous profiling of audio threads to keep CPU, RAM, and disk storage optimal on all platforms. Using advanced compression matrices and prioritizing dynamic memory pooling.",
+                media: "[ Memory allocation layout: OK (45% compressed) ]"
             }
         };
 
-        function changeStep(stepIndex, stepKey) {
-            const card = document.getElementById('pipeline-card');
-            card.classList.add('opacity-0', 'translate-y-2');
+        function changeStep(stepNum, stepKey) {
+            const content = document.getElementById('pipeline-content');
+            const media = document.getElementById('pipeline-media');
+            const progress = document.getElementById('pipeline-progress');
+            
+            // Eleganta 1s fades på innehållsbyten
+            content.style.opacity = '0';
+            media.style.opacity = '0';
             
             setTimeout(() => {
-                const progress = document.getElementById('pipeline-progress');
-                if(progress) progress.style.height = `${(stepIndex / 4) * 100}%`;
-
-                const nodes = document.querySelectorAll('.pipeline-node');
-                nodes.forEach((node, index) => {
-                    const dot = node.querySelector('.node-dot');
-                    const text = node.querySelector('span');
-                    
-                    if (index < stepIndex) {
-                        dot.className = "node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font";
-                        text.className = "text-xs uppercase tracking-widest code-font text-white transition-colors";
-                    } else {
-                        dot.className = "node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font";
-                        text.className = "text-xs uppercase tracking-widest code-font text-slate-500 transition-colors";
-                    }
-                });
-
                 const data = steps[stepKey];
-                document.getElementById('pipeline-content').innerHTML = `
-                    <h4 class="text-xl font-bold text-white tracking-tight">${data.title}</h4>
-                    <p class="text-sm text-slate-400 leading-relaxed">${data.desc}</p>
-                    <div class="mt-4 bg-[#08070a] border border-white/5 px-4 py-2 rounded text-xs code-font text-amber-500 whitespace-pre-line">
-                        ${data.code}
-                    </div>
+                content.innerHTML = `
+                    <span class="code-font text-amber-500 text-[10px] tracking-widest uppercase block">${data.subtitle}</span>
+                    <h4 class="text-xl font-bold text-white">${data.title}</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">${data.desc}</p>
                 `;
-                document.getElementById('pipeline-media').innerHTML = data.media;
+                media.innerHTML = data.media;
+                
+                content.style.opacity = '1';
+                media.style.opacity = '1';
+            }, 300);
 
-                card.classList.remove('opacity-0', 'translate-y-2');
-            }, 650); 
+            // Flytta progress bar till rätt höjd (1/4 steg per nod)
+            progress.style.height = `${(stepNum / 4) * 100}%`;
+
+            document.querySelectorAll('.pipeline-node').forEach((node, i) => {
+                const dot = node.querySelector('.node-dot');
+                const label = node.querySelector('span');
+                if (i + 1 === stepNum) {
+                    dot.className = "node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font";
+                    label.className = "text-xs uppercase tracking-widest code-font text-white transition-colors";
+                } else {
+                    dot.className = "node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font";
+                    label.className = "text-xs uppercase tracking-widest code-font text-slate-500 hover:text-amber-400 transition-colors";
+                }
+            });
         }
 
-        // Initialize Router and Page Content
-        window.addEventListener('hashchange', handleRouting);
-        window.addEventListener('DOMContentLoaded', () => {
-            changeStep(1, 'architecture');
-            handleRouting();
+        // Sätt default workflow-steg vid start
+        changeStep(1, 'architecture');
+
+        // --- DETALJERADE MODAL CASE-STUDIES ---
+        const projectCases = {
+            'echoes-void': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Echoes of the Void</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Echoes of the Void</h2>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    Designed a tailored narrative routing architecture for Echoes of the Void. Built dynamic voice prioritization pools within Wwise, letting combat dialog dynamically cut off ambient chatter based on cinematic importance parameters.
+                </p>
+                <p class="text-sm text-slate-300 leading-relaxed mt-4">
+                    The localization structure was rewritten from scratch, shifting assets dynamically to reduce memory consumption on high-end dialogue trees, resulting in a 45% RAM drop during core cinematic scenes.
+                </p>
+            `,
+            'waapi-dialogue': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: WAAPI Dialogue Batcher</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">WAAPI Dialogue Batcher</h2>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    Developed a specialized batching framework in Python utilizing the Wwise Authoring API (WAAPI). This automation tool bridges creative design in Reaper directly into structural metadata inside Wwise.
+                </p>
+                <p class="text-sm text-slate-300 leading-relaxed mt-4">
+                    The tool parses marker exports, slices raw WAV clips, applies target sound curves, structures virtual folders on the fly, and registers localized audio loops automatically within seconds. This saved around 80 hours of manual pipeline preparation per project phase.
+                </p>
+            `,
+            'aura-audio': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Aura Generative Audio</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Aura: Generative Audio App</h2>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    Created an engine module within Unity linked with FMOD for a mobile soundscape companion. Implemented dynamic LFO filters, interactive distance-based attenuation structures, and procedural audio modules.
+                </p>
+                <p class="text-sm text-slate-300 leading-relaxed mt-4">
+                    To keep latency below the target threshold of 15ms, deep performance optimization of high-density DSP elements was carried out, preserving mobile battery life without losing the high quality of generative layers.
+                </p>
+            `
+        };
+
+        function openProjectDetail(key) {
+            const modal = document.getElementById('project-detail-modal');
+            const body = document.getElementById('modal-body');
+            const wrapper = document.getElementById('modal-content-wrapper');
+            
+            body.innerHTML = projectCases[key] || "Case study load error.";
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                wrapper.classList.remove('scale-95');
+                wrapper.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeProjectDetail() {
+            const modal = document.getElementById('project-detail-modal');
+            const wrapper = document.getElementById('modal-content-wrapper');
+            
+            modal.classList.remove('opacity-100');
+            wrapper.classList.remove('scale-100');
+            wrapper.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // ESC-nyckel för att stänga modalen
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeProjectDetail();
         });
     </script>
 </body>
