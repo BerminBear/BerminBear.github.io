@@ -1,2 +1,2 @@
-# BerminBear.github.io
-My portfolio website
+# Ben Natalli
+Technical Audio Design & Pipeline Architecture
