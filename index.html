@@ -8,25 +8,21 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- GSAP för animationer -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Google Fonts (Inter för ren design, Fira Code för tekniska accenter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #0f172a; /* Slate 900 */
-            color: #e2e8f0;
+            background-color: #08070a; /* Ultra-deep violet-black */
+            color: #f1f5f9;
             font-family: 'Inter', sans-serif;
         }
-        
+
         .code-font {
             font-family: 'Fira Code', monospace;
         }
 
-        /* Mouse Glow Effect */
+        /* Ambient Glow (Guld/Bärnsten) */
         #mouse-glow {
             position: fixed;
             top: 0;
@@ -36,245 +32,257 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
-            background: radial-gradient(600px at 50% 50%, rgba(45, 212, 191, 0.05), transparent 80%);
+            background: radial-gradient(600px at 50% 50%, rgba(245, 158, 11, 0.03), transparent 80%);
             transition: opacity 0.3s;
         }
 
-        /* Nav links styling */
-        .nav-link.active .nav-line {
-            width: 3rem;
-            background-color: #2dd4bf;
-        }
-        .nav-link.active .nav-text {
-            color: #e2e8f0;
-            font-weight: 600;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        /* Snygg scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #08070a; }
+        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
     </style>
 </head>
-<body class="antialiased selection:bg-teal-300/30 selection:text-teal-200">
+<body class="antialiased selection:bg-amber-500/30 selection:text-amber-200">
 
     <div id="mouse-glow"></div>
 
-    <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
-        <div class="lg:flex lg:justify-between lg:gap-4">
-            
-            <!-- VÄNSTER SIDA (Sticky) -->
-            <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
-                <div>
-                    <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
-                        Benjamin Natalli
-                    </h1>
-                    <h2 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
-                        Technical Audio Designer
-                    </h2>
-                    <p class="mt-4 max-w-xs leading-normal text-slate-400">
-                        I build scalable audio pipelines and bridge the gap between sound design and system implementation.
-                    </p>
+    <!-- TOP NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="#hero" class="code-font text-amber-500 font-bold tracking-wider text-sm">B.NATALLI</a>
+            <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest code-font">
+                <a href="#hero" class="text-amber-500 hover:text-white transition-colors">Home</a>
+                <a href="#" class="text-slate-400 hover:text-amber-500 transition-colors">My Game</a>
+                <a href="#" class="text-slate-400 hover:text-amber-500 transition-colors">Projects</a>
+                <a href="#" class="text-slate-400 hover:text-amber-500 transition-colors">CV</a>
+            </div>
+        </div>
+    </nav>
 
-                    <!-- Navigation -->
-                    <nav class="nav hidden lg:block mt-16">
-                        <ul class="flex w-max flex-col gap-4">
-                            <li>
-                                <a class="nav-link group flex items-center py-3 active" href="#about">
-                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
-                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">About</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link group flex items-center py-3" href="#pipeline">
-                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
-                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">Audio Pipeline</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link group flex items-center py-3" href="#showreel">
-                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
-                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">Showreel & Music</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+    <!-- HUVUDCONTAINER -->
+    <main class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-24 flex flex-col gap-32">
+
+        <!-- HERO SECTION -->
+        <header id="hero" class="min-h-[50vh] flex flex-col justify-center">
+            <span class="code-font text-amber-500 text-sm tracking-widest mb-3 uppercase">// Systems, Sound & Pipelines</span>
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
+                Benjamin Natalli
+            </h1>
+            <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
+                Technical Audio Designer
+            </h2>
+            <p class="mt-6 max-w-xl text-slate-400 leading-relaxed text-base">
+                I build scalable audio infrastructure, custom automation tools, and interactive systems that bridge the gap between complex game logic and creative sound design.
+            </p>
+        </header>
+
+        <!-- SHOWREEL -->
+        <section id="showreel" class="scroll-mt-24">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// Showreel</h3>
+            <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <!-- WORKFLOW (Fokus på tidsekonomi och systembygge) -->
+        <section id="workflow" class="scroll-mt-24">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
+            <p class="text-sm text-slate-400 max-w-xl mb-12">
+                Ett ostrukturerat ljudteam slösar hundratals timmar på manuellt arbete. Jag designar pipelines och verktyg som automatiserar bort flaskhalsar så att ni kan skeppa snabbare.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                
+                <!-- Pipeline-meny (vänster) -->
+                <div class="md:col-span-4 flex md:flex-col gap-4 relative">
+                    <div class="hidden md:block absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-800">
+                        <div id="pipeline-progress" class="w-full h-1/3 bg-amber-500 transition-all duration-500 rounded-full"></div>
+                    </div>
+
+                    <button onclick="changeStep(1, 'preprod')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                        <div class="node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font">01</div>
+                        <span class="text-xs uppercase tracking-widest code-font text-white group-hover:text-amber-400 transition-colors">Architecture</span>
+                    </button>
+
+                    <button onclick="changeStep(2, 'automation')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                        <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">02</div>
+                        <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Automation</span>
+                    </button>
+
+                    <button onclick="changeStep(3, 'systems')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                        <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">03</div>
+                        <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Systems</span>
+                    </button>
+
+                    <button onclick="changeStep(4, 'integration')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
+                        <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">04</div>
+                        <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Optimization</span>
+                    </button>
                 </div>
 
-                <!-- Socials/Links -->
-                <ul class="ml-1 mt-8 flex items-center gap-5">
-                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">LinkedIn</a></li>
-                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">GitHub</a></li>
-                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">Email</a></li>
-                </ul>
-            </header>
+                <!-- Dynamisk innehållsruta med mjuk fade (höger) -->
+                <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transition-opacity duration-300" id="pipeline-card">
+                    
+                    <div id="pipeline-content" class="space-y-4">
+                        <!-- Laddas via JS -->
+                    </div>
 
-            <!-- HÖGER SIDA (Scrollande Innehåll) -->
-            <main id="content" class="pt-24 lg:w-[55%] lg:py-24 flex flex-col gap-24">
+                    <!-- Media Placeholder -->
+                    <div class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
+                        <div id="pipeline-media" class="text-xs text-slate-600 code-font">
+                            <!-- Laddas via JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TECH STACK (Städad, kategoriserad och professionell) -->
+        <section id="tech-stack" class="scroll-mt-24">
+            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
                 
-                <!-- ABOUT SECTION -->
-                <section id="about" class="scroll-mt-24">
-                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">About</h2>
+                <!-- Audio Tech & Middleware -->
+                <div>
+                    <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Middleware</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><strong class="text-white">Middleware:</strong> Wwise, FMOD</li>
+                        <li><strong class="text-white">DAWs:</strong> Reaper, Pro Tools, Logic Pro X</li>
+                        <li><strong class="text-white">Audio Tools:</strong> Pure Data</li>
+                    </ul>
+                </div>
+
+                <!-- Engines & Integration -->
+                <div>
+                    <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Engines & Integration</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><strong class="text-white">Primary Engines:</strong> Unity, Godot</li>
+                        <li><strong class="text-white">Implementation:</strong> Adaptive music systems, dynamic mixing, spatial audio systems.</li>
+                    </ul>
+                </div>
+
+                <!-- Code & Logic -->
+                <div>
+                    <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Code & Logic</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
+                        <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua</span>
+                        <span class="px-3 py-1 text-xs code-font rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">C# (Basic)</span>
+                        <span class="px-3 py-1 text-xs code-font rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">GDScript (Basic)</span>
                     </div>
-                    <div class="text-slate-400 leading-relaxed space-y-4">
-                        <p>
-                            With a strong foundation in both traditional sound design and software engineering, I specialize in creating <span class="font-medium text-slate-200">dynamic audio systems</span> for interactive media. My goal is to reduce manual labor through automation and empower creative teams with robust tools.
-                        </p>
-                        <p>
-                            Whether it's scripting Python tools for batch processing, setting up complex Blueprints in Unreal Engine, or profiling memory in Wwise, I thrive in the intersection of art and logic.
-                        </p>
-                    </div>
+                </div>
 
-                    <!-- Tech Stack -->
-                    <div class="mt-8">
-                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// CORE STACK</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Wwise & WAAPI</span>
-                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Unreal Engine 5</span>
-                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Python</span>
-                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">C++</span>
-                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Reaper</span>
-                        </div>
-                    </div>
-                </section>
+                <!-- Pipelines & Narrative Systems -->
+                <div>
+                    <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Pipelines & Narrative Systems</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><strong class="text-white">Narrative Tech:</strong> Articy:draft, Ink</li>
+                        <li><strong class="text-white">Source Control:</strong> Git/GitHub, Perforce</li>
+                        <li><strong class="text-white">Production:</strong> Jira, Notion, Trello, Slack</li>
+                    </ul>
+                </div>
 
-                <!-- PIPELINE / WORKFLOW SECTION (Interactive) -->
-                <section id="pipeline" class="scroll-mt-24">
-                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">Audio Pipeline</h2>
-                    </div>
-                    
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// MY WORKFLOW</h3>
-                    
-                    <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 flex flex-col md:flex-row overflow-hidden">
-                        
-                        <!-- Flikar (Tabs) -->
-                        <div class="md:w-1/3 bg-slate-800/80 border-b md:border-b-0 md:border-r border-slate-700/50 p-2 flex flex-row md:flex-col gap-1 overflow-x-auto">
-                            <button onclick="showTab('preprod')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg bg-teal-500/20 text-teal-300 transition-colors code-font">1. Pre-Prod</button>
-                            <button onclick="showTab('tools')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg hover:bg-slate-700/50 text-slate-400 transition-colors code-font">2. Tools</button>
-                            <button onclick="showTab('implementation')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg hover:bg-slate-700/50 text-slate-400 transition-colors code-font">3. Integrate</button>
-                        </div>
+            </div>
 
-                        <!-- Innehåll (Content) -->
-                        <div class="md:w-2/3 p-6 min-h-[200px] relative">
-                            
-                            <!-- Tab 1 -->
-                            <div id="tab-preprod" class="tab-content">
-                                <h4 class="text-lg font-bold text-slate-200 mb-2">Pre-production & Naming Conventions</h4>
-                                <p class="text-sm text-slate-400 leading-relaxed mb-4">Establishing a rock-solid foundation is crucial. I design macro-structures for audio events and define strict naming conventions to ensure WAAPI and automation scripts can parse data flawlessly later in the pipeline.</p>
-                                <span class="text-xs bg-slate-900 px-2 py-1 rounded text-slate-300 code-font">AMB_Ext_Forest_Day_Loop_01.wav</span>
-                            </div>
+            <!-- Kompakt Day-to-day info längst ner -->
+            <div class="mt-16 pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed">
+                <div>
+                    <p>• Solid förståelse för tvärfunktionella spel-loopar och tät kommunikation med designers och programmerare.</p>
+                    <p class="mt-2">• Trivs lika bra med stort eget ansvar och systemarkitektur som i sammansvetsade team.</p>
+                </div>
+                <div>
+                    <p>• Brinner extra mycket för RPGs, systemtunga spel och Co-Op-upplevelser.</p>
+                    <p class="mt-2">• Flytande i svenska och engelska, grundläggande förståelse i portugisiska.</p>
+                </div>
+            </div>
+        </section>
 
-                            <!-- Tab 2 -->
-                            <div id="tab-tools" class="tab-content hidden">
-                                <h4 class="text-lg font-bold text-slate-200 mb-2">Tool Building & Automation</h4>
-                                <p class="text-sm text-slate-400 leading-relaxed mb-4">I write custom Python scripts and Reaper scripts (ReaScript) to batch export files, generate metadata, and automatically import them into Wwise using the Wwise Authoring API (WAAPI), saving hours of manual labor.</p>
-                                <span class="text-xs bg-slate-900 px-2 py-1 rounded text-teal-400 code-font">import waapi<br>client.call("ak.wwise.core.object.create", ...)</span>
-                            </div>
-
-                            <!-- Tab 3 -->
-                            <div id="tab-implementation" class="tab-content hidden">
-                                <h4 class="text-lg font-bold text-slate-200 mb-2">Implementation & Profiling</h4>
-                                <p class="text-sm text-slate-400 leading-relaxed mb-4">Hooking up the audio in Unreal Engine via Blueprints or C++. I set up RTPCs, State Groups, and occlusion/obstruction systems. Finally, I profile the game to ensure memory limits and CPU usage are within budget.</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-                <!-- SHOWREEL & MUSIC SECTION -->
-                <section id="showreel" class="scroll-mt-24 pb-24">
-                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">Showreel & Music</h2>
-                    </div>
-
-                    <!-- Video Reel -->
-                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl mb-12">
-                        <!-- Byt ut src mot din YouTube-länk när du har en -->
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-                    </div>
-
-                    <!-- Audio Player -->
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// SELECTED AUDIO TRACKS</h3>
-                    
-                    <div class="space-y-4">
-                        
-                        <!-- Track 1 (Byt 'din-ljudfil.mp3' till din egen fil!) -->
-                        <div class="p-4 bg-slate-800/30 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-all">
-                            <div class="flex justify-between items-center mb-2">
-                                <h4 class="text-sm font-semibold text-slate-200">Procedural Ambiance Demo</h4>
-                                <span class="text-xs text-slate-500 code-font">Unreal / Wwise</span>
-                            </div>
-                            <audio controls class="w-full h-8 opacity-80 filter invert grayscale contrast-200">
-                                <source src="din-ljudfil-1.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-
-                        <!-- Track 2 -->
-                        <div class="p-4 bg-slate-800/30 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-all">
-                            <div class="flex justify-between items-center mb-2">
-                                <h4 class="text-sm font-semibold text-slate-200">Dynamic Combat Music</h4>
-                                <span class="text-xs text-slate-500 code-font">FMOD</span>
-                            </div>
-                            <audio controls class="w-full h-8 opacity-80 filter invert grayscale contrast-200">
-                                <source src="din-ljudfil-2.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-
-                    </div>
-                </section>
-
-            </main>
-        </div>
-    </div>
+    </main>
 
     <script>
-        // 1. Mouse Glow
+        // Mouse Glow Logic
         const glow = document.getElementById('mouse-glow');
         document.addEventListener('mousemove', (e) => {
-            glow.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(45, 212, 191, 0.04), transparent 80%)`;
+            glow.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.04), transparent 80%)`;
         });
 
-        // 2. Interactive Pipeline Logic
-        function showTab(tabId) {
-            // Göm alla tab-contents
-            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            // Visa den valda
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
+        // Pipeline Content Data (Fokus på vad studion sparar för tid)
+        const steps = {
+            preprod: {
+                title: "Pipeline Architecture",
+                desc: "Genom att sätta strikta namngivningskonventioner, strukturer och mappsystem innan produktionen startar elimineras framtida teknisk skuld. Jag bygger strukturen så att integrationen blir sömlös för hela teamet.",
+                code: "// Eliminerar manuellt sorteringsarbete i Wwise/Spelmotor",
+                media: "[ Skärmklipp/GIF: Projektstruktur / Mappträd ]"
+            },
+            automation: {
+                title: "Custom Tooling & Automation",
+                desc: "Jag skriver skript (t.ex. ReaScripts i Reaper eller Python) för att automatisera monotona processer. Att batch-exportera hundratals filer och automatiskt generera ljudcontainrar sparar dagsverken av dötid.",
+                code: "ReaScript / WAAPI: Automatiskt skapande av ljudcontainrar",
+                media: "[ Skärmklipp/GIF: Skript som automatiskt exporterar till spelmotorn ]"
+            },
+            systems: {
+                title: "Interactive Systems & Logic",
+                desc: "Jag bygger logiken bakom ljudet. Genom att koppla samman ljudsystem med spelmekanik (t.ex. via C++, Lua eller state-machines i Articy/Ink) skapar jag adaptiva ljudmiljöer som reagerar intelligent på gameplay.",
+                code: "Integration: Dynamisk musik som styrs av spelsituation och story-states",
+                media: "[ Skärmklipp/GIF: Nod-baserat logiksystem i Articy eller spelmotor ]"
+            },
+            integration: {
+                title: "Profiling & Optimization",
+                desc: "Ett bra system måste rulla i 60 FPS. Jag profilerar och optimerar ljudbanker, hanterar minnesbudgetar och bygger smarta system för ocklusion och dämpning för att hålla nere CPU-belastningen.",
+                code: "Wwise Profiler: Övervakning av CPU-röster och minnesströmmar",
+                media: "[ Skärmklipp/GIF: Live-profilering i spelmotor under körning ]"
+            }
+        };
 
-            // Återställ alla knappar
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-teal-500/20', 'text-teal-300');
-                btn.classList.add('hover:bg-slate-700/50', 'text-slate-400');
-            });
-            // Markera den aktiva knappen
-            event.currentTarget.classList.remove('hover:bg-slate-700/50', 'text-slate-400');
-            event.currentTarget.classList.add('bg-teal-500/20', 'text-teal-300');
+        // Funktion för att byta steg med en mjuk fade-effekt
+        function changeStep(stepIndex, stepKey) {
+            const card = document.getElementById('pipeline-card');
+            
+            // 1. Fade ut kortet
+            card.classList.add('opacity-0');
+            
+            // 2. Vänta tills fade-out är klar, byt sedan innehåll
+            setTimeout(() => {
+                // Uppdatera linjen till vänster
+                const progress = document.getElementById('pipeline-progress');
+                progress.style.height = `${(stepIndex / 4) * 100}%`;
+
+                // Uppdatera nodernas utseende
+                const nodes = document.querySelectorAll('.pipeline-node');
+                nodes.forEach((node, index) => {
+                    const dot = node.querySelector('.node-dot');
+                    const text = node.querySelector('span');
+                    
+                    if (index < stepIndex) {
+                        dot.className = "node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font";
+                        text.className = "text-xs uppercase tracking-widest code-font text-white transition-colors";
+                    } else {
+                        dot.className = "node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font";
+                        text.className = "text-xs uppercase tracking-widest code-font text-slate-500 transition-colors";
+                    }
+                });
+
+                // Injicera det nya innehållet
+                const data = steps[stepKey];
+                document.getElementById('pipeline-content').innerHTML = `
+                    <h4 class="text-xl font-bold text-white tracking-tight">${data.title}</h4>
+                    <p class="text-sm text-slate-400 leading-relaxed">${data.desc}</p>
+                    <div class="mt-4 bg-[#08070a] border border-white/5 px-4 py-2 rounded text-xs code-font text-amber-500 whitespace-pre-line">
+                        ${data.code}
+                    </div>
+                `;
+                document.getElementById('pipeline-media').innerHTML = data.media;
+
+                // 3. Fade in kortet igen
+                card.classList.remove('opacity-0');
+            }, 200); // Matchar Tailwind duration-300 ganska lagom
         }
 
-        // 3. Highlight Navigation Links on Scroll
-        const sections = document.querySelectorAll("section");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        window.addEventListener("scroll", () => {
-            let current = "";
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop;
-                if (pageYOffset >= sectionTop - 150) {
-                    current = section.getAttribute("id");
-                }
-            });
-
-            navLinks.forEach((link) => {
-                link.classList.remove("active");
-                if (link.getAttribute("href").includes(current)) {
-                    link.classList.add("active");
-                }
-            });
+        // Initiera första steget vid start
+        window.addEventListener('DOMContentLoaded', () => {
+            changeStep(1, 'preprod');
         });
     </script>
 </body>
