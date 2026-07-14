@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="sv" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benji Natalli | Technical Audio Designer</title>
+    <title>Benjamin Natalli | Technical Audio Designer</title>
     
-    <!-- Tailwind CSS (Styling) -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- GSAP & ScrollTrigger (För Cosmonova-scroll och smooth zoom) -->
+    <!-- GSAP för animationer -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-    <!-- Google Fonts (Inter för ren minimalism) -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 
     <style>
         body {
-            background-color: #030712; /* Extremt mörkblå/svart */
-            color: #f3f4f6;
+            background-color: #0f172a; /* Slate 900 */
+            color: #e2e8f0;
             font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
         }
         
         .code-font {
             font-family: 'Fira Code', monospace;
         }
 
-        /* Musglorian (Brittany Chiang) */
+        /* Mouse Glow Effect */
         #mouse-glow {
             position: fixed;
             top: 0;
@@ -37,247 +36,245 @@
             pointer-events: none;
             z-index: 9999;
             mix-blend-mode: screen;
+            background: radial-gradient(600px at 50% 50%, rgba(45, 212, 191, 0.05), transparent 80%);
             transition: opacity 0.3s;
         }
 
-        /* CSS-animerad ljudvåg (Inon Zur-sektionen) */
-        .bar {
-            width: 3px;
-            height: 2px;
+        /* Nav links styling */
+        .nav-link.active .nav-line {
+            width: 3rem;
             background-color: #2dd4bf;
-            animation: bounce 0.8s ease-in-out infinite alternate;
         }
-        .bar:nth-child(2) { animation-delay: 0.2s; }
-        .bar:nth-child(3) { animation-delay: 0.4s; }
-        .bar:nth-child(4) { animation-delay: 0.1s; }
-        @keyframes bounce {
-            100% { height: 18px; }
+        .nav-link.active .nav-text {
+            color: #e2e8f0;
+            font-weight: 600;
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
     </style>
 </head>
-<body class="relative antialiased selection:bg-teal-500/30 selection:text-teal-200">
+<body class="antialiased selection:bg-teal-300/30 selection:text-teal-200">
 
-    <!-- Musgloria -->
     <div id="mouse-glow"></div>
 
-    <!-- Scroll-Ljud Kontroll (Logartis) -->
-    <div class="fixed top-6 right-6 z-50">
-        <button id="audio-toggle" class="px-4 py-2 bg-slate-900/80 border border-slate-800 rounded-full text-xs code-font text-teal-400 hover:border-teal-400 transition-all flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse" id="audio-status"></span>
-            Ambient: OFF
-        </button>
+    <div class="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+        <div class="lg:flex lg:justify-between lg:gap-4">
+            
+            <!-- VÄNSTER SIDA (Sticky) -->
+            <header class="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[45%] lg:flex-col lg:justify-between lg:py-24">
+                <div>
+                    <h1 class="text-4xl font-bold tracking-tight text-slate-200 sm:text-5xl">
+                        Benjamin Natalli
+                    </h1>
+                    <h2 class="mt-3 text-lg font-medium tracking-tight text-slate-200 sm:text-xl">
+                        Technical Audio Designer
+                    </h2>
+                    <p class="mt-4 max-w-xs leading-normal text-slate-400">
+                        I build scalable audio pipelines and bridge the gap between sound design and system implementation.
+                    </p>
+
+                    <!-- Navigation -->
+                    <nav class="nav hidden lg:block mt-16">
+                        <ul class="flex w-max flex-col gap-4">
+                            <li>
+                                <a class="nav-link group flex items-center py-3 active" href="#about">
+                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
+                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">About</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link group flex items-center py-3" href="#pipeline">
+                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
+                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">Audio Pipeline</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link group flex items-center py-3" href="#showreel">
+                                    <span class="nav-line mr-4 h-px w-8 bg-slate-600 transition-all duration-300 group-hover:w-12 group-hover:bg-slate-200"></span>
+                                    <span class="nav-text text-xs font-bold uppercase tracking-widest text-slate-500 group-hover:text-slate-200">Showreel & Music</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Socials/Links -->
+                <ul class="ml-1 mt-8 flex items-center gap-5">
+                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">LinkedIn</a></li>
+                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">GitHub</a></li>
+                    <li class="text-slate-400 hover:text-teal-400 transition-colors code-font text-sm"><a href="#">Email</a></li>
+                </ul>
+            </header>
+
+            <!-- HÖGER SIDA (Scrollande Innehåll) -->
+            <main id="content" class="pt-24 lg:w-[55%] lg:py-24 flex flex-col gap-24">
+                
+                <!-- ABOUT SECTION -->
+                <section id="about" class="scroll-mt-24">
+                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">About</h2>
+                    </div>
+                    <div class="text-slate-400 leading-relaxed space-y-4">
+                        <p>
+                            With a strong foundation in both traditional sound design and software engineering, I specialize in creating <span class="font-medium text-slate-200">dynamic audio systems</span> for interactive media. My goal is to reduce manual labor through automation and empower creative teams with robust tools.
+                        </p>
+                        <p>
+                            Whether it's scripting Python tools for batch processing, setting up complex Blueprints in Unreal Engine, or profiling memory in Wwise, I thrive in the intersection of art and logic.
+                        </p>
+                    </div>
+
+                    <!-- Tech Stack -->
+                    <div class="mt-8">
+                        <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// CORE STACK</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Wwise & WAAPI</span>
+                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Unreal Engine 5</span>
+                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Python</span>
+                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">C++</span>
+                            <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-400/10 text-teal-300">Reaper</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PIPELINE / WORKFLOW SECTION (Interactive) -->
+                <section id="pipeline" class="scroll-mt-24">
+                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">Audio Pipeline</h2>
+                    </div>
+                    
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// MY WORKFLOW</h3>
+                    
+                    <div class="bg-slate-800/50 rounded-xl border border-slate-700/50 flex flex-col md:flex-row overflow-hidden">
+                        
+                        <!-- Flikar (Tabs) -->
+                        <div class="md:w-1/3 bg-slate-800/80 border-b md:border-b-0 md:border-r border-slate-700/50 p-2 flex flex-row md:flex-col gap-1 overflow-x-auto">
+                            <button onclick="showTab('preprod')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg bg-teal-500/20 text-teal-300 transition-colors code-font">1. Pre-Prod</button>
+                            <button onclick="showTab('tools')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg hover:bg-slate-700/50 text-slate-400 transition-colors code-font">2. Tools</button>
+                            <button onclick="showTab('implementation')" class="tab-btn w-full text-left px-4 py-3 text-sm font-medium rounded-lg hover:bg-slate-700/50 text-slate-400 transition-colors code-font">3. Integrate</button>
+                        </div>
+
+                        <!-- Innehåll (Content) -->
+                        <div class="md:w-2/3 p-6 min-h-[200px] relative">
+                            
+                            <!-- Tab 1 -->
+                            <div id="tab-preprod" class="tab-content">
+                                <h4 class="text-lg font-bold text-slate-200 mb-2">Pre-production & Naming Conventions</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed mb-4">Establishing a rock-solid foundation is crucial. I design macro-structures for audio events and define strict naming conventions to ensure WAAPI and automation scripts can parse data flawlessly later in the pipeline.</p>
+                                <span class="text-xs bg-slate-900 px-2 py-1 rounded text-slate-300 code-font">AMB_Ext_Forest_Day_Loop_01.wav</span>
+                            </div>
+
+                            <!-- Tab 2 -->
+                            <div id="tab-tools" class="tab-content hidden">
+                                <h4 class="text-lg font-bold text-slate-200 mb-2">Tool Building & Automation</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed mb-4">I write custom Python scripts and Reaper scripts (ReaScript) to batch export files, generate metadata, and automatically import them into Wwise using the Wwise Authoring API (WAAPI), saving hours of manual labor.</p>
+                                <span class="text-xs bg-slate-900 px-2 py-1 rounded text-teal-400 code-font">import waapi<br>client.call("ak.wwise.core.object.create", ...)</span>
+                            </div>
+
+                            <!-- Tab 3 -->
+                            <div id="tab-implementation" class="tab-content hidden">
+                                <h4 class="text-lg font-bold text-slate-200 mb-2">Implementation & Profiling</h4>
+                                <p class="text-sm text-slate-400 leading-relaxed mb-4">Hooking up the audio in Unreal Engine via Blueprints or C++. I set up RTPCs, State Groups, and occlusion/obstruction systems. Finally, I profile the game to ensure memory limits and CPU usage are within budget.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SHOWREEL & MUSIC SECTION -->
+                <section id="showreel" class="scroll-mt-24 pb-24">
+                    <div class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
+                        <h2 class="text-sm font-bold uppercase tracking-widest text-slate-200">Showreel & Music</h2>
+                    </div>
+
+                    <!-- Video Reel -->
+                    <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl mb-12">
+                        <!-- Byt ut src mot din YouTube-länk när du har en -->
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- Audio Player -->
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// SELECTED AUDIO TRACKS</h3>
+                    
+                    <div class="space-y-4">
+                        
+                        <!-- Track 1 (Byt 'din-ljudfil.mp3' till din egen fil!) -->
+                        <div class="p-4 bg-slate-800/30 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-all">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-sm font-semibold text-slate-200">Procedural Ambiance Demo</h4>
+                                <span class="text-xs text-slate-500 code-font">Unreal / Wwise</span>
+                            </div>
+                            <audio controls class="w-full h-8 opacity-80 filter invert grayscale contrast-200">
+                                <source src="din-ljudfil-1.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+
+                        <!-- Track 2 -->
+                        <div class="p-4 bg-slate-800/30 border border-slate-700/50 rounded-lg hover:border-teal-500/30 transition-all">
+                            <div class="flex justify-between items-center mb-2">
+                                <h4 class="text-sm font-semibold text-slate-200">Dynamic Combat Music</h4>
+                                <span class="text-xs text-slate-500 code-font">FMOD</span>
+                            </div>
+                            <audio controls class="w-full h-8 opacity-80 filter invert grayscale contrast-200">
+                                <source src="din-ljudfil-2.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+
+                    </div>
+                </section>
+
+            </main>
+        </div>
     </div>
 
-    <!-- Huvudcontainer -->
-    <div class="max-w-5xl mx-auto px-6 md:px-12 lg:px-24 py-12 flex flex-col gap-40">
-
-        <!-- HERO / INTRO -->
-        <header id="hero" class="min-h-[90vh] flex flex-col justify-center opacity-0 translate-y-10 transition-all duration-1000">
-            <span class="code-font text-teal-400 text-sm tracking-widest mb-3">SYSTEMS & SOUND</span>
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                Benji Natalli
-            </h1>
-            <h2 class="mt-4 text-xl md:text-2xl font-light text-slate-400">
-                Technical Audio Designer & Pipeline Architect
-            </h2>
-            
-            <!-- Brett Jensen-style Trailer -->
-            <div class="mt-12 aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl relative group">
-                <!-- Ersätt src med din egen video-länk sen -->
-                <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1&controls=0&loop=1&playlist=dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent pointer-events-none"></div>
-            </div>
-        </header>
-
-        <!-- ABOUT & TECH STACK (Obsidian Style Zoom-in) -->
-        <section class="scroll-section grid grid-cols-1 md:grid-cols-2 gap-12 py-12 border-t border-slate-900 pt-16">
-            <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 code-font mb-6">// ABOUT ME</h3>
-                <p class="text-slate-400 leading-relaxed font-light text-sm md:text-base">
-                    Jag kombinerar systemprogrammering i C++ med avancerad ljudimplementering i Wwise och Unreal Engine. Mitt fokus ligger på att bygga verktyg, automatisera storskaliga pipelines och skapa system där ljud och kod möts sömlöst.
-                </p>
-            </div>
-            <div>
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 code-font mb-6">// CORE STACK</h3>
-                <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">Wwise & WAAPI</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">FMOD</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">Unreal Engine (Blueprints)</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">Python</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">C++</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">Lua</span>
-                    <span class="px-3 py-1 text-xs code-font rounded-full bg-teal-950/30 text-teal-300 border border-teal-500/20">Reaper (ReaScript)</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- INON ZUR STYLE MUSIC PLAYER -->
-        <section class="scroll-section border-t border-slate-900 pt-16">
-            <div class="flex justify-between items-center mb-8">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 code-font">// SELECTED MUSIC</h3>
-                <div class="flex gap-1 items-end h-6">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                </div>
-            </div>
-            <div class="space-y-4">
-                <!-- Track 1 -->
-                <div class="flex items-center justify-between p-4 bg-slate-900/20 border border-slate-800/40 rounded-lg hover:border-teal-500/30 transition-all group">
-                    <div>
-                        <span class="text-xs text-slate-500 code-font">01</span>
-                        <h4 class="text-sm font-semibold text-slate-200 inline ml-4">The Whispering Woods</h4>
-                    </div>
-                    <button class="text-xs code-font text-teal-400 group-hover:text-white transition-colors">PLAY</button>
-                </div>
-                <!-- Track 2 -->
-                <div class="flex items-center justify-between p-4 bg-slate-900/20 border border-slate-800/40 rounded-lg hover:border-teal-500/30 transition-all group">
-                    <div>
-                        <span class="text-xs text-slate-500 code-font">02</span>
-                        <h4 class="text-sm font-semibold text-slate-200 inline ml-4">Cybernetic Drift</h4>
-                    </div>
-                    <button class="text-xs code-font text-teal-400 group-hover:text-white transition-colors">PLAY</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- COSMONOVA HORIZONTAL SCROLL (WORK) -->
-        <section id="work-trigger" class="py-12 border-t border-slate-900 pt-16">
-            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 code-font mb-8">// SELECTED WORK</h3>
-            
-            <div id="horizontal-container" class="flex gap-8 overflow-x-hidden py-4">
-                <!-- Panel 1 -->
-                <div class="panel min-w-[320px] md:min-w-[480px] bg-slate-950 border border-slate-900 p-8 rounded-xl flex flex-col justify-between h-[350px]">
-                    <div>
-                        <span class="text-teal-400 text-xs code-font">INTERACTIVE</span>
-                        <h4 class="text-2xl font-bold mt-2">Spel & Implementation</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm font-light">Avancerade blueprint-system och ljudintegration i Unreal Engine 5 för sömlösa, adaptiva ljudlandskap.</p>
-                </div>
-
-                <!-- Panel 2 -->
-                <div class="panel min-w-[320px] md:min-w-[480px] bg-slate-950 border border-slate-900 p-8 rounded-xl flex flex-col justify-between h-[350px]">
-                    <div>
-                        <span class="text-teal-400 text-xs code-font">AUTOMATION</span>
-                        <h4 class="text-2xl font-bold mt-2">Pipelines & Skript</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm font-light">Python-verktyg och WAAPI-automatisering som reducerar tråkiga klick och snabbar upp dialoghanteringen med 80%.</p>
-                </div>
-
-                <!-- Panel 3 -->
-                <div class="panel min-w-[320px] md:min-w-[480px] bg-slate-950 border border-slate-900 p-8 rounded-xl flex flex-col justify-between h-[350px]">
-                    <div>
-                        <span class="text-teal-400 text-xs code-font">LINEAR</span>
-                        <h4 class="text-2xl font-bold mt-2">Film & Ljudläggning</h4>
-                    </div>
-                    <p class="text-slate-400 text-sm font-light">Högkvalitativ ljuddesign, mixning och tidskodssynk för lokalisering och strömmande medier.</p>
-                </div>
-            </div>
-        </section>
-
-    </div>
-
-    <!-- Script-logik -->
     <script>
-        // 1. Musgloria (Brittany Chiang-stil)
+        // 1. Mouse Glow
         const glow = document.getElementById('mouse-glow');
         document.addEventListener('mousemove', (e) => {
-            glow.style.background = `radial-gradient(500px at ${e.clientX}px ${e.clientY}px, rgba(45, 212, 191, 0.05), transparent 80%)`;
+            glow.style.background = `radial-gradient(600px at ${e.clientX}px ${e.clientY}px, rgba(45, 212, 191, 0.04), transparent 80%)`;
         });
 
-        // 2. Start-inläsning
-        window.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('hero').classList.remove('opacity-0', 'translate-y-10');
-        });
+        // 2. Interactive Pipeline Logic
+        function showTab(tabId) {
+            // Göm alla tab-contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Visa den valda
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
 
-        // 3. Obsidian Style Zoom-in / Fade-in med GSAP
-        gsap.registerPlugin(ScrollTrigger);
+            // Återställ alla knappar
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-teal-500/20', 'text-teal-300');
+                btn.classList.add('hover:bg-slate-700/50', 'text-slate-400');
+            });
+            // Markera den aktiva knappen
+            event.currentTarget.classList.remove('hover:bg-slate-700/50', 'text-slate-400');
+            event.currentTarget.classList.add('bg-teal-500/20', 'text-teal-300');
+        }
 
-        gsap.utils.toArray('.scroll-section').forEach(section => {
-            gsap.fromTo(section, 
-                { opacity: 0, scale: 0.95, y: 30 },
-                { 
-                    opacity: 1, scale: 1, y: 0, 
-                    duration: 1, 
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top 80%",
-                        toggleActions: "play none none none"
-                    }
+        // 3. Highlight Navigation Links on Scroll
+        const sections = document.querySelectorAll("section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
                 }
-            );
-        });
+            });
 
-        // 4. Cosmonova Horisontell Scroll (Wodniack)
-        const container = document.getElementById('horizontal-container');
-        const panels = gsap.utils.toArray('.panel');
-
-        gsap.to(panels, {
-            x: () => -(container.scrollWidth - window.innerWidth + window.innerWidth/3),
-            ease: "none",
-            scrollTrigger: {
-                trigger: "#work-trigger",
-                pin: true,
-                scrub: 1,
-                end: () => "+=" + container.scrollWidth,
-                invalidateOnRefresh: true
-            }
-        });
-
-        // 5. Scroll-ljudkontroll (Logartis / Web Audio API)
-        let audioContext;
-        let oscillator;
-        let gainNode;
-        let filterNode;
-        let isPlaying = false;
-
-        const toggleBtn = document.getElementById('audio-toggle');
-        const statusDot = document.getElementById('audio-status');
-
-        toggleBtn.addEventListener('click', () => {
-            if (!isPlaying) {
-                // Skapa en enkel syntetisk synth med Web Audio API (så vi slipper ladda tunga filer!)
-                audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                
-                oscillator = audioContext.createOscillator();
-                gainNode = audioContext.createGain();
-                filterNode = audioContext.createBiquadFilter();
-
-                oscillator.type = 'triangle'; 
-                oscillator.frequency.setValueAtTime(80, audioContext.currentTime); // Låg mysig bas-drönare
-
-                filterNode.type = 'lowpass';
-                filterNode.frequency.setValueAtTime(200, audioContext.currentTime);
-
-                oscillator.connect(filterNode);
-                filterNode.connect(gainNode);
-                gainNode.connect(audioContext.destination);
-
-                gainNode.gain.setValueAtTime(0.05, audioContext.currentTime); // Väldigt låg, behaglig volym
-                oscillator.start();
-
-                isPlaying = true;
-                toggleBtn.innerHTML = `<span class="w-2 h-2 rounded-full bg-teal-400 animate-pulse" id="audio-status"></span> Ambient: ON`;
-            } else {
-                oscillator.stop();
-                audioContext.close();
-                isPlaying = false;
-                toggleBtn.innerHTML = `<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse" id="audio-status"></span> Ambient: OFF`;
-            }
-        });
-
-        // Styr ljudet baserat på scrollposition
-        window.addEventListener('scroll', () => {
-            if (isPlaying && audioContext) {
-                const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-                
-                // Ändra filterfrekvensen (ljusare ljud ju längre ner man scrollar)
-                filterNode.frequency.setValueAtTime(200 + (scrollPercent * 800), audioContext.currentTime);
-                
-                // Justera volymen mjukt
-                gainNode.gain.setValueAtTime(0.02 + (scrollPercent * 0.05), audioContext.currentTime);
-            }
+            navLinks.forEach((link) => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
         });
     </script>
 </body>
