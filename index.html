@@ -97,6 +97,7 @@
 
     <div id="mouse-glow"></div>
 
+    <!-- Sido-navigation för Portfolio-vyn -->
     <div id="portfolio-nav" class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
         <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Home</a>
         <a href="#showreel" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Showreel</a>
@@ -104,6 +105,7 @@
         <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">04. Tech Stack</a>
     </div>
 
+    <!-- Sido-navigation för Projects-vyn -->
     <div id="projects-nav" class="hidden xl:flex fixed left-8 bottom-16 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
         <a href="#projects" onclick="setTimeout(() => scrollToProject(0), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-amber-500 hover:text-amber-400 transition-colors">00. Intro</a>
         <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">01. Void RPG</a>
@@ -111,6 +113,7 @@
         <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Aura App</a>
     </div>
 
+    <!-- Huvudnavigation (Header) -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
             <a href="#hero" class="code-font text-amber-500 font-bold tracking-wider text-sm">B.NATALLI</a>
@@ -134,6 +137,7 @@
         </div>
     </nav>
 
+    <!-- PORTFOLIO VYN (HEMSIDAN) -->
     <div id="view-portfolio">
         <main id="portfolio-content-wrapper" class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-12 flex flex-col gap-32 relative">
 
@@ -273,12 +277,15 @@
         </main>
     </div>
 
+    <!-- HORISONTELL PROJEKTVY -->
     <div id="view-projects" class="hidden animate-fade-1s">
         <div id="projects-scroll-wrapper" class="relative w-full h-[450vh]">
             <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-[#08070a]">
                 
-                <div id="projects-horizontal-track" class="flex items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
+                <!-- FIXAD KLASS: flex-nowrap har lagts till här för att garantera sidleds-layout -->
+                <div id="projects-horizontal-track" class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
                     
+                    <!-- Introkort -->
                     <div class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
                         <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Collage Exhibition</span>
                         <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Featured<br>Projects</h2>
@@ -287,6 +294,7 @@
                         </p>
                     </div>
 
+                    <!-- Projektkort 1 -->
                     <div onclick="openProjectDetail('echoes-void')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Unreal 5 & Wwise</span>
@@ -308,6 +316,7 @@
                         </div>
                     </div>
 
+                    <!-- Projektkort 2 -->
                     <div onclick="openProjectDetail('waapi-dialogue')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Automation Tool</span>
@@ -329,6 +338,7 @@
                         </div>
                     </div>
 
+                    <!-- Projektkort 3 -->
                     <div onclick="openProjectDetail('aura-audio')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                         <div>
                             <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Mobile Integration</span>
@@ -357,6 +367,7 @@
         </div>
     </div>
 
+    <!-- MODAL FÖR DETALJINFO (CASE STUDY) -->
     <div id="project-detail-modal" class="fixed inset-0 bg-[#08070a]/98 backdrop-blur-xl z-50 hidden opacity-0 transition-all duration-300 flex items-center justify-center p-4 md:p-8 overflow-y-auto">
         <div class="max-w-3xl w-full bg-[#0c0a0f] border border-white/10 rounded-2xl p-6 md:p-10 relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-wrapper">
             <button onclick="closeProjectDetail()" class="absolute top-6 right-6 text-slate-500 hover:text-amber-500 transition-colors code-font text-xs tracking-wider">
@@ -366,6 +377,7 @@
         </div>
     </div>
 
+    <!-- Huvudskript laddas här -->
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

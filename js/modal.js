@@ -1,4 +1,3 @@
-// js/modal.js
 const projectCases = {
     'echoes-void': `
         <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Echoes of the Void</span>
@@ -44,6 +43,10 @@ export function openProjectDetail(key) {
     body.innerHTML = projectCases[key] || "Case study load error.";
     
     modal.classList.remove('hidden');
+    
+    // FRYS bakgrundens scroll medan modalen är öppen
+    document.body.style.overflow = 'hidden';
+    
     setTimeout(() => {
         modal.classList.add('opacity-100');
         wrapper.classList.remove('scale-95');
@@ -60,6 +63,9 @@ export function closeProjectDetail() {
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
     
+    // ÅTERSTÄLL bakgrundens scroll igen
+    document.body.style.overflow = '';
+    
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);
@@ -73,5 +79,17 @@ export function initModal() {
     // Lyssna efter ESC för att stänga
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProjectDetail();
+    window.openProjectDetail = openProjectDetail;
+    window.closeProjectDetail = closeProjectDetail;
     });
+
+    // Klicka utanför modal-innehållet för att stänga modalen (snygg UX)
+    const modal = document.getElementById('project-detail-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeProjectDetail();
+            }
+        });
+    }
 }

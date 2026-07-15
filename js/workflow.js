@@ -68,4 +68,5 @@ export function initWorkflow() {
     window.changeStep = changeStep;
     // Sätt första steget som aktivt vid start
     changeStep(1, 'architecture');
+    window.changeStep = changeStep;
 }

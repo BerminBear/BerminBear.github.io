@@ -1,5 +1,5 @@
 // js/router.js
-import { resetScrollValues, scrollToProject } from './scroll.js';
+import { scrollToProject } from './scroll.js';
 
 let hasVisitedProjects = false;
 
@@ -60,17 +60,17 @@ export function handleRouting() {
             void projectsTrack.offsetWidth; // Trigger reflow
             projectsTrack.classList.add('animate-intro-projects');
         }
-        
+
         if (hash.startsWith('#project-')) {
             const idx = parseInt(hash.replace('#project-', ''));
             if (!isNaN(idx)) {
+                // Liten fördröjning så att DOM hinner ritas upp ordentligt
                 setTimeout(() => scrollToProject(idx), 100);
             }
         } else {
             window.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        resetScrollValues();
     } else {
         projectsView.classList.add('hidden');
         portfolioView.classList.remove('hidden');
@@ -91,13 +91,15 @@ export function handleRouting() {
             void portfolioContent.offsetWidth; // Trigger reflow
             portfolioContent.classList.add('animate-intro-home');
         }
-        
+
         const targetId = hash.replace('#', '');
         const targetEl = document.getElementById(targetId);
         if (targetEl) {
             setTimeout(() => {
                 targetEl.scrollIntoView({ behavior: 'smooth' });
             }, 50);
+        } else if (hash === '#hero') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     }
 }
