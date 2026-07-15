@@ -1,31 +1,82 @@
-let hasLoggedHeightError = false;
-let hasLoggedWidthError = false;
+let scrollListenerAdded = false;
 
+// Hoppa dynamiskt till rätt projekt baserat på kortets faktiska offset
 export function scrollToProject(index) {
     const wrapper = document.getElementById('projects-scroll-wrapper');
-    if (!wrapper) return;
-    const maxScroll = wrapper.offsetHeight - window.innerHeight;
-    let scrollTarget = 0;
+    const track = document.getElementById('projects-horizontal-track');
+    if (!wrapper || !track) return;
     
-    if (index === 1) scrollTarget = maxScroll * 0.33;
-    else if (index === 2) scrollTarget = maxScroll * 0.64;
-    else if (index === 3) scrollTarget = maxScroll * 1.0;
+    const cards = track.querySelectorAll('.project-card');
     
-    window.scrollTo({
-        top: scrollTarget,
-        behavior: 'smooth' 
+    if (index >= 0 && index < cards.length) {
+        const targetCard = cards[index];
+        const cardLeft = targetCard.offsetLeft;
+        const maxTranslate = track.scrollWidth - window.innerWidth;
+        
+        const progress = cardLeft / maxTranslate;
+        const totalHeight = wrapper.offsetHeight - window.innerHeight;
+        const targetScrollY = wrapper.offsetTop + (progress * totalHeight);
+        
+        window.scrollTo({
+            top: targetScrollY,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Starta den horisontella scroll-motorn (körs först när projektsvyn är synlig!)
+export function setupHorizontalScroll() {
+    if (scrollListenerAdded) return;
+    
+    const wrapper = document.getElementById('projects-scroll-wrapper');
+    const track = document.getElementById('projects-horizontal-track');
+    if (!wrapper || !track) return;
+
+    scrollListenerAdded = true;
+
+    window.addEventListener('scroll', () => {
+        const projectsView = document.getElementById('view-projects');
+        if (!projectsView || projectsView.classList.contains('hidden')) return;
+        
+        const rect = wrapper.getBoundingClientRect();
+        const totalHeight = rect.height - window.innerHeight;
+        
+        // Räkna ut exakt progress (0 till 1) baserat på stickyns position mot viewporten
+        let progress = -rect.top / totalHeight;
+        progress = Math.max(0, Math.min(1, progress));
+        
+        const maxTranslate = track.scrollWidth - window.innerWidth;
+        const translateX = progress * maxTranslate;
+        
+        track.style.transform = `translateX(${-translateX}px)`;
+        
+        updateProjectsLeftNav(progress);
     });
 }
 
-function updateProjectsSidebarNav(percentage) {
-    const navLinks = document.querySelectorAll('#projects-nav a');
-    let activeIdx = 0;
-    if (percentage > 0.15 && percentage <= 0.48) activeIdx = 1;
-    else if (percentage > 0.48 && percentage <= 0.8) activeIdx = 2;
-    else if (percentage > 0.8) activeIdx = 3;
-
-    navLinks.forEach((link, i) => {
-        if (i === activeIdx) {
+// Uppdatera sidomenyn under horisontell scroll
+function updateProjectsLeftNav(progress) {
+    const track = document.getElementById('projects-horizontal-track');
+    if (!track) return;
+    
+    const cards = track.querySelectorAll('.project-card');
+    const maxTranslate = track.scrollWidth - window.innerWidth;
+    const currentTranslate = progress * maxTranslate;
+    
+    let activeIndex = 0;
+    let minDistance = Infinity;
+    
+    cards.forEach((card, idx) => {
+        const distance = Math.abs(card.offsetLeft - currentTranslate - (window.innerWidth / 4));
+        if (distance < minDistance) {
+            minDistance = distance;
+            activeIndex = idx;
+        }
+    });
+    
+    const navLinks = document.querySelectorAll('.projects-nav-link');
+    navLinks.forEach((link, idx) => {
+        if (idx === activeIndex) {
             link.classList.remove('text-slate-500');
             link.classList.add('text-amber-500');
         } else {
@@ -35,109 +86,9 @@ function updateProjectsSidebarNav(percentage) {
     });
 }
 
-function handleDirectScroll() {
-    const projectsView = document.getElementById('view-projects');
-    if (!projectsView || projectsView.classList.contains('hidden')) return;
-    
-    const wrapper = document.getElementById('projects-scroll-wrapper');
-    const track = document.getElementById('projects-horizontal-track');
-    
-    if (!wrapper || !track) {
-        console.error("[Scroll System] Kunde inte hitta '#projects-scroll-wrapper' eller '#projects-horizontal-track' i DOM:en!");
-        return;
-    }
-
-    const maxScroll = wrapper.offsetHeight - window.innerHeight;
-    const maxTrack = track.scrollWidth - window.innerWidth;
-    
-    // Självdiagnostik
-    if (maxScroll <= 0 && !hasLoggedHeightError) {
-        console.warn(
-            `%c[Scroll System FEL]%c '#projects-scroll-wrapper' är för kort (${wrapper.offsetHeight}px). ` +
-            `Ge den klassen 'h-[450vh]' i din HTML!`,
-            "background: #ef4444; color: white; padding: 2px 5px; border-radius: 3px;", "color: #f59e0b;"
-        );
-        hasLoggedHeightError = true;
-    }
-    if (maxTrack <= 0 && !hasLoggedWidthError) {
-        console.warn(
-            `%c[Scroll System FEL]%c '#projects-horizontal-track' är för smal (${track.scrollWidth}px). ` +
-            `Lägg till 'flex flex-nowrap' på tracken i din HTML!`,
-            "background: #ef4444; color: white; padding: 2px 5px; border-radius: 3px;", "color: #f59e0b;"
-        );
-        hasLoggedWidthError = true;
-    }
-
-    if (maxScroll > 0) {
-        const percentage = Math.max(0, Math.min(1, window.scrollY / maxScroll));
-        const translateX = -percentage * maxTrack;
-        track.style.transform = `translateX(${translateX}px)`;
-        
-        updateProjectsSidebarNav(percentage);
-
-        // Skalnings- och fadeeffekt vid kanterna
-        const cards = track.querySelectorAll('.project-card');
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            const cardCenter = rect.left + rect.width / 2;
-            const screenCenter = window.innerWidth / 2;
-            const dist = Math.abs(cardCenter - screenCenter);
-            
-            const maxDist = window.innerWidth * 0.6;
-            let opacity = 1 - (dist / maxDist);
-            opacity = Math.max(0.15, Math.min(1, opacity));
-            
-            let scale = 1 - (dist / (window.innerWidth * 2));
-            scale = Math.max(0.9, Math.min(1.05, scale));
-            
-            card.style.opacity = opacity;
-            card.style.transform = `scale(${scale})`;
-        });
-    }
-}
-
-export function initScrollSystems() {
-    window.scrollToProject = scrollToProject;
-
-    window.addEventListener('scroll', () => {
-        handleDirectScroll();
-        handleHomeNavScroll();
-    });
-
-    window.addEventListener('wheel', (e) => {
-        const projectsView = document.getElementById('view-projects');
-        if (!projectsView || projectsView.classList.contains('hidden')) return;
-
-        const modal = document.getElementById('project-detail-modal');
-        if (modal && !modal.classList.contains('hidden')) return;
-
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-            e.preventDefault();
-            window.scrollBy({
-                top: e.deltaX,
-                behavior: 'auto'
-            });
-        }
-    }, { passive: false });
-    
-    // Lyssna efter sidbyten för att räkna om värden direkt
-    const observer = new MutationObserver(() => {
-        hasLoggedHeightError = false;
-        hasLoggedWidthError = false;
-        handleDirectScroll();
-    });
-    
-    const projectsView = document.getElementById('view-projects');
-    if (projectsView) {
-        observer.observe(projectsView, { attributes: true, attributeFilter: ['class'] });
-    }
-
-    handleDirectScroll();
-}
-
+// Hantera sidomenyn på vanliga landningssidan (Hero, Showreel, etc.)
 function handleHomeNavScroll() {
     const projectsView = document.getElementById('view-projects');
-    // Om projektsvyn INTE är gömd, rör vi inte portfolio-menyn
     if (!projectsView || !projectsView.classList.contains('hidden')) return;
 
     const sections = ['hero', 'showreel', 'workflow', 'tech-stack'];
@@ -166,4 +117,28 @@ function handleHomeNavScroll() {
             link.classList.add('text-slate-500');
         }
     });
+}
+
+export function initScrollSystems() {
+    window.scrollToProject = scrollToProject;
+
+    // Lyssnare för vanliga landningssidan
+    window.addEventListener('scroll', handleHomeNavScroll);
+
+    // Aktivera mushjuls-scroll i sidled på projektsidan
+    window.addEventListener('wheel', (e) => {
+        const projectsView = document.getElementById('view-projects');
+        if (!projectsView || projectsView.classList.contains('hidden')) return;
+
+        const modal = document.getElementById('project-detail-modal');
+        if (modal && !modal.classList.contains('hidden')) return;
+
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+            e.preventDefault();
+            window.scrollBy({
+                top: e.deltaX,
+                behavior: 'auto'
+            });
+        }
+    }, { passive: false });
 }

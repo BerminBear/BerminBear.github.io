@@ -1,5 +1,4 @@
-// js/router.js
-import { scrollToProject } from './scroll.js';
+import { scrollToProject, setupHorizontalScroll } from './scroll.js';
 
 let hasVisitedProjects = false;
 
@@ -34,6 +33,7 @@ export function handleRouting() {
     if (!portfolioView || !projectsView) return;
 
     if (hash === '#projects' || hash.startsWith('#project-')) {
+        // 1. Visa sektionen först!
         portfolioView.classList.add('hidden');
         projectsView.classList.remove('hidden');
         
@@ -46,6 +46,8 @@ export function handleRouting() {
             projectsNav.classList.remove('xl:hidden');
         }
         
+        // 2. Starta scroll-lyssnaren nu när elementen faktiskt är synliga och har mätbar höjd/bredd!
+        setupHorizontalScroll();
         updateTopNavActive('projects');
 
         if (!hasVisitedProjects) {
@@ -64,7 +66,6 @@ export function handleRouting() {
         if (hash.startsWith('#project-')) {
             const idx = parseInt(hash.replace('#project-', ''));
             if (!isNaN(idx)) {
-                // Liten fördröjning så att DOM hinner ritas upp ordentligt
                 setTimeout(() => scrollToProject(idx), 100);
             }
         } else {
@@ -106,6 +107,5 @@ export function handleRouting() {
 
 export function initRouter() {
     window.addEventListener('hashchange', handleRouting);
-    // Kör direkt vid laddning
     handleRouting();
 }
