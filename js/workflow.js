@@ -1,4 +1,3 @@
-// js/workflow.js
 const steps = {
     architecture: {
         title: "01 Architecture & Logic",
@@ -64,9 +63,6 @@ export function changeStep(stepNum, stepKey) {
 }
 
 export function initWorkflow() {
-    // Gör funktionen tillgänglig för HTML-klick
     window.changeStep = changeStep;
-    // Sätt första steget som aktivt vid start
     changeStep(1, 'architecture');
-    window.changeStep = changeStep;
 }

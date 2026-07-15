@@ -43,9 +43,7 @@ export function openProjectDetail(key) {
     body.innerHTML = projectCases[key] || "Case study load error.";
     
     modal.classList.remove('hidden');
-    
-    // FRYS bakgrundens scroll medan modalen är öppen
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden'; // Frys bakgrundens scroll
     
     setTimeout(() => {
         modal.classList.add('opacity-100');
@@ -63,8 +61,7 @@ export function closeProjectDetail() {
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
     
-    // ÅTERSTÄLL bakgrundens scroll igen
-    document.body.style.overflow = '';
+    document.body.style.overflow = ''; // Återställ scroll
     
     setTimeout(() => {
         modal.classList.add('hidden');
@@ -72,18 +69,16 @@ export function closeProjectDetail() {
 }
 
 export function initModal() {
-    // Exponera funktionerna till HTML
+    // Exponera funktionerna till det globala fönstret för HTML-klick
     window.openProjectDetail = openProjectDetail;
     window.closeProjectDetail = closeProjectDetail;
 
     // Lyssna efter ESC för att stänga
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeProjectDetail();
-    window.openProjectDetail = openProjectDetail;
-    window.closeProjectDetail = closeProjectDetail;
     });
 
-    // Klicka utanför modal-innehållet för att stänga modalen (snygg UX)
+    // Klicka utanför modalen för att stänga
     const modal = document.getElementById('project-detail-modal');
     if (modal) {
         modal.addEventListener('click', (e) => {

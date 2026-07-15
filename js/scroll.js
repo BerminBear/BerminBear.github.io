@@ -1,5 +1,3 @@
-// js/scroll.js
-
 let hasLoggedHeightError = false;
 let hasLoggedWidthError = false;
 
@@ -52,11 +50,11 @@ function handleDirectScroll() {
     const maxScroll = wrapper.offsetHeight - window.innerHeight;
     const maxTrack = track.scrollWidth - window.innerWidth;
     
-    // --- SJÄLVDIAGNOSTIK (Kollar din CSS i realtid) ---
+    // Självdiagnostik
     if (maxScroll <= 0 && !hasLoggedHeightError) {
         console.warn(
             `%c[Scroll System FEL]%c '#projects-scroll-wrapper' är för kort (${wrapper.offsetHeight}px). ` +
-            `Du måste ge den en stor höjd i din HTML, t.ex. klassen 'h-[300vh]'. Annars kan man inte scrolla!`,
+            `Ge den klassen 'h-[450vh]' i din HTML!`,
             "background: #ef4444; color: white; padding: 2px 5px; border-radius: 3px;", "color: #f59e0b;"
         );
         hasLoggedHeightError = true;
@@ -64,12 +62,11 @@ function handleDirectScroll() {
     if (maxTrack <= 0 && !hasLoggedWidthError) {
         console.warn(
             `%c[Scroll System FEL]%c '#projects-horizontal-track' är för smal (${track.scrollWidth}px). ` +
-            `Dina projektkort radbryts troligen. Se till att containern har klasserna 'flex flex-row flex-nowrap w-max' i din HTML!`,
+            `Lägg till 'flex flex-nowrap' på tracken i din HTML!`,
             "background: #ef4444; color: white; padding: 2px 5px; border-radius: 3px;", "color: #f59e0b;"
         );
         hasLoggedWidthError = true;
     }
-    // --------------------------------------------------
 
     if (maxScroll > 0) {
         const percentage = Math.max(0, Math.min(1, window.scrollY / maxScroll));
@@ -78,7 +75,7 @@ function handleDirectScroll() {
         
         updateProjectsSidebarNav(percentage);
 
-        // Din behållna mjuk ut-fade/scale av elementen nära skärmkanterna
+        // Skalnings- och fadeeffekt vid kanterna
         const cards = track.querySelectorAll('.project-card');
         cards.forEach(card => {
             const rect = card.getBoundingClientRect();
@@ -105,7 +102,6 @@ export function initScrollSystems() {
     window.addEventListener('scroll', () => {
         handleDirectScroll();
         handleHomeNavScroll();
-        window.scrollToProject = scrollToProject;
     });
 
     window.addEventListener('wheel', (e) => {
@@ -124,7 +120,7 @@ export function initScrollSystems() {
         }
     }, { passive: false });
     
-    // Kör direkt för att återställa fel-flaggor vid sidbyte
+    // Lyssna efter sidbyten för att räkna om värden direkt
     const observer = new MutationObserver(() => {
         hasLoggedHeightError = false;
         hasLoggedWidthError = false;
@@ -140,7 +136,9 @@ export function initScrollSystems() {
 }
 
 function handleHomeNavScroll() {
-    if (!document.getElementById('view-projects').classList.contains('hidden')) return;
+    const projectsView = document.getElementById('view-projects');
+    // Om projektsvyn INTE är gömd, rör vi inte portfolio-menyn
+    if (!projectsView || !projectsView.classList.contains('hidden')) return;
 
     const sections = ['hero', 'showreel', 'workflow', 'tech-stack'];
     const navLinks = document.querySelectorAll('#portfolio-nav a');
