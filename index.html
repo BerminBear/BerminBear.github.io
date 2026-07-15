@@ -160,17 +160,17 @@
                 </div>
             </header>
 
-            <section id="showreel" class="scroll-mt-24">
+            <section id="showreel" class="scroll-mt-100">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// Showreel</h3>
                 <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
                 </div>
             </section>
 
-            <section id="workflow" class="scroll-mt-24">
+            <section id="workflow" class="scroll-mt-20">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
                 <p class="text-sm text-slate-400 max-w-xl mb-12">
-                    An unstructured audio and dialogue pipeline wastes hundreds of hours on manual labor. I design pipelines and automated systems that eliminate production bottlenecks so you can ship faster.
+                    An unstructured audio & dialogue pipeline wastes hundreds of hours on manual labor. I design pipelines and automated systems that eliminate production bottlenecks.
                 </p>
                 
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
@@ -209,7 +209,7 @@
                 </div>
             </section>
 
-            <section id="tech-stack" class="scroll-mt-24">
+            <section id="tech-stack" class="scroll-mt-20">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
@@ -263,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="mt-20 pt-10 border-t border-white/5 flex justify-center">
+                <div class="mt-25 pt-10 border-t border-white/5 flex justify-center">
                     <a href="#projects" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500 hover:text-black hover:border-transparent transition-all duration-300 text-xs tracking-widest uppercase code-font text-amber-400 font-semibold shadow-lg hover:shadow-amber-500/10">
                         Explore My Projects
                         <span class="text-sm">→</span>
@@ -282,86 +282,89 @@
         <div id="projects-scroll-wrapper" class="relative w-full h-[450vh]">
             <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-[#08070a]">
                 
-                <!-- FIXAD KLASS: flex-nowrap har lagts till här för att garantera sidleds-layout -->
-                <div id="projects-horizontal-track" class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
-                    
-                    <!-- Introkort -->
-                    <div class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
-                        <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Collage Exhibition</span>
-                        <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Featured<br>Projects</h2>
-                        <p class="mt-4 text-slate-400 text-xs leading-relaxed max-w-sm">
-                            Scroll vertically or use your mouse wheel to navigate horizontally through my technical installations, game integrations, and specialized audio tools. Click a project to read case study.
-                        </p>
-                    </div>
-
-                    <!-- Projektkort 1 -->
-                    <div onclick="openProjectDetail('echoes-void')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
-                        <div>
-                            <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Unreal 5 & Wwise</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">Echoes of the Void</h3>
-                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                Lead Technical Audio Designer. Developed a dynamic dialogue prioritization manager and automated localization swapping pipelines, cutting audio memory budgets down by 45%.
+                <!-- Wrapper som äger intro-animationen -->
+                <div id="projects-intro-wrapper" class="animate-intro-projects">
+                    <!-- FIXAD KLASS: flex-nowrap har lagts till här för att garantera sidleds-layout -->
+                    <div id="projects-horizontal-track" class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
+                        
+                        <!-- Introkort -->
+                        <div class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
+                            <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Collage Exhibition</span>
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Featured<br>Projects</h2>
+                            <p class="mt-4 text-slate-400 text-xs leading-relaxed max-w-sm">
+                                Scroll vertically or use your mouse wheel to navigate horizontally through my technical installations, game integrations, and specialized audio tools. Click a project to read case study.
                             </p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">UE5</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Wwise</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
+                        </div>
+
+                        <!-- Projektkort 1 -->
+                        <div onclick="openProjectDetail('echoes-void')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                            <div>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Unreal 5 & Wwise</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Echoes of the Void</h3>
+                                <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                    Lead Technical Audio Designer. Developed a dynamic dialogue prioritization manager and automated localization swapping pipelines, cutting audio memory budgets down by 45%.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">UE5</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Wwise</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-3 mt-6">
+                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                    View Case Study
+                                </span>
                             </div>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-3 mt-6">
-                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                View Case Study
-                            </span>
-                        </div>
-                    </div>
 
-                    <!-- Projektkort 2 -->
-                    <div onclick="openProjectDetail('waapi-dialogue')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
-                        <div>
-                            <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Automation Tool</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">WAAPI Dialogue Batcher</h3>
-                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                A Python script mapping Reaper CSV metadata directly to Wwise projects. Built to automatically slice raw speech, perform leveling, generate dialogue events, and export in seconds.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">WAAPI</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Reaper API</span>
+                        <!-- Projektkort 2 -->
+                        <div onclick="openProjectDetail('waapi-dialogue')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                            <div>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Automation Tool</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">WAAPI Dialogue Batcher</h3>
+                                <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                    A Python script mapping Reaper CSV metadata directly to Wwise projects. Built to automatically slice raw speech, perform leveling, generate dialogue events, and export in seconds.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">WAAPI</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Reaper API</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-3 mt-6">
+                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                    View Case Study
+                                </span>
                             </div>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-3 mt-6">
-                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                View Case Study
-                            </span>
-                        </div>
-                    </div>
 
-                    <!-- Projektkort 3 -->
-                    <div onclick="openProjectDetail('aura-audio')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
-                        <div>
-                            <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Mobile Integration</span>
-                            <h3 class="text-2xl font-bold text-white mt-1">Aura: Generative Audio</h3>
-                            <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                Responsive generative design companion. Pulls spatial variables to dynamically trigger loops and procedural audio synthesis modules, running fluidly under 15ms latency constraints.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mt-4">
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">FMOD</span>
-                                <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                        <!-- Projektkort 3 -->
+                        <div onclick="openProjectDetail('aura-audio')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                            <div>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Mobile Integration</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Aura: Generative Audio</h3>
+                                <p class="text-slate-400 text-xs mt-3 leading-relaxed">
+                                    Responsive generative design companion. Pulls spatial variables to dynamically trigger loops and procedural audio synthesis modules, running fluidly under 15ms latency constraints.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mt-4">
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">FMOD</span>
+                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-wrap gap-3 mt-6">
+                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                    View Case Study
+                                </span>
                             </div>
                         </div>
-                        
-                        <div class="flex flex-wrap gap-3 mt-6">
-                            <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                View Case Study
-                            </span>
-                        </div>
+
+                        <div class="w-[15vw] shrink-0"></div>
+
                     </div>
-
-                    <div class="w-[15vw] shrink-0"></div>
-
                 </div>
             </div>
         </div>

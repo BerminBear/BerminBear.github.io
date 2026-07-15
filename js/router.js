@@ -5,8 +5,12 @@ let hasVisitedProjects = false;
 function updateTopNavActive(activeView) {
     const homeLink = document.querySelector('nav a[href="#hero"]');
     const projectsLink = document.querySelector('nav a[href="#projects"]');
-    if (!homeLink || !projectsLink) return;
-    
+
+    if (!homeLink || !projectsLink) {
+        console.warn('[router.js] updateTopNavActive: nav-länkar saknas.');
+        return;
+    }
+
     if (activeView === 'projects') {
         homeLink.classList.remove('text-amber-500');
         homeLink.classList.add('text-slate-400');
@@ -22,21 +26,25 @@ function updateTopNavActive(activeView) {
 
 export function handleRouting() {
     const hash = window.location.hash || '#hero';
-    
+    console.log('[router.js] handleRouting: hash =', hash);
+
     const portfolioView = document.getElementById('view-portfolio');
     const portfolioContent = document.getElementById('portfolio-content-wrapper');
     const projectsView = document.getElementById('view-projects');
-    const projectsTrack = document.getElementById('projects-horizontal-track');
+    const projectsIntroWrapper = document.getElementById('projects-intro-wrapper');
     const portfolioNav = document.getElementById('portfolio-nav');
     const projectsNav = document.getElementById('projects-nav');
-    
-    if (!portfolioView || !projectsView) return;
+
+    if (!portfolioView || !projectsView) {
+        console.error('[router.js] handleRouting: view-portfolio eller view-projects saknas i DOM.');
+        return;
+    }
 
     if (hash === '#projects' || hash.startsWith('#project-')) {
         // 1. Visa sektionen först!
         portfolioView.classList.add('hidden');
         projectsView.classList.remove('hidden');
-        
+
         if (portfolioNav) {
             portfolioNav.classList.add('xl:hidden');
             portfolioNav.classList.remove('xl:flex');
@@ -45,7 +53,7 @@ export function handleRouting() {
             projectsNav.classList.add('xl:flex');
             projectsNav.classList.remove('xl:hidden');
         }
-        
+
         // 2. Starta scroll-lyssnaren nu när elementen faktiskt är synliga och har mätbar höjd/bredd!
         setupHorizontalScroll();
         updateTopNavActive('projects');
@@ -57,10 +65,15 @@ export function handleRouting() {
             projectsView.classList.remove('animate-fade-1s');
         }
 
-        if (projectsTrack) {
-            projectsTrack.classList.remove('animate-intro-projects');
-            void projectsTrack.offsetWidth; // Trigger reflow
-            projectsTrack.classList.add('animate-intro-projects');
+        // FIX: intro-animationen triggas nu på wrappern, INTE på #projects-horizontal-track,
+        // så den krockar aldrig med JS:ens transform-styrning av scrollpositionen.
+        if (projectsIntroWrapper) {
+            projectsIntroWrapper.classList.remove('animate-intro-projects');
+            void projectsIntroWrapper.offsetWidth; // Trigger reflow
+            projectsIntroWrapper.classList.add('animate-intro-projects');
+            console.log('[router.js] intro-animation triggad på #projects-intro-wrapper.');
+        } else {
+            console.warn('[router.js] #projects-intro-wrapper saknas — glömde du lägga till wrappern i index.html?');
         }
 
         if (hash.startsWith('#project-')) {
@@ -75,7 +88,7 @@ export function handleRouting() {
     } else {
         projectsView.classList.add('hidden');
         portfolioView.classList.remove('hidden');
-        
+
         if (projectsNav) {
             projectsNav.classList.add('xl:hidden');
             projectsNav.classList.remove('xl:flex');
@@ -84,7 +97,6 @@ export function handleRouting() {
             portfolioNav.classList.add('xl:flex');
             portfolioNav.classList.remove('xl:hidden');
         }
-        
         updateTopNavActive('home');
 
         if (portfolioContent) {
@@ -108,4 +120,5 @@ export function handleRouting() {
 export function initRouter() {
     window.addEventListener('hashchange', handleRouting);
     handleRouting();
+    console.log('[router.js] initRouter: router initierad, hashchange-lyssnare registrerad.');
 }
