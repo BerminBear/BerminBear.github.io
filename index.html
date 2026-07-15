@@ -476,6 +476,7 @@
             }
         }
 
+//#region 3. COSMONOVA
         // Left Navigation Active State Highlighter for Portfolio View
         window.addEventListener('scroll', () => {
             if (!document.getElementById('view-projects').classList.contains('hidden')) return;
@@ -507,7 +508,9 @@
                 }
             });
         });
+    //#endregion
 
+  //region Scrolling
         // --- HIERARCHICAL LERP SCROLL SYSTEM ("On Ice" Glid-effekt) ---
         window.addEventListener('scroll', () => {
             if (document.getElementById('view-projects').classList.contains('hidden')) return;
