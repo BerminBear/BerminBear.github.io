@@ -36,6 +36,42 @@
             transition: opacity 0.4s ease;
         }
 
+        /* Döljer standardmusen på hela sidan */
+        body {
+            background-color: #08070a; 
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+            cursor: none; /* NYTT: Döljer vanliga muspekaren */
+        }
+
+        /* --- NYA CURSOR STILAR --- */
+        
+        /* Den lilla pricken (custom cursor) */
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #f59e0b; /* Amber-500 */
+            border-radius: 50%;
+            pointer-events: none; /* Så att man kan klicka "igenom" den */
+            z-index: 10000; /* Ligger överallt, t.o.m glowet */
+            transform: translate(-50%, -50%); /* Centrerar den exakt på koordinationen */
+            transition: opacity 0.3s ease, transform 0.2s ease;
+        }
+
+        /* En osynlig klass vi lägger på när vi hovrar över klickbara element */
+        .cursor-hidden {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5) !important;
+        }
+        
+        /* Tvingar bort pekaren även från länkar och knappar (annars visar webbläsaren handen) */
+        a, button, .project-card, [onclick] {
+            cursor: none !important; 
+        }
+
         /* Sleek custom scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #08070a; }
@@ -128,9 +164,12 @@
         }
     </style>
 </head>
+    <!-- Custom Cursor -->
+
 <body class="antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden on-portfolio-view">
 
     <div id="mouse-glow"></div>
+    <div id="custom-cursor"></div>
 
     <!-- Sido-navigation för Portfolio-vyn (Uppdaterad till 3 fält) -->
     <div id="portfolio-nav" class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
@@ -165,9 +204,10 @@
                         <span class="text-[9px] text-slate-500 group-hover:text-amber-500 transition-colors">▼</span>
                     </a>
                     <div class="absolute hidden group-hover:block bg-[#0c0a0f] border border-white/10 mt-0 p-2 rounded-lg shadow-xl w-52 text-left right-0 md:left-0 backdrop-blur-md">
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Echoes of Void</a>
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Automated VO Pipeline</a>
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Aura Soundscapes</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Tools</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Games</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Movies</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(4), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Movies</a>
                     </div>
                 </div>
 
