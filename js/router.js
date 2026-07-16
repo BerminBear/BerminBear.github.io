@@ -97,7 +97,11 @@ export function handleRouting() {
         // döljer fliken "Overview" och återställer dropdownen "Projects".
         document.body.classList.add('on-portfolio-view');
         document.body.classList.remove('on-projects-view');
-
+        
+// VIKTIGT: hidden-klassen MÅSTE ge display:none (inte visibility/opacity).
+// CSS scroll-snap på <html> förlitar sig på att dolda sektioner helt
+// försvinner ur layouten för att inte räknas som snap-mål.
+portfolioView.classList.add('hidden');
         projectsView.classList.add('hidden');
         portfolioView.classList.remove('hidden');
 
