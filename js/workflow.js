@@ -1,3 +1,5 @@
+// js/workflow.js
+
 const steps = {
     architecture: {
         title: "01 Architecture & Logic",
@@ -47,17 +49,20 @@ export function changeStep(stepNum, stepKey) {
         media.style.opacity = '1';
     }, 300);
 
-    progress.style.height = `${(stepNum / 4) * 100}%`;
+    // NY MATEMATIK: Steg 1=0%, Steg 2=33.3%, Steg 3=66.6%, Steg 4=100%
+    progress.style.height = `${((stepNum - 1) / 3) * 100}%`;
 
     document.querySelectorAll('.pipeline-node').forEach((node, i) => {
         const dot = node.querySelector('.node-dot');
         const label = node.querySelector('span');
         if (i + 1 === stepNum) {
-            dot.className = "node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font";
-            label.className = "text-xs uppercase tracking-widest code-font text-white transition-colors";
+            // FIX: Ändrat till w-12 h-12 och lagt till font-semibold för att matcha HTML
+            dot.className = "node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all code-font shadow-lg shadow-amber-500/10";
+            label.className = "text-xs uppercase tracking-widest code-font text-white transition-colors font-semibold";
         } else {
-            dot.className = "node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font";
-            label.className = "text-xs uppercase tracking-widest code-font text-slate-500 hover:text-amber-400 transition-colors";
+            // FIX: Ändrat till w-12 h-12 och lagt till font-semibold
+            dot.className = "node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font";
+            label.className = "text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold";
         }
     });
 }
