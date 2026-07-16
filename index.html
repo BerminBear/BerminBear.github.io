@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Natalli | Technical Audio & Dialogue Designer</title>
+    <title>Benjamin Natalli | Technical Audio & Dialogue Design</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -97,12 +97,11 @@
 
     <div id="mouse-glow"></div>
 
-    <!-- Sido-navigation för Portfolio-vyn -->
+    <!-- Sido-navigation för Portfolio-vyn (Uppdaterad till 3 fält) -->
     <div id="portfolio-nav" class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
-        <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Home</a>
-        <a href="#showreel" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Showreel</a>
-        <a href="#workflow" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Workflow</a>
-        <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">04. Tech Stack</a>
+        <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Showreel</a>
+        <a href="#workflow" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Workflow</a>
+        <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Tech Stack</a>
     </div>
 
     <!-- Sido-navigation för Projects-vyn -->
@@ -113,9 +112,8 @@
         <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Aura App</a>
     </div>
 
-    <!-- Huvudnavigation (Header) -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
+        <div class="w-full flex justify-between items-center">
             <a href="#hero" class="code-font text-amber-500 font-bold tracking-wider text-sm">B.NATALLI</a>
             <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest code-font items-center">
                 <a href="#hero" class="text-amber-500 hover:text-white transition-colors">Home</a>
@@ -125,7 +123,7 @@
                         Projects
                         <span class="text-[9px] text-slate-500 group-hover:text-amber-500 transition-colors">▼</span>
                     </a>
-                    <div class="absolute hidden group-hover:block bg-[#0c0a0f] border border-white/10 mt-0 p-2 rounded-lg shadow-xl w-52 text-left left-0 backdrop-blur-md">
+                    <div class="absolute hidden group-hover:block bg-[#0c0a0f] border border-white/10 mt-0 p-2 rounded-lg shadow-xl w-52 text-left right-0 md:left-0 backdrop-blur-md">
                         <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Echoes of Void</a>
                         <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Automated VO Pipeline</a>
                         <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">// Aura Soundscapes</a>
@@ -139,68 +137,91 @@
 
     <!-- PORTFOLIO VYN (HEMSIDAN) -->
     <div id="view-portfolio">
-        <main id="portfolio-content-wrapper" class="max-w-4xl mx-auto px-6 md:px-12 pt-32 pb-12 flex flex-col gap-32 relative">
+        <!-- Ändrat pt-32 till pt-24 för att flytta upp allt närmare headern -->
+        <main id="portfolio-content-wrapper" class="max-w-5xl mx-auto px-6 md:px-12 pt-24 pb-12 flex flex-col gap-24 relative">
 
-            <header id="hero" class="min-h-[50vh] flex flex-col justify-center scroll-mt-32">
-                <span class="code-font text-amber-500 text-sm tracking-widest mb-3 uppercase">// Pipelines, Systems & Dialogue Logic</span>
-                <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">
-                    Benjamin Natalli
-                </h1>
-                <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
-                    Technical Audio & Dialogue Designer
-                </h2>
-                <p class="mt-6 max-w-xl text-slate-400 leading-relaxed text-base">
-                    Specializing in automation, interactive VO systems & scalable pipeline tools, bridging the gap between complex mechanics and creative implementation.
-                </p>
+            <!-- HERO SEKTION (Videon flyttad under texten, max-h sänkt för att trycka upp sidan) -->
+            <section id="hero" class="min-h-[40vh] flex flex-col gap-0.5 justify-center scroll-mt-28">
+                
+                <!-- Övre raden: Din presentation -->
+                <div class="flex flex-col text-left">
+                    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        Benji Natalli
+                    </h1>
+                    <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
+                        Technical Audio & Dialogue Designer
+                    </h2>
+                    <p class="mt-6 max-w-2xl text-slate-400 leading-relaxed text-sm md:text-base">
+                        Specializing in <span class="text-amber-500 font-medium">automation</span>, <span class="text-amber-500 font-medium">dialogue systems</span> & <span class="text-amber-500 font-medium whitespace-nowrap">scalable pipeline tools</span>,
+                        <br class="hidden md:inline"> bridging the gap between complex mechanics and creative implementation.
+                    </p>
 
-                <div class="mt-8 flex flex-wrap gap-6 text-xs code-font text-slate-500">
-                    <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
-                    <a href="mailto:your.email@domain.com" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
-                    <a href="https://youtube.com" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ YouTube ]</a>
+                    <div class="mt-2 flex flex-wrap gap-6 text-xs code-font text-slate-500">
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
+                        <a href="mailto:your.email@domain.com" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
+                        <a href="https://youtube.com" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ YouTube ]</a>
+                    </div>
                 </div>
-            </header>
 
-            <section id="showreel" class="scroll-mt-100">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-6">// Showreel</h3>
-                <div class="aspect-video w-full rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                <!-- Undre raden: Din showreel centrerad och i bekväm, stor storlek (max-w-3xl) -->
+                <div class="w-full flex flex-col items-start mt-0">
+                    <span class="code-font text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">// Showreel</span>
+                    <div class="aspect-video w-full max-w-3xl rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </section>
 
-            <section id="workflow" class="scroll-mt-20">
+            <!-- WORKFLOW SEKTION -->
+            <section id="workflow" class="scroll-mt-28">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
                 <p class="text-sm text-slate-400 max-w-xl mb-12">
                     An unstructured audio & dialogue pipeline wastes hundreds of hours on manual labor. I design pipelines and automated systems that eliminate production bottlenecks.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-                    <div class="md:col-span-4 flex md:flex-col gap-4 relative pt-0">
-                        <div class="hidden md:block absolute left-[15px] top-4 bottom-4 w-[2px] bg-slate-800">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+                    <!-- Vänsterkolumn med större knappar -->
+                    <div class="md:col-span-5 flex flex-col gap-6 relative py-4 justify-between">
+                        <!-- Centrerad linje -->
+                        <div class="hidden md:block absolute left-[23px] top-6 bottom-6 w-[2px] bg-slate-800">
                             <div id="pipeline-progress" class="w-full h-1/4 bg-amber-500 transition-all duration-1000 rounded-full"></div>
                         </div>
 
-                        <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
-                            <div class="node-dot w-8 h-8 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-xs transition-all code-font">01</div>
-                            <span class="text-xs uppercase tracking-widest code-font text-white group-hover:text-amber-400 transition-colors">Architecture</span>
+                        <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div class="node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all code-font shadow-lg shadow-amber-500/10">01</div>
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest code-font text-white group-hover:text-amber-400 transition-colors font-semibold">Architecture</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">System Design</span>
+                            </div>
                         </button>
 
-                        <button onclick="changeStep(2, 'automation')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
-                            <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">02</div>
-                            <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Automation</span>
+                        <button onclick="changeStep(2, 'automation')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">02</div>
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Automation</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Tool Development</span>
+                            </div>
                         </button>
 
-                        <button onclick="changeStep(3, 'systems')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
-                            <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">03</div>
-                            <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Systems</span>
+                        <button onclick="changeStep(3, 'systems')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">03</div>
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Systems</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Logic & Behavior</span>
+                            </div>
                         </button>
 
-                        <button onclick="changeStep(4, 'optimization')" class="pipeline-node flex items-center gap-4 z-10 group text-left">
-                            <div class="node-dot w-8 h-8 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-xs transition-all code-font">04</div>
-                            <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors">Optimization</span>
+                        <button onclick="changeStep(4, 'optimization')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">04</div>
+                            <div class="flex flex-col">
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Optimization</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Performance & Budgets</span>
+                            </div>
                         </button>
                     </div>
 
-                    <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[340px] flex flex-col justify-between transform transition-all duration-1000 mt-0 pt-8" id="pipeline-card">
+                    <!-- Högerkolumn för innehåll -->
+                    <div class="md:col-span-7 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[360px] flex flex-col justify-between transform transition-all duration-1000 mt-0 pt-8" id="pipeline-card">
                         <div id="pipeline-content" class="space-y-4 transition-opacity duration-1000"></div>
                         <div class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
                             <div id="pipeline-media" class="text-xs text-slate-600 code-font transition-opacity duration-1000"></div>
@@ -209,15 +230,17 @@
                 </div>
             </section>
 
-            <section id="tech-stack" class="scroll-mt-20">
+            <!-- TECH STACK SEKTION -->
+            <section id="tech-stack" class="scroll-mt-28">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
                     <div>
-                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Middleware</h4>
+                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Spatial Audio</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Middleware:</strong> Wwise, FMOD, Dolby Atmos</li>
-                            <li><strong class="text-white">DAWs:</strong> Reaper, Pro Tools, Logic Pro X</li>
+                            <li><strong class="text-white">Middleware:</strong> Wwise (Advanced Integration), FMOD</li>
+                            <li><strong class="text-white">Spatial Audio & Formats:</strong> Dolby Atmos, Windows Sonic</li>
+                            <li><strong class="text-white">DAWs:</strong> Reaper (ReaScript Automation), Pro Tools, Logic Pro X</li>
                             <li><strong class="text-white">Audio Tools:</strong> iZotope RX11, Pure Data, FabFilter</li>
                         </ul>
                     </div>
@@ -225,28 +248,28 @@
                     <div>
                         <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Engines & Integration</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Primary Engines:</strong> Unreal Engine, Unity, Divinity </li>
-                            <li><strong class="text-white">Implementation:</strong> Interactive dialogue routing, localization assets, adaptive systems, and spatial dynamic mixing.</li>
+                            <li><strong class="text-white">Primary Engines:</strong> Unreal Engine 5, Unity, Divinity Engine / Osiris Scripting</li>
+                            <li><strong class="text-white">Implementation:</strong> Automated VO Pipelines (WAAPI/Reaper API), Interactive dialogue routing, Localization assets, Memory Budget Profiling, and Spatial runtime mixing.</li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Code & Logic</h4>
                         <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Python (WAAPI)</span>
+                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua (ReaScript)</span>
+                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
                             <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Java</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine (Blueprints)</span>
+                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
                         </div>
                     </div>
 
                     <div>
-                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Pipelines & Narrative Systems</h4>
+                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Pipelines & Version Control</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
+                            <li><strong class="text-white">Source Control:</strong> Perforce (P4V - AAA Standard), Git/GitHub</li>
                             <li><strong class="text-white">Narrative Tech:</strong> Articy:draft, Ink</li>
-                            <li><strong class="text-white">Source Control:</strong> Git/GitHub, Perforce</li>
-                            <li><strong class="text-white">Production:</strong> Jira, Notion, Trello, Slack</li>
+                            <li><strong class="text-white">Production:</strong> Jira, Confluence, Notion, Slack</li>
                         </ul>
                     </div>
                 </div>
@@ -283,7 +306,6 @@
                 
                 <!-- Wrapper som äger intro-animationen -->
                 <div id="projects-intro-wrapper" class="animate-intro-projects">
-                    <!-- FIXAD KLASS: flex-nowrap har lagts till här för att garantera sidleds-layout -->
                     <div id="projects-horizontal-track" class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
                         
                         <!-- Introkort -->
