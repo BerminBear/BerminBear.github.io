@@ -41,6 +41,12 @@ export function handleRouting() {
     }
 
     if (hash === '#projects' || hash.startsWith('#project-')) {
+        // --- KLASS-HANTERING FÖR LOGO OCH FLIKAR ---
+        // Gör att body signalerar "projects-view". CSS sköter därefter loggans gråtoning
+        // samt visar "Overview" och döljer "Projects" automatiskt.
+        document.body.classList.add('on-projects-view');
+        document.body.classList.remove('on-portfolio-view');
+
         // 1. Visa sektionen först!
         portfolioView.classList.add('hidden');
         projectsView.classList.remove('hidden');
@@ -86,6 +92,12 @@ export function handleRouting() {
         }
 
     } else {
+        // --- KLASS-HANTERING FÖR LOGO OCH FLIKAR ---
+        // Återställer body till "portfolio-view" vilket gör loggan orange/vit,
+        // döljer fliken "Overview" och återställer dropdownen "Projects".
+        document.body.classList.add('on-portfolio-view');
+        document.body.classList.remove('on-projects-view');
+
         projectsView.classList.add('hidden');
         portfolioView.classList.remove('hidden');
 
