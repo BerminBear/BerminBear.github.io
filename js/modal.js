@@ -75,39 +75,56 @@ const cvCases = {
                 <div class="aspect-[3/4] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl">
                     <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
                 </div>
+                <!-- Metadata under the profile image -->
+                <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
+                    <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Age:</span> 25</div>
+                    <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Residence:</span> Stockholm, Sweden</div>
+                    <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Languages:</span> Swedish (Native), English (Fluent), Portugeuse (Funadmentals) </div>
+                </div>
             </div>
             <div class="md:col-span-8 space-y-6 max-h-[70vh] overflow-y-auto pr-2">
                 <div>
-                    <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Terminal: Profile_Expansion.bin</span>
+                    <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Terminal: Profile_History.log</span>
                     <h2 class="text-3xl font-extrabold text-white mt-1">About Benjamin</h2>
-                    <p class="text-xs text-slate-400 code-font mt-1">Sound Designer, Programmer & Creator</p>
+                    <p class="text-xs text-slate-400 code-font mt-1">Audio Developer & Narrative Enthusiast</p>
                 </div>
                 <div class="h-[1px] bg-white/10"></div>
                 <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
-                    <p>When I am not diving deep into audio trees in Wwise or structuring logic arrays at Stockholm University, I am driven by a profound interest in system architecture, complex gameplay mechanics, and how interactivity shapes spatial experiences.</p>
-                    <p>My background is highly diverse — ranging from advanced parkour coaching mechanics for youth development to live theatre soundscapes and residential structural design environments. This array grants me an innate capacity to read shifting project parameters swiftly, debug production roadblocks creatively, and integrate fluently within specialized interdisciplinary units.</p>
+                    <p>
+                        I grew up in Stockholm, Sweden to a nerdy brazilian family. I was introduced to games at a very early age and it has since been a part of my everyday life.
+                    </p>
+                    <p>
+                        It started when my brother introduced me to <strong>Baldur's Gate 1</strong>. It was the first game I fell in love with, and it left a lasting impression on the games I've later come to enjoy in life (like Planescape Torment among others). 
+                    </p>
+                    <p>
+                        I also always had a penchant for music, sound and voice acting, and so after my high school studies, I wanted to connect these two interests together. 
+                       
+                    <p>
+                    Today, I view games as the highest art form - a rare intersection where interactive logic and creative arts can merge into a living experience. I am currently studying game development with the purpose of specializing in audio technical implementation pipelines, with a focus on dialogue. My primary goal right now is to work within a team creating the next great, complete <strong>CRPG experience</strong>, where voice and audio systems drive the narrative forward.
+                    </p>
+                    <p/>
                 </div>
                 <div class="h-[1px] bg-white/10"></div>
                 <div class="space-y-4 text-xs code-font">
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Games:</span>
-                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Baldur's Gate Series, Planescape Torment, Disco Elysium, The Witcher Series, Elden Ring, Fallout: New Vegas</p>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Baldur's Gate Series, Planescape Torment, Disco Elysium, Witcher 3, Elden Ring</p>
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Hobbies:</span>
-                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Mushroom Foraging, Woodworking, Content Creation, Writing, D&D, Brewery and Perfumery</p>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Mushroom Foraging, Woodworking, D&D, Brewery and Perfumery</p>
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
                         <p class="text-slate-300 pl-3 border-l border-amber-500/30">Volleyball, Climbing, Kayaking</p>
                     </div>
                     <div>
-                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Authors:</span>
-                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Haruki Murakami, Terry Pratchett</p>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Books:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Wind-Up Chronicles (Murakami), Mort (Pratchett)</p>
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Movies:</span>
-                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">V for Vendetta, Watchmen, Howl's Moving Castle, La La Land, LOTR</p>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">V for Vendetta, Watchmen, Princess Bride, Lord of the Rings</p>
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Music:</span>
@@ -201,13 +218,11 @@ export function closeCvModal() {
 
 // --- GLOBAL INIT ---
 export function initModal() {
-    // Exponera till globala window för inline HTML onclick
     window.openProjectDetail = openProjectDetail;
     window.closeProjectDetail = closeProjectDetail;
     window.openCvModal = openCvModal;
     window.closeCvModal = closeCvModal;
 
-    // Stäng med ESC (stänger båda typerna säkert)
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             closeProjectDetail();
@@ -215,7 +230,6 @@ export function initModal() {
         }
     });
 
-    // Stäng vid klick utanför wrapper (Index)
     const projectModal = document.getElementById('project-detail-modal');
     if (projectModal) {
         projectModal.addEventListener('click', (e) => {
@@ -223,7 +237,6 @@ export function initModal() {
         });
     }
 
-    // Stäng vid klick utanför wrapper (CV)
     const cvModal = document.getElementById('cv-detail-modal');
     if (cvModal) {
         cvModal.addEventListener('click', (e) => {
