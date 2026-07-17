@@ -10,8 +10,7 @@
     <style>
         body { background-color: #08070a; color: #f1f5f9; font-family: 'Inter', sans-serif; cursor: none; }
         .code-font { font-family: 'Fira Code', monospace; }
-        
-        /* Fade-in animation för hela sidan */
+
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -23,7 +22,9 @@
         #mouse-glow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; mix-blend-mode: screen; background: radial-gradient(200px at 50% 50%, rgba(245, 158, 11, 0.08), transparent 70%); }
         #custom-cursor { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: #f59e0b; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: opacity 0.3s ease, transform 0.2s ease; }
         .cursor-hidden { opacity: 0; transform: translate(-50%, -50%) scale(0.5) !important; }
-        a, button { cursor: none !important; }
+        a, button, summary, .cv-clickable-card, .cv-name-trigger { cursor: none !important; }
+        summary { list-style: none; }
+        summary::-webkit-details-marker { display: none; }
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #08070a; }
         ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
@@ -50,99 +51,212 @@
     </nav>
 
     <!-- HUVUDINNEHÅLL -->
-    <main class="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-32 pb-32 animate-fade-in opacity-0">
-        
-        <!-- HEADER + BILD -->
-        <header class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-32">
-            
-            <!-- VÄNSTER: BILD -->
+    <main class="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-32 pb-20 animate-fade-in opacity-0">
+
+        <!-- HEADER + BILD (Minskad marginal i botten från mb-32 till mb-16) -->
+        <header class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-16">
+
             <div class="md:col-span-3">
                 <div class="aspect-[4/5] w-full max-w-[280px] mx-auto md:mx-0 rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
                     <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
                 </div>
             </div>
-            
-            <!-- HÖGER: INTROTEXT -->
+
             <div class="md:col-span-9 flex flex-col justify-center">
                 <div class="max-w-3xl">
-                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">Benjamin Natalli</h1>
-                    <h2 class="mt-6 text-xl text-amber-500 code-font uppercase tracking-widest text-sm">Technical Audio & Dialogue Designer</h2>
-                    <p class="mt-8 text-slate-400 text-lg leading-relaxed">
-                        I am a Technical Audio Designer specializing in complex dialogue systems, automation tools, and dynamic game audio implementation. With a deep passion for removing production bottlenecks, I bridge the gap between creative sound design and robust system architecture.
+                    <!-- Klickbart namn med interaktiv effekt -->
+                    <button onclick="openCvModal('about-me')" class="cv-name-trigger text-left group block focus:outline-none">
+                        <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none group-hover:text-amber-500 transition-colors duration-300">
+                            Benjamin Natalli 
+                            <span class="text-xs text-amber-500/40 code-font font-normal tracking-widest uppercase ml-3 inline-block transform translate-y-[-10px] group-hover:translate-x-1 transition-transform">[ Info+ ]</span>
+                        </h1>
+                    </button>
+                    <h2 class="mt-4 text-xl text-amber-500 code-font uppercase tracking-widest text-sm">Technical Audio & Dialogue Designer</h2>
+                    <p class="mt-6 text-slate-400 text-lg leading-relaxed">
+                        Composer and sound designer with hands-on Wwise & FMOD implementation experience across two independent productions. Currently deepening my technical toolkit — audio programming and sound design — at Stockholm University, alongside a background in dialogue editing, mixing, and live sound recording.
                     </p>
-                    <div class="mt-10 flex flex-wrap gap-8 text-xs code-font text-slate-500">
-                        <a href="mailto:benjamin@example.com" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">Email</a>
-                        <a href="#" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">LinkedIn</a>
+                    <div class="mt-8 flex flex-wrap gap-8 text-xs code-font text-slate-500">
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">Email</a>
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">LinkedIn</a>
                         <a href="#" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">Download PDF</a>
                     </div>
                 </div>
             </div>
         </header>
 
-        <hr class="border-white/5 mb-32">
+        <hr class="border-white/5 mb-16">
 
-        <!-- EXPERIENCE GRID -->
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-24">
-            
+        <!-- EXPERIENCE (Minskad marginal i botten från mb-24 till mb-16) -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-16">
+
             <div class="md:col-span-3">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Experience</h3>
+                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Game & Audio Experience</h3>
             </div>
-            
-            <div class="md:col-span-9 space-y-20">
-                <div class="max-w-3xl">
-                    <h4 class="text-xl font-bold text-white">Lead Technical Audio Designer</h4>
-                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">2024 — Present <span class="text-slate-600 mx-2">|</span> Echoes of the Void (UE5)</p>
-                    <ul class="mt-6 space-y-4 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/50">
-                        <li>Architected and maintained the entire dialogue pipeline, handling over 50,000 lines of voice-over.</li>
-                        <li>Developed custom Python tools (WAAPI) to automate import, metadata tagging, and leveling.</li>
-                        <li>Collaborated closely with narrative designers to build branching logic structures in Blueprints.</li>
+
+            <div class="md:col-span-9 space-y-6">
+                
+                <!-- Erfarenhet 1 (Gjord till klickbart kort) -->
+                <div onclick="openCvModal('arctic-bones')" class="cv-clickable-card max-w-3xl p-6 rounded-xl border border-transparent bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/5 hover:shadow-[0_4px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group">
+                    <div class="flex justify-between items-start gap-4">
+                        <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Composer & Sound Designer</h4>
+                        <span class="text-xs text-slate-600 code-font uppercase tracking-widest mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Case →</span>
+                    </div>
+                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">Mar 2025 — Oct 2025 <span class="text-slate-600 mx-2">|</span> Arctic Bones AB</p>
+                    <ul class="mt-4 space-y-2 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/30">
+                        <li>Music production and sound design across the project's audio content.</li>
+                        <li>Audio implementation and technical support in Wwise and FMOD.</li>
                     </ul>
                 </div>
 
-                <div class="max-w-3xl">
-                    <h4 class="text-xl font-bold text-white">Audio Programmer & Designer</h4>
-                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">2022 — 2024 <span class="text-slate-600 mx-2">|</span> Aura: Generative Audio</p>
-                    <ul class="mt-6 space-y-4 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/50">
-                        <li>Integrated generative music systems in Unity using FMOD and C#.</li>
-                        <li>Designed procedural soundscapes under strict 15ms latency constraints.</li>
+                <!-- Erfarenhet 2 (Gjord till klickbart kort) -->
+                <div onclick="openCvModal('cable-nest')" class="cv-clickable-card max-w-3xl p-6 rounded-xl border border-transparent bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/5 hover:shadow-[0_4px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group">
+                    <div class="flex justify-between items-start gap-4">
+                        <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Composer & Sound Designer</h4>
+                        <span class="text-xs text-slate-600 code-font uppercase tracking-widest mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Case →</span>
+                    </div>
+                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">2024 — 2025 <span class="text-slate-600 mx-2">|</span> Cable Nest / Gro Play AB</p>
+                    <ul class="mt-4 space-y-2 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/30">
+                        <li>Music production and sound design for the studio's titles.</li>
+                        <li>Produced marketing material — trailers, streaming assets, and promotional video.</li>
                     </ul>
+                </div>
+
+                <!-- Erfarenhet 3 (Gjord till klickbart kort) -->
+                <div onclick="openCvModal('freelance-audio')" class="cv-clickable-card max-w-3xl p-6 rounded-xl border border-transparent bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/5 hover:shadow-[0_4px_30px_rgba(0,0,0,0.2)] transition-all duration-300 group">
+                    <div class="flex justify-between items-start gap-4">
+                        <h4 class="text-xl font-bold text-white group-hover:text-amber-400 transition-colors">Freelance Audio Work</h4>
+                        <span class="text-xs text-slate-600 code-font uppercase tracking-widest mt-1.5 opacity-0 group-hover:opacity-100 transition-opacity">Read Case →</span>
+                    </div>
+                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">Ongoing <span class="text-slate-600 mx-2">|</span> Independent</p>
+                    <ul class="mt-4 space-y-2 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/30">
+                        <li>Dialogue editing, sound engineering, and music production for independent clients.</li>
+                    </ul>
+                </div>
+
+                <!-- EXPANDERBAR SEKTION -->
+                <details class="group pt-6 border-t border-white/5">
+                    <summary class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-500 code-font hover:text-amber-400 transition-colors pl-2">
+                        <span class="w-4 h-4 flex items-center justify-center border border-slate-700 rounded-sm text-[10px] leading-none group-open:rotate-45 transition-transform duration-300">+</span>
+                        Other Experience & Freelance Work
+                    </summary>
+                    <div class="mt-6 space-y-6 max-w-3xl text-sm text-slate-400 leading-relaxed pl-2">
+                        <div>
+                            <p class="text-white font-semibold text-sm">Substitute Teacher — Music, Social Studies, Swedish, Art, Woodwork</p>
+                            <p class="text-xs text-slate-500 code-font mt-1">2022 — 2025 <span class="text-slate-700 mx-2">|</span> Gullingeskolan</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Substitute Teacher — Music, Swedish, English, PE</p>
+                            <p class="text-xs text-slate-500 code-font mt-1">2022 — 2023 <span class="text-slate-700 mx-2">|</span> Hässelby Villastads Skola</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Substitute Teacher — Swedish, English, Social Studies, PE</p>
+                            <p class="text-xs text-slate-500 code-font mt-1">2022 — 2023 <span class="text-slate-700 mx-2">|</span> Trollbodaskolan</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Parkour Coach</p>
+                            <p class="text-xs text-slate-500 code-font mt-1">2019 — 2024 <span class="text-slate-700 mx-2">|</span> Stockholm Barnidrottsförening</p>
+                            <p class="mt-2">Planned lessons and coached children aged 4–16; mentored new staff.</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Homestylist</p>
+                            <p class="text-xs text-slate-500 code-font mt-1">2018 — 2024 <span class="text-slate-700 mx-2">|</span> Tucana Homestyling</p>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-sm">Various Freelance & Service Roles</p>
+                            <p class="mt-2">DJ, wedding singer, carpenter, server, bartender, janitor, painter, administrative support, film extra.</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <hr class="border-white/5 my-16">
+
+        <!-- EDUCATION -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-16">
+
+            <div class="md:col-span-3">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Education</h3>
+            </div>
+
+            <div class="md:col-span-9 space-y-8">
+                <div class="max-w-3xl flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h4 class="text-base font-bold text-white">Game Development (Audio / Programming)</h4>
+                    <p class="text-xs text-amber-500 code-font whitespace-nowrap">Stockholm University <span class="text-slate-600 mx-2">|</span> 2025 — Ongoing</p>
+                </div>
+                <div class="max-w-3xl flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h4 class="text-base font-bold text-white">Game Audio & Sound Design</h4>
+                    <p class="text-xs text-amber-500 code-font whitespace-nowrap">Audio Production Academy <span class="text-slate-600 mx-2">|</span> 2023 — 2025</p>
+                </div>
+                <div class="max-w-3xl flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h4 class="text-base font-bold text-white">Music Production for Film, Theatre & Games</h4>
+                    <p class="text-xs text-amber-500 code-font whitespace-nowrap">Umeå University <span class="text-slate-600 mx-2">|</span> 2020 — 2021</p>
+                </div>
+                <div class="max-w-3xl flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h4 class="text-base font-bold text-white">Marketing & Entrepreneurship</h4>
+                    <p class="text-xs text-amber-500 code-font whitespace-nowrap">Royal College of Music (KMH) <span class="text-slate-600 mx-2">|</span> 2020 — 2021</p>
+                </div>
+                <div class="max-w-3xl flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <h4 class="text-base font-bold text-white">Sound & Music Production</h4>
+                    <p class="text-xs text-amber-500 code-font whitespace-nowrap">Rytmus Music High School <span class="text-slate-600 mx-2">|</span> 2017 — 2020</p>
                 </div>
             </div>
         </section>
 
-        <hr class="border-white/5 my-32">
+        <hr class="border-white/5 my-16">
 
         <!-- TECH STACK -->
         <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-            
+
             <div class="md:col-span-3">
                 <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Tech Stack</h3>
             </div>
-            
+
             <div class="md:col-span-9">
                 <div class="max-w-3xl grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
                     <div>
-                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Engine & Middleware</h4>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Middleware</h4>
                         <ul class="space-y-3 text-sm text-slate-400 code-font">
-                            <li>Unreal Engine 5 / Blueprints</li>
-                            <li>Wwise & WAAPI</li>
-                            <li>Unity / FMOD</li>
+                            <li>Wwise</li>
+                            <li>FMOD</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Engines</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>Unity</li>
+                            <li>Unreal Engine</li>
+                            <li>Godot</li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Languages</h4>
                         <ul class="space-y-3 text-sm text-slate-400 code-font">
-                            <li>Python</li>
-                            <li>C++ (Fundamentals)</li>
+                            <li>Java</li>
+                            <li>Lua</li>
                             <li>C#</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Other Tools</h4>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Production</h4>
                         <ul class="space-y-3 text-sm text-slate-400 code-font">
-                            <li>Perforce / Git</li>
-                            <li>Reaper / Pro Tools</li>
-                            <li>Jira / Confluence</li>
+                            <li>Music Production</li>
+                            <li>Mixing & Mastering</li>
+                            <li>Sound Design</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Live Sound & Recording</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>PA Systems</li>
+                            <li>Mic'ing & Cabling</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Currently Expanding</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>Python <span class="text-slate-600">(coursework)</span></li>
+                            <li>Audio Programming</li>
                         </ul>
                     </div>
                 </div>
@@ -151,22 +265,144 @@
 
     </main>
 
+    <!-- UNIFIERAD MODAL STRUKTUR FÖR CV (Både Erfarenheter & Om Mig) -->
+    <div id="cv-detail-modal" class="fixed inset-0 bg-[#060508]/90 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div id="cv-modal-wrapper" class="bg-[#0c0a0f] border border-white/10 p-6 md:p-10 rounded-2xl max-w-2xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="closeCvModal()" class="absolute top-4 right-4 code-font text-[10px] text-slate-500 hover:text-amber-500 transition-colors uppercase tracking-widest">[ Stäng ESC ]</button>
+            <div id="cv-modal-body" class="space-y-4"></div>
+        </div>
+    </div>
+
     <script>
-        // Custom cursor tracking & hover effects
+        // --- DATA FÖR CV-MODALER ---
+        const cvCases = {
+            'arctic-bones': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Arctic Bones AB</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Composer & Sound Designer</h2>
+                <p class="text-xs text-slate-500 code-font">Mars 2025 — Oktober 2025</p>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+                    <p>Hos Arctic Bones drevs produktionen med fokus på sömlös ljudmekanik. Jag ansvarade för komposition och dynamiska arrangemang som anpassade sig efter spelets intensitet.</p>
+                    <p>Huvudarbetet bestod i att sätta upp smarta prioritets-träd i <strong>Wwise</strong> och <strong>FMOD</strong> för miljöombyten och stridssystem, vilket optimerade röstförbrukningen och höll ljudbilden skarp utan överflödig CPU-belastning.</p>
+                </div>
+            `,
+            'cable-nest': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Cable Nest / Gro Play AB</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Cable Nest & Gro Play Portfolio</h2>
+                <p class="text-xs text-slate-500 code-font">2024 — 2025</p>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+                    <p>Här låg tyngdpunkten på snabba leveranser och strukturering av pipelines. Förutom att producera mångsidig musik och ljudeffekter till studions titlar byggde jag upp interna filstrukturer.</p>
+                    <p>Genom att strukturera schemaläggningen och namngivningsstandarder för röst- och ljudeffektsfiler kortades ledtiderna avsevärt mellan export från DAW till färdig integrering i spelmotorn.</p>
+                </div>
+            `,
+            'freelance-audio': `
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Independent Projects</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Frilans & Dialogredigering</h2>
+                <p class="text-xs text-slate-500 code-font">Löpande / Independent</p>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+                    <p>Genom självständiga uppdrag har jag finjusterat min kompetens inom kirurgisk ljudtvätt och dialogredigering med verktyg som iZotope RX.</p>
+                    <p>Arbetet spänner över allt ifrån podcast-produktioner och röstinspelningar till renodlad musikmixning och mastring inför distribution.</p>
+                </div>
+            `,
+            'about-me': `
+                <div class="flex flex-col sm:flex-row gap-6 items-center sm:items-start pb-2">
+                    <div class="w-24 h-24 rounded-full overflow-hidden shrink-0 border border-amber-500/20 shadow-xl">
+                        <img src="portfolio-picture.jpeg" alt="Benjamin" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Terminal: Profile_Expansion.bin</span>
+                        <h2 class="text-3xl font-extrabold text-white mt-1">Om Benjamin</h2>
+                        <p class="text-xs text-slate-400 code-font mt-1">Ljuddesigner, Programmerare & Kreatör</p>
+                    </div>
+                </div>
+                <div class="h-[1px] bg-white/10 my-4"></div>
+                <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+                    <p>När jag inte gräver djupt i ljudträd i Wwise eller strukturerar logik på Stockholms Universitet, drivs jag av ett stort intresse för systemdesign, komplexa mekaniker och hur interaktivitet påverkar våra upplevelser.</p>
+                    <p>Min bakgrund är bred — jag har arbetat med allt från avancerad parkour-coachning för barn till musikalisk gestaltning för teaterscener och homestyling. Det har gett mig en stark förmåga att snabbt sätta mig in i nya miljöer, lösa oväntade problem och samarbeta tätt med olika typer av discipliner.</p>
+                    <p><strong>Fritidsintressen:</strong> Teknik och hårdvarusyntar, tunga rollspel (RPGs), rörelse/fysisk träning samt att ständigt lära mig nya script-språk för att automatisera vardagliga flöden.</p>
+                </div>
+            `
+        };
+
+        // --- MODAL FUNKTIONER ---
+        function openCvModal(key) {
+            const modal = document.getElementById('cv-detail-modal');
+            const body = document.getElementById('cv-modal-body');
+            const wrapper = document.getElementById('cv-modal-wrapper');
+            if (!modal || !body || !wrapper) return;
+            
+            body.innerHTML = cvCases[key] || "Content load error.";
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Lås sidans scroll
+            
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                wrapper.classList.remove('scale-95');
+                wrapper.classList.add('scale-100');
+            }, 50);
+        }
+
+        function closeCvModal() {
+            const modal = document.getElementById('cv-detail-modal');
+            const wrapper = document.getElementById('cv-modal-wrapper');
+            if (!modal || !wrapper) return;
+            
+            modal.classList.remove('opacity-100');
+            wrapper.classList.remove('scale-100');
+            wrapper.classList.add('scale-95');
+            
+            document.body.style.overflow = ''; // Återställ scroll
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // --- GLOW, PEKARE OCH EVENT LISTENERS ---
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
         });
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hidden'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hidden'));
-        });
 
-        // Mus-glöd (Mouse glow effect)
+        // Uppdaterad funktion för att fästa hovringseffekter på ALLA klickbara element
+        function refreshCursorListeners() {
+            document.querySelectorAll('a, button, summary, .cv-clickable-card, .cv-name-trigger').forEach(el => {
+                // Rensa gamla lyssnare för att undvika dubbel-bindningar
+                el.removeEventListener('mouseenter', addCursorHide);
+                el.removeEventListener('mouseleave', removeCursorHide);
+                
+                el.addEventListener('mouseenter', addCursorHide);
+                el.addEventListener('mouseleave', removeCursorHide);
+            });
+        }
+        
+        function addCursorHide() { cursor.classList.add('cursor-hidden'); }
+        function removeCursorHide() { cursor.classList.remove('cursor-hidden'); }
+
         const mouseGlow = document.getElementById('mouse-glow');
         document.addEventListener('mousemove', (e) => {
             mouseGlow.style.background = `radial-gradient(200px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.08), transparent 70%)`;
+        });
+
+        // Globala lyssnare för stängning av modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCvModal();
+        });
+
+        const modalOverlay = document.getElementById('cv-detail-modal');
+        if (modalOverlay) {
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) closeCvModal();
+            });
+        }
+
+        // Initiera alla lyssnare vid start
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshCursorListeners();
         });
     </script>
 </body>
