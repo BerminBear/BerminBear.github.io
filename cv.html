@@ -10,6 +10,16 @@
     <style>
         body { background-color: #08070a; color: #f1f5f9; font-family: 'Inter', sans-serif; cursor: none; }
         .code-font { font-family: 'Fira Code', monospace; }
+        
+        /* Fade-in animation för hela sidan */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
         #mouse-glow { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 9999; mix-blend-mode: screen; background: radial-gradient(200px at 50% 50%, rgba(245, 158, 11, 0.08), transparent 70%); }
         #custom-cursor { position: fixed; top: 0; left: 0; width: 8px; height: 8px; background-color: #f59e0b; border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); transition: opacity 0.3s ease, transform 0.2s ease; }
         .cursor-hidden { opacity: 0; transform: translate(-50%, -50%) scale(0.5) !important; }
@@ -25,66 +35,74 @@
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
 
-    <!-- IDENTISK HEADER SOM INDEX -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
-        <div class="w-full max-w-5xl mx-auto flex justify-between items-center">
+    <!-- NAVIGATION -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
+        <div class="w-full flex justify-between items-center">
             <a href="index.html" class="code-font text-amber-500 font-bold tracking-wider text-sm flex items-center gap-2">
-                <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain">
+                <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain transition-all duration-300">
                 <span>B.NATALLI</span>
             </a>
-            <div class="flex gap-8 text-xs uppercase tracking-widest code-font items-center">
-                <a href="index.html" class="text-slate-400 hover:text-amber-500 transition-colors">Overview</a>
-                <a href="index.html#projects" class="text-slate-400 hover:text-amber-500 transition-colors">Projects</a>
-                <a href="cv.html" class="text-amber-500 transition-colors border-b border-amber-500">CV</a>
+            <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest code-font items-center">
+                <a href="index.html" class="text-slate-400 hover:text-amber-500 transition-colors py-2">Overview</a>
+                <a href="index.html#projects" class="text-slate-400 hover:text-amber-500 transition-colors py-2">Projects</a>
             </div>
         </div>
     </nav>
 
-    <!-- HUVUDINNEHÅLL - NU MAX-W-5XL -->
-    <main class="max-w-5xl mx-auto px-6 md:px-12 pt-32 pb-24">
+    <!-- HUVUDINNEHÅLL -->
+    <main class="w-full max-w-[1400px] mx-auto px-6 md:px-12 pt-32 pb-32 animate-fade-in opacity-0">
         
-        <!-- HEADER + BILD (ALEX CORNELL-INSPIRERAD) -->
-        <header class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
-            <div class="md:col-span-4">
-                <div class="aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
-                    <!-- Byt ut src mot din bild -->
+        <!-- HEADER + BILD -->
+        <header class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-32">
+            
+            <!-- VÄNSTER: BILD -->
+            <div class="md:col-span-3">
+                <div class="aspect-[4/5] w-full max-w-[280px] mx-auto md:mx-0 rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700">
                     <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
                 </div>
             </div>
-            <div class="md:col-span-8 flex flex-col justify-center">
-                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none">Benjamin Natalli</h1>
-                <h2 class="mt-4 text-xl text-amber-500 code-font uppercase tracking-widest text-sm">Technical Audio & Dialogue Designer</h2>
-                <p class="mt-8 text-slate-400 leading-relaxed max-w-xl">
-                    I am a Technical Audio Designer specializing in complex dialogue systems, automation tools, and dynamic game audio implementation. With a deep passion for removing production bottlenecks, I bridge the gap between creative sound design and robust system architecture.
-                </p>
-                <div class="mt-8 flex gap-6 text-xs code-font text-slate-500">
-                    <a href="mailto:benjamin@example.com" class="hover:text-amber-400 border-b border-white/10 pb-1">Email</a>
-                    <a href="#" class="hover:text-amber-400 border-b border-white/10 pb-1">LinkedIn</a>
-                    <a href="#" class="hover:text-amber-400 border-b border-white/10 pb-1">Download PDF</a>
+            
+            <!-- HÖGER: INTROTEXT -->
+            <div class="md:col-span-9 flex flex-col justify-center">
+                <div class="max-w-3xl">
+                    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight text-white leading-none">Benjamin Natalli</h1>
+                    <h2 class="mt-6 text-xl text-amber-500 code-font uppercase tracking-widest text-sm">Technical Audio & Dialogue Designer</h2>
+                    <p class="mt-8 text-slate-400 text-lg leading-relaxed">
+                        I am a Technical Audio Designer specializing in complex dialogue systems, automation tools, and dynamic game audio implementation. With a deep passion for removing production bottlenecks, I bridge the gap between creative sound design and robust system architecture.
+                    </p>
+                    <div class="mt-10 flex flex-wrap gap-8 text-xs code-font text-slate-500">
+                        <a href="mailto:benjamin@example.com" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">Email</a>
+                        <a href="#" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">LinkedIn</a>
+                        <a href="#" class="hover:text-amber-400 transition-colors border-b border-white/10 hover:border-amber-400 pb-1 uppercase tracking-widest">Download PDF</a>
+                    </div>
                 </div>
             </div>
         </header>
 
+        <hr class="border-white/5 mb-32">
+
         <!-- EXPERIENCE GRID -->
-        <section class="grid grid-cols-1 md:grid-cols-12 gap-12">
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 mb-24">
+            
             <div class="md:col-span-3">
-                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-28">// Experience</h3>
+                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Experience</h3>
             </div>
-            <div class="md:col-span-9 space-y-16">
-                <!-- Role 1 -->
-                <div>
-                    <h4 class="text-lg font-bold text-white">Lead Technical Audio Designer</h4>
-                    <p class="text-xs text-amber-500 code-font mt-1">2024 — Present | Echoes of the Void (UE5)</p>
-                    <ul class="mt-6 space-y-4 text-sm text-slate-400 leading-relaxed list-disc pl-4">
+            
+            <div class="md:col-span-9 space-y-20">
+                <div class="max-w-3xl">
+                    <h4 class="text-xl font-bold text-white">Lead Technical Audio Designer</h4>
+                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">2024 — Present <span class="text-slate-600 mx-2">|</span> Echoes of the Void (UE5)</p>
+                    <ul class="mt-6 space-y-4 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/50">
                         <li>Architected and maintained the entire dialogue pipeline, handling over 50,000 lines of voice-over.</li>
                         <li>Developed custom Python tools (WAAPI) to automate import, metadata tagging, and leveling.</li>
+                        <li>Collaborated closely with narrative designers to build branching logic structures in Blueprints.</li>
                     </ul>
                 </div>
-                <!-- Role 2 -->
-                <div>
-                    <h4 class="text-lg font-bold text-white">Audio Programmer & Designer</h4>
-                    <p class="text-xs text-amber-500 code-font mt-1">2022 — 2024 | Aura: Generative Audio</p>
-                    <ul class="mt-6 space-y-4 text-sm text-slate-400 leading-relaxed list-disc pl-4">
+
+                <div class="max-w-3xl">
+                    <h4 class="text-xl font-bold text-white">Audio Programmer & Designer</h4>
+                    <p class="text-xs text-amber-500 code-font mt-2 tracking-wide">2022 — 2024 <span class="text-slate-600 mx-2">|</span> Aura: Generative Audio</p>
+                    <ul class="mt-6 space-y-4 text-base text-slate-400 leading-relaxed list-disc pl-5 marker:text-amber-500/50">
                         <li>Integrated generative music systems in Unity using FMOD and C#.</li>
                         <li>Designed procedural soundscapes under strict 15ms latency constraints.</li>
                     </ul>
@@ -92,10 +110,49 @@
             </div>
         </section>
 
+        <hr class="border-white/5 my-32">
+
+        <!-- TECH STACK -->
+        <section class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+            
+            <div class="md:col-span-3">
+                <h3 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font sticky top-32">// Tech Stack</h3>
+            </div>
+            
+            <div class="md:col-span-9">
+                <div class="max-w-3xl grid grid-cols-2 md:grid-cols-3 gap-y-12 gap-x-8">
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Engine & Middleware</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>Unreal Engine 5 / Blueprints</li>
+                            <li>Wwise & WAAPI</li>
+                            <li>Unity / FMOD</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Languages</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>Python</li>
+                            <li>C++ (Fundamentals)</li>
+                            <li>C#</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-white mb-4 uppercase tracking-wider">Other Tools</h4>
+                        <ul class="space-y-3 text-sm text-slate-400 code-font">
+                            <li>Perforce / Git</li>
+                            <li>Reaper / Pro Tools</li>
+                            <li>Jira / Confluence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script>
-        // Samma cursor-logik som innan
+        // Custom cursor tracking & hover effects
         const cursor = document.getElementById('custom-cursor');
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
@@ -104,6 +161,12 @@
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => cursor.classList.add('cursor-hidden'));
             el.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hidden'));
+        });
+
+        // Mus-glöd (Mouse glow effect)
+        const mouseGlow = document.getElementById('mouse-glow');
+        document.addEventListener('mousemove', (e) => {
+            mouseGlow.style.background = `radial-gradient(200px at ${e.clientX}px ${e.clientY}px, rgba(245, 158, 11, 0.08), transparent 70%)`;
         });
     </script>
 </body>

@@ -223,17 +223,30 @@
 
             <!-- HERO SEKTION -->
             <section id="hero" class="min-h-[40vh] flex flex-col gap-0.5 justify-center scroll-mt-28 snap-start">
-                <div class="flex flex-col text-left">
-                    <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none">
-                        Benji Natalli
-                    </h1>
-                    <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
-    Technical Audio & Dialogue Design
-</h2>
+                <div class="flex flex-col text-left items-start">
+                    
+                    <!-- INTERAKTIV LÄNK TILL CV MED SNABB TOOLTIP TILL HÖGER -->
+                    <a href="cv.html" class="relative group inline-flex items-center cursor-none transition-transform hover:-translate-y-1 duration-300 mb-2">
+                        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none group-hover:text-amber-500 transition-colors duration-300 flex items-center gap-3">
+                            Benji Natalli
+                            <!-- En liten subtil indikator för mobila enheter där hover inte finns -->
+                            <span class="md:hidden text-amber-500 text-2xl animate-pulse">✧</span>
+                        </h1>
+                        
+                        <!-- Tooltip till höger (left-full ml-4) med 350ms delay vid hover.
+                             Notera att transition-klasserna bara ligger på "group-hover:" – vilket gör att fadeout sker DIREKT utan animation när man slutar hovra. -->
+                        <span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 group-hover:delay-[350ms] text-amber-500 text-[10px] code-font tracking-widest uppercase pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
+                            (About me) <span>→</span>
+                        </span>
+                    </a>
 
-<p class="mt-2 max-w-2xl text-slate-400 leading-relaxed text-sm md:text-base">
-    Specializing in <span class="text-amber-500 font-medium">automation</span>, <span class="text-amber-500 font-medium">dialogue systems</span> & <span class="text-amber-500 font-medium whitespace-nowrap">scalable pipeline tools</span>.
-</p>
+                    <h2 class="mt-4 text-xl md:text-2xl font-medium text-slate-400">
+                        Technical Audio & Dialogue Design
+                    </h2>
+
+                    <p class="mt-2 max-w-2xl text-slate-400 leading-relaxed text-sm md:text-base">
+                        Specializing in <span class="text-amber-500 font-medium">automation</span>, <span class="text-amber-500 font-medium">dialogue systems</span> & <span class="text-amber-500 font-medium whitespace-nowrap">scalable pipeline tools</span>.
+                    </p>
 
                     <div class="mt-4 flex flex-wrap gap-6 text-xs code-font text-slate-500">
                         <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
@@ -259,37 +272,42 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch">
                     <div class="md:col-span-4 flex flex-col gap-6 relative py-4 justify-between">
                         <div class="hidden md:block absolute left-[23px] top-6 bottom-6 w-[2px] bg-slate-800">
+                            <!-- Progress-linjen matchar nu den aktiva mörkare amber-500 -->
                             <div id="pipeline-progress" class="w-full h-1/4 bg-amber-500 transition-all duration-1000 rounded-full"></div>
                         </div>
 
+                        <!-- Steg 1 (Börjar som Aktiv / Mörkare Amber-500) -->
                         <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all code-font shadow-lg shadow-amber-500/10">01</div>
+                            <div class="node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all duration-300 code-font shadow-lg shadow-amber-500/20">01</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-white group-hover:text-amber-400 transition-colors font-semibold">Architecture</span>
+                                <span class="text-xs uppercase tracking-widest code-font text-amber-500 transition-colors duration-300 font-semibold">Architecture</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">System Design</span>
                             </div>
                         </button>
 
+                        <!-- Steg 2 (Börjar som inaktiv, hovrar till Ljusare Amber-400/300) -->
                         <button onclick="changeStep(2, 'automation')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">02</div>
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">02</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Automation</span>
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Automation</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">Tool Development</span>
                             </div>
                         </button>
 
+                        <!-- Steg 3 -->
                         <button onclick="changeStep(3, 'systems')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">03</div>
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">03</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Systems</span>
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Systems</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">Logic & Behavior</span>
                             </div>
                         </button>
 
+                        <!-- Steg 4 -->
                         <button onclick="changeStep(4, 'optimization')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all code-font">04</div>
+                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">04</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-400 transition-colors font-semibold">Optimization</span>
+                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Optimization</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">Performance & Budgets</span>
                             </div>
                         </button>
@@ -303,7 +321,7 @@
                     </div>
                 </div>
             </section>
-
+            
             <!-- TECH STACK SEKTION -->
             <section id="tech-stack" class="scroll-mt-28 mt-32 snap-start">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>

@@ -91,8 +91,45 @@ function updateProjectsLeftNav(progress) {
 
 function handleHomeNavScroll() {
     const projectsView = document.getElementById('view-projects');
+    // Om projektvyn är synlig ska vi inte göra något här
     if (!projectsView || !projectsView.classList.contains('hidden')) return;
-    // ... din vanliga nav-scroll logik här
+
+    // Sektionerna i din portfolio-vy
+    const sections = ['hero', 'workflow', 'tech-stack'];
+    let activeSectionId = 'hero';
+    let minDistance = Infinity;
+
+    // Offset för din Tailwind scroll-mt-28 (28 * 4px = 112px)
+    const scrollOffset = 200; 
+
+    sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            const rect = el.getBoundingClientRect();
+            // Beräkna hur nära sektionens topp är vår snap-tröskel
+            const distance = Math.abs(rect.top - scrollOffset);
+            
+            if (distance < minDistance) {
+                minDistance = distance;
+                activeSectionId = id;
+            }
+        }
+    });
+
+    // Uppdatera länkarna i #portfolio-nav baserat på den aktiva sektionen
+    const navLinks = document.querySelectorAll('#portfolio-nav a');
+    navLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === `#${activeSectionId}`) {
+            // Sätt aktiv färg (amber-500) och städa bort inaktiva klasser
+            link.classList.add('text-amber-500');
+            link.classList.remove('text-slate-500', 'text-amber-500/60');
+        } else {
+            // Återställ inaktiv färg
+            link.classList.add('text-slate-500');
+            link.classList.remove('text-amber-500', 'text-amber-500/60');
+        }
+    });
 }
 
 export function initScrollSystems() {
