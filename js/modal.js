@@ -1,3 +1,6 @@
+// js/modal.js
+
+// --- CASE DATA FOR INDEX/PROJECTS ---
 const projectCases = {
     'echoes-void': `
         <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Echoes of the Void</span>
@@ -34,6 +37,94 @@ const projectCases = {
     `
 };
 
+// --- CASE DATA FOR CV ---
+const cvCases = {
+    'arctic-bones': `
+        <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Arctic Bones AB</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Composer & Sound Designer</h2>
+        <p class="text-xs text-slate-500 code-font">March 2025 — October 2025</p>
+        <div class="h-[1px] bg-white/10 my-4"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>At Arctic Bones, production was driven with a focus on seamless audio mechanics. I was responsible for composition and dynamic arrangements that adapted intuitively to gameplay intensity.</p>
+            <p>The core workload involved setting up intelligent priority trees within <strong>Wwise</strong> and <strong>FMOD</strong> for environmental transitions and combat systems, optimizing voice management and maintaining a crisp sonic profile without CPU overhead.</p>
+        </div>
+    `,
+    'cable-nest': `
+        <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Cable Nest / Gro Play AB</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Cable Nest & Gro Play Portfolio</h2>
+        <p class="text-xs text-slate-500 code-font">2024 — 2025</p>
+        <div class="h-[1px] bg-white/10 my-4"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>The emphasis here was rapid asset deployment and the development of robust workflows. Alongside producing versatile music and sound effects for the studio's titles, I built internal file schemas.</p>
+            <p>By defining clear asset allocation methods and strict file naming standards for voice and SFX modules, turnaround times from DAW export to engine runtime integration were noticeably optimized.</p>
+        </div>
+    `,
+    'freelance-audio': `
+        <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Case Study: Independent Projects</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Freelance Work & Dialogue Editing</h2>
+        <p class="text-xs text-slate-500 code-font">Ongoing / Independent</p>
+        <div class="h-[1px] bg-white/10 my-4"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Through independent commissions, I have specialized in precise spectral cleaning and surgical dialogue editing routines using industry standards like iZotope RX.</p>
+            <p>My scope ranges broadly across podcast production cycles, voiceover engineering arrays, and direct music mixing and mastering routines finalized for public distribution platforms.</p>
+        </div>
+    `,
+    'about-me': `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+            <div class="md:col-span-4 sticky top-0">
+                <div class="aspect-[3/4] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                    <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
+                </div>
+            </div>
+            <div class="md:col-span-8 space-y-6 max-h-[70vh] overflow-y-auto pr-2">
+                <div>
+                    <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Terminal: Profile_Expansion.bin</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">About Benjamin</h2>
+                    <p class="text-xs text-slate-400 code-font mt-1">Sound Designer, Programmer & Creator</p>
+                </div>
+                <div class="h-[1px] bg-white/10"></div>
+                <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+                    <p>When I am not diving deep into audio trees in Wwise or structuring logic arrays at Stockholm University, I am driven by a profound interest in system architecture, complex gameplay mechanics, and how interactivity shapes spatial experiences.</p>
+                    <p>My background is highly diverse — ranging from advanced parkour coaching mechanics for youth development to live theatre soundscapes and residential structural design environments. This array grants me an innate capacity to read shifting project parameters swiftly, debug production roadblocks creatively, and integrate fluently within specialized interdisciplinary units.</p>
+                </div>
+                <div class="h-[1px] bg-white/10"></div>
+                <div class="space-y-4 text-xs code-font">
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Games:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Baldur's Gate Series, Planescape Torment, Disco Elysium, The Witcher Series, Elden Ring, Fallout: New Vegas</p>
+                    </div>
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Hobbies:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Mushroom Foraging, Woodworking, Content Creation, Writing, D&D, Brewery and Perfumery</p>
+                    </div>
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Volleyball, Climbing, Kayaking</p>
+                    </div>
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Authors:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Haruki Murakami, Terry Pratchett</p>
+                    </div>
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Movies:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">V for Vendetta, Watchmen, Howl's Moving Castle, La La Land, LOTR</p>
+                    </div>
+                    <div>
+                        <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Music:</span>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Fleet Foxes, RY X, Laura Marling, Nils Frahm, Grupo Revelação</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `,
+    'edu-su': `<span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Academic Profile</span><h2 class="text-2xl font-bold text-white mt-1">Game Development (Audio / Programming)</h2><p class="text-xs text-slate-500 code-font">Stockholm University | 2025 — Ongoing</p><div class="h-[1px] bg-white/10 my-4"></div><p class="text-sm text-slate-300 leading-relaxed">Focusing heavily on runtime system programming, computer logic, data structures, and object-oriented audio integrations.</p>`,
+    'edu-apa': `<span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Academic Profile</span><h2 class="text-2xl font-bold text-white mt-1">Game Audio & Sound Design</h2><p class="text-xs text-slate-500 code-font">Audio Production Academy | 2023 — 2025</p><div class="h-[1px] bg-white/10 my-4"></div><p class="text-sm text-slate-300 leading-relaxed">Immersive framework studies targeting asset synthesis, advanced signal flows, and middleware pipelines.</p>`,
+    'edu-umu': `<span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Academic Profile</span><h2 class="text-2xl font-bold text-white mt-1">Music Production for Film, Theatre & Games</h2><p class="text-xs text-slate-500 code-font">Umeå University | 2020 — 2021</p><div class="h-[1px] bg-white/10 my-4"></div><p class="text-sm text-slate-300 leading-relaxed">Thematic analysis and orchestrational layouts focused on narrative scoring paradigms.</p>`,
+    'edu-kmh': `<span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Academic Profile</span><h2 class="text-2xl font-bold text-white mt-1">Marketing & Entrepreneurship</h2><p class="text-xs text-slate-500 code-font">Royal College of Music (KMH) | 2020 — 2021</p><div class="h-[1px] bg-white/10 my-4"></div><p class="text-sm text-slate-300 leading-relaxed">Business model calculations, intellectual property regulations, and contract structuring fundamentals.</p>`,
+    'edu-rytmus': `<span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Academic Profile</span><h2 class="text-2xl font-bold text-white mt-1">Sound & Music Production</h2><p class="text-xs text-slate-500 code-font">Rytmus Music High School | 2017 — 2020</p><div class="h-[1px] bg-white/10 my-4"></div><p class="text-sm text-slate-300 leading-relaxed">Foundational tracking layout guidelines covering tracking architectures and studio console processing.</p>`
+};
+
+// --- PROJECT MODAL FUNCTIONS ---
 export function openProjectDetail(key) {
     const modal = document.getElementById('project-detail-modal');
     const body = document.getElementById('modal-body');
@@ -41,9 +132,8 @@ export function openProjectDetail(key) {
     if (!modal || !body || !wrapper) return;
     
     body.innerHTML = projectCases[key] || "Case study load error.";
-    
     modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Frys bakgrundens scroll
+    document.body.style.overflow = 'hidden';
     
     setTimeout(() => {
         modal.classList.add('opacity-100');
@@ -60,31 +150,84 @@ export function closeProjectDetail() {
     modal.classList.remove('opacity-100');
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
-    
-    document.body.style.overflow = ''; // Återställ scroll
+    document.body.style.overflow = '';
     
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);
 }
 
+// --- CV MODAL FUNCTIONS ---
+export function openCvModal(key) {
+    const modal = document.getElementById('cv-detail-modal');
+    const body = document.getElementById('cv-modal-body');
+    const wrapper = document.getElementById('cv-modal-wrapper');
+    if (!modal || !body || !wrapper) return;
+    
+    body.innerHTML = cvCases[key] || "Content load error.";
+    
+    if (key === 'about-me') {
+        wrapper.classList.remove('max-w-2xl');
+        wrapper.classList.add('max-w-5xl');
+    } else {
+        wrapper.classList.remove('max-w-5xl');
+        wrapper.classList.add('max-w-2xl');
+    }
+    
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    
+    setTimeout(() => {
+        modal.classList.add('opacity-100');
+        wrapper.classList.remove('scale-95');
+        wrapper.classList.add('scale-100');
+    }, 50);
+}
+
+export function closeCvModal() {
+    const modal = document.getElementById('cv-detail-modal');
+    const wrapper = document.getElementById('cv-modal-wrapper');
+    if (!modal || !wrapper) return;
+    
+    modal.classList.remove('opacity-100');
+    wrapper.classList.remove('scale-100');
+    wrapper.classList.add('scale-95');
+    document.body.style.overflow = '';
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+    }, 300);
+}
+
+// --- GLOBAL INIT ---
 export function initModal() {
-    // Exponera funktionerna till det globala fönstret för HTML-klick
+    // Exponera till globala window för inline HTML onclick
     window.openProjectDetail = openProjectDetail;
     window.closeProjectDetail = closeProjectDetail;
+    window.openCvModal = openCvModal;
+    window.closeCvModal = closeCvModal;
 
-    // Lyssna efter ESC för att stänga
+    // Stäng med ESC (stänger båda typerna säkert)
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeProjectDetail();
+        if (e.key === 'Escape') {
+            closeProjectDetail();
+            closeCvModal();
+        }
     });
 
-    // Klicka utanför modalen för att stänga
-    const modal = document.getElementById('project-detail-modal');
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeProjectDetail();
-            }
+    // Stäng vid klick utanför wrapper (Index)
+    const projectModal = document.getElementById('project-detail-modal');
+    if (projectModal) {
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) closeProjectDetail();
+        });
+    }
+
+    // Stäng vid klick utanför wrapper (CV)
+    const cvModal = document.getElementById('cv-detail-modal');
+    if (cvModal) {
+        cvModal.addEventListener('click', (e) => {
+            if (e.target === cvModal) closeCvModal();
         });
     }
 }
