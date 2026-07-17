@@ -1,0 +1,23 @@
+/* ==========================================================================
+   PORTFOLIO LANES & SCROLL LOGIC
+   ========================================================================== */
+
+/* 1. Dölj scrollbaren men behåll funktionen */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* 2. Netflix Hover-effekten (med :has() väljaren) */
+.lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
+    opacity: 0.3;
+    transform: scale(0.98);
+}
+
+.project-lane {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    transform-origin: left center;
+}
