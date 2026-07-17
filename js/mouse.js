@@ -32,5 +32,5 @@ export function initMouseGlow() {
         el.addEventListener('mouseleave', () => {
             cursor.classList.remove('cursor-hidden');
         });
-    });
+    }); 
 }
