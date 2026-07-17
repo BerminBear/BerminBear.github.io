@@ -78,6 +78,7 @@ const cvCases = {
                 <!-- Metadata under the profile image -->
                 <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
                     <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Age:</span> 25</div>
+                    <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Race:</span> Human</div>
                     <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Residence:</span> Stockholm, Sweden</div>
                     <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Languages:</span> Swedish (Native), English (Fluent), Portugeuse (Funadmentals) </div>
                 </div>
@@ -85,8 +86,8 @@ const cvCases = {
             <div class="md:col-span-8 space-y-6 max-h-[70vh] overflow-y-auto pr-2">
                 <div>
                     <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Terminal: Profile_History.log</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1">About Benjamin</h2>
-                    <p class="text-xs text-slate-400 code-font mt-1">Audio Developer & Narrative Enthusiast</p>
+                    <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
+                    <p class="text-xs text-slate-400 code-font mt-1">Audio Developer / Narrative Enthusiast</p>
                 </div>
                 <div class="h-[1px] bg-white/10"></div>
                 <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
@@ -116,7 +117,7 @@ const cvCases = {
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
-                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Volleyball, Climbing, Kayaking</p>
+                        <p class="text-slate-300 pl-3 border-l border-amber-500/30">Climbing, Kayaking, Vollyeball</p>
                     </div>
                     <div>
                         <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Books:</span>
