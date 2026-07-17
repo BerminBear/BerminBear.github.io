@@ -92,7 +92,7 @@ const cvCases = {
                 <div class="h-[1px] bg-white/10"></div>
                 <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
                     <p>
-                        I grew up in Stockholm, Sweden to a nerdy brazilian family. I was introduced to games at a very early age and it has since been a part of my everyday life.
+                        Raised in Stockholm, Sweden in a Brazilian family, Benji was introduced to games at a very early age and it has since been a part of my everyday life.
                     </p>
                     <p>
                         It started when my brother introduced me to <strong>Baldur's Gate 1</strong>. It was the first game I fell in love with, and it left a lasting impression on the games I've later come to enjoy in life (like Planescape Torment among others). 
