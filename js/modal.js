@@ -73,7 +73,7 @@ const cvCases = {
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             <div class="md:col-span-4 sticky top-0">
                 <div class="aspect-[3/4] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl">
-                    <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
+                    <img src="portfolio-picture.png" alt="Benjamin Natalli" class="w-full h-full object-cover">
                 </div>
                 <!-- Metadata under the profile image -->
                 <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
@@ -147,11 +147,11 @@ export function openProjectDetail(key) {
     const body = document.getElementById('modal-body');
     const wrapper = document.getElementById('modal-content-wrapper');
     if (!modal || !body || !wrapper) return;
-    
+
     body.innerHTML = projectCases[key] || "Case study load error.";
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    
+
     setTimeout(() => {
         modal.classList.add('opacity-100');
         wrapper.classList.remove('scale-95');
@@ -163,12 +163,12 @@ export function closeProjectDetail() {
     const modal = document.getElementById('project-detail-modal');
     const wrapper = document.getElementById('modal-content-wrapper');
     if (!modal || !wrapper) return;
-    
+
     modal.classList.remove('opacity-100');
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
     document.body.style.overflow = '';
-    
+
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);
@@ -180,9 +180,9 @@ export function openCvModal(key) {
     const body = document.getElementById('cv-modal-body');
     const wrapper = document.getElementById('cv-modal-wrapper');
     if (!modal || !body || !wrapper) return;
-    
+
     body.innerHTML = cvCases[key] || "Content load error.";
-    
+
     if (key === 'about-me') {
         wrapper.classList.remove('max-w-2xl');
         wrapper.classList.add('max-w-5xl');
@@ -190,10 +190,10 @@ export function openCvModal(key) {
         wrapper.classList.remove('max-w-5xl');
         wrapper.classList.add('max-w-2xl');
     }
-    
+
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
-    
+
     setTimeout(() => {
         modal.classList.add('opacity-100');
         wrapper.classList.remove('scale-95');
@@ -205,12 +205,12 @@ export function closeCvModal() {
     const modal = document.getElementById('cv-detail-modal');
     const wrapper = document.getElementById('cv-modal-wrapper');
     if (!modal || !wrapper) return;
-    
+
     modal.classList.remove('opacity-100');
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
     document.body.style.overflow = '';
-    
+
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);

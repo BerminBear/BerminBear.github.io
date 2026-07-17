@@ -100,7 +100,7 @@ function handleHomeNavScroll() {
     let minDistance = Infinity;
 
     // Offset för din Tailwind scroll-mt-28 (28 * 4px = 112px)
-    const scrollOffset = 200; 
+    const scrollOffset = 200;
 
     sections.forEach(id => {
         const el = document.getElementById(id);
@@ -108,7 +108,7 @@ function handleHomeNavScroll() {
             const rect = el.getBoundingClientRect();
             // Beräkna hur nära sektionens topp är vår snap-tröskel
             const distance = Math.abs(rect.top - scrollOffset);
-            
+
             if (distance < minDistance) {
                 minDistance = distance;
                 activeSectionId = id;

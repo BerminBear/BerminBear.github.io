@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth lg:snap-y lg:snap-proximity">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benjamin Natalli | Technical Audio & Dialogue Design</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <link rel="icon" type="image/png" href="favicon.png">
 
     <style>
         body {
-            background-color: #08070a; /* Ultra-deep violet-black */
+            background-color: #08070a;
             color: #f1f5f9;
             font-family: 'Inter', sans-serif;
+            cursor: none;
         }
 
         .code-font {
             font-family: 'Fira Code', monospace;
         }
 
-        /* Focused Ambient Glow */
         #mouse-glow {
             position: fixed;
             top: 0;
@@ -36,73 +39,73 @@
             transition: opacity 0.4s ease;
         }
 
-        /* Döljer standardmusen på hela sidan */
-        body {
-            background-color: #08070a; 
-            color: #f1f5f9;
-            font-family: 'Inter', sans-serif;
-            cursor: none; /* NYTT: Döljer vanliga muspekaren */
-        }
-
-        /* --- NYA CURSOR STILAR --- */
-        
-        /* Den lilla pricken (custom cursor) */
         #custom-cursor {
             position: fixed;
             top: 0;
             left: 0;
             width: 8px;
             height: 8px;
-            background-color: #f59e0b; /* Amber-500 */
+            background-color: #f59e0b;
             border-radius: 50%;
-            pointer-events: none; /* Så att man kan klicka "igenom" den */
-            z-index: 10000; /* Ligger överallt, t.o.m glowet */
-            transform: translate(-50%, -50%); /* Centrerar den exakt på koordinationen */
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
             transition: opacity 0.3s ease, transform 0.2s ease;
         }
 
-        /* En osynlig klass vi lägger på när vi hovrar över klickbara element */
         .cursor-hidden {
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.5) !important;
         }
-        
-        /* Tvingar bort pekaren även från länkar och knappar (annars visar webbläsaren handen) */
-        a, button, .project-card, [onclick] {
-            cursor: none !important; 
+
+        a,
+        button,
+        .project-card,
+        [onclick] {
+            cursor: none !important;
         }
 
-        /* Sleek custom scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #08070a; }
-        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
 
-        /* Navigation elegant fade and slide entry from top to bottom */
+        ::-webkit-scrollbar-track {
+            background: #08070a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d97706;
+            border-radius: 10px;
+        }
+
         @keyframes fadeSlideIn {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         .animate-fade-slide {
             animation: fadeSlideIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* --- NYA INTRO EFFEKTER FÖR SIDORNA --- */
         @keyframes introSlideUp {
             from {
                 opacity: 0;
                 transform: translateY(50px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         .animate-intro-home {
             animation: introSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
@@ -112,130 +115,164 @@
                 opacity: 0;
                 transform: translateX(120px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
+
         .animate-intro-projects {
             animation: introSlideLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Fade för hela Projects-vyn första gången den öppnas (1 sekund) */
         .animate-fade-1s {
             animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
-        /* Dynamisk hantering av navigering och logotyp beroende på vy */
-        .show-on-projects, .show-on-portfolio {
+        .show-on-projects,
+        .show-on-portfolio {
             display: none !important;
         }
-        
+
         body.on-projects-view .show-on-projects {
             display: inline-block !important;
         }
-        
+
         body.on-portfolio-view .show-on-portfolio {
             display: inline-block !important;
         }
 
-        /* Logotypens färgförändring */
         #logo-link {
             transition: color 0.3s ease, filter 0.3s ease;
         }
+
         body.on-projects-view #logo-link {
-            color: #64748b !important; /* Slate-500 (grå) */
+            color: #64748b !important;
         }
+
         body.on-projects-view #logo-link img {
-            filter: grayscale(100%) opacity(60%); /* Gör även favicon-bilden grå och lite transparent */
+            filter: grayscale(100%) opacity(60%);
         }
+
         body.on-portfolio-view #logo-link:hover {
             color: #ffffff !important;
         }
+
         body.on-projects-view #logo-link:hover {
-            color: #fbbf24 !important; /* Amber-400 vid hovring i grått läge */
+            color: #fbbf24 !important;
         }
+
         body.on-projects-view #logo-link:hover img {
-            filter: none; /* Återställ färg på bilden vid hovring */
+            filter: none;
         }
     </style>
 </head>
-    <!-- Custom Cursor -->
 
 <body class="antialiased selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden on-portfolio-view">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
 
-    <!-- Sido-navigation för Portfolio-vyn (Uppdaterad till 3 fält) -->
-    <div id="portfolio-nav" class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
-        <a href="#hero" class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01. Profiles</a>
-        <a href="#workflow" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Workflow</a>
-        <a href="#tech-stack" class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Tech Stack</a>
+    <!-- SIDO-NAVIGATION (PORTFOLIO-VY) -->
+    <div id="portfolio-nav"
+        class="hidden xl:flex fixed left-8 top-36 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
+        <a href="#hero"
+            class="text-xs font-medium tracking-widest uppercase code-font text-amber-500/60 hover:text-amber-400 transition-colors">01.
+            Profiles</a>
+        <a href="#workflow"
+            class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02.
+            Workflow</a>
+        <a href="#tech-stack"
+            class="text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03.
+            Tech Stack</a>
     </div>
 
-    <!-- Sido-navigation för Projects-vyn -->
-    <div id="projects-nav" class="hidden xl:flex fixed left-8 bottom-16 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
-        <a href="#projects" onclick="setTimeout(() => scrollToProject(0), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-amber-500 hover:text-amber-400 transition-colors">00. Intro</a>
-        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">01. Tools</a>
-        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02. Games</a>
-        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 50); return false;" class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03. Movies</a>
+    <!-- SIDO-NAVIGATION (PROJECTS-VY) -->
+    <div id="projects-nav"
+        class="hidden xl:flex fixed left-8 bottom-16 flex-col gap-4 z-40 text-left border-l border-white/5 pl-4 py-2 animate-fade-slide">
+        <a href="#projects" onclick="setTimeout(() => scrollToProject(0), 50); return false;"
+            class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-amber-500 hover:text-amber-400 transition-colors">00.
+            Intro</a>
+        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 50); return false;"
+            class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">01.
+            Arctic Bones</a>
+        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 50); return false;"
+            class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">02.
+            Cable Nest</a>
+        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 50); return false;"
+            class="projects-nav-link text-xs font-medium tracking-widest uppercase code-font text-slate-500 hover:text-amber-400 transition-colors">03.
+            Showreel</a>
     </div>
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
+    <!-- GLOBAL NAVBAR -->
+    <nav
+        class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
         <div class="w-full flex justify-between items-center">
-            <a href="#hero" id="logo-link" class="code-font text-amber-500 font-bold tracking-wider text-sm flex items-center gap-2">
-                <img src="favicon.png" alt="Berrytone Logo" class="h-5 w-5 object-contain transition-all duration-300">
+            <a href="#hero" id="logo-link"
+                class="code-font text-amber-500 font-bold tracking-wider text-sm flex items-center gap-2">
+                <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain transition-all duration-300">
                 <span>B.NATALLI</span>
             </a>
             <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest code-font items-center">
-                
-                <!-- "Overview" (Nu med py-2 så den matchar dropdown-menyns höjd exakt) -->
-                <a href="#hero" class="show-on-projects text-slate-400 hover:text-amber-500 transition-colors py-2">Overview</a>
-                
-                <!-- "Projects"-dropdownen -->
+
+                <a href="#hero"
+                    class="show-on-projects text-slate-400 hover:text-amber-500 transition-colors py-2">Overview</a>
+
                 <div class="show-on-portfolio relative group inline-block">
-                    <a href="#projects" class="text-slate-400 hover:text-amber-500 transition-colors flex items-center gap-1 py-2">
+                    <a href="#projects"
+                        class="text-slate-400 hover:text-amber-500 transition-colors flex items-center gap-1 py-2">
                         Projects
                         <span class="text-[9px] text-slate-500 group-hover:text-amber-500 transition-colors">▼</span>
                     </a>
-                    <div class="absolute hidden group-hover:block bg-[#0c0a0f] border border-white/10 mt-0 p-2 rounded-lg shadow-xl w-52 text-left right-0 md:left-0 backdrop-blur-md">
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Tools</a>
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Games</a>
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Movies</a>
-                        <a href="#projects" onclick="setTimeout(() => scrollToProject(4), 200)" class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Movies</a>
+                    <div
+                        class="absolute hidden group-hover:block bg-[#0c0a0f] border border-white/10 mt-0 p-2 rounded-lg shadow-xl w-52 text-left right-0 md:left-0 backdrop-blur-md">
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(1), 200)"
+                            class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Arctic
+                            Bones</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(2), 200)"
+                            class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Cable
+                            Nest</a>
+                        <a href="#projects" onclick="setTimeout(() => scrollToProject(3), 200)"
+                            class="block px-3 py-2 text-[11px] text-slate-400 hover:bg-amber-500/10 hover:text-amber-400 rounded transition-all">Technical
+                            Showreel</a>
                     </div>
                 </div>
 
-                <!-- CV (Nu med py-2 så den matchar dropdown-menyns höjd exakt) -->
                 <a href="cv.html" class="text-slate-400 hover:text-amber-500 transition-colors py-2">CV</a>
             </div>
         </div>
     </nav>
 
-    <!-- PORTFOLIO VYN (HEMSIDAN) -->
+    <!-- PORTFOLIO VYN (MAIN) -->
     <div id="view-portfolio">
-        <main id="portfolio-content-wrapper" class="max-w-5xl mx-auto px-6 md:px-12 pt-24 pb-12 flex flex-col gap-24 relative">
+        <main id="portfolio-content-wrapper"
+            class="max-w-5xl mx-auto px-6 md:px-12 pt-24 pb-12 flex flex-col gap-24 relative">
 
             <!-- HERO SEKTION -->
             <section id="hero" class="min-h-[40vh] flex flex-col gap-0.5 justify-center scroll-mt-28 snap-start">
                 <div class="flex flex-col text-left items-start">
-                    
-                    <!-- INTERAKTIV LÄNK TILL CV MED SNABB TOOLTIP TILL HÖGER -->
-                    <a href="cv.html" class="relative group inline-flex items-center cursor-none transition-transform hover:-translate-y-1 duration-300 mb-2">
-                        <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none group-hover:text-amber-500 transition-colors duration-300 flex items-center gap-3">
+
+                    <a href="cv.html"
+                        class="relative group inline-flex items-center cursor-none transition-transform hover:-translate-y-1 duration-300 mb-2">
+                        <h1
+                            class="text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none group-hover:text-amber-500 transition-colors duration-300 flex items-center gap-3">
                             Benji Natalli
-                            <!-- En liten subtil indikator för mobila enheter där hover inte finns -->
                             <span class="md:hidden text-amber-500 text-2xl animate-pulse">✧</span>
                         </h1>
-                        
-                        <!-- Tooltip till höger (left-full ml-4) med 350ms delay vid hover.
-                             Notera att transition-klasserna bara ligger på "group-hover:" – vilket gör att fadeout sker DIREKT utan animation när man slutar hovra. -->
-                        <span class="absolute left-full ml-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 group-hover:delay-[350ms] text-amber-500 text-[10px] code-font tracking-widest uppercase pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
+
+                        <span
+                            class="absolute left-full ml-4 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 group-hover:transition-opacity group-hover:duration-200 group-hover:delay-[350ms] text-amber-500 text-[10px] code-font tracking-widest uppercase pointer-events-none flex items-center gap-1.5 whitespace-nowrap">
                             (About me) <span>→</span>
                         </span>
                     </a>
@@ -245,19 +282,25 @@
                     </h2>
 
                     <p class="mt-2 max-w-2xl text-slate-400 leading-relaxed text-sm md:text-base">
-                        Specializing in <span class="text-amber-500 font-medium">automation</span>, <span class="text-amber-500 font-medium">dialogue systems</span> & <span class="text-amber-500 font-medium whitespace-nowrap">scalable pipeline tools</span>.
+                        Specializing in <span class="text-amber-500 font-medium">automation frameworks</span>, <span
+                            class="text-amber-500 font-medium">adaptive routing architecture</span> & <span
+                            class="text-amber-500 font-medium whitespace-nowrap">middleware implementation
+                            pipelines</span>.
                     </p>
 
                     <div class="mt-4 flex flex-wrap gap-6 text-xs code-font text-slate-500">
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
-                        <a href="mailto:your.email@domain.com" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
-                        <a href="https://youtube.com" target="_blank" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ YouTube ]</a>
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank"
+                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com"
+                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
                     </div>
                 </div>
 
                 <div class="w-full flex flex-col items-start mt-8">
-                    <div class="aspect-video w-full max-w-3xl rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
-                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    <div
+                        class="aspect-video w-full max-w-3xl rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl">
+                        <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </section>
@@ -266,119 +309,151 @@
             <section id="workflow" class="scroll-mt-28 snap-start">
                 <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
                 <p class="text-sm text-slate-400 max-w-xl mb-12">
-                    An unstructured audio & dialogue pipeline wastes hundreds of hours on manual labor. I design pipelines and automated systems that eliminate production bottlenecks.
+                    An unoptimized audio pipeline risks introducing critical production bottlenecks. I focus on
+                    structural asset sorting, middleware management, and runtime voice logic.
                 </p>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch">
                     <div class="md:col-span-4 flex flex-col gap-6 relative py-4 justify-between">
                         <div class="hidden md:block absolute left-[23px] top-6 bottom-6 w-[2px] bg-slate-800">
-                            <!-- Progress-linjen matchar nu den aktiva mörkare amber-500 -->
-                            <div id="pipeline-progress" class="w-full h-1/4 bg-amber-500 transition-all duration-1000 rounded-full"></div>
+                            <div id="pipeline-progress"
+                                class="w-full h-1/4 bg-amber-500 transition-all duration-1000 rounded-full"></div>
                         </div>
 
-                        <!-- Steg 1 (Börjar som Aktiv / Mörkare Amber-500) -->
-                        <button onclick="changeStep(1, 'architecture')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all duration-300 code-font shadow-lg shadow-amber-500/20">01</div>
+                        <!-- Steg 1 -->
+                        <button onclick="changeStep(1, 'architecture')"
+                            class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div
+                                class="node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all duration-300 code-font shadow-lg shadow-amber-500/20">
+                                01</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-amber-500 transition-colors duration-300 font-semibold">Architecture</span>
+                                <span
+                                    class="text-xs uppercase tracking-widest code-font text-amber-500 transition-colors duration-300 font-semibold">Architecture</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">System Design</span>
                             </div>
                         </button>
 
-                        <!-- Steg 2 (Börjar som inaktiv, hovrar till Ljusare Amber-400/300) -->
-                        <button onclick="changeStep(2, 'automation')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">02</div>
+                        <!-- Steg 2 -->
+                        <button onclick="changeStep(2, 'automation')"
+                            class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div
+                                class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">
+                                02</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Automation</span>
-                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Tool Development</span>
+                                <span
+                                    class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Asset
+                                    Pipeline</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">File Routing</span>
                             </div>
                         </button>
 
                         <!-- Steg 3 -->
-                        <button onclick="changeStep(3, 'systems')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">03</div>
+                        <button onclick="changeStep(3, 'systems')"
+                            class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div
+                                class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">
+                                03</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Systems</span>
+                                <span
+                                    class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Systems</span>
                                 <span class="text-[10px] text-slate-500 code-font mt-0.5">Logic & Behavior</span>
                             </div>
                         </button>
 
                         <!-- Steg 4 -->
-                        <button onclick="changeStep(4, 'optimization')" class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
-                            <div class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">04</div>
+                        <button onclick="changeStep(4, 'optimization')"
+                            class="pipeline-node flex items-center gap-6 z-10 group text-left py-2">
+                            <div
+                                class="node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400">
+                                04</div>
                             <div class="flex flex-col">
-                                <span class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Optimization</span>
-                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Performance & Budgets</span>
+                                <span
+                                    class="text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold">Optimization</span>
+                                <span class="text-[10px] text-slate-500 code-font mt-0.5">Performance Budgets</span>
                             </div>
                         </button>
                     </div>
 
-                    <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[360px] flex flex-col justify-between transform transition-all duration-1000 mt-0 pt-8" id="pipeline-card">
+                    <div class="md:col-span-8 bg-slate-950/40 border border-white/5 p-8 rounded-xl min-h-[360px] flex flex-col justify-between transform transition-all duration-1000 mt-0 pt-8"
+                        id="pipeline-card">
                         <div id="pipeline-content" class="space-y-4 transition-opacity duration-1000"></div>
-                        <div class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
-                            <div id="pipeline-media" class="text-xs text-slate-600 code-font transition-opacity duration-1000"></div>
+                        <div
+                            class="mt-6 aspect-video w-full rounded-lg bg-slate-900/80 border border-white/5 flex items-center justify-center overflow-hidden">
+                            <div id="pipeline-media"
+                                class="text-xs text-slate-600 code-font transition-opacity duration-1000"></div>
                         </div>
                     </div>
                 </div>
             </section>
-            
+
             <!-- TECH STACK SEKTION -->
             <section id="tech-stack" class="scroll-mt-28 mt-32 snap-start">
-                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack</h3>
-                
+                <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12">// Tech Stack
+                </h3>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
                     <div>
-                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Spatial Audio</h4>
+                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Audio Tech & Middleware</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Middleware:</strong> Wwise (Advanced Integration), FMOD</li>
-                            <li><strong class="text-white">Spatial Audio & Formats:</strong> Dolby Atmos, Windows Sonic</li>
-                            <li><strong class="text-white">DAWs:</strong> Reaper (ReaScript Automation), Pro Tools, Logic Pro X</li>
-                            <li><strong class="text-white">Audio Tools:</strong> iZotope RX11, Pure Data, FabFilter</li>
+                            <li><strong class="text-white">Platforms:</strong> Wwise, FMOD Studio</li>
+                            <li><strong class="text-white">DAWs:</strong> Reaper, Pro Tools, Logic Pro X</li>
+                            <li><strong class="text-white">Audio Processing:</strong> iZotope RX, FabFilter, Pure Data
+                            </li>
                         </ul>
                     </div>
 
                     <div>
-                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Engines & Integration</h4>
+                        <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Engines & Integrations</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Primary Engines:</strong> Unreal Engine 5, Unity, Divinity Engine / Osiris Scripting</li>
-                            <li><strong class="text-white">Implementation:</strong> Automated VO Pipelines (WAAPI/Reaper API), Interactive dialogue routing, Localization assets, Memory Budget Profiling, and Spatial runtime mixing.</li>
+                            <li><strong class="text-white">Primary Engines:</strong> Unreal Engine, Unity, Godot</li>
+                            <li><strong class="text-white">Implementation Framework:</strong> Audio file routing,
+                                runtime event mapping, interactive dialogue flow nodes, and sound bank structures.</li>
                         </ul>
                     </div>
 
                     <div>
                         <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Code & Logic</h4>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Python (WAAPI)</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua (ReaScript)</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
-                            <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
+                            <span
+                                class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                            <span
+                                class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Java</span>
+                            <span
+                                class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua</span>
+                            <span
+                                class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
+                            <span
+                                class="px-3 py-1 text-xs code-font rounded bg-amber-500/10 text-amber-400 border border-amber-500/20">Python
+                                (Expanding/Coursework)</span>
                         </div>
                     </div>
 
                     <div>
                         <h4 class="text-sm font-semibold text-amber-500 code-font mb-4">Pipelines & Version Control</h4>
                         <ul class="space-y-2 text-sm text-slate-300">
-                            <li><strong class="text-white">Source Control:</strong> Perforce (P4V - AAA Standard), Git/GitHub</li>
+                            <li><strong class="text-white">Source Control:</strong> Perforce (P4V), Git/GitHub</li>
                             <li><strong class="text-white">Narrative Tech:</strong> Articy:draft, Ink</li>
-                            <li><strong class="text-white">Production:</strong> Jira, Confluence, Notion, Slack</li>
+                            <li><strong class="text-white">Production Tracking:</strong> Jira, Confluence, Notion</li>
                         </ul>
                     </div>
                 </div>
 
-                <div class="mt-16 pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed">
+                <div
+                    class="mt-16 pt-8 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-400 leading-relaxed">
                     <div>
-                        <p class="hover:text-slate-300 transition-colors">• Solid understanding of cross-functional game loops and close, seamless communication with both designers and programmers.</p>
-                        <p class="mt-2 hover:text-slate-300 transition-colors">• Equally comfortable spearheading complex system architecture independently or collaborating within tight-knit production teams.</p>
+                        <p class="hover:text-slate-300 transition-colors">• Clear focus on cross-functional pipelines,
+                            ensuring smooth asset transitions between standard game audio design and programming tasks.
+                        </p>
                     </div>
                     <div>
-                        <p class="hover:text-slate-300 transition-colors">• Intensely passionate about RPGs, mechanics-heavy titles, and deep co-op gaming experiences.</p>
-                        <p class="mt-2 hover:text-slate-300 transition-colors">• Fluent in English and Swedish, with an elementary understanding of Portuguese.</p>
+                        <p class="hover:text-slate-300 transition-colors">• Native in Swedish, fluent in English, with
+                            baseline conversational understanding of Portuguese.</p>
                     </div>
                 </div>
 
                 <div class="mt-12 pt-8 border-t border-white/5 flex justify-center">
-                    <a href="#projects" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500 hover:text-black hover:border-transparent transition-all duration-300 text-xs tracking-widest uppercase code-font text-amber-400 font-semibold shadow-lg hover:shadow-amber-500/10">
+                    <a href="#projects"
+                        class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-500/20 bg-amber-500/5 hover:bg-amber-500 hover:text-black hover:border-transparent transition-all duration-300 text-xs tracking-widest uppercase code-font text-amber-400 font-semibold shadow-lg hover:shadow-amber-500/10">
                         Explore My Projects
                         <span class="text-sm">→</span>
                     </a>
@@ -395,81 +470,118 @@
     <div id="view-projects" class="hidden animate-fade-1s">
         <div id="projects-scroll-wrapper" class="relative w-full h-[450vh]">
             <div class="sticky top-0 left-0 w-full h-screen overflow-hidden flex flex-col justify-center bg-[#08070a]">
-                
+
                 <div id="projects-intro-wrapper" class="animate-intro-projects">
-                    <div id="projects-horizontal-track" class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform" style="width: max-content;">
-                        
-                        <!-- Introkort -->
-                        <div class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
-                            <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Collage Exhibition</span>
-                            <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Featured<br>Projects</h2>
+                    <div id="projects-horizontal-track"
+                        class="flex flex-nowrap items-center gap-20 px-[15vw] h-full will-change-transform"
+                        style="width: max-content;">
+
+                        <!-- Intro-kort -->
+                        <div
+                            class="project-card w-[30vw] min-w-[320px] shrink-0 flex flex-col justify-center transition-all duration-500">
+                            <span class="code-font text-amber-500 text-xs tracking-widest uppercase mb-2">// Project
+                                Portfolio</span>
+                            <h2 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                                Featured<br>Projects</h2>
                             <p class="mt-4 text-slate-400 text-xs leading-relaxed max-w-sm">
-                                Scroll vertically or use your mouse wheel to navigate horizontally through my technical installations, game integrations, and specialized audio tools. Click a project to read case study.
+                                Scroll vertically or use your mouse wheel to navigate through my technical
+                                installations, game integrations, and active audio engineering studies.
                             </p>
                         </div>
 
-                        <!-- Projektkort 1 -->
-                        <div onclick="openProjectDetail('echoes-void')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                        <!-- Projektkort 1: Arctic Bones -->
+                        <div onclick="openProjectDetail('arctic-bones')"
+                            class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-60px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                             <div>
-                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Unreal 5 & Wwise</span>
-                                <h3 class="text-2xl font-bold text-white mt-1">Echoes of the Void</h3>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">//
+                                    Studio Work — Arctic Bones AB</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Composer & Sound Designer</h3>
                                 <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                    Lead Technical Audio Designer. Developed a dynamic dialogue prioritization manager and automated localization swapping pipelines, cutting audio memory budgets down by 45%.
+                                    Music production and systematic sound design across the project's runtime content.
+                                    Focused on clean technical runtime audio support, sound asset structural
+                                    implementation, and middleware balancing.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mt-4">
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">UE5</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Wwise</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C++</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Wwise</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">FMOD</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Audio
+                                        Implementation</span>
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-wrap gap-3 mt-6">
-                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                    View Case Study
+                                <span
+                                    class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                    View Details
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Projektkort 2 -->
-                        <div onclick="openProjectDetail('waapi-dialogue')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                        <!-- Projektkort 2: Cable Nest -->
+                        <div onclick="openProjectDetail('cable-nest')"
+                            class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[52vh] mt-[80px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                             <div>
-                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Automation Tool</span>
-                                <h3 class="text-2xl font-bold text-white mt-1">WAAPI Dialogue Batcher</h3>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">//
+                                    Studio Work — Cable Nest / Gro Play</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Sound Design & Media</h3>
                                 <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                    A Python script mapping Reaper CSV metadata directly to Wwise projects. Built to automatically slice raw speech, perform leveling, generate dialogue events, and export in seconds.
+                                    Composition and sound effect construction optimized for the studio's titles. Handled
+                                    file deployment architectures along with marketing material development, trailers,
+                                    and streaming assets.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mt-4">
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">WAAPI</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Reaper API</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Sound
+                                        Design</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Music
+                                        Composition</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Asset
+                                        Management</span>
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-wrap gap-3 mt-6">
-                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                    View Case Study
+                                <span
+                                    class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
+                                    View Details
                                 </span>
                             </div>
                         </div>
 
-                        <!-- Projektkort 3 -->
-                        <div onclick="openProjectDetail('aura-audio')" class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
+                        <!-- Projektkort 3: Showreel -->
+                        <div onclick="openProjectDetail('audio-showreel')"
+                            class="project-card w-[35vw] min-w-[380px] shrink-0 bg-[#0c0a0f]/60 backdrop-blur-md border border-white/5 p-8 rounded-2xl flex flex-col justify-between h-[55vh] mt-[-40px] hover:border-amber-500/20 hover:shadow-[0_0_50px_rgba(245,158,11,0.06)] cursor-pointer transition-all duration-500">
                             <div>
-                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">// Mobile Integration</span>
-                                <h3 class="text-2xl font-bold text-white mt-1">Aura: Generative Audio</h3>
+                                <span class="code-font text-amber-500/80 text-[10px] tracking-widest uppercase">//
+                                    Demonstration Sandbox</span>
+                                <h3 class="text-2xl font-bold text-white mt-1">Technical Dialogue Showreel</h3>
                                 <p class="text-slate-400 text-xs mt-3 leading-relaxed">
-                                    Responsive generative design companion. Pulls spatial variables to dynamically trigger loops and procedural audio synthesis modules, running fluidly under 15ms latency constraints.
+                                    In development sandbox showcasing structural dialogue routing, real-time attenuation
+                                    arrays, and middleware prioritization logic built to mimic modern AAA production
+                                    standards.
                                 </p>
                                 <div class="flex flex-wrap gap-2 mt-4">
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">FMOD</span>
-                                    <span class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Adaptive
+                                        Systems</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Wwise
+                                        Integration</span>
+                                    <span
+                                        class="px-2 py-1 text-[9px] code-font rounded bg-white/5 text-slate-300 border border-white/10">Dialogue
+                                        Design</span>
                                 </div>
                             </div>
-                            
+
                             <div class="flex flex-wrap gap-3 mt-6">
-                                <span class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500 text-black text-[10px] font-bold code-font">
-                                    View Case Study
+                                <span
+                                    class="flex items-center gap-2 px-3 py-2 rounded bg-amber-500/10 text-amber-400 text-[10px] font-bold code-font border border-amber-500/20">
+                                    Concept Phase
                                 </span>
                             </div>
                         </div>
@@ -483,16 +595,20 @@
     </div>
 
     <!-- MODAL FÖR DETALJINFO (CASE STUDY) -->
-    <div id="project-detail-modal" class="fixed inset-0 bg-[#08070a]/98 backdrop-blur-xl z-50 hidden opacity-0 transition-all duration-300 flex items-center justify-center p-4 md:p-8 overflow-y-auto">
-        <div class="max-w-3xl w-full bg-[#0c0a0f] border border-white/10 rounded-2xl p-6 md:p-10 relative shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content-wrapper">
-            <button onclick="closeProjectDetail()" class="absolute top-6 right-6 text-slate-500 hover:text-amber-500 transition-colors code-font text-xs tracking-wider">
+    <div id="project-detail-modal"
+        class="fixed inset-0 bg-[#08070a]/98 backdrop-blur-xl z-50 hidden opacity-0 transition-all duration-300 flex items-center justify-center p-4 md:p-8 overflow-y-auto">
+        <div class="max-w-3xl w-full bg-[#0c0a0f] border border-white/10 rounded-2xl p-6 md:p-10 relative shadow-2xl transform scale-95 transition-transform duration-300"
+            id="modal-content-wrapper">
+            <button onclick="closeProjectDetail()"
+                class="absolute top-6 right-6 text-slate-500 hover:text-amber-500 transition-colors code-font text-xs tracking-wider">
                 [ ESC / Close ]
             </button>
             <div id="modal-body" class="space-y-6"></div>
         </div>
     </div>
 
-    <!-- Huvudskript laddas här -->
+    <!-- MAIN JAVASCRIPT MODULE -->
     <script type="module" src="js/main.js"></script>
 </body>
+
 </html>
