@@ -1,77 +1,70 @@
-// js/modal.js
+// --- EDUCATION MODALS --- //
 
-const aboutContent = `
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        <div class="md:col-span-4">
-            <div class="w-full rounded-xl overflow-hidden shadow-2xl shadow-amber-900/20">
-                <img src="character-portrait.png" alt="Character Log: Benjamin Natalli" class="w-full h-full object-cover">
-            </div>
-            <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
-                <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Age:</span> 25</div>
-                <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Race:</span> Human</div>
-                <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Origin:</span> Stockholm, Sweden</div>
-                <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Languages:</span> Swedish (Native), English (Fluent), Portuguese (Fundamentals)</div>
-            </div>
+// Databas för dina utbildningar. Fyll på med texten du vill visa!
+const educationData = {
+    'stockholm-uni': `
+        <h2 class="text-3xl font-extrabold text-white">Game Development (Audio / Programming)</h2>
+        <p class="text-sm font-semibold text-amber-500 code-font mt-2">Stockholm University | 2025 — Ongoing</p>
+        <div class="h-[1px] bg-white/10 my-6"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Write your description about the Stockholm University program here. You can talk about your courses in C#, audio implementation, or system architecture.</p>
+            <ul class="list-disc pl-5 marker:text-amber-500/30 space-y-2 mt-4">
+                <li>Relevant Course 1</li>
+                <li>Relevant Course 2</li>
+            </ul>
         </div>
-        <div class="md:col-span-8 space-y-6 max-h-[70vh] overflow-y-auto pr-2">
-            <div>
-                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">// Character_Log.entry</span>
-                <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
-                <p class="text-xs text-slate-400 code-font mt-1">Audio Developer /Narrative Enthusiast</p>
-            </div>
-            <div class="h-[1px] bg-white/10"></div>
-            <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
-                <p>Benjamin grew up in Stockholm to a Brazilian family with a deep love of games, introduced to the medium early enough that it became a permanent part of his life.</p>
-                <p>It started when his brother handed him a copy of <strong>Baldur's Gate 1</strong> — the first game he truly fell in love with, and one that shaped his taste ever since (Planescape: Torment among the titles it led him to).</p>
-                <p>He's always carried a parallel love for music, sound, and voice acting, and set out after high school to connect the two. Today he sees games as the highest art form — the rare place where interactive logic and creative expression merge into something living. He's currently studying game development, aiming to specialize in technical audio implementation pipelines with a focus on dialogue, with one clear goal: to help build the next great, complete <strong>CRPG</strong>, where voice and audio systems carry the story forward.</p>
-            </div>
-            <div class="h-[1px] bg-white/10"></div>
-            <div class="space-y-4 text-xs code-font">
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Games:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Baldur's Gate Series, Planescape: Torment, Disco Elysium, Witcher 3, Elden Ring</p>
-                </div>
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Hobbies:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Mushroom foraging, woodworking, D&D, brewing, perfumery</p>
-                </div>
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Volleyball, climbing, kayaking</p>
-                </div>
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Books:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">The Wind-Up Bird Chronicle (Murakami), Mort (Pratchett)</p>
-                </div>
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Movies:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">V for Vendetta, Watchmen, The Princess Bride, The Lord of the Rings</p>
-                </div>
-                <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Music:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Fleet Foxes, RY X, Laura Marling, Nils Frahm, Grupo Revelação</p>
-                </div>
-            </div>
+    `,
+    'audio-prod': `
+        <h2 class="text-3xl font-extrabold text-white">Game Audio & Sound Design</h2>
+        <p class="text-sm font-semibold text-amber-500 code-font mt-2">Audio Production Academy | 2023 — 2025</p>
+        <div class="h-[1px] bg-white/10 my-6"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Write about your focus at APA. Wwise, FMOD, Reaper, technical sound design, etc.</p>
         </div>
-    </div>
-`;
+    `,
+    'umea': `
+        <h2 class="text-3xl font-extrabold text-white">Music Production for Film, Theatre & Games</h2>
+        <p class="text-sm font-semibold text-amber-500 code-font mt-2">Umeå University | 2020 — 2021</p>
+        <div class="h-[1px] bg-white/10 my-6"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Description of the Umeå University courses regarding media composition.</p>
+        </div>
+    `,
+    'kmh': `
+        <h2 class="text-3xl font-extrabold text-white">Marketing & Entrepreneurship</h2>
+        <p class="text-sm font-semibold text-amber-500 code-font mt-2">Royal College of Music (KMH) | 2020 — 2021</p>
+        <div class="h-[1px] bg-white/10 my-6"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Details about studying at KMH.</p>
+        </div>
+    `,
+    'rytmus': `
+        <h2 class="text-3xl font-extrabold text-white">Sound & Music Production</h2>
+        <p class="text-sm font-semibold text-amber-500 code-font mt-2">Rytmus Music High School | 2017 — 2020</p>
+        <div class="h-[1px] bg-white/10 my-6"></div>
+        <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
+            <p>Details about your high school education.</p>
+        </div>
+    `
+};
 
-import { playSound } from './sound.js';
+export function openEduModal(eduKey) {
+    const modal = document.getElementById('edu-detail-modal');
+    const body = document.getElementById('edu-modal-body');
+    const wrapper = document.getElementById('edu-modal-wrapper');
+    
+    if (!modal || !body || !wrapper || !educationData[eduKey]) return;
+    
+    playSound('click'); // Använder din ljudfunktion
+    
+    // Injicera rätt data baserat på vad du klickade på
+    body.innerHTML = educationData[eduKey];
 
-
-export function openAboutModal() {
-    const modal = document.getElementById('about-detail-modal');
-    const body = document.getElementById('about-modal-body');
-    const wrapper = document.getElementById('about-modal-wrapper');
-    if (!modal || !body || !wrapper) return;
-    playSound('click');
-    body.innerHTML = aboutContent;
-
-
-    body.innerHTML = aboutContent;
+    // Visa modal
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
 
+    // Animation
     setTimeout(() => {
         modal.classList.add('opacity-100');
         wrapper.classList.remove('scale-95');
@@ -79,12 +72,15 @@ export function openAboutModal() {
     }, 50);
 }
 
-export function closeAboutModal() {
-    const modal = document.getElementById('about-detail-modal');
-    const wrapper = document.getElementById('about-modal-wrapper');
+export function closeEduModal() {
+    const modal = document.getElementById('edu-detail-modal');
+    const wrapper = document.getElementById('edu-modal-wrapper');
+    
     if (!modal || !wrapper) return;
+    
     playSound('close');
 
+    // Dölj animation
     modal.classList.remove('opacity-100');
     wrapper.classList.remove('scale-100');
     wrapper.classList.add('scale-95');
@@ -95,18 +91,37 @@ export function closeAboutModal() {
     }, 300);
 }
 
+// VIKTIGT: Uppdatera din befintliga initModal() så att de nya funktionerna knyts till window
+// (Leta upp din initModal och uppdatera den till detta):
 export function initModal() {
+    // About modal
     window.openAboutModal = openAboutModal;
     window.closeAboutModal = closeAboutModal;
+    
+    // Education modals (Ny!)
+    window.openEduModal = openEduModal;
+    window.closeEduModal = closeEduModal;
 
+    // Stäng med Escape
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeAboutModal();
+        if (e.key === 'Escape') {
+            closeAboutModal();
+            closeEduModal();
+        }
     });
 
-    const modal = document.getElementById('about-detail-modal');
-    if (modal) {
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeAboutModal();
+    // Stäng om man klickar utanför rutan
+    const aboutModal = document.getElementById('about-detail-modal');
+    if (aboutModal) {
+        aboutModal.addEventListener('click', (e) => {
+            if (e.target === aboutModal) closeAboutModal();
+        });
+    }
+
+    const eduModal = document.getElementById('edu-detail-modal');
+    if (eduModal) {
+        eduModal.addEventListener('click', (e) => {
+            if (e.target === eduModal) closeEduModal();
         });
     }
 }

@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | B.Natalli</title>
     
-    <!-- Tailwind & Google Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="style.css">
 
-    <!-- DIN HOVER LOGIK ÅTERSTÄLLD HÄR -->
     <style>
-        /* 1. Dölj scrollbaren men behåll funktionen */
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -22,7 +19,6 @@
             display: none;
         }
 
-        /* 2. Netflix Hover-effekten (med :has() väljaren) */
         .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
             opacity: 0.3;
             transform: scale(0.98);
@@ -32,6 +28,45 @@
             transition: opacity 0.4s ease, transform 0.4s ease;
             transform-origin: left center;
         }
+
+        /* FIX FÖR MUS-FUNKTIONERNA PÅ PROJECTS-SIDAN */
+        #mouse-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1;
+        }
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #f59e0b;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+        .cursor-hidden {
+            opacity: 0 !important;
+            transform: translate(-50%, -50%) scale(0) !important;
+        }
+
+        /* Stäng av custom-mouse på touch-skärmar */
+@media (pointer: coarse) {
+    #mouse-glow, #custom-cursor {
+        display: none !important;
+    }
+    body, a, button, summary, .project-card, .cv-clickable-card, .cv-name-trigger, [onclick] {
+        cursor: auto !important;
+    }
+}
+
     </style>
 </head>
 <body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200 data-page="projects">
@@ -43,34 +78,35 @@
     <span id="sound-icon">🔇</span>
 </button>
 
-    <!-- GLOBAL NAVBAR -->
+    <!-- GLOBAL NAVBAR (Uppdaterad för Projects-sidan) -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
-        <div class="w-full flex justify-between items-center">
-            <a href="index.html" class="font-mono text-amber-500 font-bold tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-white">
-                <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain">
-                <span>B.NATALLI</span>
-            </a>
+        <div class="w-full flex justify-between items-center relative z-50">
+            <!-- B.Natalli är nu urblekt och grå på den här sidan -->
+            <a href="index.html" class="group font-mono text-slate-600 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500">
+    <!-- Vid hover: ta bort grayscale och sätt opacity till 100 -->
+    <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100">
+    <span>B.NATALLI</span>
+</a>
+            
             <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest font-mono items-center">
-                <a href="index.html" class="text-slate-400 hover:text-amber-500 transition-colors py-2">Overview</a>
-                
+                <!-- Projects är ensam kvar, dragen till vänster och highlightad -->
                 <div class="relative group inline-block">
-                    <a href="projects.html" class="text-amber-500 flex items-center gap-1 py-2">
+                    <a href="projects.html" class="text-amber-500 font-bold flex items-center gap-1 py-2 cursor-none">
                         Projects
                     </a>
                 </div>
-
-                <a href="cv.html" class="text-slate-400 hover:text-amber-500 transition-colors py-2">CV</a>
             </div>
         </div>
     </nav>
 
     <!-- PROJEKT-LANES INNEHÅLL -->
-    <main class="pt-40 pb-32 pl-6 md:pl-12 lg:pl-24">
+    <!-- Z-index satt så mouse-glow ligger bakom klickbara element -->
+    <main class="pt-40 pb-32 pl-6 md:pl-12 lg:pl-24 relative z-10">
         
         <header class="mb-24 pr-12 max-w-4xl">
-            <h2 class="font-mono text-amber-500 text-xs tracking-widest uppercase mb-4">// PROJECT PORTFOLIO</h2>
+            <h2 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-4">// PROJECT PORTFOLIO</h2>
             <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">Featured<br>Projects</h1>
-            <p class="text-white/60 max-w-xl text-sm md:text-base leading-relaxed">
+            <p class="text-white/60 max-w-xl text-base md:text-lg leading-relaxed">
                 Explore my technical sound designs, middleware integrations, and creative compositions split into focus lanes. Scroll horizontally inside each lane.
             </p>
         </header>
@@ -79,68 +115,66 @@
 
             <!-- LANE 1: GAMES -->
             <section class="project-lane relative group">
-                <h3 class="font-mono text-amber-500 text-xs tracking-widest uppercase mb-6">// GAMES</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// GAMES</h3>
                 
-                <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24">
+                <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     
-                    <!-- Kort 1: Arctic Bones -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs uppercase tracking-widest mb-4">// STUDIO WORK - ARCTIC BONES AB</h4>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// STUDIO WORK - ARCTIC BONES AB</h4>
                             <h2 class="text-3xl font-bold mb-6">Composer & Sound Designer</h2>
-                            <p class="text-white/60 text-sm leading-relaxed mb-8">
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
                                 Music production and systematic sound design across the project's runtime content. Focused on clean technical runtime audio support, sound asset structural implementation, and middleware balancing.
                             </p>
-                            <div class="flex flex-wrap gap-3 font-mono text-[10px] uppercase text-white/50 mb-10">
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Wwise</span>
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">FMOD</span>
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Audio Implementation</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500 text-black font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg">
+                        <button class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none">
                             View Details
                         </button>
                     </article>
 
-                    <!-- Kort 2: Cable Nest -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs uppercase tracking-widest mb-4">// STUDIO WORK - CABLE NEST / GRO PLAY</h4>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// STUDIO WORK - CABLE NEST / GRO PLAY</h4>
                             <h2 class="text-3xl font-bold mb-6">Sound Design & Media Support</h2>
-                            <p class="text-white/60 text-sm leading-relaxed mb-8">
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
                                 Composition and sound effect construction optimized for mobile deployment architectures along with structural development, trailers, and streaming assets.
                             </p>
-                            <div class="flex flex-wrap gap-3 font-mono text-[10px] uppercase text-white/50 mb-10">
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Music Composition</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500 text-black font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg">
+                        <button class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none">
                             View Details
                         </button>
                     </article>
                 </div>
-                <div class="absolute right-0 top-12 bottom-8 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute right-0 top-12 bottom-8 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
             </section>
 
             <!-- LANE 2: CINEMATIC & FILM -->
             <section class="project-lane relative group">
-                <h3 class="font-mono text-amber-500 text-xs tracking-widest uppercase mb-6">// CINEMATIC & FILM</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// CINEMATIC & FILM</h3>
                 
-                <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24">
+                <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs uppercase tracking-widest mb-4">// TECHNICAL SHOWREEL</h4>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// TECHNICAL SHOWREEL</h4>
                             <h2 class="text-3xl font-bold mb-6">Dialogue & Attenuation Array Sandbox</h2>
-                            <p class="text-white/60 text-sm leading-relaxed mb-8">
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
                                 Experimental sound fields modeling real-time obstruction and occlusion structures within dynamic listening spaces.
                             </p>
-                            <div class="flex flex-wrap gap-3 font-mono text-[10px] uppercase text-white/50 mb-10">
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Spatial Audio</span>
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Reaper</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max">
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
                             In Development
                         </button>
                     </article>
