@@ -32,7 +32,6 @@ import { playSound } from './sound.js';
 export function changeStep(stepNum, stepKey) {
         playSound('click');
     const content = document.getElementById('pipeline-content');
-    const content = document.getElementById('pipeline-content');
     const media = document.getElementById('pipeline-media');
     const progress = document.getElementById('pipeline-progress');
     if (!content || !media || !progress) return;

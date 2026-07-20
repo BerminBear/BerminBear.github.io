@@ -56,6 +56,17 @@
             opacity: 0 !important;
             transform: translate(-50%, -50%) scale(0) !important;
         }
+
+        /* Stäng av custom-mouse på touch-skärmar */
+@media (pointer: coarse) {
+    #mouse-glow, #custom-cursor {
+        display: none !important;
+    }
+    body, a, button, summary, .project-card, .cv-clickable-card, .cv-name-trigger, [onclick] {
+        cursor: auto !important;
+    }
+}
+
     </style>
 </head>
 <body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200 data-page="projects">
