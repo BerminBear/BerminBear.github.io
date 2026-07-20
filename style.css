@@ -21,18 +21,3 @@
     transition: opacity 0.4s ease, transform 0.4s ease;
     transform-origin: left center;
 }
-
-
-* {
-    cursor: none !important;
-}
-
-#mouse-glow {
-    /* ... din befintliga kod ... */
-    z-index: 99998; /* Höjt från 1 */
-}
-
-#custom-cursor {
-    /* ... din befintliga kod ... */
-    z-index: 99999; /* Höjt från 9999 för säkerhets skull */
-}
