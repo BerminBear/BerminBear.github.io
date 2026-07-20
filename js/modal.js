@@ -56,11 +56,17 @@ const aboutContent = `
     </div>
 `;
 
+import { playSound } from './sound.js';
+
+
 export function openAboutModal() {
     const modal = document.getElementById('about-detail-modal');
     const body = document.getElementById('about-modal-body');
     const wrapper = document.getElementById('about-modal-wrapper');
     if (!modal || !body || !wrapper) return;
+    playSound('click');
+    body.innerHTML = aboutContent;
+
 
     body.innerHTML = aboutContent;
     modal.classList.remove('hidden');
@@ -77,6 +83,7 @@ export function closeAboutModal() {
     const modal = document.getElementById('about-detail-modal');
     const wrapper = document.getElementById('about-modal-wrapper');
     if (!modal || !wrapper) return;
+    playSound('close');
 
     modal.classList.remove('opacity-100');
     wrapper.classList.remove('scale-100');
