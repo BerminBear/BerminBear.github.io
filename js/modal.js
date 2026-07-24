@@ -13,7 +13,7 @@ const aboutData = `
             <div>
                 <span class="code-font text-amber-500 text-xs tracking-widest uppercase">Character Entry</span>
                 <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
-                <p class="text-xs text-slate-400 code-font mt-1">Audio Developer /Narrative Enthusiast</p>
+                <p class="text-xs text-slate-400 code-font mt-1">Audio Designer / Narrative Enthusiast</p>
             </div>
             <div>
                 <span class="text-slate-500 block">FOCUS:</span>

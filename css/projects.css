@@ -103,8 +103,7 @@ html {
 }
 
 #custom-cursor {
-    /* ... din befintliga kod ... */
-    z-index: 99999; /* Höjt från 9999 för säkerhets skull */
+    z-index: 2147483647 !important; /* Det högsta z-index som finns i CSS */
 }
 
 /* Stäng av custom cursor helt på touch-enheter */
