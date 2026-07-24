@@ -1,0 +1,11 @@
+/* ==========================================================================
+   WORKFLOW PIPELINE SECTION
+   ========================================================================== */
+
+.pipeline-node {
+    cursor: pointer;
+}
+
+#pipeline-card {
+    will-change: transform, opacity;
+}

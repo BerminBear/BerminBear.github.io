@@ -8,94 +8,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        .code-font { font-family: 'Fira Code', monospace; }
-        
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
-            opacity: 0.3;
-            transform: scale(0.98);
-        }
-
-        .project-lane {
-            transition: opacity 0.4s ease, transform 0.4s ease;
-            transform-origin: left center;
-        }
-
-        /* MUS-FUNKTIONER */
-        #mouse-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-        #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            background-color: #f59e0b;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.2s ease, transform 0.1s ease;
-        }
-        .cursor-hidden {
-            opacity: 0 !important;
-            transform: translate(-50%, -50%) scale(0) !important;
-        }
-        body { cursor: none; }
-        a, button, [onclick] { cursor: pointer; }
-    </style>
+    
+    <!-- Central CSS Module Entry -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200 data-page="projects">
+<body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200" data-page="projects">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
-    <button id="sound-toggle" aria-label="Toggle sound" aria-pressed="false"
-    class="fixed bottom-6 right-6 z-[9997] w-11 h-11 rounded-full border border-white/10 bg-[#0c0a0f]/80 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-amber-400 hover:border-amber-500/30 transition-colors font-mono text-sm cursor-none">
-    <span id="sound-icon">🔇</span>
-</button>
+    <button id="sound-toggle" aria-label="Toggle sound" aria-pressed="false" class="fixed bottom-6 right-6 z-[9997] w-11 h-11 rounded-full border border-white/10 bg-[#0c0a0f]/80 backdrop-blur-md flex items-center justify-center text-slate-400 hover:text-amber-400 hover:border-amber-500/30 transition-colors font-mono text-sm">
+        <span id="sound-icon">🔇</span>
+    </button>
 
-    <!-- GLOBAL NAVBAR MED NY CENTRERAD NAVIGATION -->
+    <!-- GLOBAL NAVBAR -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
         <div class="w-full flex justify-between items-center relative z-50">
-            
-            <!-- LOGO (Urblekt på Projects-sidan) -->
-            <a href="index.html" class="group font-mono text-slate-500 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500 cursor-none">
+            <a href="index.html" class="group font-mono text-slate-500 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500">
                 <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100">
                 <span>B.NATALLI</span>
             </a>
             
-            <!-- CENTRERAD NAVIGATION (Går tillbaka till index.html) -->
             <div class="hidden md:flex items-center gap-3 lg:gap-4 text-[10px] lg:text-xs uppercase tracking-widest font-mono text-slate-500 absolute left-1/2 -translate-x-1/2">
-                <a href="index.html#hero" class="hover:text-amber-400 transition-colors cursor-none">Studio</a>
+                <a href="index.html#hero" class="hover:text-amber-400 transition-colors">Studio</a>
                 <span class="text-amber-500/50">·</span>
-                <a href="index.html#workflow" class="hover:text-amber-400 transition-colors cursor-none">Indie</a>
+                <a href="index.html#workflow" class="hover:text-amber-400 transition-colors">Indie</a>
                 <span class="text-amber-500/50">·</span>
-                <a href="index.html#experience" class="hover:text-amber-400 transition-colors cursor-none">Film</a>
+                <a href="index.html#experience" class="hover:text-amber-400 transition-colors">Film</a>
                 <span class="text-amber-500/50">·</span>
-                <a href="index.html#tech-stack" class="hover:text-amber-400 transition-colors cursor-none">Tools</a>
+                <a href="index.html#tech-stack" class="hover:text-amber-400 transition-colors">Tools</a>
             </div>
 
-            <!-- PROJECTS (Highlightad) -->
             <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest font-mono items-center">
                 <div class="relative group inline-block">
-                    <a href="projects.html" class="text-amber-500 font-bold flex items-center gap-1 py-2 cursor-none">
+                    <a href="projects.html" class="text-amber-500 font-bold flex items-center gap-1 py-2">
                         Projects
                     </a>
                 </div>
@@ -109,12 +54,11 @@
         <div class="lanes-wrapper flex flex-col gap-20">
 
             <!-- LANE 1: STUDIO & COMMERCIAL GAMES -->
-            <section class="project-lane relative group">
+            <section class="project-lane relative group fade-up">
                 <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// STUDIO & COMMERCIAL GAMES</h3>
                 
                 <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     
-                    <!-- WHAT DO YOU CALL A GROUP OF SKELETONS -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// ARCTIC BONES AB</h4>
@@ -127,12 +71,11 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Designer</span>
                             </div>
                         </div>
-                        <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none inline-block text-center">
+                        <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg inline-block text-center">
                             View on Steam
                         </a>
                     </article>
 
-                    <!-- TENTACLE TANGO -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CABLE NEST / GRO PLAY</h4>
@@ -145,12 +88,11 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Media Support</span>
                             </div>
                         </div>
-                        <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" class="bg-[#E60012] text-white font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-[#ff1a2b] transition-colors shadow-lg cursor-none inline-block text-center">
+                        <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" class="bg-[#E60012] text-white font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-[#ff1a2b] transition-colors shadow-lg inline-block text-center">
                             View on Switch
                         </a>
                     </article>
 
-                    <!-- AURA FARMERS -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// INDEPENDENT STUDIO WORK</h4>
@@ -162,7 +104,7 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
                             </div>
                         </div>
-                        <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none inline-block text-center">
+                        <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg inline-block text-center">
                             View on Steam
                         </a>
                     </article>
@@ -172,12 +114,11 @@
             </section>
 
             <!-- LANE 2: INDIE & PERSONAL GAMES -->
-            <section class="project-lane relative group">
+            <section class="project-lane relative group fade-up fade-delay-1">
                 <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// INDIE & PERSONAL GAMES</h3>
                 
                 <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     
-                    <!-- RUBIK ROAD -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// SOLO PROJECT</h4>
@@ -190,12 +131,11 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Mobile Release</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max">
                             Available on Playstore
                         </button>
                     </article>
 
-                    <!-- CROCODINE -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// SOLO PROJECT</h4>
@@ -208,7 +148,7 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Mobile Release</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max">
                             Available on Playstore
                         </button>
                     </article>
@@ -218,12 +158,11 @@
             </section>
 
             <!-- LANE 3: CINEMATIC & FILM -->
-            <section class="project-lane relative group">
+            <section class="project-lane relative group fade-up fade-delay-2">
                 <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// CINEMATIC & FILM</h3>
                 
                 <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     
-                    <!-- HULDR -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CINEMA RELEASE</h4>
@@ -236,12 +175,11 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max">
                             Theatrical Release
                         </button>
                     </article>
 
-                    <!-- RETIUSCH -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
                             <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CINEMA RELEASE</h4>
@@ -253,7 +191,7 @@
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Music & Sound (Specific Scene)</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max">
                             Theatrical Release
                         </button>
                     </article>

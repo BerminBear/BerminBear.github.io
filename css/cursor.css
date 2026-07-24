@@ -1,0 +1,51 @@
+/* ==========================================================================
+   CUSTOM CURSOR & GLOW LOGIC
+   ========================================================================== */
+
+#mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #f59e0b;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.cursor-hidden {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+}
+
+/* Döljer vanliga muspekaren på datorer med mus */
+@media (pointer: fine) {
+    *, html, body, a, button, summary, [onclick], .project-card, .cv-clickable-card, .cv-name-trigger {
+        cursor: none !important;
+    }
+}
+
+/* Återställer standardpekare på pekskärmar */
+@media (pointer: coarse) {
+    #mouse-glow,
+    #custom-cursor {
+        display: none !important;
+    }
+
+    *, html, body, a, button, summary, [onclick] {
+        cursor: auto !important;
+    }
+}

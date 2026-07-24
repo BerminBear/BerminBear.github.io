@@ -1,0 +1,17 @@
+/* ==========================================================================
+   COMPONENTS (Hero, Cards, Modals & Navigation)
+   ========================================================================== */
+
+/* Hero Hover-synchronization */
+.hero-sync:has(.hover-trigger:hover) .hero-img {
+    filter: grayscale(0);
+    transform: scale(1.02);
+}
+
+.hero-sync:has(.hover-trigger:hover) .hero-text {
+    color: #f59e0b; /* Amber-500 */
+}
+
+.hero-sync:has(.hover-trigger:hover) .hero-info {
+    color: #fbbf24; /* Amber-400 */
+}

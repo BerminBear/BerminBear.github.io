@@ -1,14 +1,21 @@
-import { initMouseGlow } from './mouse.js';
+import { initCursor } from './mouse.js';
+import { initAnimations } from './animations.js';
+import { initPageTransitions } from './pageTransitions.js';
 import { initWorkflow } from './workflow.js';
+import { initProjects } from './projects.js';
 import { initModal } from './modal.js';
-import { initScrollSystems } from './scroll.js';
 import { initSound } from './sound.js';
+import { initScrollSystems } from './scroll.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-    initMouseGlow();
+    initCursor();
+    initAnimations();
+    initPageTransitions();
     initWorkflow();
+    initProjects();
     initModal();
-    initScrollSystems();
     initSound();
-    console.log('System initialized successfully.');
+    initScrollSystems();
+    
+    console.log('[System initialized]: AAA Game-UI Architecture Active.');
 });

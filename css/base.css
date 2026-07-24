@@ -1,0 +1,18 @@
+/* ==========================================================================
+   BASE & TYPOGRAPHY
+   ========================================================================== */
+
+.code-font {
+    font-family: 'Fira Code', monospace;
+}
+
+/* Global scroll smoothing */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom selection states */
+::selection {
+    background-color: rgba(245, 158, 11, 0.3);
+    color: #fef3c7;
+}

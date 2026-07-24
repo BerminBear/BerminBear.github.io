@@ -1,4 +1,4 @@
-// js/workflow.js
+import { playSound } from './sound.js';
 
 const steps = {
     architecture: {
@@ -27,10 +27,8 @@ const steps = {
     }
 };
 
-import { playSound } from './sound.js';
-
 export function changeStep(stepNum, stepKey) {
-        playSound('click');
+    if (typeof playSound === 'function') playSound('click');
     const content = document.getElementById('pipeline-content');
     const media = document.getElementById('pipeline-media');
     const progress = document.getElementById('pipeline-progress');
@@ -52,18 +50,15 @@ export function changeStep(stepNum, stepKey) {
         media.style.opacity = '1';
     }, 300);
 
-    // Steg 1=0%, Steg 2=33.3%, Steg 3=66.6%, Steg 4=100%
     progress.style.height = `${((stepNum - 1) / 3) * 100}%`;
 
     document.querySelectorAll('.pipeline-node').forEach((node, i) => {
         const dot = node.querySelector('.node-dot');
         const label = node.querySelector('span');
         if (i + 1 === stepNum) {
-            // Aktivt läge (Standard mörkare bärnsten - amber-500)
             dot.className = "node-dot w-12 h-12 rounded-full bg-amber-500 text-black font-bold flex items-center justify-center text-sm transition-all duration-300 code-font shadow-lg shadow-amber-500/20";
             label.className = "text-xs uppercase tracking-widest code-font text-amber-500 transition-colors duration-300 font-semibold";
         } else {
-            // Inaktivt hovringsläge (Ljusare bärnsten - amber-400/300 vid hover)
             dot.className = "node-dot w-12 h-12 rounded-full bg-slate-900 border border-slate-700 text-slate-400 font-bold flex items-center justify-center text-sm transition-all duration-300 code-font group-hover:border-amber-400 group-hover:text-amber-400";
             label.className = "text-xs uppercase tracking-widest code-font text-slate-500 group-hover:text-amber-300 transition-colors duration-300 font-semibold";
         }
