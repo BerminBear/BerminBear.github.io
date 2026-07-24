@@ -6,6 +6,7 @@ import { initProjects } from './projects.js';
 import { initModal } from './modal.js';
 import { initSound } from './sound.js';
 import { initScrollSystems } from './scroll.js';
+import './animations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initCursor();

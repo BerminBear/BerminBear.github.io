@@ -1,22 +1,36 @@
-export function initAnimations() {
-    const animatedElements = document.querySelectorAll('.fade-up, .fade-right, .fade-left, .fade-down');
+// js/animations.js
 
-    if (animatedElements.length === 0) return;
+// 1. Dölj elementen blixtsnabbt innan webbläsaren hinner rita ut dem
+// Detta förhindrar helt "hacket" som uppstår innan animationen startar
+document.head.insertAdjacentHTML("beforeend", `
+    <style id="preload-hide">
+        main > section, main > div, .project-lane { opacity: 0; }
+    </style>
+`);
 
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px 0px -50px 0px',
-        threshold: 0.15
-    };
+document.addEventListener("DOMContentLoaded", () => {
+    // 2. Ta bort den temporära dölj-regeln när vi är redo att animera
+    const preloadStyle = document.getElementById('preload-hide');
+    if (preloadStyle) preloadStyle.remove();
 
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                obs.unobserve(entry.target); // Triggas enbart en gång
-            }
+    const isHomePage = document.getElementById('hero') !== null;
+    const isProjectsPage = document.querySelector('.lanes-wrapper') !== null;
+
+    if (isHomePage) {
+        // HOME: Nedifrån och upp
+        const homeSections = document.querySelectorAll('main > section, main > div');
+        homeSections.forEach((section, index) => {
+            section.style.animationDelay = `${index * 0.15}s`;
+            section.classList.add('animate-fade-up');
         });
-    }, observerOptions);
+    }
 
-    animatedElements.forEach(el => observer.observe(el));
-}
+    if (isProjectsPage) {
+        // PROJECTS: Höger till vänster
+        const projectLanes = document.querySelectorAll('.project-lane');
+        projectLanes.forEach((lane, index) => {
+            lane.style.animationDelay = `${index * 0.15}s`;
+            lane.classList.add('animate-fade-right');
+        });
+    }
+});
