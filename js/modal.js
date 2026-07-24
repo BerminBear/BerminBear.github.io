@@ -17,7 +17,7 @@ const aboutContent = `
             <div>
                 <span class="code-font text-amber-500 text-xs tracking-widest uppercase">Character Entry</span>
                 <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
-                <p class="text-xs text-slate-400 code-font mt-1">Audio Developer /Narrative Enthusiast</p>
+                <p class="text-xs text-slate-400 code-font mt-1">Audio Designer / Narrative Enthusiast</p>
             </div>
             <div class="h-[1px] bg-white/10"></div>
             <div class="text-sm text-slate-300 space-y-4 leading-relaxed">
