@@ -26,11 +26,15 @@
 
         .hero-sync:has(.hover-trigger:hover) .hero-text {
             color: #f59e0b;
+            /* Tailwind amber-500 */
         }
 
         .hero-sync:has(.hover-trigger:hover) .hero-info {
             color: #fbbf24;
+            /* Tailwind amber-400 */
         }
+
+
 
         /* FIX FÖR MUS-FUNKTIONERNA */
         #mouse-glow {
@@ -113,6 +117,7 @@
         <div class="w-full flex justify-between items-center relative z-50">
             <a href="index.html"
                 class="group font-mono text-amber-500 font-bold tracking-wider text-sm flex items-center gap-2 transition-all hover:text-amber-400">
+                <!-- Tog bort brightness-0 invert så den behåller sin naturliga färg (eller lägg till opacity om du vill ha en effekt) -->
                 <img src="favicon.png" alt="Logo"
                     class="h-5 w-5 object-contain transition-all duration-300 group-hover:scale-110">
                 <span>B.NATALLI</span>
@@ -129,12 +134,16 @@
 
         <!-- 1 & 2. PROFILE + SHOWREEL -->
         <section id="hero" class="scroll-mt-28 snap-start">
+            <!-- BORTTAGET: group/header från div:en nedan -->
+            <!-- La till 'hero-sync' på grid-containern -->
             <div class="hero-sync grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
 
                 <!-- BILDEN -->
                 <div class="md:col-span-3">
+                    <!-- La till 'hover-trigger' -->
                     <button onclick="openAboutModal()"
                         class="hover-trigger w-full max-w-[280px] block text-left focus:outline-none appearance-none bg-transparent border-0 p-0 m-0">
+                        <!-- La till 'hero-img' och tog bort group-hover-klasserna -->
                         <div
                             class="hero-img aspect-[4/5] w-full rounded-2xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl grayscale transition-all duration-700">
                             <img src="portfolio-picture.jpeg" alt="Benjamin Natalli" class="w-full h-full object-cover">
@@ -145,11 +154,14 @@
                 <!-- TEXTEN -->
                 <div class="md:col-span-9 flex flex-col justify-center">
                     <div class="max-w-3xl">
+                        <!-- La till 'hover-trigger' -->
                         <button onclick="openAboutModal()"
                             class="hover-trigger cv-name-trigger text-left block focus:outline-none">
+                            <!-- La till 'hero-text' -->
                             <h1
                                 class="hero-text text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none transition-colors duration-300">
                                 Benjamin Natalli
+                                <!-- La till 'hero-info' -->
                                 <span
                                     class="hero-info text-xs text-amber-500/50 code-font font-normal tracking-widest uppercase ml-3 align-middle transition-colors">[
                                     INFO+ ]</span>
@@ -157,11 +169,12 @@
                         </button>
                         <h2 class="mt-4 text-amber-500 code-font uppercase tracking-widest text-sm font-bold">Technical
                             Audio & Dialogue Designer</h2>
+                        <!-- Ökad textstorlek för Windows-läsbarhet -->
                         <p class="mt-6 max-w-2xl text-slate-400 leading-relaxed text-base md:text-lg">
-                            Specializing in <span class="text-amber-500 font-medium">automation frameworks</span>, <span
-                                class="text-amber-500 font-medium">adaptive routing architecture</span> & <span
-                                class="text-amber-500 font-medium">middleware implementation pipelines</span>.
-                            Currently expanding into audio programming at Stockholm University.
+                            Specializing in <span
+                                class="text-amber-500 font-normal">automation frameworks</span>, <span
+                                class="text-amber-500 font-normal">adaptive routing architecture</span> & <span
+                                class="text-amber-500 font-normal">middleware implementation pipelines</span>.
                         </p>
 
                         <!-- Länkar -->
@@ -172,6 +185,10 @@
                             <a href="mailto:Benjamin.Salmonsson@outlook.com"
                                 class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email
                                 ]</a>
+
+                            <a href="https://github.com/BerminBear"
+                                class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Github
+                                ]</a> 
                             <a href="Benjamin-Natalli-CV.pdf" download
                                 class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ CV ]</a>
                         </div>
@@ -191,10 +208,9 @@
         <!-- 3. WORKFLOW -->
         <section id="workflow" class="scroll-mt-28 snap-start">
             <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4">// Workflow</h3>
-            <p class="text-base md:text-lg text-slate-400 max-w-3xl mb-4">
-                This is my standard structure for setting up audio pipelines, though it naturally adapts depending on the software and the specific needs of each project.
+            <p class="text-base md:text-lg text-slate-400 max-w-3xl mb-12">
+                An overview of my standard structure when setting up audio pipelines, though it naturally adapts depending on the software and the specific needs of each project.
             </p>
-
             <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch">
                 <div class="md:col-span-4 flex flex-col gap-6 relative py-4 justify-between">
                     <div class="hidden md:block absolute left-[23px] top-6 bottom-6 w-[2px] bg-slate-800">
@@ -286,7 +302,7 @@
                         <ul
                             class="mt-4 space-y-3 text-base text-slate-300 leading-relaxed list-disc pl-5 marker:text-amber-500/30">
                             <li>Music production and sound design across the project's runtime content.</li>
-                            <li>Audio implementation and technical support in Wwise and FMOD.</li>
+                            <li>Audio implementation in Unreal Engine with Metasoudns.</li>
                         </ul>
                     </div>
 
@@ -300,7 +316,6 @@
                             class="mt-4 space-y-3 text-base text-slate-300 leading-relaxed list-disc pl-5 marker:text-amber-500/30">
                             <li>Music production and sound design for the studio's titles.</li>
                             <li>Produced marketing material — trailers, streaming assets, and promotional video.</li>
-                            <li>Built file organization systems and production scheduling for the audio pipeline.</li>
                         </ul>
                     </div>
 

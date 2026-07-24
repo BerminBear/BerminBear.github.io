@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="style.css">
 
     <style>
+        .code-font { font-family: 'Fira Code', monospace; }
+        
         .hide-scrollbar {
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -29,7 +31,7 @@
             transform-origin: left center;
         }
 
-        /* FIX FÖR MUS-FUNKTIONERNA PÅ PROJECTS-SIDAN */
+        /* MUS-FUNKTIONER */
         #mouse-glow {
             position: fixed;
             top: 0;
@@ -56,17 +58,8 @@
             opacity: 0 !important;
             transform: translate(-50%, -50%) scale(0) !important;
         }
-
-        /* Stäng av custom-mouse på touch-skärmar */
-@media (pointer: coarse) {
-    #mouse-glow, #custom-cursor {
-        display: none !important;
-    }
-    body, a, button, summary, .project-card, .cv-clickable-card, .cv-name-trigger, [onclick] {
-        cursor: auto !important;
-    }
-}
-
+        body { cursor: none; }
+        a, button, [onclick] { cursor: pointer; }
     </style>
 </head>
 <body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200 data-page="projects">
@@ -78,18 +71,29 @@
     <span id="sound-icon">🔇</span>
 </button>
 
-    <!-- GLOBAL NAVBAR (Uppdaterad för Projects-sidan) -->
+    <!-- GLOBAL NAVBAR MED NY CENTRERAD NAVIGATION -->
     <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
         <div class="w-full flex justify-between items-center relative z-50">
-            <!-- B.Natalli är nu urblekt och grå på den här sidan -->
-            <a href="index.html" class="group font-mono text-slate-600 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500">
-    <!-- Vid hover: ta bort grayscale och sätt opacity till 100 -->
-    <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100">
-    <span>B.NATALLI</span>
-</a>
             
+            <!-- LOGO (Urblekt på Projects-sidan) -->
+            <a href="index.html" class="group font-mono text-slate-500 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500 cursor-none">
+                <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain grayscale opacity-50 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100">
+                <span>B.NATALLI</span>
+            </a>
+            
+            <!-- CENTRERAD NAVIGATION (Går tillbaka till index.html) -->
+            <div class="hidden md:flex items-center gap-3 lg:gap-4 text-[10px] lg:text-xs uppercase tracking-widest font-mono text-slate-500 absolute left-1/2 -translate-x-1/2">
+                <a href="index.html#hero" class="hover:text-amber-400 transition-colors cursor-none">Studio</a>
+                <span class="text-amber-500/50">·</span>
+                <a href="index.html#workflow" class="hover:text-amber-400 transition-colors cursor-none">Indie</a>
+                <span class="text-amber-500/50">·</span>
+                <a href="index.html#experience" class="hover:text-amber-400 transition-colors cursor-none">Film</a>
+                <span class="text-amber-500/50">·</span>
+                <a href="index.html#tech-stack" class="hover:text-amber-400 transition-colors cursor-none">Tech Stack</a>
+            </div>
+
+            <!-- PROJECTS (Highlightad) -->
             <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest font-mono items-center">
-                <!-- Projects är ensam kvar, dragen till vänster och highlightad -->
                 <div class="relative group inline-block">
                     <a href="projects.html" class="text-amber-500 font-bold flex items-center gap-1 py-2 cursor-none">
                         Projects
@@ -99,85 +103,161 @@
         </div>
     </nav>
 
-    <!-- PROJEKT-LANES INNEHÅLL -->
-    <!-- Z-index satt så mouse-glow ligger bakom klickbara element -->
-    <main class="pt-40 pb-32 pl-6 md:pl-12 lg:pl-24 relative z-10">
+    <!-- PROJEKT-LANES -->
+    <main class="pt-32 pb-32 pl-6 md:pl-12 lg:pl-24 relative z-10">
         
-        <header class="mb-24 pr-12 max-w-4xl">
-            <h2 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-4">// PROJECT PORTFOLIO</h2>
-            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6">Featured<br>Projects</h1>
-            <p class="text-white/60 max-w-xl text-base md:text-lg leading-relaxed">
-                Explore my technical sound designs, middleware integrations, and creative compositions split into focus lanes. Scroll horizontally inside each lane.
-            </p>
-        </header>
-
         <div class="lanes-wrapper flex flex-col gap-20">
 
-            <!-- LANE 1: GAMES -->
+            <!-- LANE 1: STUDIO & COMMERCIAL GAMES -->
             <section class="project-lane relative group">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// GAMES</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// STUDIO & COMMERCIAL GAMES</h3>
                 
                 <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
                     
+                    <!-- WHAT DO YOU CALL A GROUP OF SKELETONS -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// STUDIO WORK - ARCTIC BONES AB</h4>
-                            <h2 class="text-3xl font-bold mb-6">Composer & Sound Designer</h2>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// ARCTIC BONES AB</h4>
+                            <h2 class="text-3xl font-bold mb-6">What Do You Call a Group of Skeletons</h2>
                             <p class="text-white/60 text-base leading-relaxed mb-8">
                                 Music production and systematic sound design across the project's runtime content. Focused on clean technical runtime audio support, sound asset structural implementation, and middleware balancing.
                             </p>
                             <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Wwise</span>
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">FMOD</span>
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Audio Implementation</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Composer</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Designer</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none">
-                            View Details
-                        </button>
+                        <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none inline-block text-center">
+                            View on Steam
+                        </a>
                     </article>
 
+                    <!-- TENTACLE TANGO -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// STUDIO WORK - CABLE NEST / GRO PLAY</h4>
-                            <h2 class="text-3xl font-bold mb-6">Sound Design & Media Support</h2>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CABLE NEST / GRO PLAY</h4>
+                            <h2 class="text-3xl font-bold mb-6">Tentacle Tango</h2>
                             <p class="text-white/60 text-base leading-relaxed mb-8">
                                 Composition and sound effect construction optimized for mobile deployment architectures along with structural development, trailers, and streaming assets.
                             </p>
                             <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
                                 <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Music Composition</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Media Support</span>
                             </div>
                         </div>
-                        <button class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none">
-                            View Details
-                        </button>
+                        <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" class="bg-[#E60012] text-white font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-[#ff1a2b] transition-colors shadow-lg cursor-none inline-block text-center">
+                            View on Switch
+                        </a>
                     </article>
+
+                    <!-- AURA FARMERS -->
+                    <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
+                        <div>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// INDEPENDENT STUDIO WORK</h4>
+                            <h2 class="text-3xl font-bold mb-6">Aura Farmers (Into the Zone)</h2>
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
+                                Focused entirely on external sound design, delivering tailored audio assets and establishing an immersive sonic palette for the title.
+                            </p>
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
+                            </div>
+                        </div>
+                        <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" class="bg-amber-500 text-black font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max hover:bg-amber-400 transition-colors shadow-lg cursor-none inline-block text-center">
+                            View on Steam
+                        </a>
+                    </article>
+
                 </div>
                 <div class="absolute right-0 top-12 bottom-8 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
             </section>
 
-            <!-- LANE 2: CINEMATIC & FILM -->
+            <!-- LANE 2: INDIE & PERSONAL GAMES -->
+            <section class="project-lane relative group">
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// INDIE & PERSONAL GAMES</h3>
+                
+                <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
+                    
+                    <!-- RUBIK ROAD -->
+                    <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
+                        <div>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// SOLO PROJECT</h4>
+                            <h2 class="text-3xl font-bold mb-6">Rubik Road</h2>
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
+                                A personal project developed for mobile platforms. Handled all aspects of game design, programming, and audio integration.
+                            </p>
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Developer</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Mobile Release</span>
+                            </div>
+                        </div>
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                            Available on Playstore
+                        </button>
+                    </article>
+
+                    <!-- CROCODINE -->
+                    <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
+                        <div>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// SOLO PROJECT</h4>
+                            <h2 class="text-3xl font-bold mb-6">CrocoDine</h2>
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
+                                Independent mobile game title featuring custom audio architecture and full technical development pipeline from concept to release.
+                            </p>
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Developer</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Mobile Release</span>
+                            </div>
+                        </div>
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                            Available on Playstore
+                        </button>
+                    </article>
+
+                </div>
+                <div class="absolute right-0 top-12 bottom-8 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
+            </section>
+
+            <!-- LANE 3: CINEMATIC & FILM -->
             <section class="project-lane relative group">
                 <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-6">// CINEMATIC & FILM</h3>
                 
                 <div class="lane-track flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-8 hide-scrollbar pr-24 relative z-20">
+                    
+                    <!-- HULDR -->
                     <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
                         <div>
-                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// TECHNICAL SHOWREEL</h4>
-                            <h2 class="text-3xl font-bold mb-6">Dialogue & Attenuation Array Sandbox</h2>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CINEMA RELEASE</h4>
+                            <h2 class="text-3xl font-bold mb-6">HULDR</h2>
                             <p class="text-white/60 text-base leading-relaxed mb-8">
-                                Experimental sound fields modeling real-time obstruction and occlusion structures within dynamic listening spaces.
+                                Full music composition and sound design for this cinematic release, building the atmosphere and narrative through extensive audio post-production.
                             </p>
                             <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Spatial Audio</span>
-                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Reaper</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Composition</span>
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Sound Design</span>
                             </div>
                         </div>
                         <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
-                            In Development
+                            Theatrical Release
                         </button>
                     </article>
+
+                    <!-- RETIUSCH -->
+                    <article class="snap-start shrink-0 w-[85vw] md:w-[600px] bg-[#111114] rounded-2xl p-10 border border-white/5 flex flex-col justify-between hover:border-amber-500/30 transition-all duration-300">
+                        <div>
+                            <h4 class="font-mono text-amber-500 text-xs font-bold uppercase tracking-widest mb-4">// CINEMA RELEASE</h4>
+                            <h2 class="text-3xl font-bold mb-6">Retusch</h2>
+                            <p class="text-white/60 text-base leading-relaxed mb-8">
+                                Provided highly targeted music and sound design for a pivotal scene within the film, enhancing the emotional and narrative impact.
+                            </p>
+                            <div class="flex flex-wrap gap-3 font-mono text-[10px] font-bold uppercase text-white/50 mb-10">
+                                <span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10">Music & Sound (Specific Scene)</span>
+                            </div>
+                        </div>
+                        <button class="bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md w-max cursor-none">
+                            Theatrical Release
+                        </button>
+                    </article>
+
                 </div>
             </section>
 
