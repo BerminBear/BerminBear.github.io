@@ -11,8 +11,9 @@ const aboutData = `
         </p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6 pt-4 border-t border-white/5 text-sm code-font">
             <div>
-                <span class="text-slate-500 block">LOCATION:</span>
-                <span class="text-white">Stockholm, Sweden</span>
+                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">Character Entry</span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
+                <p class="text-xs text-slate-400 code-font mt-1">Audio Developer /Narrative Enthusiast</p>
             </div>
             <div>
                 <span class="text-slate-500 block">FOCUS:</span>
