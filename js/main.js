@@ -2,6 +2,7 @@ import { initMouseGlow } from './mouse.js';
 import { initWorkflow } from './workflow.js';
 import { initModal } from './modal.js';
 import { initScrollSystems } from './scroll.js';
+import './animations.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initMouseGlow();

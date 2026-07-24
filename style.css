@@ -11,6 +11,28 @@
     display: none;
 }
 
+/* Standard för moderna webbläsare (Firefox m.fl) */
+html {
+    scrollbar-color: #f59e0b #08070a; /* Tummen (amber-500), Bakgrunden (mörk) */
+    scrollbar-width: thin;
+}
+
+/* För Chrome/Edge/Safari */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #08070a; 
+}
+::-webkit-scrollbar-thumb {
+    background-color: #f59e0b; 
+    border-radius: 10px;
+    border: 2px solid #08070a; /* Skapar lite luft runt tummen */
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d97706; /* Lite mörkare amber när man hovrar */
+}
+
 /* 2. Netflix Hover-effekten (med :has() väljaren) */
 .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
     opacity: 0.3;
@@ -22,6 +44,54 @@
     transform-origin: left center;
 }
 
+/* Grundläge för element som ska animeras */
+.fade-up-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-right-element {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Klassen som läggs på via JavaScript när elementet syns */
+.is-visible {
+    opacity: 1;
+    transform: translate(0);
+}
+
+
+/* =========================================
+   PAGE LOAD ANIMATIONS
+   ========================================= */
+
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRightFade {
+    0% { opacity: 0; transform: translateX(60px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-up {
+    /* "both" gör så att elementet är helt osynligt (0%) direkt under fördröjningen, och stannar på 100% när det är klart */
+    animation: slideUpFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
+}
+
+.animate-fade-right {
+    animation: slideRightFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
+}
+
+/* Slutläge (När scriptet lägger till denna klass) */
+.is-visible {
+    opacity: 1 !important;
+    transform: translate(0) !important;
+}
 
 * {
     cursor: none !important;
@@ -35,4 +105,17 @@
 #custom-cursor {
     /* ... din befintliga kod ... */
     z-index: 99999; /* Höjt från 9999 för säkerhets skull */
+}
+
+/* Stäng av custom cursor helt på touch-enheter */
+@media (pointer: coarse) {
+    body {
+        cursor: auto !important; /* Ger tillbaka vanliga pilen på mobilen */
+    }
+    #custom-cursor, #mouse-glow {
+        display: none !important; /* Gömmer den orangea pricken och ljuset */
+    }
+    * {
+        cursor: auto !important;
+    }
 }
