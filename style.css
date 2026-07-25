@@ -118,3 +118,112 @@ html {
         cursor: auto !important;
     }
 }
+
+/* ==========================================================================
+   VIDEO PREVIEW HOVER SYSTEM
+   ========================================================================== */
+
+.media-preview {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: #0a0a0c;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.media-img,
+.media-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.media-video {
+    opacity: 0;
+}
+
+/* Subtle bottom gradient for visual polish */
+.media-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 70%, rgba(8, 7, 10, 0.6) 100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Play indicator — visible when idle, fades on hover */
+.media-indicator {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Hover states */
+.project-card:hover .media-img {
+    opacity: 0;
+}
+
+.project-card:hover .media-video {
+    opacity: 1;
+}
+
+.project-card:hover .media-indicator {
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+/* Disable video previews on touch devices (no hover) */
+@media (pointer: coarse) {
+    .media-video {
+        display: none !important;
+    }
+    .media-img {
+        opacity: 1 !important;
+    }
+    .media-indicator {
+        display: none;
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .media-img,
+    .media-video,
+    .media-indicator {
+        transition: none !important;
+    }
+    .media-video {
+        display: none !important;
+    }
+}
+
+.media-indicator.is-playing {
+    animation: pulseIndicator 1.2s ease-in-out infinite;
+}
+
+@keyframes pulseIndicator {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.15); }
+}

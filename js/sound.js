@@ -149,3 +149,11 @@ export function initSound() {
     };
     events.forEach(e => window.addEventListener(e, unlockOnce));
 }
+
+export function isSoundEnabled() {
+    return enabled;
+}
+
+export function isSoundUnlocked() {
+    return unlocked;
+}
