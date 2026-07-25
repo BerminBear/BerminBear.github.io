@@ -1,6 +1,94 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benjamin Natalli | Technical Audio & Dialogue Design</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Synkar bilden och texten när någon av dem hovras */
+        .hero-sync:has(.hover-trigger:hover) .hero-img {
+            filter: grayscale(0);
+            transform: scale(1.02);
+        }
+
+        .hero-sync:has(.hover-trigger:hover) .hero-text {
+            color: #f59e0b;
+            /* Tailwind amber-500 */
+        }
+
+        .hero-sync:has(.hover-trigger:hover) .hero-info {
+            color: #fbbf24;
+            /* Tailwind amber-400 */
+        }
+
+
+
+        /* FIX FÖR MUS-FUNKTIONERNA */
+        #mouse-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            /* Viktigt: så att du kan klicka på saker under ljuset */
+            z-index: 1;
+            /* Ligger i bakgrunden */
+        }
+
+        #custom-cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            background-color: #f59e0b;
+            /* Amber 500 */
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
+
+        .cursor-hidden {
+            opacity: 0 !important;
+            transform: translate(-50%, -50%) scale(0) !important;
+        }
+
+        /* Döljer vanliga pilen över hela sidan */
+        body {
+            cursor: none;
+        }
+
+        a,
+        button,
+        summary,
+        .project-card,
+        .cv-clickable-card,
+        .cv-name-trigger,
+        [onclick] {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | B.Natalli</title>
@@ -261,5 +349,7 @@
     </main>
 
     <script type="module" src="js/main.js"></script>
+
+    <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
