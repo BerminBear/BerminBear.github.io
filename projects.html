@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects | Benjamin D. Natalli — Audio Design & Composition</title>
-    <meta name="description" content="Explore game audio, sound design, and music composition projects by Benjamin D. Natalli.">
+    <meta name="description"
+        content="Explore game audio, sound design, and music composition projects by Benjamin D. Natalli.">
     <meta name="author" content="Benjamin D. Natalli">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://berminbear.github.io/projects.html">
@@ -14,36 +15,56 @@
     <link rel="apple-touch-icon" href="favicon.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .code-font { font-family: 'Fira Code', monospace; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
     </style>
-<base target="_blank">
+    <base target="_blank">
 </head>
 
-<body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200" data-page="projects">
+<body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200"
+    data-page="projects">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
 
     <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
+    <nav
+        class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12">
         <div class="w-full flex justify-between items-center relative z-50">
-            <a href="index.html" class="group font-mono text-slate-500 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500 cursor-none">
-                <img src="favicon.png" alt="" class="h-5 w-5 object-contain grayscale opacity-50 transition-all group-hover:grayscale-0 group-hover:opacity-100">
+            <a href="index.html"
+                class="group font-mono text-slate-500 font-medium tracking-wider text-sm flex items-center gap-2 transition-colors hover:text-amber-500 cursor-none">
+                <img src="favicon.png" alt=""
+                    class="h-5 w-5 object-contain grayscale opacity-50 transition-all group-hover:grayscale-0 group-hover:opacity-100">
                 <span>B.NATALLI</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-3 text-[10px] lg:text-xs uppercase tracking-widest font-mono text-slate-500 absolute left-1/2 -translate-x-1/2">
+            <div
+                class="hidden md:flex items-center gap-3 text-[10px] lg:text-xs uppercase tracking-widest font-mono text-slate-500 absolute left-1/2 -translate-x-1/2">
                 <a href="#studio-games" class="hover:text-amber-400 transition-colors">Studio</a>
                 <span class="text-amber-500/50">·</span>
                 <a href="#indie-games" class="hover:text-amber-400 transition-colors">Indie</a>
                 <span class="text-amber-500/50">·</span>
                 <a href="#cinematic" class="hover:text-amber-400 transition-colors">Film</a>
+                <span class="text-amber-500/50">·</span>
+                <a href="#Tools" class="hover:text-amber-400 transition-colors">Tools</a>
+                <span class="text-amber-500/50">·</span>
+                <a href="#Music" class="hover:text-amber-400 transition-colors">Music</a>
             </div>
 
             <div class="flex gap-6 text-xs uppercase tracking-widest font-mono items-center">
@@ -53,7 +74,9 @@
     </nav>
 
     <!-- LJUD-KNAPP -->
-    <button id="sound-toggle" class="fixed bottom-6 right-6 z-[9999] w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-lg hover:bg-white/10 transition-colors" aria-pressed="false">
+    <button id="sound-toggle"
+        class="fixed bottom-6 right-6 z-[9999] w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-lg hover:bg-white/10 transition-colors"
+        aria-pressed="false">
         <span id="sound-icon">🔇</span>
     </button>
 
@@ -64,15 +87,21 @@
 
             <!-- LANE 1: STUDIO -->
             <section id="studio-games" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Studio & Commercial Games</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Studio &
+                    Commercial Games</h3>
 
-                <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
+                <div
+                    class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- TENTACLE TANGO -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
+                            <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango"
+                                class="media-img w-full h-full object-cover" loading="lazy">
+                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop
+                                playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
                                 <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
                             </video>
                             <div class="media-indicator">♪</div>
@@ -81,15 +110,23 @@
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Cable Nest</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Cable Nest</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">Tentacle Tango</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound
+                                    Design</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener" class="card-link inline-flex items-center justify-center gap-2 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/nintendo-switch-logo.png" alt="" class="w-4 h-4 object-contain brightness-0 invert">
+                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/"
+                                    target="_blank" rel="noopener"
+                                    class="card-link inline-flex items-center justify-center gap-2 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full"
+                                    onclick="event.stopPropagation();">
+                                    <img src="images/logos/nintendo-switch-logo.png" alt=""
+                                        class="w-4 h-4 object-contain brightness-0 invert">
                                     View on Switch
                                 </a>
                             </div>
@@ -97,24 +134,36 @@
                     </article>
 
                     <!-- SKELETONS -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/skeletons-card.jpg" alt="What Do You Call a Group of Skeletons" class="media-img w-full h-full object-cover" loading="lazy">
+                            <img src="images/cards/skeletons-card.jpg" alt="What Do You Call a Group of Skeletons"
+                                class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
                         </div>
                         <div class="card-tooltip">
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Arctic Bones</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">What Do You Call a Group of Skeletons</h2>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Arctic Bones</h4>
+                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">What Do You Call a Group of
+                                Skeletons</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Technical Sound Designer</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Technical
+                                    Sound Designer</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener" class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="" class="w-4 h-4 object-contain">
+                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/"
+                                    target="_blank" rel="noopener"
+                                    class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full"
+                                    onclick="event.stopPropagation();">
+                                    <img src="images/logos/Steam_icon_logo.svg.png" alt=""
+                                        class="w-4 h-4 object-contain">
                                     View on Steam
                                 </a>
                             </div>
@@ -122,10 +171,14 @@
                     </article>
 
                     <!-- AURA FARMERS -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata" poster="images/cards/aura-farmers-card.png">
+                            <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers"
+                                class="media-img w-full h-full object-cover" loading="lazy">
+                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop
+                                playsinline preload="metadata" poster="images/cards/aura-farmers-card.png">
                                 <source src="videos/aura-farmers-preview.mp4" type="video/mp4">
                             </video>
                             <div class="media-indicator">♪</div>
@@ -134,14 +187,21 @@
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Cable Nest</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Cable Nest</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">Aura Farmers</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound
+                                    Design</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" rel="noopener" class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="" class="w-4 h-4 object-contain">
+                                <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank"
+                                    rel="noopener"
+                                    class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full"
+                                    onclick="event.stopPropagation();">
+                                    <img src="images/logos/Steam_icon_logo.svg.png" alt=""
+                                        class="w-4 h-4 object-contain">
                                     View on Steam
                                 </a>
                             </div>
@@ -149,34 +209,46 @@
                     </article>
 
                 </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
+                <div
+                    class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
+                </div>
             </section>
 
             <!-- LANE 2: INDIE -->
             <section id="indie-games" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Indie & Personal Games</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Indie & Personal
+                    Games</h3>
 
-                <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
+                <div
+                    class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- RUBIK ROAD -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="rubik-road" data-audio-preview="sounds/previews/rubik-road.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="rubik-road" data-audio-preview="sounds/previews/rubik-road.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/rubik-road-card.png" alt="Rubik Road" class="media-img w-full h-full object-cover" loading="lazy">
+                            <img src="images/cards/rubik-road-card.png" alt="Rubik Road"
+                                class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
                         </div>
                         <div class="card-tooltip">
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Indie Project</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Indie Project</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">Rubik Road</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
                             </div>
                             <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt="" class="w-4 h-4 object-contain">
+                                <span
+                                    class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
+                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt=""
+                                        class="w-4 h-4 object-contain">
                                     Available on Playstore
                                 </span>
                             </div>
@@ -184,24 +256,32 @@
                     </article>
 
                     <!-- CROCODINE -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="crocodine" data-audio-preview="sounds/previews/crocodine.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="crocodine" data-audio-preview="sounds/previews/crocodine.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/crocodine-card.png" alt="CrocoDine" class="media-img w-full h-full object-cover" loading="lazy">
+                            <img src="images/cards/crocodine-card.png" alt="CrocoDine"
+                                class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
                         </div>
                         <div class="card-tooltip">
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Indie Project</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Indie Project</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">CrocoDine</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
                             </div>
                             <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt="" class="w-4 h-4 object-contain">
+                                <span
+                                    class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
+                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt=""
+                                        class="w-4 h-4 object-contain">
                                     Available on Playstore
                                 </span>
                             </div>
@@ -209,33 +289,45 @@
                     </article>
 
                 </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
+                <div
+                    class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
+                </div>
             </section>
 
             <!-- LANE 3: FILM -->
             <section id="cinematic" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Cinematics & Film</h3>
+                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Cinematics & Film
+                </h3>
 
-                <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
+                <div
+                    class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- HULDR -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="huldr" data-audio-preview="sounds/previews/huldr.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="huldr" data-audio-preview="sounds/previews/huldr.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/huldr-card.png" alt="HULDR" class="media-img w-full h-full object-cover" loading="lazy">
+                            <img src="images/cards/huldr-card.png" alt="HULDR"
+                                class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
                         </div>
                         <div class="card-tooltip">
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Animation</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Animation</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">HULDR</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composition</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composition</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound
+                                    Design</span>
                             </div>
                             <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
+                                <span
+                                    class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
                                     Theatrical Release
                                 </span>
                             </div>
@@ -243,22 +335,29 @@
                     </article>
 
                     <!-- RETUSCH -->
-                    <article class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="retusch" data-audio-preview="sounds/previews/retusch.mp3">
+                    <article
+                        class="project-card snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none"
+                        data-project-id="retusch" data-audio-preview="sounds/previews/retusch.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/retusch-card.png" alt="Retusch" class="media-img w-full h-full object-cover" loading="lazy">
+                            <img src="images/cards/retusch-card.png" alt="Retusch"
+                                class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
                         </div>
                         <div class="card-tooltip">
                             <span>Click to learn more</span>
                         </div>
                         <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Short-film</h4>
+                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">
+                                Short-film</h4>
                             <h2 class="text-xl font-bold text-white mb-3 leading-tight">Retusch</h2>
                             <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Music & Sound</span>
+                                <span
+                                    class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Music
+                                    & Sound</span>
                             </div>
                             <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
+                                <span
+                                    class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
                                     Theatrical Release
                                 </span>
                             </div>
@@ -266,22 +365,29 @@
                     </article>
 
                 </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
+                <div
+                    class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
+                </div>
             </section>
 
         </div>
     </main>
 
     <!-- PROJECT MODAL -->
-    <div id="project-detail-modal" class="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
-        <div id="project-modal-wrapper" class="bg-[#111114] border border-white/10 rounded-2xl w-full max-w-5xl max-h-[92vh] overflow-hidden shadow-2xl shadow-black/50 scale-95 transition-transform duration-300 relative">
-            <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-none">&times;</button>
+    <div id="project-detail-modal"
+        class="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
+        <div id="project-modal-wrapper"
+            class="bg-[#111114] border border-white/10 rounded-2xl w-full max-w-5xl max-h-[92vh] overflow-hidden shadow-2xl shadow-black/50 scale-95 transition-transform duration-300 relative">
+            <button onclick="closeProjectModal()"
+                class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-none">&times;</button>
             <div class="p-6 md:p-10 overflow-y-auto max-h-[92vh]" id="project-modal-body"></div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     <script type="module" src="js/main.js"></script>
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script>
+    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
+        data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script>
 </body>
+
 </html>
