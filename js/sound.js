@@ -64,6 +64,14 @@ export function playSound(name) {
     sounds[name]?.play();
 }
 
+export function isSoundEnabled() {
+    return enabled;
+}
+
+export function isSoundUnlocked() {
+    return unlocked;
+}
+
 function updateToggleUI() {
     const icon = document.getElementById('sound-icon');
     const btn = document.getElementById('sound-toggle');
@@ -150,10 +158,3 @@ export function initSound() {
     events.forEach(e => window.addEventListener(e, unlockOnce));
 }
 
-export function isSoundEnabled() {
-    return enabled;
-}
-
-export function isSoundUnlocked() {
-    return unlocked;
-}

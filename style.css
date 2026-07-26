@@ -40,7 +40,7 @@ body {
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .media-img, .media-video, .media-indicator,
-    .project-card, .project-lane {
+    .project-card, .project-lane, .nav-link, .nav-link-separator {
         transition: none !important;
         animation: none !important;
     }
@@ -92,23 +92,39 @@ body {
     display: none;
 }
 
-/* Smooth lane fade with longer, softer transitions */
-.lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
+/* Smooth lane fade — only applies after animation is done (.lane-ready) */
+.lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover).lane-ready {
     opacity: 0.25;
     transform: scale(0.97);
 }
 
 .project-lane {
-    transition: opacity 1.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     transform-origin: left center;
     will-change: transform, opacity;
+    /* No transition here — handled by .lane-ready after animation */
 }
 
-/* Fix top border clipping — give breathing room for hover borders */
+.project-lane.lane-ready {
+    transition: opacity 1.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Fix top border clipping */
 .lane-track {
     padding-top: 4px;
     padding-bottom: 4px;
+}
+
+/* ==========================================================================
+   NAV LINKS
+   ========================================================================== */
+
+.nav-link, .nav-link-separator {
+    display: inline-block;
+}
+
+.nav-link-ready {
+    transition: color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -157,7 +173,6 @@ body {
 .project-card {
     transform-origin: center center;
     cursor: none;
-    /* Allow tooltip to stick out below the card */
     overflow: visible !important;
     position: relative;
 }
@@ -166,8 +181,6 @@ body {
     transform: translateY(-4px);
 }
 
-/* Move overflow clipping to media-preview so images stay rounded
-   while the card itself can spill content (tooltip) below */
 .project-card .media-preview {
     position: relative;
     width: 100%;
@@ -252,7 +265,7 @@ body {
 
 .card-tooltip {
     position: absolute;
-    bottom: -36px;          /* Hang below the card like a bookmark */
+    bottom: -36px;
     left: 50%;
     transform: translateX(-50%) translateY(4px);
     background: transparent;
@@ -274,9 +287,9 @@ body {
     color: #f59e0b;
     background: rgba(245, 158, 11, 0.1);
     border: 1px solid rgba(245, 158, 11, 0.25);
-    border-top: none;       /* Seamless with card bottom */
+    border-top: none;
     padding: 8px 18px;
-    border-radius: 0 0 10px 10px;  /* Bookmark shape */
+    border-radius: 0 0 10px 10px;
     backdrop-filter: blur(8px);
     white-space: nowrap;
     box-shadow: 0 4px 20px rgba(245, 158, 11, 0.08);
@@ -289,7 +302,7 @@ body {
     transition-delay: 1s;
 }
 
-/* No delay when leaving — hide immediately */
+/* No delay when leaving */
 .project-card:not(:hover) .card-tooltip {
     transition-delay: 0s;
 }
