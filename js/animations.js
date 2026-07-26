@@ -7,7 +7,7 @@ document.head.insertAdjacentHTML("beforeend", `
     </style>
 `);
 
-document.addEventListener("DOMContentLoaded", () => {
+export function initAnimations() {
     // 2. Ta bort den temporära dölj-regeln när vi är redo att animera
     const preloadStyle = document.getElementById('preload-hide');
     if (preloadStyle) preloadStyle.remove();
@@ -31,8 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
             lane.style.animationDelay = `${index * 0.2}s`;
             lane.classList.add('animate-fade-right');
 
-            // När animationen är klar: ta bort animationsklassen och lägg till lane-ready
-            // så att hover-transitionerna kan ta över utan konflikt
             const onAnimEnd = (e) => {
                 if (e.animationName === 'slideRightFade') {
                     lane.classList.remove('animate-fade-right');
@@ -59,4 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener('animationend', onAnimEnd);
         });
     }
-});
+}
