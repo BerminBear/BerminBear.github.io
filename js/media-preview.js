@@ -1,7 +1,8 @@
 // js/media-preview.js
 import { isSoundEnabled, isSoundUnlocked, playSound } from './sound.js';
+import { openProjectModal } from './modal.js';
 
-let currentPreview = null; // Håller koll på EN aktiv ljud-preview i taget
+let currentPreview = null;
 
 function stopCurrentPreview() {
     if (!currentPreview) return;
@@ -19,53 +20,58 @@ export function initMediaPreviews() {
         const img = card.querySelector('.media-img');
         const indicator = card.querySelector('.media-indicator');
         const audioSrc = card.dataset.audioPreview;
+        const projectId = card.dataset.projectId;
 
         let hoverTimeout;
         let howl = null;
 
-        // Skapa Howl-instansen en gång per kort, bara om kortet faktiskt har ljud angivet
         if (audioSrc && typeof Howl !== 'undefined') {
             howl = new Howl({
                 src: [audioSrc],
                 volume: 0,
                 loop: true,
                 preload: true,
-                onloaderror: () => console.warn(`[media-preview.js] Kunde inte ladda audio-preview: ${audioSrc}`),
+                onloaderror: () => console.warn(`[media-preview.js] Kunde inte ladda: ${audioSrc}`),
             });
         }
 
+        // HOVER: video + ljud
         card.addEventListener('mouseenter', () => {
             hoverTimeout = setTimeout(() => {
-                // Video (valfri — bara om kortet har en <video class="media-video">)
                 if (video) {
                     if (video.readyState < 2) video.load();
-                    video.play().catch(() => {
-                        // Autoplay blockerad — bilden ligger redan kvar synlig, inget att göra
-                    });
+                    video.play().catch(() => {});
                 }
-
-                // Ljud (bara om sidans globala ljud är påslaget OCH upplåst)
                 if (howl && isSoundEnabled() && isSoundUnlocked()) {
-                    stopCurrentPreview(); // Se till att bara ETT kort ljuder åt gången
+                    stopCurrentPreview();
                     howl.play();
                     howl.fade(0, 0.4, 400);
                     currentPreview = howl;
                     indicator?.classList.add('is-playing');
                 }
-            }, 150); // Samma korta fördröjning som Kimi föreslog — skydd mot snabb scroll-through
+            }, 150);
         });
 
         card.addEventListener('mouseleave', () => {
             clearTimeout(hoverTimeout);
-
             if (video) {
                 video.pause();
                 video.currentTime = 0;
             }
-
             if (howl && currentPreview === howl) {
                 stopCurrentPreview();
                 indicator?.classList.remove('is-playing');
+            }
+        });
+
+        // CLICK: öppna modal (om man inte klickade på länken)
+        card.addEventListener('click', (e) => {
+            // Om klicket var på en länk eller knapp inuti kortet, öppna INTE modalen
+            if (e.target.closest('a, button, .card-link')) return;
+            
+            if (projectId) {
+                playSound('click');
+                openProjectModal(projectId);
             }
         });
 

@@ -1,8 +1,89 @@
 /* ==========================================================================
-   PORTFOLIO LANES & SCROLL LOGIC
+   GLOBALS & RESET
    ========================================================================== */
 
-/* 1. Dölj scrollbaren men behåll funktionen */
+* {
+    cursor: none !important;
+}
+
+html {
+    scrollbar-color: #f59e0b #08070a;
+    scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #08070a;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #f59e0b;
+    border-radius: 10px;
+    border: 2px solid #08070a;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #d97706;
+}
+
+body {
+    cursor: none;
+}
+
+/* Touch: återställ cursor */
+@media (pointer: coarse) {
+    body { cursor: auto !important; }
+    #custom-cursor, #mouse-glow { display: none !important; }
+    * { cursor: auto !important; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .media-img, .media-video, .media-indicator,
+    .project-card, .project-lane {
+        transition: none !important;
+        animation: none !important;
+    }
+    .media-video { display: none !important; }
+}
+
+/* ==========================================================================
+   MOUSE GLOW & CURSOR
+   ========================================================================== */
+
+#mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99998;
+}
+
+#custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: #f59e0b;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2147483647 !important;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.cursor-hidden {
+    opacity: 0 !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+}
+
+/* ==========================================================================
+   SCROLL & LANE SYSTEM
+   ========================================================================== */
+
 .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -11,29 +92,6 @@
     display: none;
 }
 
-/* Standard för moderna webbläsare (Firefox m.fl) */
-html {
-    scrollbar-color: #f59e0b #08070a; /* Tummen (amber-500), Bakgrunden (mörk) */
-    scrollbar-width: thin;
-}
-
-/* För Chrome/Edge/Safari */
-::-webkit-scrollbar {
-    width: 10px;
-}
-::-webkit-scrollbar-track {
-    background: #08070a; 
-}
-::-webkit-scrollbar-thumb {
-    background-color: #f59e0b; 
-    border-radius: 10px;
-    border: 2px solid #08070a; /* Skapar lite luft runt tummen */
-}
-::-webkit-scrollbar-thumb:hover {
-    background-color: #d97706; /* Lite mörkare amber när man hovrar */
-}
-
-/* 2. Netflix Hover-effekten (med :has() väljaren) */
 .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
     opacity: 0.3;
     transform: scale(0.98);
@@ -44,29 +102,9 @@ html {
     transform-origin: left center;
 }
 
-/* Grundläge för element som ska animeras */
-.fade-up-element {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-right-element {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-/* Klassen som läggs på via JavaScript när elementet syns */
-.is-visible {
-    opacity: 1;
-    transform: translate(0);
-}
-
-
-/* =========================================
+/* ==========================================================================
    PAGE LOAD ANIMATIONS
-   ========================================= */
+   ========================================================================== */
 
 @keyframes slideUpFade {
     0% { opacity: 0; transform: translateY(40px); }
@@ -79,7 +117,6 @@ html {
 }
 
 .animate-fade-up {
-    /* "both" gör så att elementet är helt osynligt (0%) direkt under fördröjningen, och stannar på 100% när det är klart */
     animation: slideUpFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
 }
 
@@ -87,84 +124,75 @@ html {
     animation: slideRightFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
 }
 
-/* Slutläge (När scriptet lägger till denna klass) */
+.fade-up-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-right-element {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
 .is-visible {
     opacity: 1 !important;
     transform: translate(0) !important;
 }
 
-* {
-    cursor: none !important;
-}
-
-#mouse-glow {
-    /* ... din befintliga kod ... */
-    z-index: 99998; /* Höjt från 1 */
-}
-
-#custom-cursor {
-    z-index: 2147483647 !important; /* Det högsta z-index som finns i CSS */
-}
-
-/* Stäng av custom cursor helt på touch-enheter */
-@media (pointer: coarse) {
-    body {
-        cursor: auto !important; /* Ger tillbaka vanliga pilen på mobilen */
-    }
-    #custom-cursor, #mouse-glow {
-        display: none !important; /* Gömmer den orangea pricken och ljuset */
-    }
-    * {
-        cursor: auto !important;
-    }
-}
-
 /* ==========================================================================
-   VIDEO PREVIEW HOVER SYSTEM
+   PROJECT CARDS & MEDIA PREVIEW
    ========================================================================== */
 
-.media-preview {
+.project-card {
+    transform-origin: center center;
+    cursor: none;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+}
+
+.project-card .media-preview {
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    border-radius: 0.75rem;
     overflow: hidden;
     background: #0a0a0c;
-    margin-bottom: 1.5rem;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.media-img,
-.media-video {
+.project-card .media-img,
+.project-card .media-video {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s ease;
 }
 
-.media-video {
+.project-card .media-video {
     opacity: 0;
 }
 
-/* Subtle bottom gradient for visual polish */
-.media-preview::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent 70%, rgba(8, 7, 10, 0.6) 100%);
-    pointer-events: none;
-    z-index: 1;
+.project-card:hover .media-img {
+    opacity: 0;
+    transform: scale(1.05);
 }
 
-/* Play indicator — visible when idle, fades on hover */
+.project-card:hover .media-video {
+    opacity: 1;
+}
+
+/* Indicator */
 .media-indicator {
     position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 32px;
-    height: 32px;
+    bottom: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(4px);
@@ -172,7 +200,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: opacity 0.3s ease, transform 0.3s ease;
@@ -180,50 +208,97 @@ html {
     pointer-events: none;
 }
 
-/* Hover states */
-.project-card:hover .media-img {
-    opacity: 0;
-}
-
-.project-card:hover .media-video {
-    opacity: 1;
-}
-
 .project-card:hover .media-indicator {
     opacity: 0;
     transform: scale(0.8);
 }
 
-/* Disable video previews on touch devices (no hover) */
-@media (pointer: coarse) {
-    .media-video {
-        display: none !important;
-    }
-    .media-img {
-        opacity: 1 !important;
-    }
-    .media-indicator {
-        display: none;
-    }
-}
-
-/* Respect reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .media-img,
-    .media-video,
-    .media-indicator {
-        transition: none !important;
-    }
-    .media-video {
-        display: none !important;
-    }
-}
-
 .media-indicator.is-playing {
     animation: pulseIndicator 1.2s ease-in-out infinite;
+    color: #f59e0b;
+    border-color: rgba(245, 158, 11, 0.3);
 }
 
 @keyframes pulseIndicator {
-    0%, 100% { opacity: 0.7; transform: scale(1); }
+    0%, 100% { opacity: 0.8; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Touch overrides */
+@media (pointer: coarse) {
+    .project-card .media-video { display: none !important; }
+    .project-card .media-img { opacity: 1 !important; transform: none !important; }
+    .media-indicator { display: none; }
+}
+
+/* ==========================================================================
+   CARD TOOLTIP — "Click to learn more"
+   ========================================================================== */
+
+.card-tooltip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 24px 12px 12px;
+    background: linear-gradient(to top, rgba(8, 7, 10, 0.95) 0%, rgba(8, 7, 10, 0.6) 60%, transparent 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.card-tooltip span {
+    font-family: 'Fira Code', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.08);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    padding: 6px 14px;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+}
+
+.project-card:hover .card-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Touch: dölj tooltip */
+@media (pointer: coarse) {
+    .card-tooltip { display: none !important; }
+}
+
+/* ==========================================================================
+   MODALS
+   ========================================================================== */
+
+#about-detail-modal,
+#project-detail-modal {
+    /* Backdrop hanteras av Tailwind-klasser i HTML */
+}
+
+#about-modal-wrapper,
+#project-modal-wrapper {
+    background: #111114;
+}
+
+/* Spotify embed dark mode match */
+iframe[src*="spotify"] {
+    filter: contrast(0.95);
+}
+
+/* ==========================================================================
+   NAV & UTILITIES
+   ========================================================================== */
+
+.code-font {
+    font-family: 'Fira Code', monospace;
 }
