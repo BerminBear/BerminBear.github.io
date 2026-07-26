@@ -92,14 +92,23 @@ body {
     display: none;
 }
 
+/* Smooth lane fade with longer, softer transitions */
 .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover) {
-    opacity: 0.3;
-    transform: scale(0.98);
+    opacity: 0.25;
+    transform: scale(0.97);
 }
 
 .project-lane {
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 1.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
     transform-origin: left center;
+    will-change: transform, opacity;
+}
+
+/* Fix top border clipping — give breathing room for hover borders */
+.lane-track {
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 /* ==========================================================================
@@ -148,12 +157,17 @@ body {
 .project-card {
     transform-origin: center center;
     cursor: none;
+    /* Allow tooltip to stick out below the card */
+    overflow: visible !important;
+    position: relative;
 }
 
 .project-card:hover {
     transform: translateY(-4px);
 }
 
+/* Move overflow clipping to media-preview so images stay rounded
+   while the card itself can spill content (tooltip) below */
 .project-card .media-preview {
     position: relative;
     width: 100%;
@@ -161,6 +175,7 @@ body {
     overflow: hidden;
     background: #0a0a0c;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1rem 1rem 0 0;
 }
 
 .project-card .media-img,
@@ -232,24 +247,22 @@ body {
 }
 
 /* ==========================================================================
-   CARD TOOLTIP — "Click to learn more"
+   CARD TOOLTIP — Bookmark style below card
    ========================================================================== */
 
 .card-tooltip {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 24px 12px 12px;
-    background: linear-gradient(to top, rgba(8, 7, 10, 0.95) 0%, rgba(8, 7, 10, 0.6) 60%, transparent 100%);
+    bottom: -36px;          /* Hang below the card like a bookmark */
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: transparent;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     opacity: 0;
-    transform: translateY(6px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease;
     pointer-events: none;
-    z-index: 3;
+    z-index: 10;
 }
 
 .card-tooltip span {
@@ -259,16 +272,26 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.15em;
     color: #f59e0b;
-    background: rgba(245, 158, 11, 0.08);
-    border: 1px solid rgba(245, 158, 11, 0.2);
-    padding: 6px 14px;
-    border-radius: 6px;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    border-top: none;       /* Seamless with card bottom */
+    padding: 8px 18px;
+    border-radius: 0 0 10px 10px;  /* Bookmark shape */
     backdrop-filter: blur(8px);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.08);
 }
 
+/* 2-second delay before tooltip appears */
 .project-card:hover .card-tooltip {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
+    transition-delay: 1s;
+}
+
+/* No delay when leaving — hide immediately */
+.project-card:not(:hover) .card-tooltip {
+    transition-delay: 0s;
 }
 
 /* Touch: dölj tooltip */
