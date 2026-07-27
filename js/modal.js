@@ -245,7 +245,7 @@ const projectsData = {
         genre: 'Drama, Short-film',
         console: 'Theatrical',
         engine: 'N/A',
-        daw: 'Reaper',
+        daw: 'Reaper, Pro Tools',
         comms: 'Email',
         time: '~2 weeks',
         description: 'Provided highly targeted music and sound design for a pivotal scene within the film, enhancing the emotional and narrative impact.',
