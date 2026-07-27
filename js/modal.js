@@ -8,7 +8,7 @@ const aboutContent = `
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         <div class="md:col-span-4">
             <div class="w-full rounded-xl overflow-hidden shadow-2xl shadow-amber-900/20">
-                <img src="portfolio-picture.png" alt="Portrait of Benjamin Natalli" class="w-full h-full object-cover">
+                <img src="portfolio-picture.jpeg" alt="Portrait of Benjamin Natalli" class="w-full h-full object-cover">
             </div>
             <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
                 <div><span class="text-slate-600 uppercase tracking-wider block text-[10px] mb-0.5">Age:</span> 25</div>
