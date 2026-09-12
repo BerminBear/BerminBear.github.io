@@ -138,9 +138,9 @@
         <a href="#hero"
             class="text-xs font-medium tracking-widest uppercase font-mono text-amber-500/60 hover:text-amber-400 transition-colors">01.
             Profile</a>
-        <a href="#workflow"
+        <a href="#latest"
             class="text-xs font-medium tracking-widest uppercase font-mono text-slate-500 hover:text-amber-400 transition-colors">02.
-            Workflow</a>
+            latest</a>
         <a href="#experience"
             class="text-xs font-medium tracking-widest uppercase font-mono text-slate-500 hover:text-amber-400 transition-colors">03.
             Experience</a>
@@ -195,25 +195,11 @@
                     </p>
 
                     <!-- LINKS -->
-                    <div
-                        class="mt-5 flex flex-wrap justify-center gap-6 text-sm code-font text-slate-500 font-semibold">
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank"
-                            rel="noopener noreferrer"
-                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn
-                            ]</a>
-                        <a href="https://github.com/BerminBear" target="_blank" rel="noopener noreferrer"
-                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Github
-                            ]</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com"
-                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Socials
-                            ]</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com"
-                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email
-                            ]</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download
-                            class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors"></a>[
-                        CV ]</a>
-                    </div>
+<div class="mt-5 flex flex-wrap justify-center gap-6 text-sm code-font text-slate-500 font-semibold">
+    <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
+    <a href="mailto:Benjamin.Salmonsson@outlook.com" class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
+    <a href="Benjamin-Natalli-CV.pdf" download class="hover:text-amber-400 border-b border-white/5 pb-1 transition-colors">[ CV ]</a>
+</div>
                 </div>
             </div>
 
@@ -227,7 +213,7 @@
         </section>
 
         <!-- 3. WORKFLOW -->
-        <section id="workflow" class="scroll-mt-40 snap-start w-full">
+     <!--   <section id="workflow" class="scroll-mt-40 snap-start w-full">
             <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-4 text-center">Workflow
             </h3>
             <p class="text-base md:text-lg text-slate-400 max-w-3xl mx-auto mb-8 text-center">
@@ -303,7 +289,65 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+
+        <!-- HIGHLIGHTS / SELECTED WORK -->
+<section id="highlights" class="scroll-mt-40 snap-start w-full">
+    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-8 text-center">Selected Work</h3>
+    
+    <!-- Horisontell scroll-container -->
+    <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar max-w-5xl mx-auto px-4 lg:justify-center">
+        
+        <!-- Project 1: Skeletons -->
+        <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
+            <div class="media-preview relative w-full aspect-video">
+                <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
+                <div class="media-indicator">▶</div>
+            </div>
+            <div class="p-4 border-t border-white/5">
+                <h4 class="text-white font-bold">What Do You Call a Group of Skeletons</h4>
+                <p class="text-amber-500 code-font text-[10px] uppercase mt-1">Composer & Tech Sound Designer</p>
+            </div>
+        </div>
+
+        <!-- Project 2: Tentacle Tango -->
+        <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
+            <div class="media-preview relative w-full aspect-video">
+                <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango" class="media-img absolute inset-0 w-full h-full object-cover">
+                <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata">
+                    <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
+                </video>
+                <div class="media-indicator">▶</div>
+            </div>
+            <div class="p-4 border-t border-white/5">
+                <h4 class="text-white font-bold">Tentacle Tango</h4>
+                <p class="text-amber-500 code-font text-[10px] uppercase mt-1">Composer & Sound Designer</p>
+            </div>
+        </div>
+
+        <!-- Project 3: Aura Farmers -->
+        <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
+            <div class="media-preview relative w-full aspect-video">
+                <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers" class="media-img absolute inset-0 w-full h-full object-cover">
+                <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata">
+                    <source src="videos/aura-farmers-preview.mp4" type="video/mp4">
+                </video>
+                <div class="media-indicator">▶</div>
+            </div>
+            <div class="p-4 border-t border-white/5">
+                <h4 class="text-white font-bold">Aura Farmers</h4>
+                <p class="text-amber-500 code-font text-[10px] uppercase mt-1">Sound Designer</p>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Länk till alla projekt -->
+    <div class="flex justify-center mt-2">
+         <a href="projects.html" class="text-xs code-font text-slate-400 hover:text-amber-400 transition-colors border-b border-white/10 pb-1 uppercase tracking-widest">View all projects →</a>
+    </div>
+</section>
+
 
         <!-- 4. EXPERIENCE & EDUCATION -->
         <section id="experience" class="scroll-mt-40 snap-start w-full">
