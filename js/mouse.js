@@ -25,7 +25,8 @@ export function initMouseGlow() {
                 const radius = '200px';
                 const intensity = '0.08';
                 
-                glow.style.background = `radial-gradient(${radius} at ${mouseX}px ${mouseY}px, rgba(245, 158, 11, ${intensity}), transparent 70%)`;
+                // I mouse.js:
+glow.style.background = `radial-gradient(${radius} at ${mouseX}px ${mouseY}px, var(--color-glow), transparent 70%)`;
                 cursor.style.left = `${mouseX}px`;
                 cursor.style.top = `${mouseY}px`;
                 
