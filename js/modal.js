@@ -7,7 +7,7 @@
 const aboutContent = `
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         <div class="md:col-span-4">
-            <div class="w-full rounded-xl overflow-hidden shadow-2xl shadow-amber-900/20">
+            <div class="w-full rounded-xl overflow-hidden shadow-2xl">
                 <img src="portfolio-picture.jpeg" alt="Portrait of Benjamin Natalli" class="w-full h-full object-cover">
             </div>
             <div class="mt-4 pt-4 border-t border-white/5 space-y-2 text-xs code-font text-slate-400">
@@ -18,7 +18,7 @@ const aboutContent = `
         </div>
         <div class="md:col-span-8 space-y-6 max-h-[70vh] overflow-y-auto pr-2">
             <div>
-                <span class="code-font text-amber-500 text-xs tracking-widest uppercase">Character Entry</span>
+                <span class="code-font text-theme-accent text-xs tracking-widest uppercase">Character Entry</span>
                 <h2 class="text-3xl font-extrabold text-white mt-1">Benjamin D. Natalli</h2>
                 <p class="text-xs text-slate-400 code-font mt-1">Audio Designer / Narrative Enthusiast</p>
             </div>
@@ -31,28 +31,28 @@ const aboutContent = `
             <div class="h-[1px] bg-white/10"></div>
             <div class="space-y-4 text-xs code-font">
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Games:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Baldur's Gate Series, Planescape: Torment, Disco Elysium, Witcher 3, Elden Ring</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Favorite Games:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">Baldur's Gate Series, Planescape: Torment, Disco Elysium, Witcher 3, Elden Ring</p>
                 </div>
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Hobbies:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Mushroom foraging, woodworking, D&D, brewing, perfumery</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Hobbies:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">Mushroom foraging, woodworking, D&D, brewing, perfumery</p>
                 </div>
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Volleyball, climbing, kayaking</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Favorite Sports:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">Volleyball, climbing, kayaking</p>
                 </div>
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Books:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">The Wind-Up Bird Chronicle (Murakami), Mort (Pratchett)</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Favorite Books:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">The Wind-Up Bird Chronicle (Murakami), Mort (Pratchett)</p>
                 </div>
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Movies:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">V for Vendetta, Watchmen, The Princess Bride, The Lord of the Rings</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Favorite Movies:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">V for Vendetta, Watchmen, The Princess Bride, The Lord of the Rings</p>
                 </div>
                 <div>
-                    <span class="text-amber-500 font-bold uppercase tracking-wider block mb-1">Favorite Music:</span>
-                    <p class="text-slate-300 pl-3 border-l border-amber-500/30">Fleet Foxes, RY X, Laura Marling, Nils Frahm, Grupo Revelação</p>
+                    <span class="text-theme-accent font-bold uppercase tracking-wider block mb-1">Favorite Music:</span>
+                    <p class="text-slate-300 pl-3 border-l border-theme-accent">Fleet Foxes, RY X, Laura Marling, Nils Frahm, Grupo Revelação</p>
                 </div>
             </div>
         </div>
@@ -279,7 +279,7 @@ function buildProjectModalHTML(id) {
 
     const spotifySection = p.spotifyEmbed ? `
         <div class="pt-4 border-t border-white/10">
-            <span class="text-amber-500 font-bold uppercase tracking-wider block mb-3 text-xs code-font">Project Soundtrack</span>
+            <span class="text-theme-accent font-bold uppercase tracking-wider block mb-3 text-xs code-font">Project Soundtrack</span>
             <iframe style="border-radius:12px" src="${p.spotifyEmbed}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="opacity-90 hover:opacity-100 transition-opacity"></iframe>
         </div>
     ` : '';
@@ -316,7 +316,7 @@ function buildProjectModalHTML(id) {
             </div>
             <div class="md:col-span-7 space-y-6 max-h-[75vh] overflow-y-auto pr-2">
                 <div>
-                    <span class="code-font text-amber-500 text-xs tracking-widest uppercase">${p.studio}</span>
+                    <span class="code-font text-theme-accent text-xs tracking-widest uppercase">${p.studio}</span>
                     <h2 class="text-3xl font-extrabold text-white mt-1 leading-tight">${p.title}</h2>
                     <p class="text-sm text-slate-400 code-font mt-1">${p.role}</p>
                 </div>
