@@ -13,6 +13,9 @@ export function initMouseGlow() {
     let mouseX = 0;
     let mouseY = 0;
     let isMoving = false;
+    
+    // NYTT: Håller reda på vilken färg musljuset ska ha
+    let currentGlow = 'var(--color-glow)';
 
     window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
@@ -23,10 +26,9 @@ export function initMouseGlow() {
             isMoving = true;
             requestAnimationFrame(() => {
                 const radius = '200px';
-                const intensity = '0.08';
                 
-                // I mouse.js:
-glow.style.background = `radial-gradient(${radius} at ${mouseX}px ${mouseY}px, var(--color-glow), transparent 70%)`;
+                // NYTT: Nu använder vi vår currentGlow istället för den hårdkodade färgen
+                glow.style.background = `radial-gradient(${radius} at ${mouseX}px ${mouseY}px, ${currentGlow}, transparent 70%)`;
                 cursor.style.left = `${mouseX}px`;
                 cursor.style.top = `${mouseY}px`;
                 
@@ -43,12 +45,26 @@ glow.style.background = `radial-gradient(${radius} at ${mouseX}px ${mouseY}px, v
         if (clickable) {
             cursor.classList.add('cursor-hidden');
         }
+
+        // NYTT: Om vi hovrar ett kort, CV-yta eller modaler -> byt till hover-ljuset
+        const hoverableContainer = e.target.closest('.project-card, .card-surface, #about-modal-wrapper, #project-modal-wrapper');
+        if (hoverableContainer) {
+            currentGlow = 'var(--color-glow-hover)';
+        }
     });
 
     document.addEventListener('mouseout', (e) => {
         const clickable = e.target.closest('a, button, summary, .project-card, .cv-clickable-card, .cv-name-trigger, [onclick]');
         if (clickable) {
             cursor.classList.remove('cursor-hidden');
+        }
+
+        // NYTT: Återställ musljuset till originalfärgen. 
+        // contains(e.relatedTarget) säkerställer att vi inte återställer ljuset 
+        // bara för att musen rörde sig över en text inuti själva modalen/kortet.
+        const hoverableContainer = e.target.closest('.project-card, .card-surface, #about-modal-wrapper, #project-modal-wrapper');
+        if (hoverableContainer && !hoverableContainer.contains(e.relatedTarget)) {
+            currentGlow = 'var(--color-glow)';
         }
     });
 }

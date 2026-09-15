@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-[#08070a] text-white antialiased overflow-x-hidden relative">
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="projects">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
@@ -38,7 +38,7 @@
                 <div class="w-full max-w-4xl flex flex-col items-center">
                     <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger text-center block focus:outline-none">
     <!-- Ändrat från hover:text-indigo-400 till din accentfärg -->
-    <h1 class="heading-display transition-colors duration-300 group-hover:text-[#6FA8C9]">
+    <h1 class="heading-display transition-colors duration-300 group-hover:text-[var(--color-accent-hover)]">
         Benjamin Natalli
         
         <span class="inline-block label-mono text-xs font-normal tracking-widest uppercase ml-2 transition-transform duration-300 group-hover:scale-110" style="color: var(--color-accent);">[ INFO+ ]</span>
@@ -104,9 +104,9 @@
             </div>
             
             <div class="flex justify-center mt-12">
-    <a href="projects.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/10 bg-[#111216] text-[#7E8794] hover:text-[#95c4df] hover:border-[#6FA8C9]/40 hover:shadow-[0_0_20px_rgba(111,168,201,0.2)] transition-all duration-300 label-mono uppercase text-xs font-bold tracking-widest">
-        View all projects →
-    </a>
+    <a href="projects.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full border border-black/10 card-surface text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border)] hover:shadow-[0_0_20px_var(--color-glow)] transition-all duration-300 label-mono uppercase text-xs font-bold tracking-widest">
+    View all projects →
+</a>
 </div>
         </section>
 

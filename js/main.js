@@ -4,6 +4,7 @@ import { initModal } from './modal.js';
 import { initSound } from './sound.js';
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
+import { initThemes } from './theme.js'; 
 
 function initApp() {
     initAnimations();
@@ -11,6 +12,7 @@ function initApp() {
     initModal();
     initSound();
     initMediaPreviews();
+    initThemes();
     console.log('System initialized successfully.');
 }
 

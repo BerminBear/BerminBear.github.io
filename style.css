@@ -3,22 +3,33 @@
    ========================================================================== */
 /* Customklasser för att styra JS-innehåll med CSS-variabler */
 .text-theme-accent { color: var(--color-accent) !important; }
-.border-theme-accent { border-color: rgba(111, 168, 201, 0.3) !important; }
+.border-theme-accent {
+    border-color: var(--color-accent-border) !important;
+}
 
 :root {
-    /* Färger */
-    --color-bg: #090A0C;
-    --color-text: #E8E8E5;
-    --color-muted: #7E8794;
-    --color-accent: #6FA8C9;        /* Kall blågrå / cyan */
-    --color-accent-hover: #95c4df;  /* Ljusare cyan vid hover */
-    --color-secondary: #B7C5D1;
-    --color-glow: rgba(111, 168, 201, 0.18); /* Glow vid hover */
+    /* Grundfärger */
+    --color-bg: #0C0C0C;
+    --color-text: #B0B0B0;
+    --color-muted: #5E5E5E;
+    
+    /* Accent & Interaktion */
+    --color-accent: #FFFFFF;
+    --color-accent-hover: #E0E0E0;
+    --color-secondary: #262626;
+    --color-modal-bg: #080808; /* NY: Mörkare standardbakgrund för modaler */
+    
+    /* Borders & Glow */
+    --color-accent-border: rgba(255, 255, 255, 0.2);
+    --color-modal-border: rgba(255, 255, 255, 0.4);
+    --color-glow: rgba(255, 255, 255, 0.1);
+    --color-glow-hover: rgba(255, 255, 255, 0.2);
+    --color-modal-glow: rgba(255, 255, 255, 0.15);
 
-    /* Fonter: Space Grotesk för rubriker, Fira Code/JetBrains Mono för undertext/länkar */
-    --font-heading: 'Space Grotesk', sans-serif;
+    /* Typografi */
+    --font-heading: 'Instrument Serif', serif;
     --font-body: 'Inter', sans-serif;
-    --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+    --font-mono: 'IBM Plex Mono', monospace;
 }
 
 * {
@@ -139,18 +150,26 @@ a:hover, button:hover, .nav-link {
 .project-card,
 #about-modal-wrapper,
 #project-modal-wrapper {
-    background: #111216;
+    background: var(--color-modal-bg) !important;
+    color: var(--color-text);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.8);
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#about-modal-wrapper:hover,
+#project-modal-wrapper:hover {
+    border-color: var(--color-modal-border) !important;
+    box-shadow: 0 0 35px var(--color-modal-glow), 0 15px 40px -5px rgba(0,0,0,0.9) !important;
+    transform: translateY(-2px); /* Ett subtilare lyft eftersom modalen är stor */
 }
 
 /* NÄR DU HOVRAR ÖVER ETT KORT: Ram lyser upp & skuggan blir blå */
 .card-surface:hover,
 .project-card:hover {
-    border-color: rgba(111, 168, 201, 0.4) !important;
-    box-shadow: 0 0 25px var(--color-glow), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
+    border-color: var(--color-accent-border) !important;
+    box-shadow: 0 0 25px var(--color-glow-hover), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
     transform: translateY(-4px);
 }
 
@@ -331,7 +350,7 @@ a:hover, button:hover, .nav-link {
 .media-indicator.is-playing {
     animation: pulseIndicator 1.2s ease-in-out infinite;
     color: var(--color-accent);
-    border-color: rgba(111, 168, 201, 0.3);
+    border-color: var(--color-accent-border);
 }
 
 @keyframes pulseIndicator {
@@ -366,13 +385,13 @@ a:hover, button:hover, .nav-link {
     letter-spacing: 0.15em;
     color: var(--color-accent);
     background: var(--color-glow);
-    border: 1px solid rgba(111, 168, 201, 0.25);
+    border: 1px solid var(--color-accent-border);
     border-top: none;
     padding: 8px 18px;
     border-radius: 0 0 10px 10px;
     backdrop-filter: blur(8px);
     white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(111, 168, 201, 0.08);
+    box-shadow: 0 4px 20px var(--color-glow);
 }
 
 .project-card:hover .card-tooltip {
