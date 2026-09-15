@@ -1,439 +1,169 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth lg:snap-y lg:snap-proximity">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Benjamin Natalli | Technical Audio & Dialogue Design</title>
-    <meta name="description"
-        content="Benjamin Natalli — Technical Audio & Dialogue Designer based in Stockholm. Specializing in game audio, sound design, music composition, and middleware implementation for games and film.">
-    <meta name="author" content="Benjamin D. Natalli">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://berminbear.github.io/">
-    <meta name="theme-color" content="#08070a">
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link rel="apple-touch-icon" href="favicon.png">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://berminbear.github.io/">
-    <meta property="og:title" content="Benjamin Natalli | Technical Audio & Dialogue Design">
-    <meta property="og:description"
-        content="Game audio designer and composer specializing in sound design, music composition, and technical audio implementation for games and film.">
-    <meta property="og:image" content="https://berminbear.github.io/images/og-home.png">
-    <meta property="og:site_name" content="Benjamin D. Natalli">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Benjamin Natalli | Technical Audio & Dialogue Design">
-    <meta name="twitter:description"
-        content="Game audio designer and composer specializing in sound design, music composition, and technical audio implementation for games and film.">
-    <meta name="twitter:image" content="https://berminbear.github.io/images/og-home.png">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Benjamin D. Natalli",
-        "url": "https://berminbear.github.io",
-        "jobTitle": "Technical Audio & Dialogue Designer",
-        "description": "Game audio designer and composer specializing in sound design, music composition, and technical audio implementation for games and film.",
-        "knowsAbout": ["Game Audio", "Sound Design", "Music Composition", "Technical Audio", "Dialogue Design", "Game Development", "Wwise", "FMOD", "Unreal Engine", "Unity"],
-        "sameAs": [
-            "https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/",
-            "https://github.com/BerminBear"
-        ],
-        "mainEntityOfPage": {
-            "@type": "WebSite",
-            "@id": "https://berminbear.github.io/",
-            "name": "Benjamin Natalli Portfolio",
-            "url": "https://berminbear.github.io/"
-        }
-    }
-    </script>
-
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .code-font {
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        /* Synkar texten vid hover */
-        .hero-sync:has(.hover-trigger:hover) .hero-text {
-            color: #6366f1; /* Tailwind indigo-500 */
-        }
-
-        .hero-sync:has(.hover-trigger:hover) .hero-info {
-            color: #818cf8; /* Tailwind indigo-400 */
-        }
-
-        /* FIX FÖR MUS-FUNKTIONERNA */
-        #mouse-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        #custom-cursor {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 8px;
-            background-color: #6366f1; /* Indigo 500 */
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 9999;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.2s ease, transform 0.1s ease;
-        }
-
-        .cursor-hidden {
-            opacity: 0 !important;
-            transform: translate(-50%, -50%) scale(0) !important;
-        }
-
-        body {
-            cursor: none;
-        }
-
-        a,
-        button,
-        summary,
-        .project-card,
-        .cv-clickable-card,
-        .cv-name-trigger,
-        [onclick] {
-            cursor: pointer;
-        }
-    </style>
 </head>
 
-<body
-    class="bg-[#08070a] text-white antialiased font-sans selection:bg-indigo-500/30 selection:text-indigo-200 overflow-x-hidden relative">
+<body class="bg-[#08070a] text-white antialiased overflow-x-hidden relative">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
 
-    <!-- GLOBAL NAVBAR -->
-    <nav
-        class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/80 backdrop-blur-md border-b border-white/5 py-4 px-6 md:px-12 xl:px-12">
-        <div class="w-full flex justify-between items-center relative z-50">
-            <a href="index.html"
-                class="group font-mono text-indigo-400 font-bold tracking-wider text-sm flex items-center gap-2 transition-all hover:text-indigo-300">
-                <img src="favicon.png" alt="Logo"
-                    class="h-5 w-5 object-contain transition-all duration-300 group-hover:scale-110">
-                <span>B.NATALLI</span>
-            </a>
-            <div class="flex gap-6 md:gap-8 text-xs uppercase tracking-widest font-mono items-center">
-                <a href="projects.html"
-                    class="text-slate-400 hover:text-indigo-400 font-bold transition-colors py-2">Projects</a>
-            </div>
+   <!-- NAVBAR -->
+<nav class="absolute top-0 left-0 w-full z-50 bg-transparent py-6 px-6 md:px-12">
+    <div class="w-full flex justify-between items-center relative z-50">
+        <a href="index.html" class="label-mono font-bold tracking-wider flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: var(--color-accent);">
+            <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain logo-blue">
+            <span>B.NATALLI</span>
+        </a>
+        <div class="flex gap-6 uppercase tracking-widest items-center">
+            <a href="projects.html" class="nav-link font-bold py-2">Projects</a>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <!-- MAIN CONTENT -->
-<main class="max-w-7xl mx-auto px-6 md:px-16 pt-32 pb-12 flex flex-col gap-24 relative z-10 items-center text-center">
-        <!-- 1 & 2. PROFILE + SHOWREEL -->
-        <section id="hero" class="scroll-mt-40 snap-start w-full flex flex-col items-center">
-            <div class="hero-sync flex flex-col justify-center items-center">
+<main class="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col gap-24 relative z-10 items-center text-center">
+    
+    <!-- HERO -->
+    <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-center items-center py-12">
+        <div class="w-full flex flex-col justify-center items-center">
+                <div class="w-full max-w-4xl flex flex-col items-center">
+                    <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger text-center block focus:outline-none">
+    <!-- Ändrat från hover:text-indigo-400 till din accentfärg -->
+    <h1 class="heading-display transition-colors duration-300 group-hover:text-[#6FA8C9]">
+        Benjamin Natalli
+        
+        <span class="inline-block label-mono text-xs font-normal tracking-widest uppercase ml-2 transition-transform duration-300 group-hover:scale-110" style="color: var(--color-accent);">[ INFO+ ]</span>
+    </h1>
+</button>
 
-                <!-- TEXTEN -->
-                <div class="max-w-lg md:max-w-xl lg:max-w-2xl flex flex-col items-center">
-                    <button onclick="openAboutModal()"
-                        class="hover-trigger cv-name-trigger text-center block focus:outline-none">
-                        <h1
-                            class="hero-text text-5xl md:text-6xl font-extrabold tracking-tight text-white leading-none transition-colors duration-300">
-                            Benjamin Natalli
-                            <span
-                                class="hero-info text-xs text-indigo-400/60 code-font font-normal tracking-widest uppercase ml-3 align-middle transition-colors">[
-                                INFO+ ]</span>
-                        </h1>
-                    </button>
-                    <h2 class="mt-4 text-indigo-400 code-font uppercase tracking-widest text-sm font-bold">Technical
-                        Audio & Dialogue Designer</h2>
-                    <p class="mt-3 text-slate-400 leading-relaxed text-base md:text-lg">
-                        Specializing in <span class="text-indigo-300 font-medium">automation frameworks</span>, <span
-                            class="text-indigo-300 font-medium">adaptive routing architecture</span> & <span
-                            class="text-indigo-300 font-medium">middleware implementation pipelines</span>.
-                    </p>
+<h2 class="heading-sub mt-4">Technical Audio & Dialogue Designer</h2>
 
-                    <!-- LINKS -->
-                    <div class="mt-5 flex flex-wrap justify-center gap-6 text-sm code-font text-slate-500 font-semibold">
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-300 border-b border-white/5 pb-1 transition-colors">[ LinkedIn ]</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="hover:text-indigo-300 border-b border-white/5 pb-1 transition-colors">[ Email ]</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download class="hover:text-indigo-300 border-b border-white/5 pb-1 transition-colors">[ CV ]</a>
+<p class="body-text mt-4 max-w-2xl">
+    <!-- Ändrat från text-indigo-300 till din CSS-variabel för accent -->
+    Specializing in <span class="font-medium" style="color: var(--color-accent);">automation frameworks</span>, <span class="font-medium" style="color: var(--color-accent);">adaptive routing architecture</span> & <span class="font-medium" style="color: var(--color-accent);">middleware implementation pipelines</span>.
+</p>
+
+                    <div class="mt-6 flex flex-wrap justify-center gap-6 label-mono font-semibold">
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/10 pb-1">[ LinkedIn ]</a>
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/10 pb-1">[ Email ]</a>
+                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/10 pb-1">[ CV ]</a>
                     </div>
                 </div>
             </div>
 
-            <div class="w-full mt-10 flex justify-center">
-                <div
-                    class="aspect-video w-full max-w-3xl rounded-xl overflow-hidden bg-slate-900 border border-white/5 shadow-2xl relative z-20">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0"
-                        allowfullscreen title="Showreel"></iframe>
+            <div class="w-full mt-12 flex justify-center">
+                <div class="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- HIGHLIGHTS / SELECTED WORK -->
-        <section id="highlights" class="scroll-mt-40 snap-start w-full">
-            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-8 text-center">Selected Work</h3>
+        <!-- SELECTED WORK -->
+        <section id="highlights" class="w-full">
+            <h3 class="heading-section mb-8">Selected Work</h3>
             
-            <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-8 hide-scrollbar max-w-5xl mx-auto px-4 lg:justify-center">
-                
-                <!-- Project 1: Skeletons -->
-                <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mx-auto">
+                <div class="project-card group card-surface overflow-hidden text-left" data-project-id="skeletons">
                     <div class="media-preview relative w-full aspect-video">
                         <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
-                        <div class="media-indicator">▶</div>
                     </div>
-                    <div class="p-4 border-t border-white/5">
-                        <h4 class="text-white font-bold">What Do You Call a Group of Skeletons</h4>
-                        <p class="text-indigo-400 code-font text-[10px] uppercase mt-1">Composer & Tech Sound Designer</p>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="font-bold text-lg">What Do You Call a Group of Skeletons</h4>
+                        <p class="heading-sub text-[11px] mt-1">Composer & Tech Sound Designer</p>
                     </div>
                 </div>
 
-                <!-- Project 2: Tentacle Tango -->
-                <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
+                <div class="project-card group card-surface overflow-hidden text-left" data-project-id="tentacle-tango">
                     <div class="media-preview relative w-full aspect-video">
                         <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango" class="media-img absolute inset-0 w-full h-full object-cover">
-                        <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata">
-                            <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-indicator">▶</div>
                     </div>
-                    <div class="p-4 border-t border-white/5">
-                        <h4 class="text-white font-bold">Tentacle Tango</h4>
-                        <p class="text-indigo-400 code-font text-[10px] uppercase mt-1">Composer & Sound Designer</p>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="font-bold text-lg">Tentacle Tango</h4>
+                        <p class="heading-sub text-[11px] mt-1">Composer & Sound Designer</p>
                     </div>
                 </div>
 
-                <!-- Project 3: Aura Farmers -->
-                <div class="project-card relative group rounded-xl bg-[#0a0a0c] border border-white/5 overflow-hidden cursor-none shrink-0 w-72 md:w-80 snap-center" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
+                <div class="project-card group card-surface overflow-hidden text-left" data-project-id="aura-farmers">
                     <div class="media-preview relative w-full aspect-video">
                         <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers" class="media-img absolute inset-0 w-full h-full object-cover">
-                        <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata">
-                            <source src="videos/aura-farmers-preview.mp4" type="video/mp4">
-                        </video>
-                        <div class="media-indicator">▶</div>
                     </div>
-                    <div class="p-4 border-t border-white/5">
-                        <h4 class="text-white font-bold">Aura Farmers</h4>
-                        <p class="text-indigo-400 code-font text-[10px] uppercase mt-1">Sound Designer</p>
+                    <div class="p-5 border-t border-white/5">
+                        <h4 class="font-bold text-lg">Aura Farmers</h4>
+                        <p class="heading-sub text-[11px] mt-1">Sound Designer</p>
                     </div>
                 </div>
-
             </div>
             
-            <div class="flex justify-center mt-2">
-                 <a href="projects.html" class="text-xs code-font text-slate-400 hover:text-indigo-300 transition-colors border-b border-white/10 pb-1 uppercase tracking-widest">View all projects →</a>
-            </div>
+            <div class="flex justify-center mt-12">
+    <a href="projects.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full border border-white/10 bg-[#111216] text-[#7E8794] hover:text-[#95c4df] hover:border-[#6FA8C9]/40 hover:shadow-[0_0_20px_rgba(111,168,201,0.2)] transition-all duration-300 label-mono uppercase text-xs font-bold tracking-widest">
+        View all projects →
+    </a>
+</div>
         </section>
 
-        <!-- 4. EXPERIENCE & EDUCATION -->
-        <section id="experience" class="scroll-mt-40 snap-start w-full">
-            <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-12 text-center">
-                Experience & Education</h3>
+        <!-- TECH STACK -->
+        <section id="tech-stack" class="w-full">
+            <h3 class="heading-section mb-10">Tech Stack & Tools</h3>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 xl:gap-20 items-start text-left">
-
-                <!-- EXPERIENCE -->
-                <div class="lg:col-span-6 space-y-6 lg:pr-8 xl:pr-12 lg:border-r lg:border-white/5">
-                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font mb-2">Game & Audio Experience</h4>
-
-                    <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-                        <h5 class="text-xl font-bold text-white">Composer & Sound Designer</h5>
-                        <p class="text-xs font-bold text-indigo-400 code-font mt-2 tracking-wide">Mar 2025 — Oct 2025
-                            <span class="text-slate-600 mx-2">|</span> Arctic Bones AB
-                        </p>
-                        <ul class="mt-4 space-y-3 text-base text-slate-300 leading-relaxed list-disc pl-5 marker:text-indigo-400/40">
-                            <li>Music production and sound design across the project's runtime content.</li>
-                            <li>Audio implementation in Unreal Engine with Metasounds.</li>
-                        </ul>
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 text-left w-full">
+                <div class="p-6 card-surface">
+                    <h4 class="heading-sub mb-4">Audio Tech</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs tag-accent font-semibold">Wwise</span>
+                        <span class="px-3 py-1.5 text-xs tag-accent font-semibold">FMOD Studio</span>
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Reaper</span>
                     </div>
-
-                    <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-                        <h5 class="text-xl font-bold text-white">Composer & Sound Designer</h5>
-                        <p class="text-xs font-bold text-indigo-400 code-font mt-2 tracking-wide">2024 — 2025 <span
-                                class="text-slate-600 mx-2">|</span> Cable Nest / Gro Play AB</p>
-                        <ul class="mt-4 space-y-3 text-base text-slate-300 leading-relaxed list-disc pl-5 marker:text-indigo-400/40">
-                            <li>Music production and sound design for the studio's titles.</li>
-                            <li>Produced marketing material — trailers, streaming assets, and promotional video.</li>
-                        </ul>
+                </div>
+                
+                <div class="p-6 card-surface">
+                    <h4 class="heading-sub mb-4">Engines</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine</span>
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
                     </div>
-
-                    <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-                        <h5 class="text-xl font-bold text-white">Freelance Audio Work</h5>
-                        <p class="text-xs font-bold text-indigo-400 code-font mt-2 tracking-wide">Ongoing <span
-                                class="text-slate-600 mx-2">|</span> Independent</p>
-                        <ul class="mt-4 space-y-3 text-base text-slate-300 leading-relaxed list-disc pl-5 marker:text-indigo-400/40">
-                            <li>Dialogue editing, sound engineering, and music production for independent clients.</li>
-                        </ul>
-                    </div>
-
-                    <details class="group pt-4 border-t border-white/5 cursor-none">
-                        <summary
-                            class="flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-slate-500 code-font hover:text-indigo-300 transition-colors pl-2 cursor-pointer">
-                            <span
-                                class="w-4 h-4 flex items-center justify-center border border-slate-700 rounded-sm text-[10px] leading-none group-open:rotate-45 transition-transform duration-300">+</span>
-                            Other Experience & Freelance Work
-                        </summary>
-                        <div class="mt-6 space-y-6 text-base text-slate-400 leading-relaxed pl-2">
-                            <div>
-                                <p class="text-white font-semibold">Substitute Teacher — Music, Social Studies, Swedish, Art, Woodwork</p>
-                                <p class="text-xs text-slate-500 code-font mt-1">2022 — 2025 <span
-                                        class="text-slate-700 mx-2">|</span> Gullingeskolan</p>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold">Substitute Teacher — Music, Swedish, English, PE</p>
-                                <p class="text-xs text-slate-500 code-font mt-1">2022 — 2023 <span
-                                        class="text-slate-700 mx-2">|</span> Hässelby Villastads Skola</p>
-                            </div>
-                            <div>
-                                <p class="text-white font-semibold">Various Freelance & Service Roles</p>
-                                <p class="mt-2 text-sm">DJ, wedding singer, carpenter, server, bartender, janitor, painter, administrative support, film extra.</p>
-                            </div>
-                        </div>
-                    </details>
                 </div>
 
-                <!-- EDUCATION -->
-                <div class="lg:col-span-6 space-y-10 lg:pl-6 xl:pl-10">
-                    <h4 class="text-[10px] font-bold uppercase tracking-widest text-slate-500 code-font mb-2">Education</h4>
+                <div class="p-6 card-surface">
+                    <h4 class="heading-sub mb-4">Code & Scripting</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
+                    </div>
+                </div>
 
-                    <div class="p-5 rounded-xl border border-white/5 bg-white/[0.005]">
-                        <h5 class="text-lg font-bold text-white leading-tight">Game Development (Audio / Programming)</h5>
-                        <p class="text-sm font-semibold text-indigo-400 code-font mt-2">Stockholm University <span
-                                class="text-slate-600 mx-1.5">|</span> 2025 — Ongoing</p>
-                    </div>
-                    <div class="p-5 rounded-xl border border-white/5 bg-white/[0.005]">
-                        <h5 class="text-lg font-bold text-white leading-tight">Game Audio & Sound Design</h5>
-                        <p class="text-sm font-semibold text-indigo-400 code-font mt-2">Audio Production Academy <span
-                                class="text-slate-600 mx-1.5">|</span> 2023 — 2025</p>
-                    </div>
-                    <div class="p-5 rounded-xl border border-white/5 bg-white/[0.005]">
-                        <h5 class="text-lg font-bold text-white leading-tight">Music Production for Film, Theatre & Games</h5>
-                        <p class="text-sm font-semibold text-indigo-400 code-font mt-2">Umeå University <span
-                                class="text-slate-600 mx-1.5">|</span> 2020 — 2021</p>
-                    </div>
-                    <div class="p-5 rounded-xl border border-white/5 bg-white/[0.005]">
-                        <h5 class="text-lg font-bold text-white leading-tight">Marketing & Entrepreneurship</h5>
-                        <p class="text-sm font-semibold text-indigo-400 code-font mt-2">Royal College of Music (KMH)
-                            <span class="text-slate-600 mx-1.5">|</span> 2020 — 2021
-                        </p>
-                    </div>
-                    <div class="p-5 rounded-xl border border-white/5 bg-white/[0.005]">
-                        <h5 class="text-lg font-bold text-white leading-tight">Sound & Music Production</h5>
-                        <p class="text-sm font-semibold text-indigo-400 code-font mt-2">Rytmus Music High School <span
-                                class="text-slate-600 mx-1.5">|</span> 2017 — 2020</p>
+                <div class="p-6 card-surface">
+                    <h4 class="heading-sub mb-4">Pipeline</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Perforce</span>
+                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Git / GitHub</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 5. TECH STACK -->
-        <section id="tech-stack" class="scroll-mt-40 snap-start w-full">
-    <h3 class="text-xs font-bold uppercase tracking-widest text-slate-500 code-font mb-10 text-center">Tech Stack & Tools</h3>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 text-left">
-        
-        <!-- Audio & Middleware -->
-        <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-            <h4 class="text-sm font-bold text-indigo-400 code-font mb-4 uppercase tracking-wider">Audio Tech</h4>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs code-font rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold">Wwise</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-semibold">FMOD Studio</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Reaper</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Pro Tools</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">iZotope RX</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Pure Data</span>
-            </div>
-        </div>
-
-        <!-- Engines & Workflows -->
-        <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-            <h4 class="text-sm font-bold text-indigo-400 code-font mb-4 uppercase tracking-wider">Engines</h4>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Godot</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Metasounds</span>
-            </div>
-        </div>
-
-        <!-- Programming & Logic -->
-        <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-            <h4 class="text-sm font-bold text-indigo-400 code-font mb-4 uppercase tracking-wider">Code & Scripting</h4>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Java</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Lua</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
-            </div>
-        </div>
-
-        <!-- Version Control & Narrative -->
-        <div class="p-6 rounded-xl border border-white/5 bg-white/[0.01]">
-            <h4 class="text-sm font-bold text-indigo-400 code-font mb-4 uppercase tracking-wider">Pipeline & Versioning</h4>
-            <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Perforce</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Git / GitHub</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Articy:draft</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Ink</span>
-                <span class="px-3 py-1 text-xs code-font rounded bg-white/5 text-slate-300 border border-white/10">Jira</span>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-        <!-- 6. CALL TO ACTION -->
-        <div class="mt-8 pt-12 border-t border-white/5 flex justify-center w-full">
-            <a href="projects.html"
-                class="cursor-none inline-flex items-center gap-3 px-8 py-4 rounded-full border border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-600 hover:text-white hover:border-transparent transition-all duration-300 text-sm tracking-widest uppercase code-font text-indigo-300 font-bold shadow-lg hover:shadow-indigo-500/20">
-                Explore My Projects
-                <span class="text-lg leading-none">→</span>
-            </a>
-        </div>
-
-        <footer class="text-center text-xs font-mono text-slate-600 mt-12 pb-8 w-full">
+        <footer class="text-center label-mono text-xs text-slate-800 pb-2 w-half md:w-full">
             <p>© 2026 Benjamin Natalli Salmonsson.</p>
         </footer>
     </main>
 
     <!-- ABOUT MODAL -->
-    <div id="about-detail-modal"
-        class="fixed inset-0 bg-[#060508]/95 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
-        <div id="about-modal-wrapper"
-            class="bg-[#0c0a0f] border border-white/10 p-6 md:p-10 rounded-2xl max-w-5xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="closeAboutModal()"
-                class="absolute top-4 right-4 code-font text-[10px] text-slate-500 hover:text-indigo-400 transition-colors uppercase tracking-widest z-10 cursor-none">[
-                CLOSE / ESC ]</button>
+    <div id="about-detail-modal" class="fixed inset-0 bg-[#060508]/95 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div id="about-modal-wrapper" class="card-surface p-6 md:p-10 max-w-4xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-slate-500 hover:text-indigo-400 uppercase tracking-widest">[ CLOSE / ESC ]</button>
             <div id="about-modal-body"></div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     <script type="module" src="js/main.js"></script>
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js'
-        data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script>
 </body>
-
 </html>

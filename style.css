@@ -1,53 +1,59 @@
 /* ==========================================================================
    GLOBALS & RESET
    ========================================================================== */
+/* Customklasser för att styra JS-innehåll med CSS-variabler */
+.text-theme-accent { color: var(--color-accent) !important; }
+.border-theme-accent { border-color: rgba(111, 168, 201, 0.3) !important; }
 
 :root {
-    --color-accent: #6366f1;        /* Huvudfärg (Indigo) */
-    --color-accent-hover: #818cf8;  /* Hover-färg */
-    --color-glow: rgba(99, 102, 241, 0.08); /* Mus-glöd */
-    --color-amber: #f59e0b;         /* Eventuell sekundär accent */
-}
+    /* Färger */
+    --color-bg: #090A0C;
+    --color-text: #E8E8E5;
+    --color-muted: #7E8794;
+    --color-accent: #6FA8C9;        /* Kall blågrå / cyan */
+    --color-accent-hover: #95c4df;  /* Ljusare cyan vid hover */
+    --color-secondary: #B7C5D1;
+    --color-glow: rgba(111, 168, 201, 0.18); /* Glow vid hover */
 
-/* Använd variablerna för kursor & scrollbar */
-#custom-cursor {
-    background-color: var(--color-accent) !important;
+    /* Fonter: Space Grotesk för rubriker, Fira Code/JetBrains Mono för undertext/länkar */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
 }
-
-::-webkit-scrollbar-thumb {
-    background-color: var(--color-accent) !important;
-}
-
 
 * {
     cursor: none !important;
 }
 
 html {
-    scrollbar-color: #6366f1 #08070a;
+    scrollbar-color: var(--color-accent) var(--color-bg);
     scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: #08070a;
+    background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #6366f1;
+    background-color: var(--color-accent) !important;
     border-radius: 10px;
-    border: 2px solid #08070a;
+    border: 2px solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #4f46e5;
+    background-color: var(--color-accent-hover);
 }
 
 body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
     cursor: none;
 }
 
-/* Touch: återställ cursor */
+/* Touch-enheter */
 @media (pointer: coarse) {
     body { cursor: auto !important; }
     #custom-cursor, #mouse-glow { display: none !important; }
@@ -62,6 +68,90 @@ body {
         animation: none !important;
     }
     .media-video { display: none !important; }
+}
+
+/* ==========================================================================
+   TYPOGRAPHY & SPACING
+   ========================================================================== */
+
+.heading-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+/* Gamla fonten återställd för undertext */
+.heading-sub {
+    font-family: var(--font-mono);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.95rem;
+    font-weight: 700 !important; /* Gör texten fet som i bild 2 */
+    margin-bottom: 1.5rem;
+}
+
+.heading-section {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2.5rem;
+    color: var(--color-text);
+}
+
+.body-text {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    line-height: 1.8;
+    font-size: 1.125rem;
+}
+
+/* Gamla mono-fonten för alla etiketter, knappar och kod */
+.label-mono, .code-font, a, button {
+    font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   HOVER HIGHLIGHTS & INTERACTION (FIXAR HOVER-EFFEKTER)
+   ========================================================================== */
+
+/* Länkar och knappar hover-highlight */
+a:hover, button:hover, .nav-link:hover {
+    font-weight: 700 !important;
+    letter-spacing: 0.05em;
+    color: var(--color-accent-hover) !important; /* Denna saknades! */
+    text-shadow: 0 0 8px var(--color-glow); /* Adderar lite snyggt glow */
+}
+
+a:hover, button:hover, .nav-link {
+    font-weight: 700 !important;
+    letter-spacing: 0.05em;
+    color: var(--color-muted); /* Gör länkarna gråa */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Kort Hover-Highlight (Tech stack, projektkort, modaler) */
+.card-surface, 
+.project-card,
+#about-modal-wrapper,
+#project-modal-wrapper {
+    background: #111216;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* NÄR DU HOVRAR ÖVER ETT KORT: Ram lyser upp & skuggan blir blå */
+.card-surface:hover,
+.project-card:hover {
+    border-color: rgba(111, 168, 201, 0.4) !important;
+    box-shadow: 0 0 25px var(--color-glow), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
+    transform: translateY(-4px);
 }
 
 /* ==========================================================================
@@ -84,7 +174,7 @@ body {
     left: 0;
     width: 8px;
     height: 8px;
-    background-color: #6366f1;
+    background-color: var(--color-accent) !important;
     border-radius: 50%;
     pointer-events: none;
     z-index: 2147483647 !important;
@@ -109,7 +199,6 @@ body {
     display: none;
 }
 
-/* Smooth lane fade — only applies after animation is done (.lane-ready) */
 .lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover).lane-ready {
     opacity: 0.25;
     transform: scale(0.97);
@@ -125,22 +214,9 @@ body {
                 transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-/* Fix top border clipping */
 .lane-track {
     padding-top: 4px;
     padding-bottom: 4px;
-}
-
-/* ==========================================================================
-   NAV LINKS
-   ========================================================================== */
-
-.nav-link, .nav-link-separator {
-    display: inline-block;
-}
-
-.nav-link-ready {
-    transition: color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -193,10 +269,6 @@ body {
     position: relative;
 }
 
-.project-card:hover {
-    transform: translateY(-4px);
-}
-
 .project-card .media-preview {
     position: relative;
     width: 100%;
@@ -230,7 +302,6 @@ body {
     opacity: 1;
 }
 
-/* Indicator */
 .media-indicator {
     position: absolute;
     bottom: 10px;
@@ -259,8 +330,8 @@ body {
 
 .media-indicator.is-playing {
     animation: pulseIndicator 1.2s ease-in-out infinite;
-    color: #6366f1;
-    border-color: rgba(99, 102, 241, 0.3);
+    color: var(--color-accent);
+    border-color: rgba(111, 168, 201, 0.3);
 }
 
 @keyframes pulseIndicator {
@@ -268,15 +339,8 @@ body {
     50% { opacity: 1; transform: scale(1.15); }
 }
 
-/* Touch overrides */
-@media (pointer: coarse) {
-    .project-card .media-video { display: none !important; }
-    .project-card .media-img { opacity: 1 !important; transform: none !important; }
-    .media-indicator { display: none; }
-}
-
 /* ==========================================================================
-   CARD TOOLTIP — Bookmark style below card
+   CARD TOOLTIP — Bokmärke under kortet
    ========================================================================== */
 
 .card-tooltip {
@@ -295,61 +359,36 @@ body {
 }
 
 .card-tooltip span {
-    font-family: 'Fira Code', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    color: #818cf8;
-    background: rgba(99, 102, 241, 0.1);
-    border: 1px solid rgba(99, 102, 241, 0.25);
+    color: var(--color-accent);
+    background: var(--color-glow);
+    border: 1px solid rgba(111, 168, 201, 0.25);
     border-top: none;
     padding: 8px 18px;
     border-radius: 0 0 10px 10px;
     backdrop-filter: blur(8px);
     white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.08);
+    box-shadow: 0 4px 20px rgba(111, 168, 201, 0.08);
 }
 
-/* 2-second delay before tooltip appears */
 .project-card:hover .card-tooltip {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
     transition-delay: 1s;
 }
 
-/* No delay when leaving */
 .project-card:not(:hover) .card-tooltip {
     transition-delay: 0s;
 }
 
-/* Touch: dölj tooltip */
 @media (pointer: coarse) {
     .card-tooltip { display: none !important; }
 }
 
-/* ==========================================================================
-   MODALS
-   ========================================================================== */
-
-#about-detail-modal,
-#project-detail-modal {
-}
-
-#about-modal-wrapper,
-#project-modal-wrapper {
-    background: #111114;
-}
-
-/* Spotify embed dark mode match */
 iframe[src*="spotify"] {
     filter: contrast(0.95);
-}
-
-/* ==========================================================================
-   NAV & UTILITIES
-   ========================================================================== */
-
-.code-font {
-    font-family: 'Fira Code', monospace;
 }
