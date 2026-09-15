@@ -1,22 +1,26 @@
-import { initCursor } from './mouse.js';
-import { initAnimations } from './animations.js';
-import { initPageTransitions } from './pageTransitions.js';
+// js/main.js
+import { initMouseGlow } from './mouse.js';
 import { initWorkflow } from './workflow.js';
-import { initProjects } from './projects.js';
 import { initModal } from './modal.js';
-import { initSound } from './sound.js';
 import { initScrollSystems } from './scroll.js';
-import './animations.js';
+import { initSound } from './sound.js';
+import { initMediaPreviews } from './media-preview.js';
+import { initAnimations } from './animations.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-    initCursor();
+function initApp() {
     initAnimations();
-    initPageTransitions();
+    initMouseGlow();
     initWorkflow();
-    initProjects();
     initModal();
-    initSound();
     initScrollSystems();
-    
-    console.log('[System initialized]: AAA Game-UI Architecture Active.');
-});
+    initSound();
+    initMediaPreviews();
+    console.log('System initialized successfully.');
+}
+
+// Körs direkt om DOM redan är redo, annars vid DOMContentLoaded
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}
