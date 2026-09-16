@@ -10,7 +10,7 @@
     /* Grundfärger */
     --color-bg: #0C0C0C;
     --color-text: #B0B0B0;
-    --color-muted: #666666; /* Mer dämpad grå färg */
+    --color-muted: #6e6d6d; /* Mer dämpad grå färg */
     
     /* Accent & Interaktion - Champagne */
     --color-accent: #FFFFFF;
@@ -127,7 +127,7 @@ body {
 /* TYPOGRAPHY */
 .heading-display {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
