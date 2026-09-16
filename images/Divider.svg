@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 24" class="name-divider">
+  <!-- Vänster & höger linje -->
+  <line x1="10" y1="12" x2="115" y2="12" stroke="currentColor" stroke-width="1" />
+  <line x1="185" y1="12" x2="290" y2="12" stroke="currentColor" stroke-width="1" />
+  
+  <!-- Yttre prickar -->
+  <circle cx="10" cy="12" r="2" fill="currentColor" />
+  <circle cx="290" cy="12" r="2" fill="currentColor" />
+
+  <!-- Centrerat ornament -->
+  <path d="M 115 12 Q 135 2 150 12 Q 165 2 185 12" fill="none" stroke="currentColor" stroke-width="1.2" />
+  <path d="M 115 12 Q 135 22 150 12 Q 165 22 185 12" fill="none" stroke="currentColor" stroke-width="1.2" />
+  <polygon points="150,5 156,12 150,19 144,12" fill="currentColor" />
+  <circle cx="130" cy="12" r="1.5" fill="currentColor" />
+  <circle cx="170" cy="12" r="1.5" fill="currentColor" />
+</svg>

@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Natalli | Technical Audio & Dialogue Design</title>
+    <title>Benjamin Natalli | Technical Audio & Dialogue Designer</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,40 +20,70 @@
    <!-- NAVBAR -->
 <nav class="absolute top-0 left-0 w-full z-50 bg-transparent py-6 px-6 md:px-12">
     <div class="w-full flex justify-between items-center relative z-50">
-        <a href="index.html" class="label-mono font-bold tracking-wider flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: var(--color-accent);">
-            <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain logo-blue">
-            <span>B.NATALLI</span>
-        </a>
-        <div class="flex gap-6 uppercase tracking-widest items-center">
-            <a href="projects.html" class="nav-link font-bold py-2">Projects</a>
-        </div>
+    <!-- Guld på B.NATALLI -->
+<a href="index.html" class="label-mono font-bold tracking-wider flex items-center gap-2 hover:opacity-80 transition-opacity" style="color: var(--color-accent-hover);">
+    <img src="favicon.png" alt="Logo" class="h-5 w-5 object-contain logo-blue">
+    <span>B.NATALLI</span>
+</a>
+    <div class="flex gap-6 uppercase tracking-widest items-center">
+        <!-- Vit på Projects (ändrad från färg/opacity) -->
+        <a href="projects.html" class="nav-link font-bold py-2 text-white/90 hover:text-white transition-colors">Projects</a>
     </div>
+</div>
 </nav>
 
     <!-- MAIN CONTENT -->
-<main class="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col gap-24 relative z-10 items-center text-center">
+<main class="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col gap-12 relative z-10 items-center text-center">
     
     <!-- HERO -->
     <section id="hero" class="w-full min-h-[100svh] flex flex-col justify-center items-center py-12">
         <div class="w-full flex flex-col justify-center items-center">
                 <div class="w-full max-w-4xl flex flex-col items-center">
-                    <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger text-center block focus:outline-none">
-    <!-- Ändrat från hover:text-indigo-400 till din accentfärg -->
-    <h1 class="heading-display transition-colors duration-300 group-hover:text-[var(--color-accent-hover)]">
-        Benjamin Natalli
-        
-        <span class="inline-block label-mono text-xs font-normal tracking-widest uppercase ml-2 transition-transform duration-300 group-hover:scale-110" style="color: var(--color-accent);">[ INFO+ ]</span>
-    </h1>
+                    <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full">
+    
+    <!-- Raden med Namn och INFO+ -->
+    <div class="flex items-center justify-center gap-4">
+        <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)]">
+            Benjamin Natalli
+        </h1>
+        <!-- Tog bort den statiska style-taggen, lade till klassen 'info-badge' -->
+        <span class="info-badge inline-block label-mono text-[11px] font-bold tracking-widest uppercase transition-all duration-300 group-hover:scale-110">
+            [ INFO+ ]
+        </span>
+    </div>
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[480px] mt-1 transition-all duration-300">
+    <!-- Avsmalnande linjer (vänster och höger) -->
+    <polygon points="10,20 200,18.5 200,21.5" fill="currentColor" />
+    <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
+    
+    <!-- Yttre och inre diamant (Mitten) -->
+    <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
+    <polygon points="250,14 256,20 250,26 244,20" fill="currentColor" />
+    
+    <!-- Dekorativa prickar -->
+    <circle cx="230" cy="20" r="1.5" fill="currentColor" />
+    <circle cx="270" cy="20" r="1.5" fill="currentColor" />
+    
+    <!-- Sido-diamanter (Mindre) -->
+    <polygon points="212,20 220,16 228,20 220,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+    <polygon points="288,20 280,16 272,20 280,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+</svg>
+
 </button>
 
-<h2 class="heading-sub mt-4">Technical Audio & Dialogue Designer</h2>
+<h2 class="heading-sub mt-1 mb-1 w-full max-w-xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-center">
+                        <span class="text-right">Technical Audio</span>
+                        <span class="px-2 text-[var(--color-text)] font-bold">&</span>
+                        <span class="text-left">Dialogue Designer</span>
+                    </h2>
 
-<p class="body-text mt-4 max-w-2xl">
-    <!-- Ändrat från text-indigo-300 till din CSS-variabel för accent -->
-    Specializing in <span class="font-medium" style="color: var(--color-accent);">automation frameworks</span>, <span class="font-medium" style="color: var(--color-accent);">adaptive routing architecture</span> & <span class="font-medium" style="color: var(--color-accent);">middleware implementation pipelines</span>.
-</p>
+                    <!-- EN LÅNG RAD OCH MINDRE MARGINAL -->
+                    <p class="body-text mt-1 max-w-none whitespace-nowrap text-[14px] md:text-[15px]">
+                        Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
+                    </p>
 
-                    <div class="mt-6 flex flex-wrap justify-center gap-6 label-mono font-semibold">
+                    <div class="mt-4 flex flex-wrap justify-center gap-6 label-mono font-semibold text-xs">
                         <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/10 pb-1">[ LinkedIn ]</a>
                         <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/10 pb-1">[ Email ]</a>
                         <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/10 pb-1">[ CV ]</a>
@@ -60,25 +91,25 @@
                 </div>
             </div>
 
-            <div class="w-full mt-12 flex justify-center">
-                <div class="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
+            <div class="w-full mt-6 flex justify-center">
+                <div class="aspect-video w-full max-w-5xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- SELECTED WORK -->
-        <section id="highlights" class="w-full">
+        <!-- SELECTED WORK (Matchar max-w-5xl med Tech Stack) -->
+        <section id="highlights" class="w-full max-w-5xl mx-auto">
             <h3 class="heading-section mb-8">Selected Work</h3>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
                 <div class="project-card group card-surface overflow-hidden text-left" data-project-id="skeletons">
                     <div class="media-preview relative w-full aspect-video">
                         <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
                     </div>
                     <div class="p-5 border-t border-white/5">
-                        <h4 class="font-bold text-lg">What Do You Call a Group of Skeletons</h4>
-                        <p class="heading-sub text-[11px] mt-1">Composer & Tech Sound Designer</p>
+                        <h4 class="font-bold text-base">What Do You Call a Group of Skeletons</h4>
+                        <p class="heading-sub text-[10px] mt-1 mb-0">Composer & Tech Sound Designer</p>
                     </div>
                 </div>
 
@@ -87,8 +118,8 @@
                         <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango" class="media-img absolute inset-0 w-full h-full object-cover">
                     </div>
                     <div class="p-5 border-t border-white/5">
-                        <h4 class="font-bold text-lg">Tentacle Tango</h4>
-                        <p class="heading-sub text-[11px] mt-1">Composer & Sound Designer</p>
+                        <h4 class="font-bold text-base">Tentacle Tango</h4>
+                        <p class="heading-sub text-[10px] mt-1 mb-0">Composer & Sound Designer</p>
                     </div>
                 </div>
 
@@ -97,61 +128,61 @@
                         <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers" class="media-img absolute inset-0 w-full h-full object-cover">
                     </div>
                     <div class="p-5 border-t border-white/5">
-                        <h4 class="font-bold text-lg">Aura Farmers</h4>
-                        <p class="heading-sub text-[11px] mt-1">Sound Designer</p>
+                        <h4 class="font-bold text-base">Aura Farmers</h4>
+                        <p class="heading-sub text-[10px] mt-1 mb-0">Sound Designer</p>
                     </div>
                 </div>
             </div>
             
-            <div class="flex justify-center mt-12">
-    <a href="projects.html" class="inline-flex items-center justify-center px-8 py-4 rounded-full border border-black/10 card-surface text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border)] hover:shadow-[0_0_20px_var(--color-glow)] transition-all duration-300 label-mono uppercase text-xs font-bold tracking-widest">
-    View all projects →
-</a>
-</div>
+            <div class="flex justify-center mt-8">
+                <a href="projects.html" class="no-transform inline-flex items-center justify-center px-8 py-3 rounded-full border border-white/10 card-surface text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 label-mono uppercase text-xs font-bold tracking-widest">
+                    View all projects →
+                </a>
+            </div>
         </section>
 
-        <!-- TECH STACK -->
-        <section id="tech-stack" class="w-full">
-            <h3 class="heading-section mb-10">Tech Stack & Tools</h3>
+        <!-- TECH STACK & TOOLS (Matchar max-w-5xl för perfekt linjering) -->
+        <section id="tech-stack" class="w-full max-w-5xl mx-auto">
+            <h3 class="heading-section mb-8">Tech Stack & Tools</h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 text-left w-full">
-                <div class="p-6 card-surface">
-                    <h4 class="heading-sub mb-4">Audio Tech</h4>
+                <div class="p-5 card-surface">
+                    <h4 class="heading-sub mb-3 text-xs">Audio Tech</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 text-xs tag-accent font-semibold">Wwise</span>
-                        <span class="px-3 py-1.5 text-xs tag-accent font-semibold">FMOD Studio</span>
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Reaper</span>
+                        <span class="px-3 py-1 text-xs tag-accent font-semibold">Wwise</span>
+                        <span class="px-3 py-1 text-xs tag-accent font-semibold">FMOD Studio</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Reaper</span>
                     </div>
                 </div>
                 
-                <div class="p-6 card-surface">
-                    <h4 class="heading-sub mb-4">Engines</h4>
+                <div class="p-5 card-surface">
+                    <h4 class="heading-sub mb-3 text-xs">Engines</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine</span>
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unreal Engine</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Unity</span>
                     </div>
                 </div>
 
-                <div class="p-6 card-surface">
-                    <h4 class="heading-sub mb-4">Code & Scripting</h4>
+                <div class="p-5 card-surface">
+                    <h4 class="heading-sub mb-3 text-xs">Code & Scripting</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">C#</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Blueprints</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Python</span>
                     </div>
                 </div>
 
-                <div class="p-6 card-surface">
-                    <h4 class="heading-sub mb-4">Pipeline</h4>
+                <div class="p-5 card-surface">
+                    <h4 class="heading-sub mb-3 text-xs">Pipeline</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Perforce</span>
-                        <span class="px-3 py-1.5 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Git / GitHub</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Perforce</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Git / GitHub</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <footer class="text-center label-mono text-xs text-slate-800 pb-2 w-half md:w-full">
+        <footer class="text-center label-mono text-xs text-slate-600 py-6 w-full">
             <p>© 2026 Benjamin Natalli Salmonsson.</p>
         </footer>
     </main>
@@ -159,8 +190,16 @@
     <!-- ABOUT MODAL -->
     <div id="about-detail-modal" class="fixed inset-0 bg-[#060508]/95 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
         <div id="about-modal-wrapper" class="card-surface p-6 md:p-10 max-w-4xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-slate-500 hover:text-indigo-400 uppercase tracking-widest">[ CLOSE / ESC ]</button>
+            <button onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-slate-500 hover:text-[var(--color-accent-hover)] uppercase tracking-widest">[ CLOSE / ESC ]</button>
             <div id="about-modal-body"></div>
+        </div>
+    </div>
+
+    <!-- PROJECT MODAL -->
+    <div id="project-detail-modal" class="fixed inset-0 z-[10001] bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
+        <div id="project-modal-wrapper" class="card-surface p-6 md:p-10 max-w-5xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-pointer">&times;</button>
+            <div id="project-modal-body"></div>
         </div>
     </div>
 

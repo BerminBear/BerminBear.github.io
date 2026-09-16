@@ -4,7 +4,7 @@ import { initModal } from './modal.js';
 import { initSound } from './sound.js';
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
-import { initThemes } from './theme.js'; 
+import { initSidebarObserver } from './sidebar.js';
 
 function initApp() {
     initAnimations();
@@ -12,9 +12,11 @@ function initApp() {
     initModal();
     initSound();
     initMediaPreviews();
-    initThemes();
+   initSidebarObserver()
     console.log('System initialized successfully.');
 }
+
+
 
 // Körs direkt om DOM redan är redo, annars vid DOMContentLoaded
 if (document.readyState === 'loading') {

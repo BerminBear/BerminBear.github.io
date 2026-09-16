@@ -1,7 +1,6 @@
 /* ==========================================================================
    GLOBALS & RESET
    ========================================================================== */
-/* Customklasser för att styra JS-innehåll med CSS-variabler */
 .text-theme-accent { color: var(--color-accent) !important; }
 .border-theme-accent {
     border-color: var(--color-accent-border) !important;
@@ -11,25 +10,81 @@
     /* Grundfärger */
     --color-bg: #0C0C0C;
     --color-text: #B0B0B0;
-    --color-muted: #5E5E5E;
+    --color-muted: #666666; /* Mer dämpad grå färg */
     
-    /* Accent & Interaktion */
+    /* Accent & Interaktion - Champagne */
     --color-accent: #FFFFFF;
-    --color-accent-hover: #E0E0E0;
+    --color-accent-hover: #C5A059; 
     --color-secondary: #262626;
-    --color-modal-bg: #080808; /* NY: Mörkare standardbakgrund för modaler */
+    --color-modal-bg: #080808;
     
     /* Borders & Glow */
-    --color-accent-border: rgba(255, 255, 255, 0.2);
-    --color-modal-border: rgba(255, 255, 255, 0.4);
-    --color-glow: rgba(255, 255, 255, 0.1);
-    --color-glow-hover: rgba(255, 255, 255, 0.2);
+    --color-accent-border: rgba(255, 255, 255, 0.1);
+    --color-accent-border-hover: rgba(197, 160, 89, 0.5);
+    --color-modal-border: rgba(255, 255, 255, 0.3);
+    --color-glow: rgba(255, 255, 255, 0.08);
+    --color-glow-hover: rgba(197, 160, 89, 0.35);
     --color-modal-glow: rgba(255, 255, 255, 0.15);
 
     /* Typografi */
     --font-heading: 'Instrument Serif', serif;
     --font-body: 'Inter', sans-serif;
-    --font-mono: 'IBM Plex Mono', monospace;
+    --font-mono: 'Courier Prime', monospace;
+}
+
+/* Champagne Sidobar & Romber */
+.sidebar-champagne {
+    border-color: rgba(197, 160, 89, 0.3) !important;
+    box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+}
+
+.side-nav-item {
+    color: var(--color-accent-hover) !important;
+    opacity: 0.5;
+    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+}
+
+.side-nav-item:hover,
+.side-nav-item.active {
+    opacity: 1 !important;
+    color: var(--color-accent-hover) !important;
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 6px var(--color-glow-hover));
+}
+
+.name-container {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* DIVIDER - Grå som standard (color-muted) */
+.name-divider {
+    color: var(--color-muted);
+    transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    opacity: 0.8;
+}
+
+/* Blir champagne vid hover */
+.group:hover .name-divider {
+    color: var(--color-accent-hover);
+    filter: drop-shadow(0 0 6px var(--color-glow-hover));
+    transform: scale(1.01);
+    opacity: 1;
+}
+
+.group:hover h1 {
+    text-shadow: 0 0 10px var(--color-glow-hover);
+}
+
+.info-badge {
+    color: var(--color-accent);
+}
+
+.group:hover .info-badge {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 8px var(--color-glow-hover);
 }
 
 * {
@@ -37,24 +92,23 @@
 }
 
 html {
-    scrollbar-color: var(--color-accent) var(--color-bg);
+    scrollbar-color: var(--color-accent-hover) var(--color-bg);
     scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
 }
 ::-webkit-scrollbar-track {
     background: var(--color-bg);
 }
 ::-webkit-scrollbar-thumb {
-    background-color: var(--color-accent) !important;
+    background-color: var(--color-accent-hover) !important;
     border-radius: 10px;
-    border: 2px solid var(--color-bg);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--color-accent-hover);
+    background-color: #dfb76c;
 }
 
 body {
@@ -64,27 +118,13 @@ body {
     cursor: none;
 }
 
-/* Touch-enheter */
 @media (pointer: coarse) {
     body { cursor: auto !important; }
     #custom-cursor, #mouse-glow { display: none !important; }
     * { cursor: auto !important; }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .media-img, .media-video, .media-indicator,
-    .project-card, .project-lane, .nav-link, .nav-link-separator {
-        transition: none !important;
-        animation: none !important;
-    }
-    .media-video { display: none !important; }
-}
-
-/* ==========================================================================
-   TYPOGRAPHY & SPACING
-   ========================================================================== */
-
+/* TYPOGRAPHY */
 .heading-display {
     font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -95,57 +135,43 @@ body {
     color: var(--color-text);
 }
 
-/* Gamla fonten återställd för undertext */
 .heading-sub {
     font-family: var(--font-mono);
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-size: 0.95rem;
-    font-weight: 700 !important; /* Gör texten fet som i bild 2 */
-    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 700 !important;
 }
 
 .heading-section {
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 600;
-    margin-bottom: 2.5rem;
     color: var(--color-text);
 }
 
 .body-text {
     font-family: var(--font-body);
     color: var(--color-muted);
-    line-height: 1.8;
-    font-size: 1.125rem;
+    line-height: 1.6;
 }
 
-/* Gamla mono-fonten för alla etiketter, knappar och kod */
 .label-mono, .code-font, a, button {
     font-family: var(--font-mono);
 }
 
-/* ==========================================================================
-   HOVER HIGHLIGHTS & INTERACTION (FIXAR HOVER-EFFEKTER)
-   ========================================================================== */
-
-/* Länkar och knappar hover-highlight */
 a:hover, button:hover, .nav-link:hover {
-    font-weight: 700 !important;
-    letter-spacing: 0.05em;
-    color: var(--color-accent-hover) !important; /* Denna saknades! */
-    text-shadow: 0 0 8px var(--color-glow); /* Adderar lite snyggt glow */
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 8px var(--color-glow-hover);
 }
 
-a:hover, button:hover, .nav-link {
-    font-weight: 700 !important;
-    letter-spacing: 0.05em;
-    color: var(--color-muted); /* Gör länkarna gråa */
+a, button, .nav-link {
+    color: var(--color-muted);
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Kort Hover-Highlight (Tech stack, projektkort, modaler) */
+/* CARDS & MODALS */
 .card-surface, 
 .project-card,
 #about-modal-wrapper,
@@ -158,32 +184,21 @@ a:hover, button:hover, .nav-link {
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-#about-modal-wrapper:hover,
-#project-modal-wrapper:hover {
-    border-color: var(--color-modal-border) !important;
-    box-shadow: 0 0 35px var(--color-modal-glow), 0 15px 40px -5px rgba(0,0,0,0.9) !important;
-    transform: translateY(-2px); /* Ett subtilare lyft eftersom modalen är stor */
-}
-
-/* NÄR DU HOVRAR ÖVER ETT KORT: Ram lyser upp & skuggan blir blå */
 .card-surface:hover,
 .project-card:hover {
-    border-color: var(--color-accent-border) !important;
+    border-color: var(--color-accent-border-hover) !important;
     box-shadow: 0 0 25px var(--color-glow-hover), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
     transform: translateY(-4px);
 }
 
-/* ==========================================================================
-   MOUSE GLOW & CURSOR
-   ========================================================================== */
-
+/* MOUSE GLOW & CURSOR */
 #mouse-glow {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    pointer-events: none;
+    pointer-events: none !important;
     z-index: 99998;
 }
 
@@ -195,7 +210,7 @@ a:hover, button:hover, .nav-link {
     height: 8px;
     background-color: var(--color-accent) !important;
     border-radius: 50%;
-    pointer-events: none;
+    pointer-events: none !important;
     z-index: 2147483647 !important;
     transform: translate(-50%, -50%);
     transition: opacity 0.2s ease, transform 0.1s ease;
@@ -206,208 +221,7 @@ a:hover, button:hover, .nav-link {
     transform: translate(-50%, -50%) scale(0) !important;
 }
 
-/* ==========================================================================
-   SCROLL & LANE SYSTEM
-   ========================================================================== */
-
-.hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-.hide-scrollbar::-webkit-scrollbar {
-    display: none;
-}
-
-.lanes-wrapper:has(.project-lane:hover) .project-lane:not(:hover).lane-ready {
-    opacity: 0.25;
-    transform: scale(0.97);
-}
-
-.project-lane {
-    transform-origin: left center;
-    will-change: transform, opacity;
-}
-
-.project-lane.lane-ready {
-    transition: opacity 1.4s cubic-bezier(0.25, 0.1, 0.25, 1),
-                transform 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.lane-track {
-    padding-top: 4px;
-    padding-bottom: 4px;
-}
-
-/* ==========================================================================
-   PAGE LOAD ANIMATIONS
-   ========================================================================== */
-
-@keyframes slideUpFade {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes slideRightFade {
-    0% { opacity: 0; transform: translateX(60px); }
-    100% { opacity: 1; transform: translateX(0); }
-}
-
-.animate-fade-up {
-    animation: slideUpFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
-}
-
-.animate-fade-right {
-    animation: slideRightFade 0.8s cubic-bezier(0.5, 1, 0.5, 1) both;
-}
-
-.fade-up-element {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.fade-right-element {
-    opacity: 0;
-    transform: translateX(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.is-visible {
-    opacity: 1 !important;
-    transform: translate(0) !important;
-}
-
-/* ==========================================================================
-   PROJECT CARDS & MEDIA PREVIEW
-   ========================================================================== */
-
-.project-card {
-    transform-origin: center center;
-    cursor: none;
-    overflow: visible !important;
-    position: relative;
-}
-
-.project-card .media-preview {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    background: #0a0a0c;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 1rem 1rem 0 0;
-}
-
-.project-card .media-img,
-.project-card .media-video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s ease;
-}
-
-.project-card .media-video {
-    opacity: 0;
-}
-
-.project-card:hover .media-img {
-    opacity: 0;
-    transform: scale(1.05);
-}
-
-.project-card:hover .media-video {
-    opacity: 1;
-}
-
-.media-indicator {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.project-card:hover .media-indicator {
-    opacity: 0;
-    transform: scale(0.8);
-}
-
-.media-indicator.is-playing {
-    animation: pulseIndicator 1.2s ease-in-out infinite;
-    color: var(--color-accent);
-    border-color: var(--color-accent-border);
-}
-
-@keyframes pulseIndicator {
-    0%, 100% { opacity: 0.8; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.15); }
-}
-
-/* ==========================================================================
-   CARD TOOLTIP — Bokmärke under kortet
-   ========================================================================== */
-
-.card-tooltip {
-    position: absolute;
-    bottom: -36px;
-    left: 50%;
-    transform: translateX(-50%) translateY(4px);
-    background: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
-    pointer-events: none;
-    z-index: 10;
-}
-
-.card-tooltip span {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-accent);
-    background: var(--color-glow);
-    border: 1px solid var(--color-accent-border);
-    border-top: none;
-    padding: 8px 18px;
-    border-radius: 0 0 10px 10px;
-    backdrop-filter: blur(8px);
-    white-space: nowrap;
-    box-shadow: 0 4px 20px var(--color-glow);
-}
-
-.project-card:hover .card-tooltip {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    transition-delay: 1s;
-}
-
-.project-card:not(:hover) .card-tooltip {
-    transition-delay: 0s;
-}
-
-@media (pointer: coarse) {
-    .card-tooltip { display: none !important; }
-}
-
-iframe[src*="spotify"] {
-    filter: contrast(0.95);
+/* IFRAME MOUSE FIX: Säkerställer att musen syns och inte krockar med videon */
+iframe {
+    pointer-events: auto;
 }
