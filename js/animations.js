@@ -1,7 +1,7 @@
 // 1. Dölj elementen blixtsnabbt innan webbläsaren hinner rita ut dem
 document.head.insertAdjacentHTML("beforeend", `
     <style id="preload-hide">
-        main > section, main > div, .project-lane, .nav-link, .nav-link-separator { opacity: 0; }
+        main > section, main > div, nav, .project-lane, .nav-link, .nav-link-separator { opacity: 0; }
     </style>
 `);
 
@@ -14,10 +14,17 @@ export function initAnimations() {
     const isProjectsPage = document.querySelector('.lanes-wrapper') !== null;
 
     if (isHomePage) {
-        // HOME: Nedifrån och upp
+        // HOME: Fada in navbaren först med fade-up
+        const navElement = document.querySelector('nav');
+        if (navElement) {
+            navElement.style.animationDelay = `0.05s`;
+            navElement.classList.add('animate-fade-up');
+        }
+
+        // HOME: Sektioner nedifrån och upp
         const homeSections = document.querySelectorAll('main > section, main > div');
         homeSections.forEach((section, index) => {
-            section.style.animationDelay = `${index * 0.15}s`;
+            section.style.animationDelay = `${(index + 1) * 0.15}s`;
             section.classList.add('animate-fade-up');
         });
     }
@@ -42,7 +49,7 @@ export function initAnimations() {
         // Nav links — fade in from right with stagger
         const navLinks = document.querySelectorAll('.nav-link, .nav-link-separator');
         navLinks.forEach((link, index) => {
-            link.style.animationDelay = `${0.3 + (index * 0.08)}s`;
+            link.style.animationDelay = `${0.3 + (index * 0.1)}s`;
             link.classList.add('animate-fade-right');
 
             const onAnimEnd = (e) => {
