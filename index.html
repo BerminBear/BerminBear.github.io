@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="projects">
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="home">
 
     <div id="mouse-glow"></div>
     <div id="custom-cursor"></div>
@@ -32,58 +32,80 @@
     <!-- MAIN CONTENT -->
     <main class="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col gap-12 relative z-10 items-center text-center">
         
-        <!-- HERO -->
-        <section id="hero" class="w-full flex flex-col items-center pt-14 pb-8">
-            <div class="w-full flex flex-col items-center">
-                <div class="w-full max-w-3xl flex flex-col items-center">
-                    <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full">
-                        
-                        <div class="flex items-center justify-center gap-4">
-                            <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)]">
-                                Benjamin Natalli
-                            </h1>
-                            <span class="info-badge inline-block label-mono text-[11px] font-bold tracking-widest uppercase transition-all duration-300 group-hover:scale-110">
-                                [ INFO+ ]
-                            </span>
-                        </div>
+<!-- HERO -->
+<section id="hero" class="w-full flex flex-col items-center pt-12 pb-6">
+    <div class="w-full flex flex-col items-center">
+        <div class="w-full max-w-3xl flex flex-col items-center">
+            <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full relative">
+    
+    <!-- Namn & Hover-tagg (Perfekt Symmetri) -->
+    <div class="w-full flex justify-center items-center">
+        <!-- max-w-xl ser till att texten hålls inom samma bounds som dividern -->
+        <div class="relative w-full max-w-xl flex justify-center items-center">
+            <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] w-full flex items-center">
+                
+                <!-- Vänster sida: Tar exakt 50% av platsen, texten trycks mot mitten -->
+                <span class="flex-1 flex justify-end">Benjamin</span>
+                
+                <!-- Mellanrum: Låst exakt i mitten (rakt över diamanten och &) -->
+                <span class="w-3 md:w-4 flex-shrink-0"></span>
+                
+                <!-- Höger sida: Tar exakt 50% av platsen, texten börjar från mitten -->
+<span class="flex-1 flex justify-start">
+    <!-- LÄGG TILL margin-left HÄR (t.ex. ml-2 eller ml-3) -->
+    <span class="relative flex items-center tracking-[0.05em] ml-2 md:ml-1.5">
+        Natalli
+        
+        <!-- Hover-tagg låst till slutet av ordet -->
+        <span class="info-hover-tag absolute left-full ml-3 md:ml-4 label-mono text-[11px] text-[var(--color-accent-hover)] opacity-0 tracking-widest uppercase whitespace-nowrap hidden sm:inline-block pointer-events-none">
+            [ Click for info ]
+        </span>
+    </span>
+</span>
+                
+            </h1>
+        </div>
+    </div>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[420px] mt-1 transition-all duration-300">
-                            <polygon points="10,20 200,18.5 200,21.5" fill="currentColor" />
-                            <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
-                            <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
-                            <polygon points="250,14 256,20 250,26 244,20" fill="currentColor" />
-                            <circle cx="230" cy="20" r="1.5" fill="currentColor" />
-                            <circle cx="270" cy="20" r="1.5" fill="currentColor" />
-                            <polygon points="212,20 220,16 228,20 220,24" fill="none" stroke="currentColor" stroke-width="1.2" />
-                            <polygon points="288,20 280,16 272,20 280,24" fill="none" stroke="currentColor" stroke-width="1.2" />
-                        </svg>
-                    </button>
+    <!-- SVG Divider -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[420px] -mt-1.5 transition-all duration-300">
+        <polygon points="10,20 200,18.5 200,21.5" fill="currentColor" />
+        <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
+        <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
+        <polygon points="250,14 256,20 250,26 244,20" fill="currentColor" />
+        <circle cx="230" cy="20" r="1.5" fill="currentColor" />
+        <circle cx="270" cy="20" r="1.5" fill="currentColor" />
+        <polygon points="212,20 220,16 228,20 220,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+        <polygon points="288,20 280,16 272,20 280,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+    </svg>
+</button>
 
-<h2 class="heading-sub text-[15px] md:text-[16px] mt-1 mb-1 w-full max-w-xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-center">
-    <span class="text-right">Technical Audio</span>
-    <span class="px-2 text-[var(--color-text)] font-bold">&</span>
-    <span class="text-left">Dialogue Designer</span>
-</h2>
+            <!-- Undertitlar -->
+            <h2 class="heading-sub text-[15px] md:text-[16px] -mt-0.5 mb-1 w-full max-w-xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-center">
+                <span class="text-right">Technical Audio</span>
+                <span class="px-2 text-[var(--color-text)] font-bold">&</span>
+                <span class="text-left">Dialogue Designer</span>
+            </h2>
 
-                    <p class="body-text mt-1 max-w-none whitespace-nowrap text-[13px] md:text-[16px]">
-                        Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
-                    </p>
+            <p class="body-text mt-1 max-w-none whitespace-nowrap text-[13px] md:text-[15px]">
+                Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
+            </p>
 
-                    <div class="mt-3 flex flex-wrap justify-center gap-6 label-mono font-bold md:text-[13.5px]">
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-1">[ LinkedIn ]</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-1">[ Email ]</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-1">[ CV ]</a>
-                    </div>
-                </div>
+            <div class="mt-2.5 flex flex-wrap justify-center gap-6 label-mono font-bold md:text-[13.5px]">
+                <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
+                <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
+                <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-0.5">[ CV ]</a>
             </div>
+        </div>
+    </div>
 
-            <!-- VIDEO CONTAINER -->
-            <div class="w-full mt-6 flex justify-center">
-                <div class="aspect-video w-full max-w-4xl rounded-2l overflow-hidden card-surface shadow-2xl relative z-20">
-                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
-                </div>
-            </div>
-        </section>
+    <!-- VIDEO CONTAINER -->
+    <div class="w-full mt-6 flex justify-center">
+        <div class="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
+        </div>
+    </div>
+</section>
 
         <!-- SELECTED WORK -->
         <section id="highlights" class="w-full max-w-6xl mx-auto">
@@ -154,12 +176,12 @@
                 <div class="p-5 card-surface">
                     <h4 class="heading-sub mb-3 text-xs">Audio Tech</h4>
                     <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 text-xs tag-accent font-semibold">Wwise</span>
-                        <span class="px-3 py-1 text-xs tag-accent font-semibold">FMOD Studio</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Wwise</span>
+                        <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">FMOD Studio</span>
                         <span class="px-3 py-1 text-xs label-mono rounded bg-white/5 text-slate-300 border border-white/10">Reaper</span>
                     </div>
                 </div>
-                
+
                 <div class="p-5 card-surface">
                     <h4 class="heading-sub mb-3 text-xs">Engines</h4>
                     <div class="flex flex-wrap gap-2">
