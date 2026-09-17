@@ -87,8 +87,12 @@
     text-shadow: 0 0 8px var(--color-glow-hover);
 }
 
+#custom-cursor {
+    display: none !important; /* Döljer permanent, oavsett hover-state */
+}
+
 * {
-    cursor: none !important;
+    cursor: auto !important; /* Ge tillbaka den vanliga pekaren överallt */
 }
 
 html {
@@ -226,3 +230,30 @@ iframe {
     pointer-events: auto;
 }
 
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRightFade {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-up {
+    animation: fadeUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-fade-right {
+    animation: slideRightFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Krävs av animations.js's isProjectsPage-gren — tar över EFTER att animate-fade-right är klar */
+.lane-ready {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nav-link-ready {
+    transition: color 0.3s ease;
+}
