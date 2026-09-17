@@ -23,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => text1.classList.remove("opacity-0"), 850);
     
     // 2. Tona in "to listen?" på samma rad
-    setTimeout(() => text2.classList.remove("opacity-0"), 2200);
+    setTimeout(() => text2.classList.remove("opacity-0"), 2800);
     
     // 3. Tona in knapparna
-    setTimeout(() => buttons.classList.remove("opacity-0"), 4000);
+    setTimeout(() => buttons.classList.remove("opacity-0"), 5000);
 
 const proceedToHome = (e) => {
         if (e) e.preventDefault();
