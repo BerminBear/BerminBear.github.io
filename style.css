@@ -91,8 +91,9 @@
     display: none !important; /* Döljer permanent, oavsett hover-state */
 }
 
-* {
-    cursor: auto !important; /* Ge tillbaka den vanliga pekaren överallt */
+a, button, .cv-name-trigger, .project-card, .nav-link, 
+button *, a *, .cv-name-trigger *, .project-card * {
+    cursor: pointer !important;
 }
 
 html {
