@@ -1,15 +1,29 @@
 // js/media-preview.js
-import { isSoundEnabled, isSoundUnlocked, playSound } from './sound.js';
 import { openProjectModal } from './modal.js';
 
-let currentPreview = null;
+let currentAudio = null;
+let fadeInterval = null;
 
 function stopCurrentPreview() {
-    if (!currentPreview) return;
-    const howl = currentPreview;
-    howl.fade(howl.volume(), 0, 250);
-    setTimeout(() => howl.stop(), 260);
-    currentPreview = null;
+    if (!currentAudio) return;
+    clearInterval(fadeInterval);
+    
+    const audio = currentAudio;
+    let vol = audio.volume;
+    
+    // Mjuk uttoning (fade out)
+    fadeInterval = setInterval(() => {
+        if (vol > 0.05) {
+            vol -= 0.05;
+            audio.volume = vol;
+        } else {
+            clearInterval(fadeInterval);
+            audio.pause();
+            audio.currentTime = 0;
+        }
+    }, 30);
+    
+    currentAudio = null;
 }
 
 export function initMediaPreviews() {
@@ -23,58 +37,68 @@ export function initMediaPreviews() {
         const projectId = card.dataset.projectId;
 
         let hoverTimeout;
-        let howl = null;
+        let audio = null;
 
-        if (audioSrc && typeof Howl !== 'undefined') {
-            howl = new Howl({
-                src: [audioSrc],
-                volume: 0,
-                loop: true,
-                preload: true,
-                onloaderror: () => console.warn(`[media-preview.js] Kunde inte ladda: ${audioSrc}`),
-            });
+        // Förladda ljudet om en länk finns
+        if (audioSrc) {
+            audio = new Audio(audioSrc);
+            audio.loop = true;
+            audio.volume = 0;
         }
 
-        // HOVER: video + ljud
+        // HOVER: Spela video + ljud
         card.addEventListener('mouseenter', () => {
             hoverTimeout = setTimeout(() => {
                 if (video) {
                     if (video.readyState < 2) video.load();
                     video.play().catch(() => {});
                 }
-                if (howl && isSoundEnabled() && isSoundUnlocked()) {
+                if (audio) {
                     stopCurrentPreview();
-                    howl.play();
-                    howl.fade(0, 0.4, 400);
-                    currentPreview = howl;
+                    audio.volume = 0;
+                    audio.play().catch(() => {});
+                    
+                    // Mjuk intoning (fade in) till max 40% volym
+                    let vol = 0;
+                    const fadeIn = setInterval(() => {
+                        if (vol < 0.35) {
+                            vol += 0.05;
+                            audio.volume = vol;
+                        } else {
+                            clearInterval(fadeIn);
+                        }
+                    }, 40);
+                    
+                    currentAudio = audio;
                     indicator?.classList.add('is-playing');
                 }
             }, 150);
         });
 
+        // LEAVE: Pausa video + ljud
         card.addEventListener('mouseleave', () => {
             clearTimeout(hoverTimeout);
             if (video) {
                 video.pause();
                 video.currentTime = 0;
             }
-            if (howl && currentPreview === howl) {
+            if (audio && currentAudio === audio) {
                 stopCurrentPreview();
                 indicator?.classList.remove('is-playing');
             }
         });
 
-        // CLICK: öppna modal (om man inte klickade på länken)
+        // CLICK: Öppna modal
         card.addEventListener('click', (e) => {
-            // Om klicket var på en länk eller knapp inuti kortet, öppna INTE modalen
+            // Ignorera klick på länkar (ex. "View on Steam") inuti kortet
             if (e.target.closest('a, button, .card-link')) return;
             
             if (projectId) {
-                playSound('click');
                 openProjectModal(projectId);
             }
         });
 
+        // Felsäkring för video
         if (video) {
             video.addEventListener('error', () => {
                 if (img) img.style.opacity = '1';

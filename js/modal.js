@@ -264,7 +264,7 @@ function buildProjectModalHTML(id) {
 
     const platformBtn = p.platform ? `
         <a href="${p.platform.url}" target="_blank" rel="noopener"
-           class="inline-flex items-center justify-center gap-3 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md transition-colors shadow-lg"
+           class="no-gold-hover inline-flex items-center justify-center gap-3 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md transition-colors shadow-lg"
            style="background-color: ${p.platform.bg}; color: ${p.platform.textColor || '#fff'}; ${p.platform.border ? 'border: ' + p.platform.border : ''}"
            onmouseover="this.style.backgroundColor='${p.platform.hoverBg}'"
            onmouseout="this.style.backgroundColor='${p.platform.bg}'">

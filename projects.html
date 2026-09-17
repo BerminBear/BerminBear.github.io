@@ -140,11 +140,6 @@
     </div>
 </nav>
 
-    <!-- LJUD-KNAPP -->
-    <button id="sound-toggle" class="fixed bottom-6 right-6 z-[9999] w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-lg hover:bg-white/10 transition-colors" aria-pressed="false">
-        <span id="sound-icon">🔇</span>
-    </button>
-
     <!-- PROJEKT-LANES -->
     <main class="pt-28 pb-24 pl-6 md:pl-12 lg:pl-20 relative z-10">
 
@@ -157,10 +152,10 @@
                 <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- TENTACLE TANGO -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
+                            <video class="media-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" muted loop playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
                                 <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
                             </video>
                             <div class="media-indicator">♪</div>
@@ -176,7 +171,7 @@
                                 <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link inline-flex items-center justify-center gap-2 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
+                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
                                     <img src="images/logos/nintendo-switch-logo.png" alt="Nintendo Switch" class="w-4 h-4 object-contain brightness-0 invert">
                                     View on Switch
                                 </a>
@@ -185,7 +180,7 @@
                     </article>
 
                     <!-- SKELETONS -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/skeletons-card.jpg" alt="What Do You Call a Group of Skeletons game artwork" class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
@@ -201,7 +196,7 @@
                                 <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Technical Sound Designer</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
+                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
                                     <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-4 h-4 object-contain">
                                     View on Steam
                                 </a>
@@ -210,10 +205,10 @@
                     </article>
 
                     <!-- AURA FARMERS -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata" poster="images/cards/aura-farmers-card.png">
+                            <video class="media-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" muted loop playsinline preload="metadata" poster="images/cards/aura-farmers-card.png">
                                 <source src="videos/aura-farmers-preview.mp4" type="video/mp4">
                             </video>
                             <div class="media-indicator">♪</div>
@@ -228,7 +223,7 @@
                                 <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
                             </div>
                             <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" rel="noopener noreferrer" class="card-link inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
+                                <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
                                     <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-4 h-4 object-contain">
                                     View on Steam
                                 </a>
@@ -247,7 +242,7 @@
                 <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- RUBIK ROAD -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="rubik-road" data-audio-preview="sounds/previews/rubik-road.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="rubik-road" data-audio-preview="sounds/previews/rubik-road.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/rubik-road-card.png" alt="Rubik Road mobile game artwork" class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
@@ -272,7 +267,7 @@
                     </article>
 
                     <!-- CROCODINE -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="crocodine" data-audio-preview="sounds/previews/crocodine.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="crocodine" data-audio-preview="sounds/previews/crocodine.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/crocodine-card.png" alt="CrocoDine mobile game artwork" class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
@@ -307,7 +302,7 @@
                 <div class="lane-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar pr-24 relative z-20">
 
                     <!-- HULDR -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="huldr" data-audio-preview="sounds/previews/huldr.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="huldr" data-audio-preview="sounds/previews/huldr.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/huldr-card.png" alt="HULDR animated film artwork" class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
@@ -331,7 +326,7 @@
                     </article>
 
                     <!-- RETUSCH -->
-                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none" data-project-id="retusch" data-audio-preview="sounds/previews/retusch.mp3">
+                    <article class="project-card relative snap-start shrink-0 w-[85vw] md:w-[420px] bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="retusch" data-audio-preview="sounds/previews/retusch.mp3">
                         <div class="media-preview relative aspect-video bg-[#0a0a0c]">
                             <img src="images/cards/retusch-card.png" alt="Retusch short film artwork" class="media-img w-full h-full object-cover" loading="lazy">
                             <div class="media-indicator">♪</div>
@@ -368,7 +363,6 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.4/dist/howler.min.js"></script>
     <script type="module" src="js/main.js"></script>
     <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script>
 </body>

@@ -186,3 +186,9 @@ html {
     transform-origin: center;
     transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
 }
+
+/* Förhindra att guldtext appliceras på fyllda knappar (Steam/Switch) */
+.no-gold-hover:hover {
+    color: #ffffff !important;
+    text-shadow: none !important;
+}
