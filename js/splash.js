@@ -1,42 +1,54 @@
-// js/splash.js
-import { playSound } from './sound.js';
+document.addEventListener("DOMContentLoaded", () => {
+    const splashSeen = sessionStorage.getItem("splashSeen");
 
-export function initSplash() {
-    const splash = document.getElementById('splash-screen');
-    const t1 = document.getElementById('splash-text-1');
-    const t2 = document.getElementById('splash-text-2');
-    const btn = document.getElementById('splash-btn');
-    const heroVideo = document.getElementById('hero-showcase');
+    // Om besökaren redan klickat igenom sig under samma session, hoppa direkt till index.html
+    if (splashSeen === "true") {
+        window.location.href = "index.html";
+        return;
+    }
 
-    if (!splash) return;
+    const container = document.getElementById("splash-container");
+    const listenBtn = document.getElementById("listen-btn");
+    const skipTopBtn = document.getElementById("skip-top-btn");
+    const skipLinkBtn = document.getElementById("skip-link-btn");
 
-    // Lås scroll medan splash-skärmen är aktiv
-    document.body.style.overflow = 'hidden';
+    // Fada in elementet mjukt vid laddning
+    setTimeout(() => {
+        container.classList.remove("opacity-0");
+    }, 100);
 
-    // Cinematiskt intonande av texten (styrs via Tailwind opacity-klasser)
-    setTimeout(() => t1.classList.remove('opacity-0'), 800);
-    setTimeout(() => t2.classList.remove('opacity-0'), 2500);
-    setTimeout(() => btn.classList.remove('opacity-0'), 4500);
+    // Funktion för att registrera att splashen är klar och navigera vidare
+    const proceedToIndex = (e) => {
+        if (e) e.preventDefault();
+        sessionStorage.setItem("splashSeen", "true");
+        window.location.href = "index.html";
+    };
 
-    // Klick-interaktionen: Låser upp ljud, startar video och tar bort skärmen
-    btn.addEventListener('click', () => {
-        // sound_5.js fångar automatiskt detta klick via 'pointerdown' för att låsa upp Howler.js
-        playSound('click'); // Eller ett eget UI-ljud
+    skipTopBtn.addEventListener("click", proceedToIndex);
+    skipLinkBtn.addEventListener("click", proceedToIndex);
 
-        // Tona ut den svarta skärmen
-        splash.classList.add('opacity-0');
-        document.body.style.overflow = ''; // Tillåt scroll igen
+    // Klick på [ Listen ]
+    listenBtn.addEventListener("click", () => {
+        sessionStorage.setItem("splashSeen", "true");
 
-        // Starta videon exakt när övergången börjar
-        if (heroVideo) {
-            heroVideo.volume = 0.8; // Balansera volymen
-            heroVideo.play().catch(err => console.warn('Autoplay blocked:', err));
-        }
+        // Fada ut texten lite snyggt medan ljudet spelas
+        container.classList.add("opacity-0");
 
-        // Ta bort elementet från DOM när CSS-transitionen (1000ms) är klar
+        // Spela upp ditt ljudklipp (ersätt sökvägen med din fil)
+        const audio = new Audio("audio/splash-voice.mp3"); 
+        audio.volume = 1.0;
+
+        audio.play().catch(err => {
+            console.log("Audio playback prevented or failed:", err);
+        });
+
+        // När ljudet spelat klart (eller efter en säkerhets-timer på 3.5 sekunder), gå till index.html
+        audio.onended = () => {
+            window.location.href = "index.html";
+        };
+
         setTimeout(() => {
-            splash.style.display = 'none';
-            splash.remove();
-        }, 1000); 
+            window.location.href = "index.html";
+        }, 3500);
     });
-}
+});
