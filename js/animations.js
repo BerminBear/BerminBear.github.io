@@ -1,5 +1,3 @@
-// js/animations.js
-
 // 1. Dölj elementen blixtsnabbt innan webbläsaren hinner rita ut dem
 document.head.insertAdjacentHTML("beforeend", `
     <style id="preload-hide">

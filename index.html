@@ -14,9 +14,6 @@
 
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="home">
 
-    <div id="mouse-glow"></div>
-    <div id="custom-cursor"></div>
-
     <!-- NAVBAR -->
     <nav class="absolute top-0 left-0 w-full z-50 bg-transparent py-6 px-4 md:px-8 pointer-events-none">
         <div class="w-full flex justify-between items-center relative z-50">
@@ -32,85 +29,73 @@
     <!-- MAIN CONTENT -->
     <main class="max-w-[1300px] mx-auto px-6 md:px-12 flex flex-col gap-12 relative z-10 items-center text-center">
         
-<!-- HERO -->
-<section id="hero" class="w-full flex flex-col items-center pt-12 pb-6">
-    <div class="w-full flex flex-col items-center">
-        <div class="w-full max-w-3xl flex flex-col items-center">
-            <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full relative">
-    
-    <!-- Namn & Hover-tagg (Perfekt Symmetri) -->
-    <div class="w-full flex justify-center items-center">
-        <!-- max-w-xl ser till att texten hålls inom samma bounds som dividern -->
-        <div class="relative w-full max-w-xl flex justify-center items-center">
-            <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] w-full flex items-center">
-                
-                <!-- Vänster sida: Tar exakt 50% av platsen, texten trycks mot mitten -->
-                <span class="flex-1 flex justify-end">Benjamin</span>
-                
-                <!-- Mellanrum: Låst exakt i mitten (rakt över diamanten och &) -->
-                <span class="w-3 md:w-4 flex-shrink-0"></span>
-                
-                <!-- Höger sida: Tar exakt 50% av platsen, texten börjar från mitten -->
-<span class="flex-1 flex justify-start">
-    <!-- LÄGG TILL margin-left HÄR (t.ex. ml-2 eller ml-3) -->
-    <span class="relative flex items-center tracking-[0.05em] ml-2 md:ml-1.5">
-        Natalli
-        
-        <!-- Hover-tagg låst till slutet av ordet -->
-        <span class="info-hover-tag absolute left-full ml-3 md:ml-4 label-mono text-[11px] text-[var(--color-accent-hover)] opacity-0 tracking-widest uppercase whitespace-nowrap hidden sm:inline-block pointer-events-none">
-            [ Click for info ]
-        </span>
-    </span>
-</span>
-                
-            </h1>
-        </div>
-    </div>
+        <!-- HERO -->
+        <section id="hero" class="w-full flex flex-col items-center pt-12 pb-6">
+            <div class="w-full flex flex-col items-center">
+                <div class="w-full max-w-3xl flex flex-col items-center">
+                    <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full relative">
+                        
+                        <!-- Namn & Hover-tagg -->
+                        <div class="w-full flex justify-center items-center">
+                            <div class="relative w-full max-w-xl flex justify-center items-center">
+                                <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] w-full flex items-center">
+                                    <span class="flex-1 flex justify-end">Benjamin</span>
+                                    <span class="w-3 md:w-4 flex-shrink-0"></span>
+                                    <span class="flex-1 flex justify-start">
+                                        <span class="relative flex items-center tracking-[0.05em] ml-2 md:ml-1.5">
+                                            Natalli
+                                            <span class="info-hover-tag absolute left-full ml-3 md:ml-4 label-mono text-[11px] text-[var(--color-accent-hover)] opacity-0 tracking-widest uppercase whitespace-nowrap hidden sm:inline-block pointer-events-none">
+                                                [ Click for info ]
+                                            </span>
+                                        </span>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
 
-    <!-- SVG Divider -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[420px] -mt-1.5 transition-all duration-300">
-        <polygon points="10,20 200,18.5 200,21.5" fill="currentColor" />
-        <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
-        <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
-        <polygon points="250,14 256,20 250,26 244,20" fill="currentColor" />
-        <circle cx="230" cy="20" r="1.5" fill="currentColor" />
-        <circle cx="270" cy="20" r="1.5" fill="currentColor" />
-        <polygon points="212,20 220,16 228,20 220,24" fill="none" stroke="currentColor" stroke-width="1.2" />
-        <polygon points="288,20 280,16 272,20 280,24" fill="none" stroke="currentColor" stroke-width="1.2" />
-    </svg>
-</button>
+                        <!-- SVG Divider -->
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[420px] -mt-1.5 transition-all duration-300">
+                            <polygon points="10,20 200,18.5 200,21.5" fill="currentColor" />
+                            <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
+                            <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
+                            <polygon points="250,14 256,20 250,26 244,20" fill="currentColor" />
+                            <circle cx="230" cy="20" r="1.5" fill="currentColor" />
+                            <circle cx="270" cy="20" r="1.5" fill="currentColor" />
+                            <polygon points="212,20 220,16 228,20 220,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+                            <polygon points="288,20 280,16 272,20 280,24" fill="none" stroke="currentColor" stroke-width="1.2" />
+                        </svg>
+                    </button>
 
-            <!-- Undertitlar -->
-            <h2 class="heading-sub text-[15px] md:text-[16px] -mt-0.5 mb-1 w-full max-w-xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-center">
-                <span class="text-right">Technical Audio</span>
-                <span class="px-2 text-[var(--color-text)] font-bold">&</span>
-                <span class="text-left">Dialogue Designer</span>
-            </h2>
+                    <!-- Undertitlar -->
+                    <h2 class="heading-sub text-[15px] md:text-[16px] -mt-0.5 mb-1 w-full max-w-xl mx-auto grid grid-cols-[1fr_auto_1fr] items-center text-center">
+                        <span class="text-right">Technical Audio</span>
+                        <span class="px-2 text-[var(--color-text)] font-bold">&</span>
+                        <span class="text-left">Dialogue Designer</span>
+                    </h2>
 
-            <p class="body-text mt-1 max-w-none whitespace-nowrap text-[13px] md:text-[15px]">
-                Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
-            </p>
+                    <p class="body-text mt-1 max-w-none whitespace-nowrap text-[13px] md:text-[15px]">
+                        Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
+                    </p>
 
-            <div class="mt-2.5 flex flex-wrap justify-center gap-6 label-mono font-bold md:text-[13.5px]">
-                <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
-                <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
-                <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-0.5">[ CV ]</a>
+                    <div class="mt-2.5 flex flex-wrap justify-center gap-6 label-mono font-bold md:text-[13.5px]">
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
+                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-0.5">[ CV ]</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <!-- VIDEO CONTAINER -->
-    <div class="w-full mt-6 flex justify-center">
-        <div class="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
-            <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
-        </div>
-    </div>
-</section>
+            <!-- VIDEO CONTAINER -->
+            <div class="w-full mt-6 flex justify-center">
+                <div class="aspect-video w-full max-w-4xl rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen title="Showreel"></iframe>
+                </div>
+            </div>
+        </section>
 
         <!-- SELECTED WORK -->
         <section id="highlights" class="w-full max-w-6xl mx-auto">
             <div class="flex items-center justify-center gap-4 mb-8 w-full">
-                <!-- Vänster SVG-linje -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 20" class="w-full max-w-[150px] sm:max-w-[250px] md:max-w-[300px] h-4 text-[var(--color-text-muted)] opacity-60">
                     <polygon points="0,9.5 180,9.5 180,10.5 0,10.5" fill="currentColor" />
                     <circle cx="190" cy="10" r="1.5" fill="currentColor" />
@@ -121,7 +106,6 @@
                     Selected Work
                 </h3>
 
-                <!-- Höger SVG-linje -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 20" class="w-full max-w-[150px] sm:max-w-[250px] md:max-w-[300px] h-4 text-[var(--color-text-muted)] opacity-60">
                     <polygon points="6,10 14,6 22,10 14,14" fill="none" stroke="currentColor" stroke-width="1.2" />
                     <circle cx="30" cy="10" r="1.5" fill="currentColor" />
@@ -168,7 +152,7 @@
             </div>
         </section>
 
-        <!-- TECH STACK & TOOLS  -->
+        <!-- TECH STACK & TOOLS -->
         <section id="tech-stack" class="w-full max-w-6xl mx-auto">
             <h3 class="heading-section mb-8" style="color: var(--color-text-muted);">Tech Stack & Tools</h3>
 
@@ -209,7 +193,7 @@
             </div>
         </section>
 
-        <footer class="text-center label-mono text-xs text-slate-600 py-6 w-full">
+        <footer class="text-center label-mono text-xs text-slate-600 py-1 w-full">
             <p>© 2026 Benjamin Natalli Salmonsson.</p>
         </footer>
     </main>
@@ -229,6 +213,16 @@
             <div id="project-modal-body"></div>
         </div>
     </div>
+
+    <!-- SCROLL TO BOTTOM / TOP BUTTON -->
+<button id="scroll-toggle-btn" aria-label="Scroll page" class="fixed bottom-8 right-8 z-50 p-3.5 rounded-full card-surface border border-white/10 hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_25px_var(--color-glow-hover)] transition-all duration-500 opacity-0 pointer-events-none group bg-[#080808]/80 backdrop-blur-md">
+    <svg id="scroll-btn-icon" class="w-7 h-7 text-[var(--color-muted)] group-hover:text-[var(--color-accent-hover)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Romb / Diamant-geometri -->
+        <polygon points="12,2 17,7 12,12 7,7" fill="currentColor" fill-opacity="0.15" stroke="currentColor" />
+        <!-- Förstorad Nedåt-pil -->
+        <path d="M5 13l7 7 7-7" />
+    </svg>
+</button>
 
     <script type="module" src="js/main.js"></script>
 </body>

@@ -27,10 +27,6 @@ body {
     cursor: auto;
 }
 
-#custom-cursor {
-    display: none !important;
-}
-
 a, button, .cv-name-trigger, .project-card, .nav-link, 
 button *, a *, .cv-name-trigger *, .project-card * {
     cursor: pointer !important;
@@ -84,7 +80,6 @@ a:hover, button:hover, .nav-link:hover {
     text-shadow: 0 0 8px var(--color-glow-hover);
 }
 
-/* Hover-tagg för namnet: Direkt fade-out när man lämnar, fördröjd fade-in på hover */
 .info-hover-tag {
     transition: opacity 0.2s ease;
 }
@@ -112,25 +107,6 @@ a:hover, button:hover, .nav-link:hover {
 
 .group:hover .heading-display {
     text-shadow: 0 0 10px var(--color-glow-hover);
-}
-
-.sidebar-champagne {
-    border-color: rgba(197, 160, 89, 0.3) !important;
-    box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
-}
-
-.side-nav-item {
-    color: var(--color-accent-hover) !important;
-    opacity: 0.5;
-    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease;
-}
-
-.side-nav-item:hover,
-.side-nav-item.active {
-    opacity: 1 !important;
-    color: var(--color-accent-hover) !important;
-    transform: scale(1.25);
-    filter: drop-shadow(0 0 6px var(--color-glow-hover));
 }
 
 /* ==========================================================================
@@ -203,4 +179,10 @@ html {
 
 .nav-link-ready {
     transition: color 0.3s ease;
+}
+
+/* Custom smooth rotation för scroll-knappen */
+#scroll-btn-icon {
+    transform-origin: center;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
 }
