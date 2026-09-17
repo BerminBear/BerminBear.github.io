@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Benjamin Natalli | Technical Audio & Dialogue Designer</title>
+    <title>Benjamin Natalli | Cinematic Intro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#030303] text-white flex items-center justify-center h-screen overflow-hidden">
 
-    <!-- SKIP-KNAPP I HÖRNET -->
-    <a href="index.html" id="skip-top-btn" class="absolute top-8 right-8 font-mono text-xs uppercase tracking-widest text-white/40 hover:text-white transition-colors z-50">
+    <!-- SKIP-KNAPP I HÖRNET (Dold tills man trycker Listen) -->
+    <a href="index.html" id="skip-top-btn" class="absolute top-8 right-8 font-mono text-xs uppercase tracking-widest text-white/40 hover:text-white transition-opacity duration-1000 opacity-0 pointer-events-none z-50">
         Skip Intro →
     </a>
 
-    <!-- HUVUDCONTAINER -->
-    <div id="splash-container" class="flex flex-col items-center justify-center text-center px-6 max-w-xl opacity-0 transition-opacity duration-1000">
-        
-        <p class="font-serif text-3xl md:text-5xl tracking-wide mb-10 text-white/90">
+    <!-- HUVUDCONTAINER ("Would you like to listen?") -->
+    <div id="splash-container" class="flex flex-col items-center justify-center text-center px-6 max-w-xl opacity-0 transition-opacity duration-1000 z-10 relative">
+        <p class="font-serif text-4xl md:text-6xl tracking-wide mb-12 text-white/90">
             Would you like to listen?
         </p>
-
-        <div class="flex gap-8 items-center">
-            <button id="listen-btn" class="font-mono text-sm uppercase tracking-widest text-[var(--color-accent-hover)] hover:text-white transition-colors cursor-pointer">
+        <div class="flex gap-8 items-center justify-center">
+            <button id="listen-btn" class="font-mono text-sm uppercase tracking-widest text-[var(--color-accent-hover)] hover:text-white transition-colors cursor-pointer focus:outline-none">
                 [ Listen ]
             </button>
-            <a href="index.html" id="skip-link-btn" class="font-mono text-sm uppercase tracking-widest text-white/50 hover:text-white transition-colors">
+            <a href="index.html" id="skip-link-btn" class="font-mono text-sm uppercase tracking-widest text-white/50 hover:text-white transition-colors focus:outline-none">
                 [ Skip ]
             </a>
         </div>
+    </div>
 
+    <!-- VIDEO CONTAINER (Dold från start) -->
+    <div id="video-container" class="fixed inset-0 bg-[#030303] z-40 opacity-0 pointer-events-none transition-opacity duration-1000 flex items-center justify-center">
+        <!-- Byt ut src mot din highlight reel -->
+        <video id="splash-video" class="w-full h-full object-cover" playsinline preload="auto">
+            <source src="videos/splash-reel.mp4" type="video/mp4">
+        </video>
     </div>
 
     <script type="module" src="js/splash.js"></script>

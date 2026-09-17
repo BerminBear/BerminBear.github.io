@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const splashSeen = sessionStorage.getItem("splashSeen");
 
-    // Om besökaren redan klickat igenom sig under samma session, hoppa direkt till index.html
     if (splashSeen === "true") {
-        window.location.href = "index.html";
+        window.location.replace("index.html");
         return;
     }
 
@@ -11,13 +10,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const listenBtn = document.getElementById("listen-btn");
     const skipTopBtn = document.getElementById("skip-top-btn");
     const skipLinkBtn = document.getElementById("skip-link-btn");
+    
+    // Nya video-element
+    const videoContainer = document.getElementById("video-container");
+    const splashVideo = document.getElementById("splash-video");
 
-    // Fada in elementet mjukt vid laddning
     setTimeout(() => {
         container.classList.remove("opacity-0");
-    }, 100);
+    }, 300);
 
-    // Funktion för att registrera att splashen är klar och navigera vidare
     const proceedToIndex = (e) => {
         if (e) e.preventDefault();
         sessionStorage.setItem("splashSeen", "true");
@@ -31,24 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     listenBtn.addEventListener("click", () => {
         sessionStorage.setItem("splashSeen", "true");
 
-        // Fada ut texten lite snyggt medan ljudet spelas
-        container.classList.add("opacity-0");
+        // 1. Dölj starttexten
+        container.classList.add("opacity-0", "pointer-events-none");
 
-        // Spela upp ditt ljudklipp (ersätt sökvägen med din fil)
-        const audio = new Audio("audio/splash-voice.mp3"); 
-        audio.volume = 1.0;
+        // 2. Visa videon och hörn-skip-knappen
+        videoContainer.classList.remove("opacity-0", "pointer-events-none");
+        skipTopBtn.classList.remove("opacity-0", "pointer-events-none");
+        skipTopBtn.classList.add("opacity-100", "pointer-events-auto");
 
-        audio.play().catch(err => {
-            console.log("Audio playback prevented or failed:", err);
+        // 3. Spela videon (Se till att "Good" och svart bild är inbakat i början av video-filen)
+        splashVideo.play().catch(err => {
+            console.warn("Video playback prevented:", err);
+            proceedToIndex(); // Fallback om webbläsaren blockerar
         });
 
-        // När ljudet spelat klart (eller efter en säkerhets-timer på 3.5 sekunder), gå till index.html
-        audio.onended = () => {
+        // 4. Skicka till index.html automatiskt när videon spelat klart
+        splashVideo.onended = () => {
             window.location.href = "index.html";
         };
-
-        setTimeout(() => {
-            window.location.href = "index.html";
-        }, 3500);
     });
 });
