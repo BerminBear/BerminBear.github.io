@@ -12,11 +12,22 @@
 </head>
 <body class="bg-[#030303] text-white flex items-center justify-center h-screen overflow-hidden transition-opacity duration-1000">
 
-    <!-- SKIP-KNAPP I HÖRNET (Dold tills man trycker Listen) -->
-    <a href="home.html" id="skip-top-btn" class="absolute top-8 right-8 font-mono text-xs uppercase tracking-widest text-white/40 hover:text-white transition-opacity duration-1000 opacity-0 pointer-events-none z-50">
-        Skip Intro →
+<!-- SKIP-KNAPP I HÖRNET (Garamond + SVG) -->
+    <a href="home.html" id="skip-top-btn" class="absolute top-8 right-8 font-garamond text-xl text-white/50 hover:text-[var(--color-accent-hover)] transition-all duration-1000 opacity-0 pointer-events-none z-50 flex flex-col items-center gap-1">
+        <span>Skip Intro</span>
+        <!-- Liten elegant pil/linje SVG -->
+        <svg width="30" height="6" viewBox="0 0 30 6" fill="none" xmlns="http://www.w3.org/2000/svg" class="opacity-70">
+            <path d="M1 3H29L25 1M29 3L25 5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
     </a>
 
+    <!-- PiP-KNAPP I HÖGRA BOTTENHÖRNET -->
+    <button id="pip-btn" class="absolute bottom-8 right-8 text-white/40 hover:text-white transition-opacity duration-1000 opacity-0 pointer-events-none z-50 p-2 rounded-md hover:bg-white/10" aria-label="Picture in Picture">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+            <rect x="12" y="11" width="7" height="6" rx="1" ry="1"></rect>
+        </svg>
+    </button>
 <!-- HUVUDCONTAINER -->
 <div id="splash-container" class="flex flex-col items-center justify-center text-center px-6 max-w-4xl transition-opacity duration-1000 z-10 relative">
 <!-- Byt ut font-serif mot font-garamond -->

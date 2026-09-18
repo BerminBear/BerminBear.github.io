@@ -1,8 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const isReplay = urlParams.get('replay') === 'true';
+    
     const splashSeen = sessionStorage.getItem("splashSeen");
 
-    // Skicka till home.html om splashen redan har setts
-    if (splashSeen === "true") {
+    // Skicka till home.html om splashen redan har setts OCH det inte är en replay
+    if (splashSeen === "true" && !isReplay) {
         window.location.replace("home.html");
         return;
     }
@@ -18,54 +21,79 @@ document.addEventListener("DOMContentLoaded", () => {
     
     const videoContainer = document.getElementById("video-container");
     const splashVideo = document.getElementById("splash-video");
+    const pipBtn = document.getElementById("pip-btn");
 
-    // 1. Tona in "Would you like..." (efter en halv sekund)
-    setTimeout(() => text1.classList.remove("opacity-0"), 850);
-    
-    // 2. Tona in "to listen?" på samma rad
-    setTimeout(() => text2.classList.remove("opacity-0"), 2800);
-    
-    // 3. Tona in knapparna
-    setTimeout(() => buttons.classList.remove("opacity-0"), 5000);
-
-const proceedToHome = (e) => {
+    const proceedToHome = (e) => {
         if (e) e.preventDefault();
         sessionStorage.setItem("splashSeen", "true");
         
-        // Fada ut hela sidan mjukt
         document.body.classList.add("opacity-0");
-
-        // Vänta 1 sekund (tillsynat med transition-duration) och byt sida
         setTimeout(() => {
             window.location.href = "home.html";
         }, 1000);
     };
 
-    skipTopBtn.addEventListener("click", proceedToHome);
-    skipLinkBtn.addEventListener("click", proceedToHome);
+    if (skipTopBtn) skipTopBtn.addEventListener("click", proceedToHome);
+    if (skipLinkBtn) skipLinkBtn.addEventListener("click", proceedToHome);
 
-    listenBtn.addEventListener("click", () => {
+    const startVideo = () => {
         sessionStorage.setItem("splashSeen", "true");
 
-        // 1. Dölj hela textcontainern omedelbart (mjuk ut-fade)
         container.classList.add("opacity-0", "pointer-events-none");
 
-        // 2. Vänta 1 sekund tills texten är helt borta, börja sen spela
+        const delay = isReplay ? 100 : 1000;
+
         setTimeout(() => {
             videoContainer.classList.remove("opacity-0", "pointer-events-none");
-            skipTopBtn.classList.remove("opacity-0", "pointer-events-none");
-            skipTopBtn.classList.add("opacity-100", "pointer-events-auto");
+            
+            [skipTopBtn, pipBtn].forEach(btn => {
+                if (btn) {
+                    btn.classList.remove("opacity-0", "pointer-events-none");
+                    btn.classList.add("opacity-100", "pointer-events-auto");
+                }
+            });
 
             splashVideo.play().catch(err => {
                 console.warn("Video playback prevented:", err);
-                proceedToHome(); 
+                // Om autospelning blockeras vid replay, visa knappen direkt istället för att skicka tillbaka
+                if (isReplay) {
+                    videoContainer.classList.add("opacity-0", "pointer-events-none");
+                    container.style.display = "flex";
+                    container.classList.remove("opacity-0", "pointer-events-none");
+                    text1.classList.remove("opacity-0");
+                    text2.classList.remove("opacity-0");
+                    buttons.classList.remove("opacity-0");
+                } else {
+                    proceedToHome();
+                }
             });
-        }, 1000);
+        }, delay);
+    };
 
-        // 3. Fada ut och gå vidare till home när videon är klar
-        splashVideo.onended = () => {
-            proceedToHome();
-        };
-    });
+    if (pipBtn) {
+        pipBtn.addEventListener("click", async () => {
+            try {
+                if (document.pictureInPictureElement) {
+                    await document.exitPictureInPicture();
+                } else if (splashVideo !== document.pictureInPictureElement) {
+                    await splashVideo.requestPictureInPicture();
+                }
+            } catch (error) {
+                console.error("PiP failed:", error);
+            }
+        });
+    }
+
+    splashVideo.onended = () => proceedToHome();
+
+    if (listenBtn) listenBtn.addEventListener("click", startVideo);
+
+    if (isReplay) {
+        container.style.display = "none";
+        startVideo();
+    } else {
+        setTimeout(() => text1.classList.remove("opacity-0"), 850);
+        setTimeout(() => text2.classList.remove("opacity-0"), 2500);
+        setTimeout(() => buttons.classList.remove("opacity-0"), 4000);
+    }
 });
-
