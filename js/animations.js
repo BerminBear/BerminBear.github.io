@@ -1,14 +1,6 @@
-// 1. Dölj elementen blixtsnabbt innan webbläsaren hinner rita ut dem
-document.head.insertAdjacentHTML("beforeend", `
-    <style id="preload-hide">
-        main > section, main > div, nav, .project-lane, .nav-link, .nav-link-separator { opacity: 0; }
-    </style>
-`);
-
 export function initAnimations() {
-    // 2. Ta bort den temporära dölj-regeln när vi är redo att animera
-    const preloadStyle = document.getElementById('preload-hide');
-    if (preloadStyle) preloadStyle.remove();
+    // Vi förlitar oss nu enbart på CSS View Transitions för mjuka sidladdningar, 
+    // så vi slipper den hackiga dölj/visa-krocken.
 
     const isHomePage = document.getElementById('hero') !== null;
     const isProjectsPage = document.querySelector('.lanes-wrapper') !== null;
@@ -30,6 +22,19 @@ export function initAnimations() {
     }
 
     if (isProjectsPage) {
+        // PROJECTS: Nav — Fada in navbaren
+        const navElement = document.querySelector('nav');
+        if (navElement) {
+            navElement.style.animationDelay = `0.05s`;
+            navElement.classList.add('animate-fade-up');
+        }
+
+        // PROJECTS: Lanes wrapper — Gör övergripande container synlig
+        const lanesWrapper = document.querySelector('.lanes-wrapper');
+        if (lanesWrapper) {
+            lanesWrapper.style.opacity = '1';
+        }
+
         // PROJECTS: Lanes — Höger till vänster
         const projectLanes = document.querySelectorAll('.project-lane');
         projectLanes.forEach((lane, index) => {

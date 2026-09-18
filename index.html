@@ -6,6 +6,8 @@
     <title>Benjamin Natalli | Cinematic Intro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Nya Fonter -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IM+Fell+Double+Pica:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-[#030303] text-white flex items-center justify-center h-screen overflow-hidden transition-opacity duration-1000">
@@ -17,10 +19,11 @@
 
 <!-- HUVUDCONTAINER -->
 <div id="splash-container" class="flex flex-col items-center justify-center text-center px-6 max-w-4xl transition-opacity duration-1000 z-10 relative">
-    <p class="font-serif text-2xl sm:text-3xl md:text-4xl tracking-wide mb-12 text-white/90 whitespace-nowrap">
-        <span id="text-part-1" class="opacity-0 transition-opacity duration-1000">Would you like...</span>
-        <span id="text-part-2" class="opacity-0 transition-opacity duration-1000 ml-2">to listen?</span>
-    </p>
+<!-- Byt ut font-serif mot font-garamond -->
+<p class="font-garamond text-2xl sm:text-3xl md:text-4xl tracking-wide mb-12 text-white/90 whitespace-nowrap">
+    <span id="text-part-1" class="opacity-0 transition-opacity duration-1000">Would you like...</span>
+    <span id="text-part-2" class="opacity-0 transition-opacity duration-1000 ml-2">to listen?</span>
+</p>
     
     <div id="splash-buttons" class="flex gap-8 items-center justify-center opacity-0 transition-opacity duration-1000">
         <button id="listen-btn" class="font-mono text-sm uppercase tracking-widest text-white/80 hover:text-[var(--color-accent-hover)] transition-colors cursor-pointer focus:outline-none">

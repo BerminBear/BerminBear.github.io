@@ -9,13 +9,15 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Nya Fonter -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IM+Fell+Double+Pica:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="home">
     
     <!-- NAVBAR -->
-    <nav class="absolute top-0 left-0 w-full z-50 bg-transparent py-6 px-4 md:px-8 pointer-events-none">
+<nav class="hidden md:block absolute top-0 left-0 w-full z-50 bg-transparent py-6 px-4 md:px-8 pointer-events-none">
         <div class="w-full flex justify-between items-center relative z-50">
             <a href="home.html" class="label-mono font-medium tracking-wider flex items-center hover:opacity-80 transition-opacity pointer-events-auto" style="color: var(--color-accent-hover);">
                 <span>B.NATALLI</span>
@@ -32,7 +34,7 @@
         <!-- HERO -->
         <section id="hero" class="w-full flex flex-col items-center pt-12 pb-6">
             <div class="w-full flex flex-col items-center">
-                <div class="w-full max-w-3xl flex flex-col items-center">
+                <div class="w-full max-w-5xl flex flex-col items-center">
                     <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none w-full relative">
                         
                         <!-- Namn & Hover-tagg -->
@@ -73,17 +75,18 @@
                         <span class="text-left">Dialogue Designer</span>
                     </h2>
 
-                    <p class="body-text mt-1 max-w-none whitespace-nowrap text-[13px] md:text-[15px]">
-                        Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
-                    </p>
+<p class="body-text mt-3 px-4 max-w-[90%] md:max-w-none mx-auto text-[13px] md:text-[15px] leading-relaxed">
+    Specializing in <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> & <span class="font-medium text-white">middleware implementation pipelines</span>.
+</p>
 
-                    <div class="mt-2.5 flex flex-wrap justify-center gap-6 label-mono font-bold md:text-[13.5px]">
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-0.5">[ CV ]</a>
-                    </div>
-                </div>
-            </div>
+<!-- Länkar -->
+<div class="mt-5 px-4 flex flex-wrap justify-center gap-x-5 gap-y-3 label-mono font-bold md:text-[13.5px]">
+    <a href="projects.html" class="nav-link border-b border-white/20 pb-0.5">[ Projects ]</a>
+    <button onclick="openAboutModal()" class="nav-link border-b border-white/20 pb-0.5 focus:outline-none">[ About ]</button>
+    <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
+    <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
+    <a href="Benjamin-Natalli-CV.pdf" download class="nav-link border-b border-white/20 pb-0.5">[ CV ]</a>
+</div>
 
 <!-- VIDEO CONTAINER: DIALOGUE SHOWCASE -->
 <div class="w-full my-20 md:my-6 flex justify-center">

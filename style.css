@@ -15,10 +15,14 @@
     --color-accent-border-hover: rgba(197, 160, 89, 0.5);
     --color-glow-hover: rgba(197, 160, 89, 0.35);
 
+    /* --- FONTER (Uppdaterade variabelnamn) --- */
     --font-heading: 'Instrument Serif', serif;
+    --font-cinzel: 'Cinzel', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'Courier Prime', monospace;
+    --font-garamond: 'EB Garamond', serif; 
 }
+
 
 body {
     background-color: var(--color-bg);
@@ -44,6 +48,7 @@ button *, a *, .cv-name-trigger *, .project-card * {
     color: var(--color-text);
 }
 
+
 .heading-sub {
     font-family: var(--font-mono);
     color: var(--color-accent);
@@ -53,8 +58,13 @@ button *, a *, .cv-name-trigger *, .project-card * {
     font-weight: 700 !important;
 }
 
+/* --- HJÄLPKLASSER --- */
+.font-garamond { font-family: var(--font-garamond) !important; }
+.font-cinzel   { font-family: var(--font-cinzel) !important; }
+
+/* Uppdaterad sektionsrubrik ( Selected Work / Tech Stack ) */
 .heading-section {
-    font-family: var(--font-heading);
+    font-family: var(--font-cinzel);
     font-size: 2rem;
     font-weight: 600;
     color: var(--color-text);
@@ -143,6 +153,13 @@ html {
     scrollbar-width: thin;
 }
 
+main > section, 
+main > div, 
+nav, 
+.project-lane {
+    opacity: 0;
+}
+
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -166,18 +183,22 @@ html {
 }
 
 .animate-fade-up {
-    animation: fadeUp 1.5s cubic-bezier(0.75, 1, 0.3, 1) both;
+    animation: fadeUp 1.5s cubic-bezier(0.3, 1, 0.3, 1) both;
 }
 
 .animate-fade-right {
-    animation: slideRightFade 0.6s cubic-bezier(0.75, 1, 0.3, 1) both;
+    animation: slideRightFade 0.6s cubic-bezier(0.5, 1, 0.3, 1) both;
 }
 
 .lane-ready {
+    opacity: 1;
+    transform: translateX(0);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .nav-link-ready {
+    opacity: 1;
+    transform: translateX(0);
     transition: color 0.3s ease;
 }
 
@@ -191,4 +212,31 @@ html {
 .no-gold-hover:hover {
     color: #ffffff !important;
     text-shadow: none !important;
+}
+
+
+
+/* ==========================================================================
+   6. VIEW TRANSITIONS (SMOOTH PAGE LOADS)
+   ========================================================================== */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: fade-out 0.35s ease forwards;
+}
+
+::view-transition-new(root) {
+    animation: fade-in 0.45s ease forwards;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
