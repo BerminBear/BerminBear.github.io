@@ -20,7 +20,15 @@
     --font-cinzel: 'Cinzel', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'Courier Prime', monospace;
-    --font-garamond: 'EB Garamond', serif; 
+    --font-garamond: 'EB Garamond', serif;
+
+    /* --- GLOBALA KORT-STORLEKAR ---
+       Ändra dessa två värden för att styra
+       bredd och mellanrum på ALLA kort. */
+    --card-width: 360px;   /* standard: 420px */
+    --card-gap: 1.5rem;    /* standard: 1.25rem (gap-5) */
+    --card-bookmark-w: 22px;
+    --card-bookmark-h: 32px;
 }
 
 
@@ -139,6 +147,35 @@ a:hover, button:hover, .nav-link:hover {
     border-color: var(--color-accent-border-hover) !important;
     box-shadow: 0 0 25px var(--color-glow-hover), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
     transform: translateY(-4px);
+}
+
+/* --- GLOBAL KORTBREDD & AVSTÅND (styr av :root-variablerna) --- */
+.lane-track {
+    gap: var(--card-gap);
+}
+
+.lane-track .project-card {
+    width: min(85vw, var(--card-width));
+}
+
+/* --- BOKMÄRKE (visas vid hover) --- */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 2rem;
+    width: var(--card-bookmark-w);
+    height: var(--card-bookmark-h);
+    background: var(--color-accent-hover);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
+    transform: translateY(-100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 40;
+    pointer-events: none;
+}
+
+.project-card:hover::before {
+    transform: translateY(0);
 }
 
 iframe {

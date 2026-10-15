@@ -209,8 +209,8 @@ const projectsData = {
         video: null,
         audioPreview: 'sounds/previews/crocodine.mp3',
         platform: {
-            name: 'Available on Playstore',
-            url: '#',
+            name: 'View on Google Play',
+            url: 'https://play.google.com/store/apps/details?id=com.cabjam.CrocoDine',
             logo: 'images/logos/Google_Play_2022_icon.svg.png',
             bg: 'rgba(255,255,255,0.1)',
             hoverBg: 'rgba(255,255,255,0.2)',
@@ -264,7 +264,7 @@ function buildProjectModalHTML(id) {
 
     const platformBtn = p.platform ? `
         <a href="${p.platform.url}" target="_blank" rel="noopener"
-           class="no-gold-hover inline-flex items-center justify-center gap-3 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md transition-colors shadow-lg"
+           class="no-gold-hover inline-flex w-full items-center justify-center gap-3 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md transition-colors shadow-lg"
            style="background-color: ${p.platform.bg}; color: ${p.platform.textColor || '#fff'}; ${p.platform.border ? 'border: ' + p.platform.border : ''}"
            onmouseover="this.style.backgroundColor='${p.platform.hoverBg}'"
            onmouseout="this.style.backgroundColor='${p.platform.bg}'">
@@ -272,7 +272,7 @@ function buildProjectModalHTML(id) {
             ${p.platform.name}
         </a>
     ` : `
-        <span class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md">
+        <span class="inline-flex w-full items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-xs uppercase tracking-widest px-6 py-3 rounded-md">
             Theatrical Release
         </span>
     `;
@@ -313,6 +313,9 @@ function buildProjectModalHTML(id) {
                         <span class="text-white font-medium">${p.studio}</span>
                     </div>
                 </div>
+                <div class="mt-4">
+                    ${platformBtn}
+                </div>
             </div>
             <div class="md:col-span-7 space-y-6 max-h-[75vh] overflow-y-auto pr-2">
                 <div>
@@ -343,9 +346,6 @@ function buildProjectModalHTML(id) {
                     <p>${p.description}</p>
                 </div>
                 ${spotifySection}
-                <div class="pt-2">
-                    ${platformBtn}
-                </div>
             </div>
         </div>
     `;

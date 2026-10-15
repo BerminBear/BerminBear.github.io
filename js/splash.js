@@ -1,5 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const urlParams = new URLSearchParams(window.location.search);
+
+    const skipSplashTemporarily = true; 
+    
+    if (skipSplashTemporarily) {
+        window.location.replace("home.html");
+        return;
+
+ /*   const urlParams = new URLSearchParams(window.location.search);
     const isReplay = urlParams.get('replay') === 'true';
     
     const splashSeen = sessionStorage.getItem("splashSeen");
@@ -8,7 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (splashSeen === "true" && !isReplay) {
         window.location.replace("home.html");
         return;
+        */
     }
+    const urlParams = new URLSearchParams(window.location.search);
+    
 
     const container = document.getElementById("splash-container");
     const text1 = document.getElementById("text-part-1");
