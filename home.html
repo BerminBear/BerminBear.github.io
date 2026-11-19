@@ -31,8 +31,8 @@
     <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-20 relative z-10">
 
         <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
-            <!-- VÄNSTER KOLUMN: CENTRERAD UI-MENY, TECH STACK & PROJEKTER (KOMMER IN FÖRST) -->
-            <div id="hero-text-col" class="lg:col-span-5 flex flex-col items-center text-center animate-fade-up" style="animation-delay: 0.1s; animation-duration: 2.1s;">
+            <!-- VÄNSTER KOLUMN: CENTRERAD UI-MENY, TECH STACK & PROJEKTER (2:a på mobil, 1:a på desktop) -->
+            <div id="hero-text-col" class="order-2 lg:order-1 lg:col-span-5 flex flex-col items-center text-center animate-fade-up" style="animation-delay: 0.1s; animation-duration: 2.1s;">
                 <button type="button" onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none relative">
                     <div class="relative flex items-center justify-center">
                         <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] flex items-center gap-3">
@@ -45,7 +45,7 @@
                     </div>
 
                     <!-- SVG Divider -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[360px] -mt-1 transition-all duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[360px] -mt-1 transition-all duration-300" aria-hidden="true">
                         <polygon points="0,20 200,18.5 200,21.5" fill="currentColor" />
                         <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
                         <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
@@ -67,31 +67,28 @@
 
                 <!-- SNABBLÄNKAR -->
                 <div class="w-full mt-5">
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 label-mono text-xs sm:text-[13px] font-semibold">
-                        <a href="projects.html" target="_self" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Projects</a>
-                        <button type="button" onclick="openAboutModal()" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors focus:outline-none">About</button>
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">LinkedIn</a>
-                        <a href="mailto:din.epost@exempel.se" target="_self" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Email</a>
+                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 label-mono text-xs sm:text-[12px] font-semibold">
+                        <a href="projects.html" target="_self" class="nav-link py-2.5 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Projects</a>
+                        <button type="button" onclick="openAboutModal()" class="nav-link py-2.5 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors focus:outline-none">About</button>
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2.5 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">LinkedIn</a>
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2.5 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Email</a>
+                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2.5 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">CV</a>
                     </div>
                 </div>
 
-                <!-- TECH STACK SOM MENYRADER MED FÖRTITLAR -->
+                <!-- TECH STACK SOM MENYRADER MED FÖRTITLAR (3 RADER MED DEVELOPMENT) -->
                 <div id="tech-stack" class="w-full mt-6 divide-y divide-white/10 border-y border-white/10 text-xs sm:text-[13px] text-[#E2DFD9]">
                     <div class="py-2.5 flex flex-col items-center justify-center gap-1">
                         <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Audio &amp; Middleware</span>
                         <span class="text-[#E2DFD9]">Reaper · Wwise · FMOD Studio · MetaSounds</span>
                     </div>
                     <div class="py-2.5 flex flex-col items-center justify-center gap-1">
-                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Engines</span>
-                        <span class="text-[#E2DFD9]">Unreal Engine · Unity</span>
+                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Development</span>
+                        <span class="text-[#E2DFD9]">Unreal Engine · Unity · Perforce · Git</span>
                     </div>
                     <div class="py-2.5 flex flex-col items-center justify-center gap-1">
                         <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Scripting &amp; Code</span>
                         <span class="text-[#E2DFD9]">Lua · Python · C# · C++ · C · Java</span>
-                    </div>
-                    <div class="py-2.5 flex flex-col items-center justify-center gap-1">
-                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Pipeline &amp; VCS</span>
-                        <span class="text-[#E2DFD9]">Perforce · Git</span>
                     </div>
                 </div>
 
@@ -164,8 +161,8 @@
                 </div>
             </div>
 
-            <!-- HÖGER KOLUMN: EKVIDISTANTA FLIKAR LÄNGS TOPPEN + EXPANDERAD SHOWCASE-RUTA (KOMMER IN LÅNGSAMT EFTER TEXTEN) -->
-            <div id="hero-stage-col" class="lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col gap-3.5 h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
+            <!-- HÖGER KOLUMN: EKVIDISTANTA FLIKAR LÄNGS TOPPEN + EXPANDERAD SHOWCASE-RUTA (1:a på mobil, 2:a på desktop) -->
+            <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col gap-3.5 h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
                 <div class="w-full pb-1.5 border-b border-white/10" role="tablist" aria-label="Showcase modes">
                     <div class="grid grid-cols-5 items-center text-center text-[13px] md:text-sm tracking-normal" style="font-family: 'Plus Jakarta Sans', sans-serif;">
                         <button type="button" data-stage-mode="showreel" class="stage-tab pb-2 border-b-2 border-[var(--color-accent-hover)] text-[var(--color-accent-hover)] font-semibold transition-colors focus:outline-none" style="font-family: 'Plus Jakarta Sans', sans-serif;">Showreel</button>
@@ -176,7 +173,7 @@
                     </div>
                 </div>
 
-                <div id="showcase-stage" class="min-h-[460px] sm:min-h-[560px] lg:min-h-[700px] flex-1 w-full rounded-xl overflow-hidden card-surface shadow-2xl relative z-20 border border-white/10 bg-[#0a0a0c] p-5 sm:p-7 flex flex-col justify-center">
+                <div id="showcase-stage" class="min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] flex-1 w-full rounded-xl overflow-hidden card-surface shadow-2xl relative z-20 border border-white/10 bg-[#0a0a0c] p-4 sm:p-7 flex flex-col justify-center">
                     <!-- Innehåll styrs av scriptet nedan -->
                 </div>
             </div>
@@ -204,8 +201,8 @@
     </div>
 
     <!-- SCROLL TO BOTTOM / TOP BUTTON -->
-    <button id="scroll-toggle-btn" aria-label="Scroll page" class="fixed bottom-8 right-8 z-50 p-3.5 rounded-full card-surface border border-white/10 hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_25px_var(--color-glow-hover)] transition-all duration-500 opacity-0 pointer-events-none group bg-[#080808]/80 backdrop-blur-md">
-        <svg id="scroll-btn-icon" class="w-7 h-7 text-[var(--color-muted)] group-hover:text-[var(--color-accent-hover)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <button id="scroll-toggle-btn" type="button" aria-label="Scroll page" class="fixed bottom-8 right-8 z-50 p-3.5 rounded-full card-surface border border-white/10 hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_25px_var(--color-glow-hover)] transition-all duration-500 opacity-0 pointer-events-none group bg-[#080808]/80 backdrop-blur-md">
+        <svg id="scroll-btn-icon" class="w-7 h-7 text-[var(--color-muted)] group-hover:text-[var(--color-accent-hover)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <polygon points="12,2 17,7 12,12 7,7" fill="currentColor" fill-opacity="0.15" stroke="currentColor" />
             <path d="M5 13l7 7 7-7" />
         </svg>
@@ -222,7 +219,7 @@
             const views = {
                 showreel: {
                     html: `
-                        <video id="hero-showcase" class="w-full h-full min-h-[410px] sm:min-h-[510px] lg:min-h-[640px] object-cover rounded-lg" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
+                        <video id="hero-showcase" class="w-full h-full min-h-[280px] sm:min-h-[460px] lg:min-h-[640px] object-cover rounded-lg" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
                             <source src="videos/dialogue-showcase.mp4" type="video/mp4">
                         </video>
                     `
