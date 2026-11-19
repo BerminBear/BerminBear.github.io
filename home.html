@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <base target="_blank">
 </head>
 
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased font-sans" data-page="home">
@@ -66,32 +65,33 @@
                     5 Released games <span class="text-[#7A7975] mx-1">·</span> 2 shortfilms <span class="text-[#7A7975] mx-1">·</span> 4+ years of experience
                 </p>
 
-                <!-- UI-MENY / SNABBKONTROLLER -->
-                <div class="w-full mt-5 p-3 rounded-lg bg-white/[0.02] border border-white/10">
-                    <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-[#7D7B76] mb-2">
-                        System Menu
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 label-mono text-[11px] font-semibold">
-                        <a href="projects.html" target="_self" class="nav-link py-2 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Projects</a>
-                        <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors focus:outline-none">About</button>
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener" class="nav-link py-2 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">LinkedIn</a>
-                        <a href="mailto:din.epost@exempel.se" target="_self" class="nav-link py-2 px-2.5 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Email</a>
+                <!-- SNABBLÄNKAR -->
+                <div class="w-full mt-5">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 label-mono text-xs sm:text-[13px] font-semibold">
+                        <a href="projects.html" target="_self" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Projects</a>
+                        <button type="button" onclick="openAboutModal()" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors focus:outline-none">About</button>
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">LinkedIn</a>
+                        <a href="mailto:din.epost@exempel.se" target="_self" class="nav-link py-2.5 px-3 rounded bg-white/[0.03] border border-white/10 hover:border-[var(--color-accent-border-hover)] transition-colors">Email</a>
                     </div>
                 </div>
 
                 <!-- TECH STACK SOM MENYRADER MED FÖRTITLAR -->
-                <div id="tech-stack" class="w-full mt-6 divide-y divide-white/10 border-y border-white/10 text-xs md:text-[13px] text-[#C2BFB8]">
-                    <div class="py-2.5 flex flex-col items-center justify-center gap-0.5">
-                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Audio / Engines</span>
-                        <span>Unreal Engine, Unity, Reaper</span>
+                <div id="tech-stack" class="w-full mt-6 divide-y divide-white/10 border-y border-white/10 text-xs sm:text-[13px] text-[#E2DFD9]">
+                    <div class="py-2.5 flex flex-col items-center justify-center gap-1">
+                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Audio &amp; Middleware</span>
+                        <span class="text-[#E2DFD9]">Reaper · Wwise · FMOD Studio · MetaSounds</span>
                     </div>
-                    <div class="py-2.5 flex flex-col items-center justify-center gap-0.5">
-                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Languages</span>
-                        <span>Lua, Python, C, C++, C#, Java</span>
+                    <div class="py-2.5 flex flex-col items-center justify-center gap-1">
+                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Engines</span>
+                        <span class="text-[#E2DFD9]">Unreal Engine · Unity</span>
                     </div>
-                    <div class="py-2.5 flex flex-col items-center justify-center gap-0.5">
-                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Middleware / VCS</span>
-                        <span class="text-[#9E9B95]">Wwise, FMOD Studio, Perforce, Git</span>
+                    <div class="py-2.5 flex flex-col items-center justify-center gap-1">
+                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Scripting &amp; Code</span>
+                        <span class="text-[#E2DFD9]">Lua · Python · C# · C++ · C · Java</span>
+                    </div>
+                    <div class="py-2.5 flex flex-col items-center justify-center gap-1">
+                        <span class="text-[10px] uppercase tracking-[0.18em] text-[#7D7B76]" style="font-family: 'IBM Plex Mono', monospace;">Pipeline &amp; VCS</span>
+                        <span class="text-[#E2DFD9]">Perforce · Git</span>
                     </div>
                 </div>
 
