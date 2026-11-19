@@ -39,8 +39,8 @@
                             <span>Benjamin</span>
                             <span class="tracking-[0.04em]">Natalli</span>
                         </h1>
-                        <span class="info-hover-tag absolute left-full ml-4 label-mono text-[11px] text-[var(--color-accent-hover)] opacity-0 tracking-widest uppercase whitespace-nowrap hidden sm:inline-block pointer-events-none">
-                            [ About ]
+                        <span class="name-ribbon absolute left-full ml-4 whitespace-nowrap hidden sm:inline-flex pointer-events-none">
+                            About
                         </span>
                     </div>
 
@@ -68,18 +68,18 @@
                 <!-- LINKS -->
                 <div class="w-full mt-4">
                     <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 label-mono text-xs sm:text-[12px] font-semibold">
-                        <a href="projects.html" target="_self" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] hover:border-[var(--color-accent-border-hover)] transition-colors">Projects</a>
-                        <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] hover:border-[var(--color-accent-border-hover)] transition-colors focus:outline-none">About</button>
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] hover:border-[var(--color-accent-border-hover)] transition-colors">LinkedIn</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] hover:border-[var(--color-accent-border-hover)] transition-colors">Email</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] hover:border-[var(--color-accent-border-hover)] transition-colors">CV</a>
+                        <a href="projects.html" target="_self" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">Projects</a>
+                        <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors focus:outline-none">About</button>
+                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">LinkedIn</a>
+                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">Email</a>
+                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">CV</a>
                     </div>
                 </div>
 
                 <!-- VANLIG DIVIDER MELLAN LÄNKAR & TECH STACK -->
                 <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent-hover)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
                         <polygon points="12,1 18,6 12,11 6,6" fill="none" stroke="currentColor" stroke-width="1.3" />
                     </svg>
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
@@ -119,7 +119,7 @@
                 <!-- DIVIDER MELLAN TECH STACK & ARBETEN -->
                 <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent-hover)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
                         <polygon points="12,1 18,6 12,11 6,6" fill="none" stroke="currentColor" stroke-width="1.3" />
                     </svg>
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
@@ -179,13 +179,13 @@
 
                 <!-- VIEW ALL PROJECTS -->
                 <div class="mt-6 w-full">
-                    <a href="projects.html" target="_self" class="medieval-cta no-transform flex items-center justify-center w-full px-8 py-3.5 rounded-md border border-[var(--color-accent-border)] card-surface text-[var(--color-text)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 uppercase text-xs font-bold">
+                    <a href="projects.html" target="_self" class="view-all-btn medieval-cta no-transform flex items-center justify-center w-full px-8 py-3.5 rounded-md border border-[var(--color-accent-border)] card-surface text-[var(--color-text)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 uppercase text-xs font-bold">
                         View all projects →
                     </a>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: SHOWCASE TABS & STAGE (UTAN HOVER-EFFEKT PÅ RUTAN) -->
+            <!-- RIGHT COLUMN: SHOWCASE TABS & STAGE -->
             <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col gap-0 h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
                 <div class="w-full" role="tablist" aria-label="Showcase modes">
                     <div class="grid grid-cols-5 gap-0 items-end text-center">

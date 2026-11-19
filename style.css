@@ -1,18 +1,19 @@
 :root {
-    --color-bg: #D5D9CE;
-    --color-bg-edge: #BCC2B3;
-    --color-text: #151C19;
-    --color-muted: #47544E;
+    --color-bg: #D6D3CA;
+    --color-bg-edge: #ACA79B;
+    --color-text: #16191D;
+    --color-muted: #4A515B;
 
-    --color-accent: #254E42;
+    /* Enhetlig palett: Blå (från bild), Guld & Pergament */
+    --color-accent: #162A56;
     --color-accent-hover: #D4AF37;
-    --color-bookmark-red: #8E2419;
-    --color-secondary: #C5CCC0;
-    --color-modal-bg: #E2E6DC;
+    --color-bookmark-blue: #162A56;
+    --color-secondary: #C6C2B7;
+    --color-modal-bg: #E5E2D9;
 
-    --color-accent-border: rgba(37, 78, 66, 0.28);
-    --color-accent-border-hover: rgba(140, 74, 39, 0.72);
-    --color-glow-hover: rgba(37, 78, 66, 0.2);
+    --color-accent-border: rgba(22, 42, 86, 0.24);
+    --color-accent-border-hover: rgba(212, 175, 55, 0.85);
+    --color-glow-hover: rgba(212, 175, 55, 0.22);
 
     --font-heading: 'UnifrakturMaguntia', 'Cinzel Decorative', serif;
     --font-cinzel: 'Cinzel', serif;
@@ -28,11 +29,11 @@
 body {
     background-color: var(--color-bg);
     background-image:
-        radial-gradient(circle at 50% 25%, rgba(235, 239, 230, 0.5) 0%, rgba(168, 176, 159, 0.55) 100%),
-        repeating-linear-gradient(0deg, rgba(21, 28, 25, 0.025) 0px, rgba(21, 28, 25, 0.025) 1px, transparent 1px, transparent 4px);
+        radial-gradient(ellipse at 50% 35%, rgba(242, 239, 232, 0.42) 0%, rgba(165, 160, 148, 0.52) 68%, rgba(36, 39, 46, 0.58) 100%),
+        repeating-linear-gradient(0deg, rgba(22, 25, 29, 0.022) 0px, rgba(22, 25, 29, 0.022) 1px, transparent 1px, transparent 4px);
     color: var(--color-text);
     font-family: var(--font-body);
-    box-shadow: inset 0 0 85px rgba(24, 38, 32, 0.24);
+    box-shadow: inset 0 0 135px rgba(15, 18, 24, 0.46);
     min-height: 100vh;
 }
 
@@ -85,25 +86,49 @@ button *, a *, .cv-name-trigger *, .project-card * {
 
 a, button, .nav-link {
     color: var(--color-muted);
-    transition: color 0.25s ease, border-color 0.25s ease;
+    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 }
 
 a:hover, button:hover, .nav-link:hover {
     color: var(--color-accent-hover) !important;
 }
 
-.info-hover-tag {
-    transition: opacity 0.2s ease;
+/* Länkarna fylls i med blått och får guldtext + gul kant vid hover */
+.nav-link:hover {
+    background-color: var(--color-bookmark-blue) !important;
+    border-color: var(--color-accent-hover) !important;
+    color: var(--color-accent-hover) !important;
 }
 
-.group:hover .info-hover-tag {
+/* Blått band som kommer fram vid hover på namnet */
+.name-ribbon {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.75rem;
+    background-color: var(--color-bookmark-blue);
+    color: var(--color-accent-hover);
+    border: 1px solid rgba(212, 175, 55, 0.7);
+    border-radius: 3px;
+    font-family: var(--font-cinzel);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translateX(-8px);
+    box-shadow: 0 6px 16px rgba(15, 18, 24, 0.28), inset 0 0 0 1px rgba(212, 175, 55, 0.22);
+    transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .name-ribbon {
     opacity: 1;
-    transition-delay: 400ms;
+    transform: translateX(0);
+    transition-delay: 120ms;
 }
 
 .name-divider {
-    color: var(--color-muted);
-    opacity: 0.8;
+    color: var(--color-accent);
+    opacity: 0.85;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
@@ -113,7 +138,7 @@ a:hover, button:hover, .nav-link:hover {
 }
 
 /* ==========================================================================
-   VYFLIKAR (FYRKANTIGA BOKMÄRKEN) SOM NUDDAR KANT I KANT PÅ VYFÖNSTRET
+   VYFLIKAR (BOKMÄRKEN) SOM NUDDAR KANT I KANT PÅ VYFÖNSTRET
    ========================================================================== */
 .stage-tab {
     position: relative;
@@ -137,12 +162,12 @@ a:hover, button:hover, .nav-link:hover {
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--color-bookmark-red);
+    background: var(--color-bookmark-blue);
     border-radius: 0;
     transform: translateY(100%);
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: -1;
-    box-shadow: inset 0 2px 0 rgba(212, 175, 55, 0.5);
+    box-shadow: inset 0 2px 0 rgba(212, 175, 55, 0.55);
 }
 
 .stage-tab:hover::before,
@@ -165,7 +190,7 @@ a:hover, button:hover, .nav-link:hover {
     border: 1px solid var(--color-accent-border);
     border-top: 3px solid var(--color-accent);
     border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(21, 28, 25, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(37, 78, 66, 0.16);
+    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(22, 42, 86, 0.14);
 }
 
 .stage-panel {
@@ -173,8 +198,8 @@ a:hover, button:hover, .nav-link:hover {
     color: var(--color-text) !important;
     border: 1px solid var(--color-accent-border);
     border-top: 3px solid var(--color-accent);
-    border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(21, 28, 25, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(37, 78, 66, 0.16);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 10px 26px rgba(15, 18, 24, 0.2);
 }
 
 .card-surface,
@@ -186,16 +211,24 @@ a:hover, button:hover, .nav-link:hover {
     border: 1px solid var(--color-accent-border);
     border-top: 3px solid var(--color-accent);
     border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(21, 28, 25, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(37, 78, 66, 0.16);
+    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(22, 42, 86, 0.14);
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card-surface:hover,
 .project-card:hover {
-    border-color: var(--color-accent-border-hover) !important;
+    border-color: var(--color-accent-hover) !important;
     border-top-color: var(--color-accent-hover) !important;
-    box-shadow: 0 12px 28px rgba(21, 28, 25, 0.24), 0 0 16px var(--color-glow-hover) !important;
+    box-shadow: 0 12px 28px rgba(15, 18, 24, 0.24), 0 0 16px var(--color-glow-hover) !important;
     transform: translateY(-3px);
+}
+
+/* View all projects blir blå med guldtext vid hover */
+.view-all-btn:hover {
+    background: var(--color-bookmark-blue) !important;
+    border-color: var(--color-accent-hover) !important;
+    border-top-color: var(--color-accent-hover) !important;
+    color: var(--color-accent-hover) !important;
 }
 
 .project-card {
@@ -232,8 +265,8 @@ a:hover, button:hover, .nav-link:hover {
 .card-more-label {
     display: inline-block;
     padding: 4px 16px;
-    background: var(--color-bookmark-red);
-    border: 1px solid rgba(212, 175, 55, 0.55);
+    background: var(--color-bookmark-blue);
+    border: 1px solid rgba(212, 175, 55, 0.65);
     border-top: none;
     border-radius: 0 0 6px 6px;
     color: var(--color-accent-hover);
@@ -243,7 +276,7 @@ a:hover, button:hover, .nav-link:hover {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     white-space: nowrap;
-    box-shadow: 0 6px 14px rgba(21, 28, 25, 0.25);
+    box-shadow: 0 6px 14px rgba(15, 18, 24, 0.28);
 }
 
 .project-card:hover .card-tooltip,
