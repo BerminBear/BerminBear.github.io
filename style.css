@@ -2,30 +2,326 @@
    1. VARIABLES & SETUP
    ========================================================================== */
 :root {
-    --color-bg: #0C0C0C;
-    --color-text: #B0B0B0;
-    --color-muted: #6e6d6d;
-    --color-text-muted: #6e6d6d;
+    --color-bg: #0b0b0c;
+    --color-text: #d4d4d8;
+    --color-muted: #71717a;
+    --color-text-muted: #a1a1aa;
 
-    --color-accent: #FFFFFF;
-    --color-accent-hover: #C5A059;
-    --color-secondary: #262626;
-    --color-modal-bg: #080808;
+    /* Champagne-guldiga highlights */
+    --color-accent: #d4b475;
+    --color-accent-hover: #e5c98e;
+    --color-secondary: #141416;
+    --color-modal-bg: #09090a;
 
-    --color-accent-border: rgba(255, 255, 255, 0.1);
-    --color-accent-border-hover: rgba(197, 160, 89, 0.5);
-    --color-glow-hover: rgba(197, 160, 89, 0.35);
+    --color-accent-border: rgba(255, 255, 255, 0.09);
+    --color-accent-border-hover: rgba(212, 180, 117, 0.72);
+    --color-glow-hover: rgba(212, 180, 117, 0.34);
 
-    /* --- FONTER --- */
-    --font-heading: 'Instrument Serif', serif;
-    --font-cinzel: 'Cinzel', serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'Courier Prime', monospace;
-    --font-garamond: 'EB Garamond', serif;
+    /* Fonter: Cinzel Decorative på namnet, MedievalSharp på rollen, Cormorant/Mono i övrigt */
+    --font-heading: 'Cinzel Decorative', 'UnifrakturMaguntia', serif;
+    --font-cinzel: 'MedievalSharp', 'Cinzel Decorative', serif;
+    --font-body: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-garamond: 'UnifrakturMaguntia', serif;
 
-    /* --- GLOBALA KORT-STORLEKAR --- */
     --card-width: 340px;
     --card-gap: 1.25rem;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    cursor: auto;
+}
+
+a, button, .cv-name-trigger, .project-card, .nav-link,
+button *, a *, .cv-name-trigger *, .project-card * {
+    cursor: pointer !important;
+}
+
+/* Benjamin Natalli i Cinzel Decorative (utan ::first-letter så hela namnet behåller samma stil) */
+.heading-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 4.4vw, 3.3rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.03em;
+    color: #e4e4e7;
+}
+
+/* Rollrubriken i MedievalSharp */
+.heading-sub {
+    font-family: var(--font-cinzel);
+    color: #b4b4bc;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.92rem;
+    font-weight: 700 !important;
+}
+
+.heading-section {
+    font-family: var(--font-cinzel);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a1a1aa;
+}
+
+.body-text {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    line-height: 1.55;
+}
+
+.label-mono, .code-font, a, button {
+    font-family: var(--font-mono);
+}
+
+/* Monokrom i vila, champagne-guld vid hover */
+a, button, .nav-link {
+    color: #a1a1aa;
+    transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.25s ease;
+}
+
+a:hover, button:hover, .nav-link:hover {
+    color: var(--color-accent-hover) !important;
+    border-color: var(--color-accent-border-hover) !important;
+    text-shadow: 0 0 10px var(--color-glow-hover);
+}
+
+.stage-tab.border-\[var\(--color-accent-hover\)\],
+::selection {
+    color: var(--color-accent-hover);
+    background-color: rgba(212, 180, 117, 0.16);
+}
+
+.card-surface,
+.project-card,
+#about-modal-wrapper,
+#project-modal-wrapper {
+    background: var(--color-modal-bg) !important;
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-surface:hover,
+.project-card:hover {
+    border-color: var(--color-accent-border-hover) !important;
+    box-shadow: 0 0 22px var(--color-glow-hover), 0 10px 30px -10px rgba(0, 0, 0, 0.9) !important;
+    transform: translateY(-3px);
+}
+
+.project-card {
+    overflow: visible !important;
+    position: relative;
+}
+
+.card-more-expand {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% - 1px);
+    background: #121214;
+    border: 1px solid var(--color-accent-border-hover);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0 0.75rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    z-index: 30;
+    transition: max-height 0.32s ease, padding 0.32s ease, opacity 0.25s ease, transform 0.32s ease;
+}
+
+.project-card:hover .card-more-expand {
+    max-height: 36px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-more-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: var(--font-cinzel);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-hover);
+}
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    font-size: 1.08rem;
+    cursor: auto;
+}
+
+a, button, .cv-name-trigger, .project-card, .nav-link,
+button *, a *, .cv-name-trigger *, .project-card * {
+    cursor: pointer !important;
+}
+
+/* Monokrom bas, men highlight vid hover eller markerad text */
+.heading-display {
+    font-family: var(--font-heading);
+    font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: 0.03em;
+    color: #e4e4e7;
+}
+
+.heading-sub {
+    font-family: var(--font-cinzel);
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.85rem;
+    font-weight: 700 !important;
+}
+
+.heading-section {
+    font-family: var(--font-cinzel);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #a1a1aa;
+}
+
+.body-text {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    line-height: 1.55;
+}
+
+.label-mono, .code-font, a, button {
+    font-family: var(--font-mono);
+}
+
+/* Länkar och knappar: monokroma i vila, highlight vid hover */
+a, button, .nav-link {
+    color: #a1a1aa;
+    transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.25s ease;
+}
+
+a:hover, button:hover, .nav-link:hover {
+    color: var(--color-accent-hover) !important;
+    border-color: var(--color-accent-border-hover) !important;
+    text-shadow: 0 0 10px var(--color-glow-hover);
+}
+
+/* Aktiv flik och valda highlight-detaljer */
+.stage-tab.border-\[var\(--color-accent-hover\)\],
+::selection {
+    color: var(--color-accent-hover);
+    background-color: rgba(229, 169, 60, 0.18);
+}
+
+.card-surface,
+.project-card,
+#about-modal-wrapper,
+#project-modal-wrapper {
+    background: var(--color-modal-bg) !important;
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-surface:hover,
+.project-card:hover {
+    border-color: var(--color-accent-border-hover) !important;
+    box-shadow: 0 0 22px var(--color-glow-hover), 0 10px 30px -10px rgba(0, 0, 0, 0.9) !important;
+    transform: translateY(-3px);
+}
+
+.project-card {
+    overflow: visible !important;
+    position: relative;
+}
+
+.card-more-expand {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% - 1px);
+    background: #121214;
+    border: 1px solid var(--color-accent-border-hover);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0 0.75rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    z-index: 30;
+    transition: max-height 0.32s ease, padding 0.32s ease, opacity 0.25s ease, transform 0.32s ease;
+}
+
+.project-card:hover .card-more-expand {
+    max-height: 36px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-more-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: var(--font-cinzel);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent-hover);
+}
+
+/* Nya överdrivna klasser att importera/använda i HTML */
+.font-chaotic-glitch {
+    font-family: 'Rubik Glitch', cursive !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+}
+
+.font-chaotic-spice {
+    font-family: 'Bungee Spice', cursive !important;
+    letter-spacing: 0.04em !important;
+}
+
+.font-chaotic-gothic {
+    font-family: 'Pirata One', cursive !important;
+    letter-spacing: 0.05em !important;
+    font-size: 1.35em !important;
+}
+
+.font-chaotic-pixel {
+    font-family: 'Silkscreen', monospace !important;
+    letter-spacing: 0.04em !important;
+}
+
+/* Hjälpklasser för ytor och text som följer temat istället för hårdkodade grå/svarta hex-färger */
+.theme-surface {
+    background-color: var(--color-secondary) !important;
+    color: var(--color-text) !important;
+}
+
+.theme-ink-muted {
+    color: var(--color-muted) !important;
 }
 
 body {
