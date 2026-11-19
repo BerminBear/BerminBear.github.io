@@ -1,24 +1,23 @@
+/* ==========================================================================
+   1. VARIABLES & SETUP (MONOCHROME)
+   ========================================================================== */
 :root {
-    /* Varm mörkare antik-bokpalett */
-    --color-bg: #A99276;
-    --color-bg-edge: #6E5B44;
-    --color-text: #1E1914;
-    --color-muted: #4E4235;
-    --color-surface-text: #1E1914;
+    --color-bg: #0C0C0C;
+    --color-text: #B8B8B8;
+    --color-muted: #767676;
+    --color-text-muted: #767676;
 
-    /* Accenter: Röd bokmärkesfärg vid hover/val, guldtext & varm rost/pergament */
-    --color-accent: #8C3B24;
-    --color-accent-hover: #D4AF37;
-    --color-bookmark-red: #7D2222;
-    --color-secondary: #CFC0A5;
-    --color-modal-bg: #DDD0B8;
+    --color-accent: #FFFFFF;
+    --color-accent-hover: #FFFFFF;
+    --color-secondary: #1E1E1E;
+    --color-modal-bg: #080808;
 
-    --color-accent-border: rgba(30, 25, 20, 0.22);
-    --color-accent-border-hover: rgba(212, 175, 55, 0.92);
-    --color-glow-hover: rgba(212, 175, 55, 0.36);
-    --color-glow-hover-wide: rgba(212, 175, 55, 0.16);
+    --color-accent-border: rgba(255, 255, 255, 0.12);
+    --color-accent-border-hover: rgba(255, 255, 255, 0.72);
+    --color-glow-soft: rgba(255, 255, 255, 0.18);
+    --color-glow-strong: rgba(255, 255, 255, 0.48);
 
-    /* Fonter */
+    /* --- FONTER --- */
     --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
     --font-cinzel: 'Cinzel', serif;
     --font-body: 'EB Garamond', serif;
@@ -26,18 +25,16 @@
     --font-garamond: 'EB Garamond', serif;
     --font-tab: 'Cinzel', serif;
 
+    /* --- GLOBALA KORT-STORLEKAR --- */
     --card-width: 360px;
     --card-gap: 1.5rem;
 }
 
 body {
     background-color: var(--color-bg);
-    background-image:
-        radial-gradient(ellipse at 50% 35%, rgba(196, 174, 145, 0.45) 0%, rgba(145, 122, 95, 0.65) 64%, rgba(64, 51, 36, 0.9) 100%),
-        repeating-linear-gradient(0deg, rgba(30, 25, 20, 0.022) 0px, rgba(30, 25, 20, 0.022) 1px, transparent 1px, transparent 4px);
     color: var(--color-text);
     font-family: var(--font-body);
-    box-shadow: inset 0 0 165px rgba(32, 24, 15, 0.58);
+    cursor: auto;
     min-height: 100vh;
 }
 
@@ -46,39 +43,42 @@ button *, a *, .cv-name-trigger *, .project-card * {
     cursor: pointer !important;
 }
 
-/* Mindre och skarpare titel med riktig Cinzel Decorative */
+/* ==========================================================================
+   2. TYPOGRAPHY & HOVER EFFECTS
+   ========================================================================== */
 .heading-display {
     font-family: var(--font-heading);
-    font-size: clamp(1.75rem, 3.1vw, 2.35rem);
+    font-size: clamp(1.85rem, 3.3vw, 2.5rem);
     font-weight: 700;
     line-height: 1.12;
     letter-spacing: 0.03em;
     color: var(--color-text);
+    transition: color 0.3s ease, text-shadow 0.35s ease;
 }
 
 .heading-sub {
     font-family: var(--font-mono);
-    color: var(--color-accent);
+    color: var(--color-text);
     text-transform: uppercase;
     letter-spacing: 0.16em;
     font-size: 0.82rem;
     font-weight: 700 !important;
 }
 
-/* Tydligare rubriker på techstack-korten */
-.tech-card .heading-sub {
-    color: #241510 !important;
-    font-size: 0.74rem;
-    letter-spacing: 0.18em;
-    font-weight: 800 !important;
+.font-garamond { font-family: var(--font-garamond) !important; }
+.font-cinzel   { font-family: var(--font-cinzel) !important; }
+
+.heading-section {
+    font-family: var(--font-cinzel);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
 }
 
-/* Tydligare färg och kontrast på "5 Released games · 2 shortfilms · 4+ years of experience" */
 .medieval-meta {
     font-family: var(--font-cinzel);
     letter-spacing: 0.08em;
-    color: #241510 !important;
-    font-weight: 700 !important;
+    color: var(--color-text);
 }
 
 .medieval-cta {
@@ -102,41 +102,28 @@ button *, a *, .cv-name-trigger *, .project-card * {
 .border-theme-accent { border-color: var(--color-accent-border) !important; }
 
 a, button, .nav-link {
-    color: var(--color-surface-text);
-    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
+    color: var(--color-text);
+    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.3s ease, text-shadow 0.3s ease, transform 0.25s ease;
 }
 
 a:hover, button:hover, .nav-link:hover {
-    color: var(--color-accent-hover) !important;
-    text-shadow: 0 0 12px var(--color-glow-hover);
-}
-
-/* Länkarna fylls i med rött och får guldtext + gul glow vid hover */
-.nav-link {
-    background-color: rgba(221, 208, 184, 0.42);
-    color: var(--color-surface-text);
-    border-color: rgba(30, 25, 20, 0.2);
+    color: #FFFFFF !important;
+    text-shadow: 0 0 14px var(--color-glow-strong), 0 0 26px var(--color-glow-soft);
 }
 
 .nav-link:hover {
-    background-color: var(--color-bookmark-red) !important;
-    border-color: var(--color-accent-hover) !important;
-    color: var(--color-accent-hover) !important;
-    box-shadow:
-        0 0 16px var(--color-glow-hover),
-        0 0 32px var(--color-glow-hover-wide),
-        inset 0 0 8px rgba(212, 175, 55, 0.25) !important;
+    border-color: rgba(255, 255, 255, 0.75) !important;
+    box-shadow: 0 0 18px var(--color-glow-soft), inset 0 0 10px rgba(255, 255, 255, 0.08);
 }
 
-/* Rött band med guldtext som kommer fram vid hover på namnet */
 .name-ribbon {
     display: inline-flex;
     align-items: center;
-    padding: 0.28rem 0.75rem;
-    background-color: var(--color-bookmark-red);
-    color: var(--color-accent-hover);
-    border: 1px solid rgba(212, 175, 55, 0.9);
-    border-radius: 0;
+    padding: 0.25rem 0.7rem;
+    background-color: #141414;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 4px;
     font-family: var(--font-cinzel);
     font-size: 0.68rem;
     font-weight: 700;
@@ -144,7 +131,7 @@ a:hover, button:hover, .nav-link:hover {
     text-transform: uppercase;
     opacity: 0;
     transform: translateX(-8px);
-    box-shadow: 0 6px 16px rgba(15, 18, 24, 0.28);
+    box-shadow: 0 0 18px var(--color-glow-soft);
     transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -154,27 +141,30 @@ a:hover, button:hover, .nav-link:hover {
     transition-delay: 120ms;
 }
 
-/* Dividern under titeln har exakt samma färg som titeln */
+/* ==========================================================================
+   3. COMPONENTS & DIVIDERS
+   ========================================================================== */
 .name-divider {
     max-width: 280px !important;
-    color: var(--color-text) !important;
-    opacity: 1;
-    transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
+    color: var(--color-text);
+    opacity: 0.9;
+    transition: color 0.3s ease, filter 0.35s ease, transform 0.3s ease, opacity 0.3s ease;
 }
 
 .group:hover .name-divider {
-    color: var(--color-accent-hover) !important;
-    filter: drop-shadow(0 0 10px var(--color-glow-hover));
+    color: #FFFFFF;
+    opacity: 1;
+    filter: drop-shadow(0 0 10px var(--color-glow-strong));
     transform: scale(1.01);
 }
 
 .group:hover .heading-display {
-    color: var(--color-accent-hover) !important;
-    text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
+    color: #FFFFFF;
+    text-shadow: 0 0 18px var(--color-glow-strong), 0 0 34px var(--color-glow-soft);
 }
 
 /* ==========================================================================
-   BOKMÄRKEN (VYFLIKAR): RAK KANT, ENHETlig FÄRG & GULDTEXT VID HOVER/VAL
+   4. SPOTLIGHT TABS (UNDER-UP GRADIENT & GLOW WHEN SELECTED/HOVERED)
    ========================================================================== */
 .stage-tab {
     position: relative;
@@ -186,135 +176,133 @@ a:hover, button:hover, .nav-link:hover {
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-text);
-    padding: 0.46rem 0.5rem 0.4rem;
-    border-radius: 0;
+    color: var(--color-muted);
+    padding: 0.52rem 0.5rem 0.45rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
     overflow: hidden;
     z-index: 1;
-    transition: color 0.25s ease, text-shadow 0.25s ease;
+    transition: color 0.25s ease, border-color 0.25s ease, text-shadow 0.3s ease;
 }
 
-.stage-tab::before {
+/* Mjuk spotlight som lyser uppåt nerifrån fliken */
+.stage-tab::after {
     content: "";
     position: absolute;
-    inset: 0;
-    background: var(--color-bookmark-red);
-    border-radius: 0;
-    transform: translateY(100%);
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    left: 10%;
+    right: 10%;
+    bottom: 0;
+    height: 100%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 48%, rgba(255, 255, 255, 0) 100%);
+    opacity: 0;
+    transform: translateY(65%);
+    pointer-events: none;
     z-index: -1;
-    box-shadow: none;
+    transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.stage-tab:hover::before,
-.stage-tab.is-active::before {
+.stage-tab:hover::after,
+.stage-tab.is-active::after {
+    opacity: 1;
     transform: translateY(0);
 }
 
 .stage-tab:hover,
 .stage-tab.is-active {
-    color: var(--color-accent-hover) !important;
-    text-shadow: 0 0 10px var(--color-glow-hover) !important;
-    box-shadow: none;
+    color: #FFFFFF !important;
+    border-bottom-color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 -2px 14px var(--color-glow-strong), 0 0 24px var(--color-glow-soft) !important;
 }
 
 /* ==========================================================================
-   ICKE-HOVERBARA TECH STACK-KORT & VYFÖNSTER
+   5. CARDS, MODULES & MODALS (WHITE BORDER GLOW, KEEP INNER COLORS)
    ========================================================================== */
-.tech-card {
-    background: var(--color-modal-bg) !important;
-    color: var(--color-surface-text) !important;
-    border: 1px solid var(--color-accent-border);
-    border-top: 3px solid var(--color-accent);
-    border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(30, 25, 20, 0.12);
-}
-
-.stage-panel {
-    background: var(--color-modal-bg) !important;
-    color: var(--color-surface-text) !important;
-    border: 1px solid var(--color-accent-border);
-    border-top: 3px solid var(--color-bookmark-red);
-    border-radius: 0 0 6px 6px;
-    box-shadow: 0 10px 26px rgba(15, 18, 24, 0.2);
-}
-
+.tech-card,
+.stage-panel,
 .card-surface,
-.project-card,
 #about-modal-wrapper,
 #project-modal-wrapper {
     background: var(--color-modal-bg) !important;
-    color: var(--color-surface-text) !important;
+    color: var(--color-text);
     border: 1px solid var(--color-accent-border);
-    border-top: 3px solid var(--color-accent);
-    border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(30, 25, 20, 0.12);
-    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, outline-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+    border-radius: 10px;
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
+    transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.3s ease;
 }
 
-.card-surface:hover,
-.project-card:hover {
-    border-color: var(--color-accent-hover) !important;
-    border-top-color: var(--color-accent-hover) !important;
-    outline: 2px solid rgba(212, 175, 55, 0.95);
-    outline-offset: 2px;
-    box-shadow:
-        0 14px 32px rgba(15, 18, 24, 0.32),
-        0 0 24px var(--color-glow-hover),
-        0 0 48px var(--color-glow-hover-wide) !important;
-    transform: translateY(-3px);
-}
-
-/* Moduler (projektkort): röd bokmärkesfyllning och guldtext vid hover */
-.project-card:hover {
-    background: var(--color-bookmark-red) !important;
-    color: #F4EFE6 !important;
-    border-color: var(--color-accent-hover) !important;
-    border-top-color: var(--color-accent-hover) !important;
-    outline: 2px solid rgba(212, 175, 55, 0.98);
-    outline-offset: 2px;
-    box-shadow:
-        0 14px 34px rgba(15, 18, 24, 0.36),
-        0 0 28px rgba(212, 175, 55, 0.65),
-        0 0 56px rgba(212, 175, 55, 0.35) !important;
-    transform: translateY(-3px);
-}
-
-.project-card:hover h4,
-.project-card:hover h2 {
-    color: var(--color-accent-hover) !important;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.45);
-}
-
-.project-card:hover span:not(.card-more-label):not(.card-tooltip span) {
-    background-color: rgba(255, 255, 255, 0.12) !important;
-    color: #F4EFE6 !important;
-    border-color: rgba(212, 175, 55, 0.6) !important;
-}
-
-/* View all projects blir röd med guldtext vid hover */
-.view-all-btn:hover {
-    background: var(--color-bookmark-red) !important;
-    border-color: var(--color-accent-hover) !important;
-    border-top-color: var(--color-accent-hover) !important;
-    color: var(--color-accent-hover) !important;
-    outline: 2px solid rgba(212, 175, 55, 0.9);
-    outline-offset: 2px;
-    box-shadow:
-        0 12px 28px rgba(15, 18, 24, 0.3),
-        0 0 24px rgba(212, 175, 55, 0.6),
-        0 0 48px rgba(212, 175, 55, 0.3) !important;
-}
-
+/* Projektmoduler: behåll sin vanliga bakgrund/färg inuti, men låt bordern lysa ljusare vitt vid hover */
 .project-card {
+    background: var(--color-modal-bg);
+    color: var(--color-text);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 10px;
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
     overflow: visible !important;
     position: relative;
+    transition: border-color 0.28s ease, box-shadow 0.32s ease, transform 0.28s ease;
 }
 
-.project-lane h3,
-.project-card h4 {
-    color: var(--color-surface-text) !important;
-    transition: color 0.35s ease, text-shadow 0.35s ease;
+.project-card:hover {
+    border-color: rgba(255, 255, 255, 0.92) !important;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.38),
+        0 0 24px rgba(255, 255, 255, 0.34),
+        0 0 44px rgba(255, 255, 255, 0.16),
+        0 12px 30px -8px rgba(0, 0, 0, 0.85) !important;
+    transform: translateY(-2px);
+}
+
+.card-surface:not(.project-card):hover,
+.view-all-btn:hover {
+    border-color: var(--color-accent-border-hover) !important;
+    box-shadow: 0 0 24px var(--color-glow-soft), 0 10px 30px -10px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* --- EXPANDERANDE "EXPAND"-FLIK UNDER MODULEN --- */
+.card-more-expand {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% - 1px);
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+    padding: 0 0.75rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    z-index: 30;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 255, 255, 0.22);
+    transition:
+        max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.25s ease,
+        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .card-more-expand {
+    max-height: 36px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-more-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+    white-space: nowrap;
 }
 
 .lane-track {
@@ -325,75 +313,31 @@ a:hover, button:hover, .nav-link:hover {
     width: min(85vw, var(--card-width));
 }
 
-/* Expand-bokmärket under kortet: rak kant, röd fyllning + guldtext */
-.card-tooltip,
-.card-more-expand {
-    position: absolute;
-    left: 50%;
-    bottom: -27px;
-    transform: translateX(-50%) translateY(-5px);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 40;
-    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+iframe {
+    pointer-events: auto;
 }
 
-.card-tooltip span,
-.card-more-label {
-    display: inline-block;
-    padding: 4px 16px;
-    background: var(--color-bookmark-red);
-    border: 1px solid rgba(212, 175, 55, 0.9);
-    border-top: none;
-    border-radius: 0;
-    color: var(--color-accent-hover);
-    font-family: var(--font-cinzel);
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    white-space: nowrap;
-    box-shadow: 0 6px 18px rgba(15, 18, 24, 0.35);
-}
-
-.project-card:hover .card-tooltip,
-.project-card:hover .card-more-expand {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-    transition-delay: 0.12s;
-}
-
-/* Modals (About & Project): anpassade för ljus pergamentyta med röd accent & guld vid hover */
-#about-modal-wrapper,
-#project-modal-wrapper {
-    color: var(--color-surface-text) !important;
-}
-
-#about-modal-wrapper h2,
-#project-modal-wrapper h2 {
-    color: var(--color-surface-text) !important;
-}
-
-#about-modal-wrapper p,
-#project-modal-wrapper p {
-    color: var(--color-muted) !important;
-}
-
-#about-modal-wrapper button:hover,
-#project-modal-wrapper button:hover {
-    background-color: var(--color-bookmark-red) !important;
-    color: var(--color-accent-hover) !important;
-    border-color: var(--color-accent-hover) !important;
-}
-
+/* ==========================================================================
+   6. UTILITIES & ANIMATIONS
+   ========================================================================== */
 html {
-    scrollbar-color: var(--color-bookmark-red) var(--color-bg);
+    scrollbar-color: rgba(255, 255, 255, 0.45) var(--color-bg);
     scrollbar-width: thin;
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: var(--color-bg-edge); }
-::-webkit-scrollbar-thumb { background-color: var(--color-bookmark-red) !important; border-radius: 6px; }
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.45) !important;
+    border-radius: 10px;
+}
 
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
