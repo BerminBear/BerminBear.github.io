@@ -1,14 +1,14 @@
+// js/main.js
 import { initModal } from './modal.js';
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
-// import { initScrollButton } from './scroll-button.js';
+import { initParticles } from './particles.js';
 
 function initApp() {
     initAnimations();
     initModal();
     initMediaPreviews();
-    initScrollButton();
-    console.log('System initialized successfully.');
+    initParticles({ count: 36 });
 }
 
 if (document.readyState === 'loading') {

@@ -7,35 +7,36 @@
     <title>Benjamin D.Natalli | Technical Audio &amp; Dialogue Designer</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IM+Fell+Double+Pica:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased" data-page="home">
+    <canvas id="bg-particles" aria-hidden="true" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
     <!-- NAVBAR -->
     <header class="w-full pt-5 px-4 sm:px-6 lg:px-8 relative z-50">
         <div class="w-full max-w-[1680px] mx-auto flex justify-between items-center">
-            <a href="home.html" target="_self" class="font-mono text-xs font-medium uppercase tracking-widest flex items-center text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] transition-colors">
-                <span>B.NATALLI</span>
+            <a href="home.html" class="font-mono text-xs font-medium uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] transition-colors">
+                B.NATALLI
             </a>
-            <nav aria-label="Primary navigation" class="flex items-center uppercase tracking-widest">
-                <a href="projects.html" target="_self" class="nav-link font-mono text-xs font-medium uppercase tracking-widest py-1 text-[var(--color-text)] hover:text-[var(--color-accent-hover)] transition-colors">Projects</a>
+            <nav aria-label="Primary navigation">
+                <a href="projects.html" class="nav-link font-mono text-xs font-medium uppercase tracking-widest py-1">
+                    Projects
+                </a>
             </nav>
         </div>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-20 relative z-10">
-
         <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+
             <!-- LEFT COLUMN -->
             <div id="hero-text-col" class="order-2 lg:order-1 lg:col-span-5 flex flex-col items-center text-center animate-fade-up" style="animation-delay: 0.1s; animation-duration: 2.1s;">
-                <button type="button" onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-center justify-center focus:outline-none relative">
+                <button type="button" onclick="openAboutModal()" class="group cv-name-trigger flex flex-col items-center justify-center focus:outline-none relative">
                     <div class="relative flex items-center justify-center">
-                        <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] flex items-center gap-3">
+                        <h1 class="heading-display mb-0 flex items-center gap-3">
                             <span>Benjamin</span>
                             <span class="tracking-[0.04em]">D'Natalli</span>
                         </h1>
@@ -45,7 +46,7 @@
                     </div>
 
                     <!-- SVG Divider -->
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[360px] -mt-1 transition-all duration-300" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 40" class="name-divider w-full max-w-[360px] -mt-1" aria-hidden="true">
                         <polygon points="0,20 200,18.5 200,21.5" fill="currentColor" />
                         <polygon points="490,20 300,18.5 300,21.5" fill="currentColor" />
                         <polygon points="250,10 260,20 250,30 240,20" fill="none" stroke="currentColor" stroke-width="1.5" />
@@ -57,26 +58,24 @@
                     </svg>
                 </button>
 
-                <h2 class="heading-sub text-sm md:text-[15px] mt-1 mb-2 tracking-widest text-[var(--color-text)]">
+                <h2 class="heading-sub text-sm md:text-[15px] mt-1 mb-2 tracking-widest">
                     Technical Audio &amp; Dialogue Designer
                 </h2>
 
-                <p class="medieval-meta text-[13px] md:text-[14px] leading-relaxed font-semibold text-[var(--color-accent)]">
+                <p class="medieval-meta text-[13px] md:text-[14px] leading-relaxed font-semibold">
                     5 Released games <span class="text-[var(--color-muted)] mx-1">·</span> 2 shortfilms <span class="text-[var(--color-muted)] mx-1">·</span> 4+ years of experience
                 </p>
 
                 <!-- LINKS -->
-                <div class="w-full mt-4">
-                    <div class="grid grid-cols-2 sm:grid-cols-5 gap-1.5 label-mono text-xs sm:text-[12px] font-semibold">
-                        <a href="projects.html" target="_self" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">Projects</a>
-                        <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors focus:outline-none">About</button>
-                        <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">LinkedIn</a>
-                        <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">Email</a>
-                        <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] transition-colors">CV</a>
-                    </div>
+                <div class="w-full mt-4 grid grid-cols-2 sm:grid-cols-5 gap-1.5 label-mono text-xs sm:text-[12px] font-semibold">
+                    <a href="projects.html" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">Projects</a>
+                    <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] focus:outline-none">About</button>
+                    <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">LinkedIn</a>
+                    <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">Email</a>
+                    <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">CV</a>
                 </div>
 
-                <!-- VANLIG DIVIDER MELLAN LÄNKAR & TECH STACK -->
+                <!-- DIVIDER -->
                 <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
@@ -85,38 +84,27 @@
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
                 </div>
 
-                <!-- TECH STACK SOM 4 CENTRERADE, ICKE-HOVERBARA KORT -->
+                <!-- TECH STACK -->
                 <section id="tech-stack" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-3 text-center">
                     <div class="p-3.5 tech-card">
                         <h4 class="heading-sub mb-2 text-[11px]">Audio &amp; Middleware</h4>
-                        <p class="text-xs sm:text-[13px] font-bold text-[var(--color-text)] leading-relaxed">
-                            Reaper · Wwise · FMOD Studio · MetaSounds
-                        </p>
+                        <p class="text-xs sm:text-[13px] font-bold leading-relaxed">Reaper · Wwise · FMOD Studio · MetaSounds</p>
                     </div>
-
                     <div class="p-3.5 tech-card">
                         <h4 class="heading-sub mb-2 text-[11px]">Engines</h4>
-                        <p class="text-xs sm:text-[13px] font-bold text-[var(--color-text)] leading-relaxed">
-                            Unreal Engine · Unity
-                        </p>
+                        <p class="text-xs sm:text-[13px] font-bold leading-relaxed">Unreal Engine · Unity</p>
                     </div>
-
                     <div class="p-3.5 tech-card">
                         <h4 class="heading-sub mb-2 text-[11px]">Scripting &amp; Code</h4>
-                        <p class="text-xs sm:text-[13px] font-bold text-[var(--color-text)] leading-relaxed">
-                            Lua · Python · C# · C++ · C · Java
-                        </p>
+                        <p class="text-xs sm:text-[13px] font-bold leading-relaxed">Lua · Python · C# · C++ · C · Java</p>
                     </div>
-
                     <div class="p-3.5 tech-card">
                         <h4 class="heading-sub mb-2 text-[11px]">Version Control</h4>
-                        <p class="text-xs sm:text-[13px] font-bold text-[var(--color-text)] leading-relaxed">
-                            Perforce · Git / GitHub
-                        </p>
+                        <p class="text-xs sm:text-[13px] font-bold leading-relaxed">Perforce · Git / GitHub</p>
                     </div>
                 </section>
 
-                <!-- DIVIDER MELLAN TECH STACK & ARBETEN -->
+                <!-- DIVIDER -->
                 <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
@@ -127,19 +115,18 @@
 
                 <!-- HIGHLIGHTS -->
                 <div id="highlights" class="w-full mt-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- SKELETONS -->
-                    <article class="project-card group card-surface overflow-visible text-center relative flex flex-col" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
+                    <article class="project-card group card-surface text-center flex flex-col" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
                         <div class="media-preview relative w-full aspect-video rounded-tr-[6px] overflow-hidden bg-[var(--color-secondary)] border-b border-[var(--color-accent-border)]">
                             <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
                         </div>
                         <div class="p-3.5 flex flex-col flex-1 items-center">
-                            <h4 class="font-semibold text-sm text-[var(--color-text)] leading-snug line-clamp-1">What Do You Call a Group of Skeletons</h4>
+                            <h4 class="font-semibold text-sm leading-snug line-clamp-1">What Do You Call a Group of Skeletons</h4>
                             <div class="flex flex-wrap justify-center gap-1.5 mt-1.5 mb-3">
-                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase text-[var(--color-text)] border border-[var(--color-accent-border)]">Composer</span>
-                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase text-[var(--color-text)] border border-[var(--color-accent-border)]">Tech Sound Design</span>
+                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase border border-[var(--color-accent-border)]">Composer</span>
+                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase border border-[var(--color-accent-border)]">Tech Sound Design</span>
                             </div>
                             <div class="mt-auto w-full">
-                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#1b2838] text-white border border-white/10 font-mono font-semibold text-[10px] uppercase tracking-wider px-2.5 py-1.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
+                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#1b2838] text-white border border-white/10 font-mono font-semibold text-[10px] uppercase tracking-wider px-2.5 py-1.5 rounded-md hover:bg-[#2a475e] w-full" onclick="event.stopPropagation();">
                                     <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-3.5 h-3.5 object-contain">
                                     View on Steam
                                 </a>
@@ -150,8 +137,7 @@
                         </div>
                     </article>
 
-                    <!-- TENTACLE TANGO -->
-                    <article class="project-card group card-surface overflow-visible text-center relative flex flex-col" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
+                    <article class="project-card group card-surface text-center flex flex-col" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
                         <div class="media-preview relative w-full aspect-video rounded-tr-[6px] overflow-hidden bg-[var(--color-secondary)] border-b border-[var(--color-accent-border)]">
                             <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango" class="media-img absolute inset-0 w-full h-full object-cover">
                             <video class="media-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500" muted loop playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
@@ -159,13 +145,13 @@
                             </video>
                         </div>
                         <div class="p-3.5 flex flex-col flex-1 items-center">
-                            <h4 class="font-semibold text-sm text-[var(--color-text)] leading-snug line-clamp-1">Tentacle Tango</h4>
+                            <h4 class="font-semibold text-sm leading-snug line-clamp-1">Tentacle Tango</h4>
                             <div class="flex flex-wrap justify-center gap-1.5 mt-1.5 mb-3">
-                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase text-[var(--color-text)] border border-[var(--color-accent-border)]">Composer</span>
-                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase text-[var(--color-text)] border border-[var(--color-accent-border)]">Sound Design</span>
+                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase border border-[var(--color-accent-border)]">Composer</span>
+                                <span class="px-2 py-0.5 bg-[var(--color-secondary)] rounded font-mono text-[10px] uppercase border border-[var(--color-accent-border)]">Sound Design</span>
                             </div>
                             <div class="mt-auto w-full">
-                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#E60012] text-white font-mono font-semibold text-[10px] uppercase tracking-wider px-2.5 py-1.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
+                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#E60012] text-white font-mono font-semibold text-[10px] uppercase tracking-wider px-2.5 py-1.5 rounded-md hover:bg-[#ff1a2b] w-full" onclick="event.stopPropagation();">
                                     <img src="images/logos/nintendo-switch-logo.png" alt="Nintendo Switch" class="w-3.5 h-3.5 object-contain brightness-0 invert">
                                     View on Switch
                                 </a>
@@ -179,27 +165,23 @@
 
                 <!-- VIEW ALL PROJECTS -->
                 <div class="mt-6 w-full">
-                    <a href="projects.html" target="_self" class="view-all-btn medieval-cta no-transform flex items-center justify-center w-full px-8 py-3.5 rounded-md border border-[var(--color-accent-border)] card-surface text-[var(--color-text)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 uppercase text-xs font-bold">
+                    <a href="projects.html" class="view-all-btn medieval-cta no-transform flex items-center justify-center w-full px-8 py-3.5 rounded-md border border-[var(--color-accent-border)] card-surface uppercase text-xs font-bold">
                         View all projects →
                     </a>
                 </div>
             </div>
 
-            <!-- RIGHT COLUMN: SHOWCASE TABS & STAGE -->
-            <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col gap-0 h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
-                <div class="w-full" role="tablist" aria-label="Showcase modes">
-                    <div class="grid grid-cols-5 gap-0 items-end text-center">
-                        <button type="button" data-stage-mode="showreel" class="stage-tab is-active focus:outline-none">Showreel</button>
-                        <button type="button" data-stage-mode="music" class="stage-tab focus:outline-none">Music</button>
-                        <button type="button" data-stage-mode="dialogue" class="stage-tab focus:outline-none">Dialogue</button>
-                        <button type="button" data-stage-mode="sound" class="stage-tab focus:outline-none">Sound Design</button>
-                        <button type="button" data-stage-mode="tools" class="stage-tab focus:outline-none">Tools</button>
-                    </div>
+            <!-- RIGHT COLUMN: SHOWCASE -->
+            <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
+                <div class="grid grid-cols-5 items-end text-center" role="tablist" aria-label="Showcase modes">
+                    <button type="button" data-stage-mode="showreel" class="stage-tab is-active focus:outline-none">Showreel</button>
+                    <button type="button" data-stage-mode="music" class="stage-tab focus:outline-none">Music</button>
+                    <button type="button" data-stage-mode="dialogue" class="stage-tab focus:outline-none">Dialogue</button>
+                    <button type="button" data-stage-mode="sound" class="stage-tab focus:outline-none">Sound Design</button>
+                    <button type="button" data-stage-mode="tools" class="stage-tab focus:outline-none">Tools</button>
                 </div>
 
-                <div id="showcase-stage" class="min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] flex-1 w-full overflow-hidden stage-panel relative z-20 p-4 sm:p-7 flex flex-col justify-center">
-                    <!-- Content controlled by script below -->
-                </div>
+                <div id="showcase-stage" class="min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] flex-1 w-full overflow-hidden stage-panel relative z-20 p-4 sm:p-7 flex flex-col justify-center"></div>
             </div>
         </section>
 
@@ -211,7 +193,7 @@
     <!-- ABOUT MODAL -->
     <div id="about-detail-modal" class="fixed inset-0 bg-black/75 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
         <div id="about-modal-wrapper" class="card-surface p-6 md:p-10 max-w-4xl w-full transform scale-95 transition-all duration-300 relative overflow-y-auto max-h-[90vh]">
-            <button type="button" onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] uppercase tracking-widest">[ CLOSE / ESC ]</button>
+            <button type="button" onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-[var(--color-muted)] uppercase tracking-widest">[ CLOSE / ESC ]</button>
             <div id="about-modal-body"></div>
         </div>
     </div>
@@ -219,7 +201,7 @@
     <!-- PROJECT MODAL -->
     <div id="project-detail-modal" class="fixed inset-0 z-[10001] bg-black/75 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
         <div id="project-modal-wrapper" class="card-surface p-6 md:p-10 max-w-5xl w-full transform scale-95 transition-all duration-300 relative overflow-y-auto max-h-[90vh]">
-            <button type="button" onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--color-secondary)] border border-[var(--color-accent-border)] text-[var(--color-text)] hover:text-[var(--color-accent-hover)] transition-all text-xl leading-none cursor-pointer">&times;</button>
+            <button type="button" onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--color-secondary)] border border-[var(--color-accent-border)] text-xl leading-none">&times;</button>
             <div id="project-modal-body"></div>
         </div>
     </div>
@@ -230,111 +212,67 @@
             const tabs = document.querySelectorAll(".stage-tab");
             if (!stage || !tabs.length) return;
 
-            const viewTextStyle = "font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: normal;";
+            const uiFont = "font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: normal;";
+
+            const renderAudioList = (headerLeft, headerRight, items) => `
+                <div class="w-full flex flex-col gap-5 animate-fade-up" style="animation-duration: 0.65s;">
+                    <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">
+                        <span>${headerLeft}</span>
+                        <span>${headerRight}</span>
+                    </div>
+                    ${items.map(({ label, src }) => `
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
+                            <span class="text-base sm:text-lg font-semibold leading-relaxed" style="${uiFont}">${label}</span>
+                            <audio controls preload="none" src="${src}" class="h-9 w-full sm:w-64"></audio>
+                        </div>
+                    `).join("")}
+                </div>
+            `;
 
             const views = {
-                showreel: {
-                    html: `
-                        <video id="hero-showcase" class="w-full h-full min-h-[280px] sm:min-h-[460px] lg:min-h-[640px] object-cover rounded-lg bg-[var(--color-secondary)]" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
-                            <source src="videos/dialogue-showcase.mp4" type="video/mp4">
-                        </video>
-                    `
-                },
-                music: {
-                    html: `
-                        <div class="w-full flex flex-col gap-5 animate-fade-up" style="animation-duration: 0.65s;">
-                            <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${viewTextStyle}">
-                                <span>Selected Tracks</span>
-                                <span>Audio Reel</span>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">01 — Theme / Cue</span>
-                                <audio controls preload="none" src="sounds/tracks/track-01.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">02 — Atmosphere Sketch</span>
-                                <audio controls preload="none" src="sounds/tracks/track-02.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
+                showreel: `
+                    <video id="hero-showcase" class="w-full h-full min-h-[280px] sm:min-h-[460px] lg:min-h-[640px] object-cover rounded-lg bg-[var(--color-secondary)]" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
+                        <source src="videos/dialogue-showcase.mp4" type="video/mp4">
+                    </video>
+                `,
+                music: renderAudioList("Selected Tracks", "Audio Reel", [
+                    { label: "01 — Theme / Cue", src: "sounds/tracks/track-01.mp3" },
+                    { label: "02 — Atmosphere Sketch", src: "sounds/tracks/track-02.mp3" }
+                ]),
+                dialogue: renderAudioList("Dialogue &amp; VO Pipeline", "Routing &amp; Edit", [
+                    { label: "VO Cleanup &amp; Bus Routing", src: "sounds/dialogue/vo-routing.mp3" },
+                    { label: "Dynamic / Contextual Dialogue", src: "sounds/dialogue/contextual-vo.mp3" }
+                ]),
+                sound: renderAudioList("Sound Design", "Game &amp; Film", [
+                    { label: "Combat &amp; Creature Layering", src: "sounds/sfx/combat-creature.mp3" },
+                    { label: "World / Foley Transitions", src: "sounds/sfx/world-foley.mp3" }
+                ]),
+                tools: `
+                    <div class="w-full flex flex-col gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
+                        <div class="text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">Frameworks, Scripting &amp; Middleware</div>
+                        <h3 class="text-xl sm:text-2xl font-semibold leading-relaxed" style="${uiFont}">
+                            Technical Audio Systems &amp; Workflow Automation
+                        </h3>
+                        <p class="text-base text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto" style="${uiFont}">
+                            Automation frameworks, batch/validation scripts and middleware implementation across Unreal Engine, Unity, Wwise, FMOD Studio and Reaper.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-2.5 pt-2 font-mono text-xs font-medium">
+                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Lua</span>
+                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Python</span>
+                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">C / C++ / C# / Java</span>
+                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Wwise &amp; FMOD</span>
                         </div>
-                    `
-                },
-                dialogue: {
-                    html: `
-                        <div class="w-full flex flex-col gap-5 animate-fade-up" style="animation-duration: 0.65s;">
-                            <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${viewTextStyle}">
-                                <span>Dialogue &amp; VO Pipeline</span>
-                                <span>Routing &amp; Edit</span>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">VO Cleanup &amp; Bus Routing</span>
-                                <audio controls preload="none" src="sounds/dialogue/vo-routing.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">Dynamic / Contextual Dialogue</span>
-                                <audio controls preload="none" src="sounds/dialogue/contextual-vo.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
-                        </div>
-                    `
-                },
-                sound: {
-                    html: `
-                        <div class="w-full flex flex-col gap-5 animate-fade-up" style="animation-duration: 0.65s;">
-                            <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${viewTextStyle}">
-                                <span>Sound Design</span>
-                                <span>Game &amp; Film</span>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">Combat &amp; Creature Layering</span>
-                                <audio controls preload="none" src="sounds/sfx/combat-creature.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                                <span class="text-base sm:text-lg font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">World / Foley Transitions</span>
-                                <audio controls preload="none" src="sounds/sfx/world-foley.mp3" class="h-9 w-full sm:w-64"></audio>
-                            </div>
-                        </div>
-                    `
-                },
-                tools: {
-                    html: `
-                        <div class="w-full flex flex-col gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
-                            <div class="text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${viewTextStyle}">Frameworks, Scripting &amp; Middleware</div>
-                            <h3 class="text-xl sm:text-2xl font-semibold text-[var(--color-text)] leading-relaxed" style="${viewTextStyle}">
-                                Technical Audio Systems &amp; Workflow Automation
-                            </h3>
-                            <p class="text-base text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto" style="${viewTextStyle}">
-                                Automation frameworks, batch/validation scripts and middleware implementation across Unreal Engine, Unity, Wwise, FMOD Studio and Reaper.
-                            </p>
-                            <div class="flex flex-wrap justify-center gap-2.5 pt-2 font-mono text-xs font-medium text-[var(--color-text)]">
-                                <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Lua</span>
-                                <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Python</span>
-                                <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">C / C++ / C# / Java</span>
-                                <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Wwise &amp; FMOD</span>
-                            </div>
-                        </div>
-                    `
-                }
+                    </div>
+                `
             };
 
-            function stopMediaInStage() {
-                stage.querySelectorAll("video, audio").forEach((el) => {
-                    el.pause();
-                });
-            }
-
             function renderMode(mode) {
-                const item = views[mode] || views.showreel;
-                stopMediaInStage();
-                stage.innerHTML = item.html;
-
-                tabs.forEach((btn) => {
-                    btn.classList.toggle("is-active", btn.dataset.stageMode === mode);
-                });
+                stage.querySelectorAll("video, audio").forEach((el) => el.pause());
+                stage.innerHTML = views[mode] || views.showreel;
+                tabs.forEach((btn) => btn.classList.toggle("is-active", btn.dataset.stageMode === mode));
             }
 
-            tabs.forEach((btn) => {
-                btn.addEventListener("click", () => renderMode(btn.dataset.stageMode));
-            });
-
+            tabs.forEach((btn) => btn.addEventListener("click", () => renderMode(btn.dataset.stageMode)));
             renderMode("showreel");
         })();
     </script>
