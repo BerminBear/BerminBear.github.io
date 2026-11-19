@@ -1,22 +1,25 @@
 :root {
-    --color-bg: #D6D3CA;
-    --color-bg-edge: #ACA79B;
-    --color-text: #16191D;
-    --color-muted: #4A515B;
+    /* Varm mörkare antik-bokpalett */
+    --color-bg: #A99276;
+    --color-bg-edge: #6E5B44;
+    --color-text: #1E1914;
+    --color-muted: #4E4235;
+    --color-surface-text: #1E1914;
 
-    /* Enhetlig palett: Blå (från bild), Guld & Pergament */
-    --color-accent: #162A56;
+    /* Accenter: Röd bokmärkesfärg vid hover/val, guldtext & varm rost/pergament */
+    --color-accent: #8C3B24;
     --color-accent-hover: #D4AF37;
-    --color-bookmark-blue: #162A56;
-    --color-secondary: #C6C2B7;
-    --color-modal-bg: #E5E2D9;
+    --color-bookmark-red: #7D2222;
+    --color-secondary: #CFC0A5;
+    --color-modal-bg: #DDD0B8;
 
-    --color-accent-border: rgba(22, 42, 86, 0.24);
-    --color-accent-border-hover: rgba(212, 175, 55, 0.1);
-    --color-glow-hover: rgba(212, 175, 55, 0.2);
-    --color-glow-hover-wide: rgba(212, 175, 55, 0.0);
+    --color-accent-border: rgba(30, 25, 20, 0.22);
+    --color-accent-border-hover: rgba(212, 175, 55, 0.92);
+    --color-glow-hover: rgba(212, 175, 55, 0.36);
+    --color-glow-hover-wide: rgba(212, 175, 55, 0.16);
 
---font-heading: 'Cinzel Decorative', 'Cinzel', serif;
+    /* Fonter */
+    --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
     --font-cinzel: 'Cinzel', serif;
     --font-body: 'EB Garamond', serif;
     --font-mono: 'Courier Prime', monospace;
@@ -30,11 +33,11 @@
 body {
     background-color: var(--color-bg);
     background-image:
-        radial-gradient(ellipse at 50% 35%, rgba(242, 239, 232, 0.42) 0%, rgba(165, 160, 148, 0.52) 68%, rgba(36, 39, 46, 0.58) 100%),
-        repeating-linear-gradient(0deg, rgba(22, 25, 29, 0.022) 0px, rgba(22, 25, 29, 0.022) 1px, transparent 1px, transparent 4px);
+        radial-gradient(ellipse at 50% 35%, rgba(196, 174, 145, 0.45) 0%, rgba(145, 122, 95, 0.65) 64%, rgba(64, 51, 36, 0.9) 100%),
+        repeating-linear-gradient(0deg, rgba(30, 25, 20, 0.022) 0px, rgba(30, 25, 20, 0.022) 1px, transparent 1px, transparent 4px);
     color: var(--color-text);
     font-family: var(--font-body);
-    box-shadow: inset 0 0 135px rgba(15, 18, 24, 0.46);
+    box-shadow: inset 0 0 165px rgba(32, 24, 15, 0.58);
     min-height: 100vh;
 }
 
@@ -43,11 +46,13 @@ button *, a *, .cv-name-trigger *, .project-card * {
     cursor: pointer !important;
 }
 
+/* Mindre och skarpare titel med riktig Cinzel Decorative */
 .heading-display {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.6rem);
+    font-size: clamp(1.75rem, 3.1vw, 2.35rem);
     font-weight: 700;
-    line-height: 1.1;
+    line-height: 1.12;
+    letter-spacing: 0.03em;
     color: var(--color-text);
 }
 
@@ -56,13 +61,24 @@ button *, a *, .cv-name-trigger *, .project-card * {
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: 0.16em;
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     font-weight: 700 !important;
 }
 
+/* Tydligare rubriker på techstack-korten */
+.tech-card .heading-sub {
+    color: #241510 !important;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    font-weight: 800 !important;
+}
+
+/* Tydligare färg och kontrast på "5 Released games · 2 shortfilms · 4+ years of experience" */
 .medieval-meta {
     font-family: var(--font-cinzel);
     letter-spacing: 0.08em;
+    color: #241510 !important;
+    font-weight: 700 !important;
 }
 
 .medieval-cta {
@@ -86,7 +102,7 @@ button *, a *, .cv-name-trigger *, .project-card * {
 .border-theme-accent { border-color: var(--color-accent-border) !important; }
 
 a, button, .nav-link {
-    color: var(--color-muted);
+    color: var(--color-surface-text);
     transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
 }
 
@@ -95,9 +111,15 @@ a:hover, button:hover, .nav-link:hover {
     text-shadow: 0 0 12px var(--color-glow-hover);
 }
 
-/* Länkarna fylls i med blått och får guldtext + stark gul glow vid hover */
+/* Länkarna fylls i med rött och får guldtext + gul glow vid hover */
+.nav-link {
+    background-color: rgba(221, 208, 184, 0.42);
+    color: var(--color-surface-text);
+    border-color: rgba(30, 25, 20, 0.2);
+}
+
 .nav-link:hover {
-    background-color: var(--color-bookmark-blue) !important;
+    background-color: var(--color-bookmark-red) !important;
     border-color: var(--color-accent-hover) !important;
     color: var(--color-accent-hover) !important;
     box-shadow:
@@ -106,15 +128,15 @@ a:hover, button:hover, .nav-link:hover {
         inset 0 0 8px rgba(212, 175, 55, 0.25) !important;
 }
 
-/* Blått band som kommer fram vid hover på namnet */
+/* Rött band med guldtext som kommer fram vid hover på namnet */
 .name-ribbon {
     display: inline-flex;
     align-items: center;
     padding: 0.28rem 0.75rem;
-    background-color: var(--color-bookmark-blue);
+    background-color: var(--color-bookmark-red);
     color: var(--color-accent-hover);
     border: 1px solid rgba(212, 175, 55, 0.9);
-    border-radius: 3px;
+    border-radius: 0;
     font-family: var(--font-cinzel);
     font-size: 0.68rem;
     font-weight: 700;
@@ -122,10 +144,7 @@ a:hover, button:hover, .nav-link:hover {
     text-transform: uppercase;
     opacity: 0;
     transform: translateX(-8px);
-    box-shadow:
-        0 6px 16px rgba(15, 18, 24, 0.28),
-        0 0 18px var(--color-glow-hover),
-        inset 0 0 0 1px rgba(212, 175, 55, 0.35);
+    box-shadow: 0 6px 16px rgba(15, 18, 24, 0.28);
     transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -135,24 +154,27 @@ a:hover, button:hover, .nav-link:hover {
     transition-delay: 120ms;
 }
 
+/* Dividern under titeln har exakt samma färg som titeln */
 .name-divider {
-    color: var(--color-accent);
-    opacity: 0.85;
+    max-width: 280px !important;
+    color: var(--color-text) !important;
+    opacity: 1;
     transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .group:hover .name-divider {
-    color: var(--color-accent-hover);
+    color: var(--color-accent-hover) !important;
     filter: drop-shadow(0 0 10px var(--color-glow-hover));
     transform: scale(1.01);
 }
 
 .group:hover .heading-display {
+    color: var(--color-accent-hover) !important;
     text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
 }
 
 /* ==========================================================================
-   VYFLIKAR (BOKMÄRKEN) SOM NUDDAR KANT I KANT PÅ VYFÖNSTRET
+   BOKMÄRKEN (VYFLIKAR): RAK KANT, ENHETlig FÄRG & GULDTEXT VID HOVER/VAL
    ========================================================================== */
 .stage-tab {
     position: relative;
@@ -165,23 +187,23 @@ a:hover, button:hover, .nav-link:hover {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--color-text);
-    padding: 0.44rem 0.5rem 0.38rem;
+    padding: 0.46rem 0.5rem 0.4rem;
     border-radius: 0;
     overflow: hidden;
     z-index: 1;
-    transition: color 0.25s ease, box-shadow 0.25s ease, text-shadow 0.25s ease;
+    transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
 .stage-tab::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--color-bookmark-blue);
+    background: var(--color-bookmark-red);
     border-radius: 0;
     transform: translateY(100%);
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: -1;
-    box-shadow: inset 0 2px 0 rgba(212, 175, 55, 0.85);
+    box-shadow: none;
 }
 
 .stage-tab:hover::before,
@@ -193,29 +215,26 @@ a:hover, button:hover, .nav-link:hover {
 .stage-tab.is-active {
     color: var(--color-accent-hover) !important;
     text-shadow: 0 0 10px var(--color-glow-hover) !important;
-}
-
-.stage-tab:hover {
-    box-shadow: 0 0 20px var(--color-glow-hover);
+    box-shadow: none;
 }
 
 /* ==========================================================================
-   ICKE-HOVERBARA TECH STACK-KORT & VYFÖNSTER UTAN HOVER-EFFEKT
+   ICKE-HOVERBARA TECH STACK-KORT & VYFÖNSTER
    ========================================================================== */
 .tech-card {
     background: var(--color-modal-bg) !important;
-    color: var(--color-text) !important;
+    color: var(--color-surface-text) !important;
     border: 1px solid var(--color-accent-border);
     border-top: 3px solid var(--color-accent);
     border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(22, 42, 86, 0.14);
+    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(30, 25, 20, 0.12);
 }
 
 .stage-panel {
     background: var(--color-modal-bg) !important;
-    color: var(--color-text) !important;
+    color: var(--color-surface-text) !important;
     border: 1px solid var(--color-accent-border);
-    border-top: 3px solid var(--color-accent);
+    border-top: 3px solid var(--color-bookmark-red);
     border-radius: 0 0 6px 6px;
     box-shadow: 0 10px 26px rgba(15, 18, 24, 0.2);
 }
@@ -225,11 +244,11 @@ a:hover, button:hover, .nav-link:hover {
 #about-modal-wrapper,
 #project-modal-wrapper {
     background: var(--color-modal-bg) !important;
-    color: var(--color-text) !important;
+    color: var(--color-surface-text) !important;
     border: 1px solid var(--color-accent-border);
     border-top: 3px solid var(--color-accent);
     border-radius: 6px;
-    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(22, 42, 86, 0.14);
+    box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(30, 25, 20, 0.12);
     transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, outline-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
@@ -246,9 +265,9 @@ a:hover, button:hover, .nav-link:hover {
     transform: translateY(-3px);
 }
 
-/* Moduler (projektkort): blå fyllning, starkare gul outline och fylligare guld-glow vid hover */
+/* Moduler (projektkort): röd bokmärkesfyllning och guldtext vid hover */
 .project-card:hover {
-    background: var(--color-bookmark-blue) !important;
+    background: var(--color-bookmark-red) !important;
     color: #F4EFE6 !important;
     border-color: var(--color-accent-hover) !important;
     border-top-color: var(--color-accent-hover) !important;
@@ -268,14 +287,14 @@ a:hover, button:hover, .nav-link:hover {
 }
 
 .project-card:hover span:not(.card-more-label):not(.card-tooltip span) {
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.12) !important;
     color: #F4EFE6 !important;
-    border-color: rgba(212, 175, 55, 0.55) !important;
+    border-color: rgba(212, 175, 55, 0.6) !important;
 }
 
-/* View all projects blir blå med guldtext och stark gul glow vid hover */
+/* View all projects blir röd med guldtext vid hover */
 .view-all-btn:hover {
-    background: var(--color-bookmark-blue) !important;
+    background: var(--color-bookmark-red) !important;
     border-color: var(--color-accent-hover) !important;
     border-top-color: var(--color-accent-hover) !important;
     color: var(--color-accent-hover) !important;
@@ -294,7 +313,7 @@ a:hover, button:hover, .nav-link:hover {
 
 .project-lane h3,
 .project-card h4 {
-    color: var(--color-accent) !important;
+    color: var(--color-surface-text) !important;
     transition: color 0.35s ease, text-shadow 0.35s ease;
 }
 
@@ -306,7 +325,7 @@ a:hover, button:hover, .nav-link:hover {
     width: min(85vw, var(--card-width));
 }
 
-/* Långsammare fade på Expand vid hover */
+/* Expand-bokmärket under kortet: rak kant, röd fyllning + guldtext */
 .card-tooltip,
 .card-more-expand {
     position: absolute;
@@ -323,10 +342,10 @@ a:hover, button:hover, .nav-link:hover {
 .card-more-label {
     display: inline-block;
     padding: 4px 16px;
-    background: var(--color-bookmark-blue);
+    background: var(--color-bookmark-red);
     border: 1px solid rgba(212, 175, 55, 0.9);
     border-top: none;
-    border-radius: 0 0 6px 6px;
+    border-radius: 0;
     color: var(--color-accent-hover);
     font-family: var(--font-cinzel);
     font-size: 10px;
@@ -334,10 +353,7 @@ a:hover, button:hover, .nav-link:hover {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     white-space: nowrap;
-    box-shadow:
-        0 6px 18px rgba(15, 18, 24, 0.35),
-        0 0 20px rgba(212, 175, 55, 0.55),
-        0 0 36px rgba(212, 175, 55, 0.25);
+    box-shadow: 0 6px 18px rgba(15, 18, 24, 0.35);
 }
 
 .project-card:hover .card-tooltip,
@@ -347,14 +363,37 @@ a:hover, button:hover, .nav-link:hover {
     transition-delay: 0.12s;
 }
 
+/* Modals (About & Project): anpassade för ljus pergamentyta med röd accent & guld vid hover */
+#about-modal-wrapper,
+#project-modal-wrapper {
+    color: var(--color-surface-text) !important;
+}
+
+#about-modal-wrapper h2,
+#project-modal-wrapper h2 {
+    color: var(--color-surface-text) !important;
+}
+
+#about-modal-wrapper p,
+#project-modal-wrapper p {
+    color: var(--color-muted) !important;
+}
+
+#about-modal-wrapper button:hover,
+#project-modal-wrapper button:hover {
+    background-color: var(--color-bookmark-red) !important;
+    color: var(--color-accent-hover) !important;
+    border-color: var(--color-accent-hover) !important;
+}
+
 html {
-    scrollbar-color: var(--color-accent) var(--color-bg);
+    scrollbar-color: var(--color-bookmark-red) var(--color-bg);
     scrollbar-width: thin;
 }
 
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-bg-edge); }
-::-webkit-scrollbar-thumb { background-color: var(--color-accent) !important; border-radius: 6px; }
+::-webkit-scrollbar-thumb { background-color: var(--color-bookmark-red) !important; border-radius: 6px; }
 
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(18px); }
