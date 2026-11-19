@@ -1,7 +1,7 @@
 import { initModal } from './modal.js';
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
-import { initScrollButton } from './scroll-button.js';
+// import { initScrollButton } from './scroll-button.js';
 
 function initApp() {
     initAnimations();

@@ -5,32 +5,28 @@
     --color-bg: #0C0C0C;
     --color-text: #B0B0B0;
     --color-muted: #6e6d6d;
-    
+    --color-text-muted: #6e6d6d;
+
     --color-accent: #FFFFFF;
-    --color-accent-hover: #C5A059; 
+    --color-accent-hover: #C5A059;
     --color-secondary: #262626;
     --color-modal-bg: #080808;
-    
+
     --color-accent-border: rgba(255, 255, 255, 0.1);
     --color-accent-border-hover: rgba(197, 160, 89, 0.5);
     --color-glow-hover: rgba(197, 160, 89, 0.35);
 
-    /* --- FONTER (Uppdaterade variabelnamn) --- */
+    /* --- FONTER --- */
     --font-heading: 'Instrument Serif', serif;
     --font-cinzel: 'Cinzel', serif;
     --font-body: 'Inter', sans-serif;
     --font-mono: 'Courier Prime', monospace;
     --font-garamond: 'EB Garamond', serif;
 
-    /* --- GLOBALA KORT-STORLEKAR ---
-       Ändra dessa två värden för att styra
-       bredd och mellanrum på ALLA kort. */
-    --card-width: 360px;   /* standard: 420px */
-    --card-gap: 1.5rem;    /* standard: 1.25rem (gap-5) */
-    --card-bookmark-w: 22px;
-    --card-bookmark-h: 32px;
+    /* --- GLOBALA KORT-STORLEKAR --- */
+    --card-width: 340px;
+    --card-gap: 1.25rem;
 }
-
 
 body {
     background-color: var(--color-bg);
@@ -39,7 +35,7 @@ body {
     cursor: auto;
 }
 
-a, button, .cv-name-trigger, .project-card, .nav-link, 
+a, button, .cv-name-trigger, .project-card, .nav-link,
 button *, a *, .cv-name-trigger *, .project-card * {
     cursor: pointer !important;
 }
@@ -49,20 +45,19 @@ button *, a *, .cv-name-trigger *, .project-card * {
    ========================================================================== */
 .heading-display {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-size: clamp(2.25rem, 4.5vw, 3.25rem);
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.01em;
     color: var(--color-text);
 }
 
-
 .heading-sub {
     font-family: var(--font-mono);
     color: var(--color-accent);
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700 !important;
 }
 
@@ -70,18 +65,18 @@ button *, a *, .cv-name-trigger *, .project-card * {
 .font-garamond { font-family: var(--font-garamond) !important; }
 .font-cinzel   { font-family: var(--font-cinzel) !important; }
 
-/* Uppdaterad sektionsrubrik ( Selected Work / Tech Stack ) */
+/* Sektionsrubriker (Selected Work / Tech Stack) — lite mer kompakta */
 .heading-section {
     font-family: var(--font-cinzel);
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    color: var(--color-text);
+    color: var(--color-text-muted);
 }
 
 .body-text {
     font-family: var(--font-body);
     color: var(--color-muted);
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .label-mono, .code-font, a, button {
@@ -104,7 +99,7 @@ a:hover, button:hover, .nav-link:hover {
 
 .group:hover .info-hover-tag {
     opacity: 1;
-    transition-delay: 500ms;
+    transition-delay: 400ms;
 }
 
 /* ==========================================================================
@@ -128,9 +123,9 @@ a:hover, button:hover, .nav-link:hover {
 }
 
 /* ==========================================================================
-   4. CARDS & MODALS
+   4. CARDS, EXPAND-FLIK & MODALS
    ========================================================================== */
-.card-surface, 
+.card-surface,
 .project-card,
 #about-modal-wrapper,
 #project-modal-wrapper {
@@ -138,44 +133,77 @@ a:hover, button:hover, .nav-link:hover {
     color: var(--color-text);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 12px;
-    box-shadow: 0 10px 40px -5px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.8);
     transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .card-surface:hover,
 .project-card:hover {
     border-color: var(--color-accent-border-hover) !important;
-    box-shadow: 0 0 25px var(--color-glow-hover), 0 10px 30px -10px rgba(0,0,0,0.8) !important;
-    transform: translateY(-4px);
+    box-shadow: 0 0 25px var(--color-glow-hover), 0 10px 30px -10px rgba(0, 0, 0, 0.8) !important;
+    transform: translateY(-3px);
 }
 
-/* --- GLOBAL KORTBREDD & AVSTÅND (styr av :root-variablerna) --- */
+/* Bokmärket i övre högra hörnet är borttaget; korten låter "More"-fliken synas under */
+.project-card {
+    overflow: visible !important;
+    position: relative;
+}
+
+/* --- EXPANDERANDE "MORE"-TEXT UNDER KORTET --- */
+.card-more-expand {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    top: calc(100% - 1px);
+    background: #121215;
+    border: 1px solid var(--color-accent-border-hover);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 0 0.75rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(-6px);
+    pointer-events: none;
+    z-index: 30;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.75), 0 0 14px var(--color-glow-hover);
+    transition:
+        max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.25s ease,
+        transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .card-more-expand {
+    max-height: 36px;
+    padding-top: 0.4rem;
+    padding-bottom: 0.45rem;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-more-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-hover);
+    white-space: nowrap;
+}
+
+/* --- GLOBAL KORTBREDD & AVSTÅND (för lanes i projects.html) --- */
 .lane-track {
     gap: var(--card-gap);
 }
 
 .lane-track .project-card {
     width: min(85vw, var(--card-width));
-}
-
-/* --- BOKMÄRKE (visas vid hover) --- */
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 2rem;
-    width: var(--card-bookmark-w);
-    height: var(--card-bookmark-h);
-    background: var(--color-accent-hover);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 72%, 0 100%);
-    transform: translateY(-100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 40;
-    pointer-events: none;
-}
-
-.project-card:hover::before {
-    transform: translateY(0);
 }
 
 iframe {
@@ -190,9 +218,9 @@ html {
     scrollbar-width: thin;
 }
 
-main > section, 
-main > div, 
-nav, 
+main > section,
+main > div,
+nav,
 .project-lane {
     opacity: 0;
 }
@@ -201,9 +229,11 @@ nav,
     width: 8px;
     height: 8px;
 }
+
 ::-webkit-scrollbar-track {
     background: var(--color-bg);
 }
+
 ::-webkit-scrollbar-thumb {
     background-color: var(--color-accent-hover) !important;
     border-radius: 10px;
@@ -239,6 +269,11 @@ nav,
     transition: color 0.3s ease;
 }
 
+/* Håll scroll-knappen cirkelformad */
+#scroll-toggle-btn {
+    border-radius: 9999px !important;
+}
+
 /* Custom smooth rotation för scroll-knappen */
 #scroll-btn-icon {
     transform-origin: center;
@@ -251,7 +286,9 @@ nav,
     text-shadow: none !important;
 }
 
-
+.no-transform:hover {
+    transform: none !important;
+}
 
 /* ==========================================================================
    6. VIEW TRANSITIONS (SMOOTH PAGE LOADS)
