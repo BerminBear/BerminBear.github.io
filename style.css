@@ -12,8 +12,9 @@
     --color-modal-bg: #E5E2D9;
 
     --color-accent-border: rgba(22, 42, 86, 0.24);
-    --color-accent-border-hover: rgba(212, 175, 55, 0.85);
-    --color-glow-hover: rgba(212, 175, 55, 0.22);
+    --color-accent-border-hover: rgba(212, 175, 55, 0.1);
+    --color-glow-hover: rgba(212, 175, 55, 0.2);
+    --color-glow-hover-wide: rgba(212, 175, 55, 0.0);
 
     --font-heading: 'UnifrakturMaguntia', 'Cinzel Decorative', serif;
     --font-cinzel: 'Cinzel', serif;
@@ -86,18 +87,23 @@ button *, a *, .cv-name-trigger *, .project-card * {
 
 a, button, .nav-link {
     color: var(--color-muted);
-    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+    transition: color 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease, text-shadow 0.25s ease, transform 0.25s ease;
 }
 
 a:hover, button:hover, .nav-link:hover {
     color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 12px var(--color-glow-hover);
 }
 
-/* Länkarna fylls i med blått och får guldtext + gul kant vid hover */
+/* Länkarna fylls i med blått och får guldtext + stark gul glow vid hover */
 .nav-link:hover {
     background-color: var(--color-bookmark-blue) !important;
     border-color: var(--color-accent-hover) !important;
     color: var(--color-accent-hover) !important;
+    box-shadow:
+        0 0 16px var(--color-glow-hover),
+        0 0 32px var(--color-glow-hover-wide),
+        inset 0 0 8px rgba(212, 175, 55, 0.25) !important;
 }
 
 /* Blått band som kommer fram vid hover på namnet */
@@ -107,7 +113,7 @@ a:hover, button:hover, .nav-link:hover {
     padding: 0.28rem 0.75rem;
     background-color: var(--color-bookmark-blue);
     color: var(--color-accent-hover);
-    border: 1px solid rgba(212, 175, 55, 0.7);
+    border: 1px solid rgba(212, 175, 55, 0.9);
     border-radius: 3px;
     font-family: var(--font-cinzel);
     font-size: 0.68rem;
@@ -116,7 +122,10 @@ a:hover, button:hover, .nav-link:hover {
     text-transform: uppercase;
     opacity: 0;
     transform: translateX(-8px);
-    box-shadow: 0 6px 16px rgba(15, 18, 24, 0.28), inset 0 0 0 1px rgba(212, 175, 55, 0.22);
+    box-shadow:
+        0 6px 16px rgba(15, 18, 24, 0.28),
+        0 0 18px var(--color-glow-hover),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.35);
     transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -129,12 +138,17 @@ a:hover, button:hover, .nav-link:hover {
 .name-divider {
     color: var(--color-accent);
     opacity: 0.85;
-    transition: color 0.3s ease, transform 0.3s ease;
+    transition: color 0.3s ease, filter 0.3s ease, transform 0.3s ease;
 }
 
 .group:hover .name-divider {
     color: var(--color-accent-hover);
+    filter: drop-shadow(0 0 10px var(--color-glow-hover));
     transform: scale(1.01);
+}
+
+.group:hover .heading-display {
+    text-shadow: 0 0 18px rgba(212, 175, 55, 0.45);
 }
 
 /* ==========================================================================
@@ -155,7 +169,7 @@ a:hover, button:hover, .nav-link:hover {
     border-radius: 0;
     overflow: hidden;
     z-index: 1;
-    transition: color 0.25s ease;
+    transition: color 0.25s ease, box-shadow 0.25s ease, text-shadow 0.25s ease;
 }
 
 .stage-tab::before {
@@ -167,7 +181,7 @@ a:hover, button:hover, .nav-link:hover {
     transform: translateY(100%);
     transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
     z-index: -1;
-    box-shadow: inset 0 2px 0 rgba(212, 175, 55, 0.55);
+    box-shadow: inset 0 2px 0 rgba(212, 175, 55, 0.85);
 }
 
 .stage-tab:hover::before,
@@ -178,7 +192,11 @@ a:hover, button:hover, .nav-link:hover {
 .stage-tab:hover,
 .stage-tab.is-active {
     color: var(--color-accent-hover) !important;
-    text-shadow: none !important;
+    text-shadow: 0 0 10px var(--color-glow-hover) !important;
+}
+
+.stage-tab:hover {
+    box-shadow: 0 0 20px var(--color-glow-hover);
 }
 
 /* ==========================================================================
@@ -212,23 +230,61 @@ a:hover, button:hover, .nav-link:hover {
     border-top: 3px solid var(--color-accent);
     border-radius: 6px;
     box-shadow: 0 8px 22px rgba(15, 18, 24, 0.16), inset 0 0 0 2px var(--color-modal-bg), inset 0 0 0 3px rgba(22, 42, 86, 0.14);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, outline-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
 }
 
 .card-surface:hover,
 .project-card:hover {
     border-color: var(--color-accent-hover) !important;
     border-top-color: var(--color-accent-hover) !important;
-    box-shadow: 0 12px 28px rgba(15, 18, 24, 0.24), 0 0 16px var(--color-glow-hover) !important;
+    outline: 2px solid rgba(212, 175, 55, 0.95);
+    outline-offset: 2px;
+    box-shadow:
+        0 14px 32px rgba(15, 18, 24, 0.32),
+        0 0 24px var(--color-glow-hover),
+        0 0 48px var(--color-glow-hover-wide) !important;
     transform: translateY(-3px);
 }
 
-/* View all projects blir blå med guldtext vid hover */
+/* Moduler (projektkort): blå fyllning, starkare gul outline och fylligare guld-glow vid hover */
+.project-card:hover {
+    background: var(--color-bookmark-blue) !important;
+    color: #F4EFE6 !important;
+    border-color: var(--color-accent-hover) !important;
+    border-top-color: var(--color-accent-hover) !important;
+    outline: 2px solid rgba(212, 175, 55, 0.98);
+    outline-offset: 2px;
+    box-shadow:
+        0 14px 34px rgba(15, 18, 24, 0.36),
+        0 0 28px rgba(212, 175, 55, 0.65),
+        0 0 56px rgba(212, 175, 55, 0.35) !important;
+    transform: translateY(-3px);
+}
+
+.project-card:hover h4,
+.project-card:hover h2 {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.45);
+}
+
+.project-card:hover span:not(.card-more-label):not(.card-tooltip span) {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #F4EFE6 !important;
+    border-color: rgba(212, 175, 55, 0.55) !important;
+}
+
+/* View all projects blir blå med guldtext och stark gul glow vid hover */
 .view-all-btn:hover {
     background: var(--color-bookmark-blue) !important;
     border-color: var(--color-accent-hover) !important;
     border-top-color: var(--color-accent-hover) !important;
     color: var(--color-accent-hover) !important;
+    outline: 2px solid rgba(212, 175, 55, 0.9);
+    outline-offset: 2px;
+    box-shadow:
+        0 12px 28px rgba(15, 18, 24, 0.3),
+        0 0 24px rgba(212, 175, 55, 0.6),
+        0 0 48px rgba(212, 175, 55, 0.3) !important;
 }
 
 .project-card {
@@ -239,6 +295,7 @@ a:hover, button:hover, .nav-link:hover {
 .project-lane h3,
 .project-card h4 {
     color: var(--color-accent) !important;
+    transition: color 0.35s ease, text-shadow 0.35s ease;
 }
 
 .lane-track {
@@ -249,6 +306,7 @@ a:hover, button:hover, .nav-link:hover {
     width: min(85vw, var(--card-width));
 }
 
+/* Långsammare fade på Expand vid hover */
 .card-tooltip,
 .card-more-expand {
     position: absolute;
@@ -258,7 +316,7 @@ a:hover, button:hover, .nav-link:hover {
     opacity: 0;
     pointer-events: none;
     z-index: 40;
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .card-tooltip span,
@@ -266,7 +324,7 @@ a:hover, button:hover, .nav-link:hover {
     display: inline-block;
     padding: 4px 16px;
     background: var(--color-bookmark-blue);
-    border: 1px solid rgba(212, 175, 55, 0.65);
+    border: 1px solid rgba(212, 175, 55, 0.9);
     border-top: none;
     border-radius: 0 0 6px 6px;
     color: var(--color-accent-hover);
@@ -276,13 +334,17 @@ a:hover, button:hover, .nav-link:hover {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     white-space: nowrap;
-    box-shadow: 0 6px 14px rgba(15, 18, 24, 0.28);
+    box-shadow:
+        0 6px 18px rgba(15, 18, 24, 0.35),
+        0 0 20px rgba(212, 175, 55, 0.55),
+        0 0 36px rgba(212, 175, 55, 0.25);
 }
 
 .project-card:hover .card-tooltip,
 .project-card:hover .card-more-expand {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
+    transition-delay: 0.12s;
 }
 
 html {
