@@ -7,9 +7,9 @@
     <title>Benjamin Natalli | Technical Audio &amp; Dialogue Designer</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IM+Fell+Double+Pica:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <base target="_blank">
 </head>
@@ -19,22 +19,22 @@
     <!-- SYMMETRISK NAVBAR -->
     <header class="w-full pt-5 px-4 sm:px-6 lg:px-8 relative z-50">
         <div class="w-full max-w-[1680px] mx-auto flex justify-between items-center">
-            <a href="home.html" class="label-mono font-medium tracking-wider flex items-center hover:opacity-80 transition-opacity" style="color: var(--color-accent-hover);">
+            <a href="home.html" target="_self" class="font-mono text-xs font-semibold uppercase tracking-widest flex items-center text-white/90 hover:text-[var(--color-accent-hover)] transition-colors">
                 <span>B.NATALLI</span>
             </a>
             <nav aria-label="Primary navigation" class="flex items-center uppercase tracking-widest">
-                <a href="projects.html" class="nav-link font-medium py-1 text-white/90 hover:text-white transition-colors">Projects</a>
+                <a href="projects.html" target="_self" class="nav-link font-mono text-xs font-semibold uppercase tracking-widest py-1 text-white/90 hover:text-[var(--color-accent-hover)] transition-colors">Projects</a>
             </nav>
         </div>
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-5 md:pt-7 pb-12 relative z-10 text-left">
+    <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-20 relative z-10 text-left">
 
-        <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
-            <!-- VÄNSTER KOLUMN: INTRO, LÄNKAR, TECH STACK, 2 MODULER & VIEW ALL PROJECTS -->
+        <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+            <!-- VÄNSTER KOLUMN -->
             <div class="lg:col-span-5 flex flex-col items-start">
-                <button onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-start justify-center focus:outline-none relative">
+                <button type="button" onclick="openAboutModal()" class="group hover-trigger cv-name-trigger flex flex-col items-start justify-center focus:outline-none relative">
                     <div class="relative flex items-center">
                         <h1 class="heading-display mb-0 transition-colors duration-300 group-hover:text-[var(--color-accent-hover)] flex items-center gap-3">
                             <span>Benjamin</span>
@@ -58,47 +58,59 @@
                     </svg>
                 </button>
 
-                <h2 class="heading-sub text-[13px] md:text-[14px] mt-0.5 mb-1.5 tracking-widest text-white">
+                <h2 class="heading-sub text-sm md:text-[15px] mt-1 mb-2.5 tracking-widest text-white">
                     Technical Audio &amp; Dialogue Designer
                 </h2>
 
-                <div class="space-y-1">
-                    <p class="body-text text-[13px] md:text-[14px] leading-snug text-slate-300">
-                        <span class="font-medium text-white">automation frameworks</span>, <span class="font-medium text-white">adaptive routing architecture</span> &amp; <span class="font-medium text-white">dialogue systems</span>.
+                <div class="space-y-2.5 max-w-md">
+                    <p class="body-text text-[13px] md:text-[13.5px] leading-relaxed text-slate-400">
+                        <span class="text-slate-200">automation frameworks</span>, <span class="text-slate-200">adaptive routing</span> &amp; <span class="text-slate-200">dialogue systems</span>.
                     </p>
-                    <p class="label-mono text-xs tracking-wide text-[var(--color-accent-hover)]">
-                        5 Released games, 2 shortfilms, 4+ years of experience
+                    <p class="text-[12.5px] md:text-[13px] leading-relaxed tracking-wide text-[var(--color-accent-hover)] font-medium" style="font-family: 'IBM Plex Mono', monospace;">
+                        5 Released games <span class="text-slate-400 mx-1">·</span> 2 shortfilms <span class="text-slate-400 mx-1">·</span> 4+ years of experience
                     </p>
                 </div>
 
                 <!-- LÄNKAR -->
-                <div class="mt-3.5 flex flex-wrap justify-start gap-x-4 gap-y-2 label-mono font-bold text-xs">
-                    <a href="projects.html" class="nav-link border-b border-white/20 pb-0.5">[ Projects ]</a>
-                    <button onclick="openAboutModal()" class="nav-link border-b border-white/20 pb-0.5 focus:outline-none">[ About ]</button>
+                <div class="mt-5 flex flex-wrap justify-start gap-x-4 gap-y-2 label-mono font-bold text-xs">
+                    <a href="projects.html" target="_self" class="nav-link border-b border-white/20 pb-0.5">[ Projects ]</a>
+                    <button type="button" onclick="openAboutModal()" class="nav-link border-b border-white/20 pb-0.5 focus:outline-none">[ About ]</button>
                     <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener" class="nav-link border-b border-white/20 pb-0.5">[ LinkedIn ]</a>
-                    <a href="/cdn-cgi/l/email-protection#0446616a6e65696d6a2a576568696b6a77776b6a446b7170686b6b6f2a676b69" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
+                    <a href="mailto:din.epost@exempel.se" target="_self" class="nav-link border-b border-white/20 pb-0.5">[ Email ]</a>
                 </div>
 
-                <!-- TECH STACK (REN UPPRADNING UTAN LINJE) -->
-                <div id="tech-stack" class="w-full mt-4 space-y-0.5 text-xs leading-relaxed text-slate-300">
+                <!-- TECH STACK -->
+                <div id="tech-stack" class="w-full mt-6 space-y-1.5 text-xs md:text-[13px] leading-relaxed text-slate-300">
                     <p>Unreal Engine, Unity, Reaper</p>
                     <p>Lua, Python, C, C++, C#, Java</p>
                     <p class="text-slate-400">Wwise, FMOD Studio, Perforce, Git</p>
                 </div>
 
-                <!-- TVÅ KOMPAKTA PROJEKTMODULER UNDER TECH STACK -->
-                <div id="highlights" class="w-full mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <!-- DISKRÄT AVBRYTARE MELLAN TECH STACK & PROJEKT (BEHÅLLES) -->
+                <div class="w-full my-5 flex items-center gap-3 opacity-50" aria-hidden="true">
+                    <span class="h-[1px] flex-1 bg-white/15"></span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent-hover)]">
+                        <polygon points="12,1 18,6 12,11 6,6" fill="none" stroke="currentColor" stroke-width="1.3" />
+                    </svg>
+                    <span class="h-[1px] flex-1 bg-white/15"></span>
+                </div>
+
+                <!-- TVÅ KOMPAKTA PROJEKTMODULER -->
+                <div id="highlights" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <!-- SKELETONS -->
                     <article class="project-card group card-surface overflow-visible text-left relative flex flex-col" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
                         <div class="media-preview relative w-full aspect-video rounded-t-[12px] overflow-hidden bg-[#0a0a0c]">
                             <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
                         </div>
-                        <div class="p-3 border-t border-white/5 flex flex-col flex-1">
-                            <h4 class="font-bold text-xs md:text-sm leading-snug line-clamp-1">What Do You Call a Group of Skeletons</h4>
-                            <p class="heading-sub text-[9px] mt-0.5 mb-2.5">Composer &amp; Tech Sound Designer</p>
+                        <div class="p-3.5 border-t border-white/5 flex flex-col flex-1">
+                            <h4 class="font-bold text-sm leading-snug line-clamp-1">What Do You Call a Group of Skeletons</h4>
+                            <div class="flex flex-wrap gap-1.5 mt-1.5 mb-3">
+                                <span class="px-2 py-0.5 bg-white/5 rounded font-mono text-[10px] uppercase text-white/75 border border-white/15">Composer</span>
+                                <span class="px-2 py-0.5 bg-white/5 rounded font-mono text-[10px] uppercase text-white/75 border border-white/15">Tech Sound Design</span>
+                            </div>
                             <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[9px] uppercase tracking-widest px-2.5 py-1.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-3 h-3 object-contain">
+                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-2.5 py-1.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
+                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-3.5 h-3.5 object-contain">
                                     View on Steam
                                 </a>
                             </div>
@@ -116,12 +128,15 @@
                                 <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
                             </video>
                         </div>
-                        <div class="p-3 border-t border-white/5 flex flex-col flex-1">
-                            <h4 class="font-bold text-xs md:text-sm leading-snug line-clamp-1">Tentacle Tango</h4>
-                            <p class="heading-sub text-[9px] mt-0.5 mb-2.5">Composer &amp; Sound Designer</p>
+                        <div class="p-3.5 border-t border-white/5 flex flex-col flex-1">
+                            <h4 class="font-bold text-sm leading-snug line-clamp-1">Tentacle Tango</h4>
+                            <div class="flex flex-wrap gap-1.5 mt-1.5 mb-3">
+                                <span class="px-2 py-0.5 bg-white/5 rounded font-mono text-[10px] uppercase text-white/75 border border-white/15">Composer</span>
+                                <span class="px-2 py-0.5 bg-white/5 rounded font-mono text-[10px] uppercase text-white/75 border border-white/15">Sound Design</span>
+                            </div>
                             <div class="mt-auto">
-                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#E60012] text-white font-mono font-bold text-[9px] uppercase tracking-widest px-2.5 py-1.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/nintendo-switch-logo.png" alt="Nintendo Switch" class="w-3 h-3 object-contain brightness-0 invert">
+                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-1.5 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-2.5 py-1.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
+                                    <img src="images/logos/nintendo-switch-logo.png" alt="Nintendo Switch" class="w-3.5 h-3.5 object-contain brightness-0 invert">
                                     View on Switch
                                 </a>
                             </div>
@@ -133,24 +148,32 @@
                 </div>
 
                 <!-- VIEW ALL PROJECTS KNAPP -->
-                <div class="flex justify-start mt-5">
-                    <a href="projects.html" class="no-transform inline-flex items-center justify-center px-6 py-2.5 rounded-full border border-white/10 card-surface text-[var(--color-text)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 label-mono uppercase text-[11px] font-bold tracking-widest">
+                <div class="flex justify-start mt-10">
+                    <a href="projects.html" target="_self" class="no-transform inline-flex items-center justify-center px-7 py-3 rounded-full border border-white/10 card-surface text-[var(--color-text)] hover:text-[var(--color-accent-hover)] hover:border-[var(--color-accent-border-hover)] hover:shadow-[0_0_20px_var(--color-glow-hover)] transition-all duration-300 font-mono uppercase text-xs font-extrabold tracking-widest">
                         View all projects →
                     </a>
                 </div>
             </div>
 
-            <!-- HÖGER KOLUMN: SHOWREEL-VIDEO -->
-            <div class="lg:col-span-7 w-full lg:sticky lg:top-8">
-                <div class="aspect-video w-full rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20 border border-white/10 bg-[#0a0a0c]">
-                    <video id="hero-showcase" class="w-full h-full object-cover" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
-                        <source src="videos/dialogue-showcase.mp4" type="video/mp4">
-                    </video>
+            <!-- HÖGER KOLUMN: LÄGESLISTA + EXPANDERAD SHOWCASE-RUTA -->
+            <div class="lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col gap-3.5 h-full">
+                <div class="flex flex-wrap items-center justify-between gap-2 pb-1.5 border-b border-white/10" role="tablist" aria-label="Showcase modes">
+                    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-xs md:text-[13px] uppercase tracking-widest">
+                        <button type="button" data-stage-mode="showreel" class="stage-tab pb-1.5 border-b-2 border-[var(--color-accent-hover)] text-[var(--color-accent-hover)] font-bold transition-colors focus:outline-none">Showreel</button>
+                        <button type="button" data-stage-mode="music" class="stage-tab pb-1.5 border-b-2 border-transparent text-slate-400 hover:text-white transition-colors focus:outline-none">Music</button>
+                        <button type="button" data-stage-mode="dialogue" class="stage-tab pb-1.5 border-b-2 border-transparent text-slate-400 hover:text-white transition-colors focus:outline-none">Dialogue</button>
+                        <button type="button" data-stage-mode="sound" class="stage-tab pb-1.5 border-b-2 border-transparent text-slate-400 hover:text-white transition-colors focus:outline-none">Sound Design</button>
+                        <button type="button" data-stage-mode="tools" class="stage-tab pb-1.5 border-b-2 border-transparent text-slate-400 hover:text-white transition-colors focus:outline-none">Tools</button>
+                    </div>
+                </div>
+
+                <div id="showcase-stage" class="min-h-[440px] sm:min-h-[540px] lg:min-h-[660px] flex-1 w-full rounded-2xl overflow-hidden card-surface shadow-2xl relative z-20 border border-white/10 bg-[#0a0a0c] p-5 sm:p-7 flex flex-col justify-center">
+                    <!-- Innehåll styrs av scriptet nedan -->
                 </div>
             </div>
         </section>
 
-        <footer class="text-left label-mono text-xs text-slate-600 pt-8 pb-4 w-full">
+        <footer class="text-left label-mono text-xs text-slate-600 pt-10 pb-2 w-full">
             <p>© 2026 Benjamin Natalli Salmonsson.</p>
         </footer>
     </main>
@@ -158,7 +181,7 @@
     <!-- ABOUT MODAL -->
     <div id="about-detail-modal" class="fixed inset-0 bg-[#060508]/95 backdrop-blur-md z-[10001] hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
         <div id="about-modal-wrapper" class="card-surface p-6 md:p-10 max-w-4xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-slate-500 hover:text-[var(--color-accent-hover)] uppercase tracking-widest">[ CLOSE / ESC ]</button>
+            <button type="button" onclick="closeAboutModal()" class="absolute top-4 right-4 label-mono text-xs text-slate-500 hover:text-[var(--color-accent-hover)] uppercase tracking-widest">[ CLOSE / ESC ]</button>
             <div id="about-modal-body"></div>
         </div>
     </div>
@@ -166,7 +189,7 @@
     <!-- PROJECT MODAL -->
     <div id="project-detail-modal" class="fixed inset-0 z-[10001] bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
         <div id="project-modal-wrapper" class="card-surface p-6 md:p-10 max-w-5xl w-full transform scale-95 transition-all duration-300 relative shadow-2xl overflow-y-auto max-h-[90vh]">
-            <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-pointer">&times;</button>
+            <button type="button" onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-pointer">&times;</button>
             <div id="project-modal-body"></div>
         </div>
     </div>
@@ -179,7 +202,126 @@
         </svg>
     </button>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        (function () {
+            const stage = document.getElementById("showcase-stage");
+            const tabs = document.querySelectorAll(".stage-tab");
+            if (!stage || !tabs.length) return;
+
+            const viewHeadingStyle = "font-family: 'Space Grotesk', sans-serif;";
+
+            const views = {
+                showreel: {
+                    html: `
+                        <video id="hero-showcase" class="w-full h-full min-h-[390px] sm:min-h-[490px] lg:min-h-[600px] object-cover rounded-xl" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
+                            <source src="videos/dialogue-showcase.mp4" type="video/mp4">
+                        </video>
+                    `
+                },
+                music: {
+                    html: `
+                        <div class="w-full flex flex-col gap-5">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-slate-400 pb-2 border-b border-white/10">
+                                <span>Selected Tracks</span>
+                                <span>Audio Reel</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">01 — Theme / Cue</span>
+                                <audio controls preload="none" src="sounds/tracks/track-01.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">02 — Atmosphere Sketch</span>
+                                <audio controls preload="none" src="sounds/tracks/track-02.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                        </div>
+                    `
+                },
+                dialogue: {
+                    html: `
+                        <div class="w-full flex flex-col gap-5">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-slate-400 pb-2 border-b border-white/10">
+                                <span>Dialogue &amp; VO Pipeline</span>
+                                <span>Routing &amp; Edit</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">VO Cleanup &amp; Bus Routing</span>
+                                <audio controls preload="none" src="sounds/dialogue/vo-routing.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">Dynamic / Contextual Dialogue</span>
+                                <audio controls preload="none" src="sounds/dialogue/contextual-vo.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                        </div>
+                    `
+                },
+                sound: {
+                    html: `
+                        <div class="w-full flex flex-col gap-5">
+                            <div class="flex items-center justify-between text-xs font-mono font-bold uppercase tracking-widest text-slate-400 pb-2 border-b border-white/10">
+                                <span>Sound Design</span>
+                                <span>Game &amp; Film</span>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">Combat &amp; Creature Layering</span>
+                                <audio controls preload="none" src="sounds/sfx/combat-creature.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/10">
+                                <span class="text-base sm:text-lg font-bold text-white leading-snug" style="${viewHeadingStyle}">World / Foley Transitions</span>
+                                <audio controls preload="none" src="sounds/sfx/world-foley.mp3" class="h-9 w-full sm:w-64"></audio>
+                            </div>
+                        </div>
+                    `
+                },
+                tools: {
+                    html: `
+                        <div class="w-full flex flex-col gap-5 text-left">
+                            <div class="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest pb-2 border-b border-white/10">Frameworks, Scripting &amp; Middleware</div>
+                            <h3 class="text-xl sm:text-2xl font-bold text-white leading-snug" style="${viewHeadingStyle}">
+                                Technical Audio Systems &amp; Workflow Automation
+                            </h3>
+                            <p class="text-base sm:text-[17px] text-slate-300 leading-loose">
+                                Automation frameworks, batch/validation scripts and middleware implementation across Unreal Engine, Unity, Wwise, FMOD Studio and Reaper.
+                            </p>
+                            <div class="flex flex-wrap gap-2.5 pt-2 font-mono text-xs font-semibold text-white/90">
+                                <span class="px-3 py-1.5 rounded bg-white/5 border border-white/10">Lua</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5 border border-white/10">Python</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5 border border-white/10">C / C++ / C# / Java</span>
+                                <span class="px-3 py-1.5 rounded bg-white/5 border border-white/10">Wwise &amp; FMOD</span>
+                            </div>
+                        </div>
+                    `
+                }
+            };
+
+            function stopMediaInStage() {
+                stage.querySelectorAll("video, audio").forEach((el) => {
+                    el.pause();
+                });
+            }
+
+            function renderMode(mode) {
+                const item = views[mode] || views.showreel;
+                stopMediaInStage();
+                stage.innerHTML = item.html;
+
+                tabs.forEach((btn) => {
+                    const isActive = btn.dataset.stageMode === mode;
+                    btn.classList.toggle("border-[var(--color-accent-hover)]", isActive);
+                    btn.classList.toggle("text-[var(--color-accent-hover)]", isActive);
+                    btn.classList.toggle("font-bold", isActive);
+                    btn.classList.toggle("border-transparent", !isActive);
+                    btn.classList.toggle("text-slate-400", !isActive);
+                    btn.classList.toggle("font-normal", !isActive);
+                });
+            }
+
+            tabs.forEach((btn) => {
+                btn.addEventListener("click", () => renderMode(btn.dataset.stageMode));
+            });
+
+            renderMode("showreel");
+        })();
+    </script>
     <script type="module" src="js/main.js"></script>
 </body>
 
