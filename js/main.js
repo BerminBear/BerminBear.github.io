@@ -3,8 +3,10 @@ import { initModal } from './modal.js';
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
 import { initParticles } from './particles.js';
+import { initHeaderDrawer } from './header-drawer.js';
 
 function initApp() {
+    initHeaderDrawer();
     initAnimations();
     initModal();
     initMediaPreviews();
