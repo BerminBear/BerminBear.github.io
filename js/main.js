@@ -1,5 +1,6 @@
 // js/main.js
 import { initModal } from './modal.js';
+import { initProjectCards } from './project-card.js'; // <-- NY IMPORT
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
 import { initParticles } from './particles.js';
@@ -17,6 +18,7 @@ function initApp() {
     safeRun('headerDrawer', () => initHeaderDrawer());
     safeRun('animations', () => initAnimations());
     safeRun('modal', () => initModal());
+    safeRun('projectCards', () => initProjectCards()); // <-- KÖR DENNA FÖRST
     safeRun('mediaPreviews', () => initMediaPreviews());
     safeRun('particles', () => initParticles({ count: 36 }));
 }

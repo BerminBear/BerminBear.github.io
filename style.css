@@ -411,3 +411,73 @@ html {
 @view-transition {
     navigation: auto;
 }
+
+/* ==========================================================================
+   7. PROJEKTMODULER, INTER-FONT, CINZEL DECORATIVE LANE-TEXT & KARUSELL
+   ========================================================================== */
+
+html,
+body,
+main,
+section {
+    overflow-anchor: none;
+}
+
+/* Lane-rubriker med Cinzel Decorative i kursiv stil för monokrom sofistikation */
+.lane-heading {
+    font-family: var(--font-heading) !important;
+    font-style: italic !important;
+    font-size: clamp(1.35rem, 2.2vw, 1.85rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.04em !important;
+    line-height: 1.15 !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-transform: none !important;
+}
+
+/* Inter på innehållet i modulkorten */
+.project-card,
+.project-card p,
+.project-card .card-studio-label,
+.project-card .card-tag,
+.project-card .card-link,
+.home-meta,
+.home-stack-text,
+.body-text {
+    font-family: 'Inter', sans-serif !important;
+    letter-spacing: -0.01em !important;
+}
+
+.project-card .card-studio-label {
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--color-muted) !important;
+}
+
+.project-card .project-card-title {
+    font-family: 'Inter', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    color: #FFFFFF !important;
+}
+
+.lane-track .project-card {
+    transform: scale(var(--carousel-scale, 1));
+    transition: border-color 0.28s ease, box-shadow 0.32s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.lane-track .project-card:hover {
+    z-index: 25 !important;
+    transform: translateY(-2px) scale(1);
+}
+
+.project-card .media-preview {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden !important;
+}
+
+.media-indicator {
+    display: none !important;
+}

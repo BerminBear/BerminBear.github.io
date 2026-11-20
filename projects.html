@@ -1,105 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth lg:snap-y lg:snap-proximity">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | Benjamin D. Natalli — Audio Design & Composition</title>
+    <title>Projects | Benjamin D. Natalli — Audio Design &amp; Composition</title>
     <meta name="description" content="Explore game audio, sound design, and music composition projects by Benjamin D. Natalli. Featuring work on Tentacle Tango, Aura Farmers, HULDR, and more.">
     <meta name="author" content="Benjamin D. Natalli">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://berminbear.github.io/projects.html">
     <meta name="theme-color" content="#08070a">
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://berminbear.github.io/projects.html">
-    <meta property="og:title" content="Projects | Benjamin D. Natalli — Audio Design & Composition">
-    <meta property="og:description" content="Game audio, sound design, and music composition portfolio. Studio games, indie projects, and cinematic work.">
-    <meta property="og:image" content="https://berminbear.github.io/images/og-projects.png">
-    <meta property="og:site_name" content="Benjamin D. Natalli">
-    <meta property="og:locale" content="en_US">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Projects | Benjamin D. Natalli">
-    <meta name="twitter:description" content="Game audio, sound design, and music composition portfolio.">
-    <meta name="twitter:image" content="https://berminbear.github.io/images/og-projects.png">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Benjamin D. Natalli",
-        "url": "https://berminbear.github.io",
-        "jobTitle": "Audio Designer & Composer",
-        "description": "Game audio designer and composer specializing in sound design, music composition, and technical audio implementation for games and film.",
-        "knowsAbout": ["Game Audio", "Sound Design", "Music Composition", "Technical Audio", "Game Development"],
-        "sameAs": [
-            "https://berminbear.github.io"
-        ],
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://berminbear.github.io/projects.html"
-        }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        "itemListElement": [
-            {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Tentacle Tango",
-                "description": "Sound Design & Media Support — Cable Nest"
-            },
-            {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "What Do You Call a Group of Skeletons",
-                "description": "Composer & Technical Sound Designer — Arctic Bones"
-            },
-            {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Aura Farmers",
-                "description": "Sound Design — Cable Nest"
-            },
-            {
-                "@type": "ListItem",
-                "position": 4,
-                "name": "Rubik Road",
-                "description": "Developer & Audio — Indie Project"
-            },
-            {
-                "@type": "ListItem",
-                "position": 5,
-                "name": "CrocoDine",
-                "description": "Developer & Audio — Indie Project"
-            },
-            {
-                "@type": "ListItem",
-                "position": 6,
-                "name": "HULDR",
-                "description": "Composition & Sound Design — ECV - Animation"
-            },
-            {
-                "@type": "ListItem",
-                "position": 7,
-                "name": "Retusch",
-                "description": "Music & Sound — Faryad Sayadi"
-            }
-        ]
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Nya Fonter -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=IM+Fell+Double+Pica:ital@0;1&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;700&family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,700;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -107,267 +20,78 @@
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
     </style>
-<base target="_blank">
-<base target="_blank">
 </head>
 
-<body class="bg-[#08070a] text-white antialiased font-sans selection:bg-amber-500/30 selection:text-amber-200" data-page="projects">
+<body class="bg-[var(--color-bg)] text-[var(--color-text)] antialiased" data-page="projects">
+    <canvas id="bg-particles" aria-hidden="true" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
-    <div id="mouse-glow"></div>
-    <div id="custom-cursor"></div>
-
-<!-- NAVBAR -->
-<nav class="fixed top-0 left-0 w-full z-50 bg-[#08070a]/90 backdrop-blur-md border-b border-white/5 py-6 px-4 md:px-8">
-    <div class="w-full flex justify-between items-center relative z-50">
-        <!-- B.NATALLI (Muted) -->
-        <a href="home.html" class="label-mono font-medium tracking-wider flex items-center hover:opacity-80 transition-opacity" style="color: var(--color-muted);">
-            <span>B.NATALLI</span>
-        </a>
-
-        <!-- Mittlänkar -->
-        <div class="hidden md:flex items-center gap-6 font-medium uppercase tracking-widest text-white/90 text-sm absolute left-1/2 -translate-x-1/2 nav-links-wrapper">
-            <a href="#studio-games" class="hover:text-white transition-colors nav-link">Studio</a>
-            <span class="text-white/40 nav-link-separator">·</span>
-            <a href="#indie-games" class="hover:text-white transition-colors nav-link">Indie</a>
-            <span class="text-white/40 nav-link-separator">·</span>
-            <a href="#cinematic" class="hover:text-white transition-colors nav-link">Film</a>
-            <span class="text-white/40 nav-link-separator">·</span>
-            <a href="#Tools" class="hover:text-white transition-colors nav-link">Tools</a>
-            <span class="text-white/40 nav-link-separator">·</span>
-            <a href="#Music" class="hover:text-white transition-colors nav-link">Music</a>
-        </div>
-
-        <!-- Projects (Guldchampagne) -->
-        <div class="flex gap-6 uppercase tracking-widest items-center">
-            <a href="projects.html" class="nav-link font-medium py-2 transition-colors" style="color: var(--color-accent-hover);">Projects</a>
-        </div>
-    </div>
-</nav>
+    <!-- HEADER / DRAWER -->
+    <header id="site-header"></header>
 
     <!-- PROJEKT-LANES -->
-    <main class="pt-28 pb-24 pl-6 md:pl-12 lg:pl-20 relative z-10">
+    <main class="pt-20 pb-20 px-4 sm:px-8 lg:px-14 relative z-10 max-w-[1680px] mx-auto">
+        <div class="lanes-wrapper flex flex-col gap-6">
 
-        <div class="lanes-wrapper flex flex-col gap-16">
+            <!-- LANE 1: GAMES -->
+            <section id="studio-games" class="project-lane relative group scroll-mt-24 pt-1" style="overflow-anchor: none;">
+                <h3 class="lane-heading relative z-10 m-0 mb-5">Games</h3>
 
-            <!-- LANE 1: STUDIO -->
-            <section id="studio-games" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Studio & Commercial Games</h3>
+                <div class="flex items-stretch gap-2 sm:gap-3 relative z-20">
+                    <button type="button"
+                            class="carousel-prev lane-wing shrink-0 w-7 sm:w-8 flex items-center justify-center font-mono text-base sm:text-lg"
+                            aria-label="Scroll games left">
+                        &lt;
+                    </button>
 
-                <div class="lane-track flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 hide-scrollbar pr-24 relative z-20">
+                    <div class="lane-track flex-1 flex overflow-x-auto snap-x snap-mandatory scroll-smooth pt-2 pb-8 hide-scrollbar px-2"
+                         data-project-ids="tentacle-tango,skeletons,aura-farmers,rubik-road,crocodine"
+                         data-media-class="aspect-video">
+                    </div>
 
-                    <!-- TENTACLE TANGO -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="tentacle-tango" data-audio-preview="sounds/previews/tentacle-tango.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/tentacle-tango-card.png" alt="Tentacle Tango game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" muted loop playsinline preload="metadata" poster="images/cards/tentacle-tango-card.png">
-                                <source src="videos/tentacle-tango-preview.mp4" type="video/mp4">
-                            </video>
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Cable Nest</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">Tentacle Tango</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
-                            </div>
-                            <div class="mt-auto">
-                                <a href="https://www.nintendo.com/us/store/products/tentacle-tango-switch/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#E60012] text-white font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#ff1a2b] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/nintendo-switch-logo.png" alt="Nintendo Switch" class="w-4 h-4 object-contain brightness-0 invert">
-                                    View on Switch
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- SKELETONS -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/skeletons-card.jpg" alt="What Do You Call a Group of Skeletons game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Arctic Bones</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">What Do You Call a Group of Skeletons</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Technical Sound Designer</span>
-                            </div>
-                            <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3747520/What_do_You_Call_a_Group_of_Skeletons__Pilot/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-4 h-4 object-contain">
-                                    View on Steam
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- AURA FARMERS -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="aura-farmers" data-audio-preview="sounds/previews/aura-farmers.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/aura-farmers-card.png" alt="Aura Farmers game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <video class="media-video absolute inset-0 w-full h-full object-cover opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" muted loop playsinline preload="metadata" poster="images/cards/aura-farmers-card.png">
-                                <source src="videos/aura-farmers-preview.mp4" type="video/mp4">
-                            </video>
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Cable Nest</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">Aura Farmers</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
-                            </div>
-                            <div class="mt-auto">
-                                <a href="https://store.steampowered.com/app/3270900/Aura_Farmers/" target="_blank" rel="noopener noreferrer" class="card-link no-gold-hover inline-flex items-center justify-center gap-2 bg-[#1b2838] text-white border border-white/10 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md hover:bg-[#2a475e] transition-colors w-full" onclick="event.stopPropagation();">
-                                    <img src="images/logos/Steam_icon_logo.svg.png" alt="Steam" class="w-4 h-4 object-contain">
-                                    View on Steam
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-
+                    <button type="button"
+                            class="carousel-next lane-wing shrink-0 w-7 sm:w-8 flex items-center justify-center font-mono text-base sm:text-lg"
+                            aria-label="Scroll games right">
+                        &gt;
+                    </button>
                 </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
             </section>
 
-            <!-- LANE 2: INDIE -->
-            <section id="indie-games" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Indie & Personal Games</h3>
+            <!-- LANE 2: FILM -->
+            <section id="cinematic" class="project-lane relative group scroll-mt-24 pt-1" style="overflow-anchor: none;">
+                <h3 class="lane-heading relative z-10 m-0 mb-5">Film</h3>
 
-                <div class="lane-track flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 hide-scrollbar pr-24 relative z-20">
+                <div class="flex items-stretch gap-2 sm:gap-3 relative z-20">
+                    <button type="button"
+                            class="carousel-prev lane-wing shrink-0 w-7 sm:w-8 flex items-center justify-center font-mono text-base sm:text-lg"
+                            aria-label="Scroll film projects left">
+                        &lt;
+                    </button>
 
-                    <!-- RUBIK ROAD -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="rubik-road" data-audio-preview="sounds/previews/rubik-road.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/rubik-road-card.png" alt="Rubik Road mobile game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Indie Project</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">Rubik Road</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
-                            </div>
-                            <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt="Google Play" class="w-4 h-4 object-contain">
-                                    Available on Playstore
-                                </span>
-                            </div>
-                        </div>
-                    </article>
+                    <div class="lane-track flex-1 flex overflow-x-auto snap-x snap-mandatory scroll-smooth pt-2 pb-8 hide-scrollbar px-2"
+                         data-project-ids="huldr,retusch"
+                         data-media-class="aspect-video">
+                    </div>
 
-                    <!-- CROCODINE -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="crocodine" data-audio-preview="sounds/previews/crocodine.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/crocodine-card.png" alt="CrocoDine mobile game artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Indie Project</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">CrocoDine</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Developer</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Mobile</span>
-                            </div>
-                            <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-stone-200/10 text-stone-200 border border-stone-200/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    <img src="images/logos/Google_Play_2022_icon.svg.png" alt="Google Play" class="w-4 h-4 object-contain">
-                                    Available on Playstore
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-
+                    <button type="button"
+                            class="carousel-next lane-wing shrink-0 w-7 sm:w-8 flex items-center justify-center font-mono text-base sm:text-lg"
+                            aria-label="Scroll film projects right">
+                        &gt;
+                    </button>
                 </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
-            </section>
-
-            <!-- LANE 3: FILM -->
-            <section id="cinematic" class="project-lane relative group snap-start scroll-mt-16">
-                <h3 class="font-mono text-amber-500 font-bold text-xs tracking-widest uppercase mb-5">Cinematics & Film</h3>
-
-                <div class="lane-track flex overflow-x-auto snap-x snap-mandatory scroll-smooth pb-12 hide-scrollbar pr-24 relative z-20">
-
-                    <!-- HULDR -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="huldr" data-audio-preview="sounds/previews/huldr.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/huldr-card.png" alt="HULDR animated film artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">ECV - Animation</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">HULDR</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Composition</span>
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Sound Design</span>
-                            </div>
-                            <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    Theatrical Release
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- RETUSCH -->
-                    <article class="project-card relative snap-start shrink-0 bg-[#111114] rounded-2xl border border-white/5 hover:border-amber-500/30 transition-all duration-300 flex flex-col cursor-none group/card" data-project-id="retusch" data-audio-preview="sounds/previews/retusch.mp3">
-                        <div class="media-preview relative aspect-video bg-[#0a0a0c]">
-                            <img src="images/cards/retusch-card.png" alt="Retusch short film artwork" class="media-img w-full h-full object-cover" loading="lazy">
-                            <div class="media-indicator">♪</div>
-                        </div>
-                        <div class="card-tooltip">
-                            <span>Expand</span>
-                        </div>
-                        <div class="p-5 flex flex-col flex-1">
-                            <h4 class="font-mono text-amber-500 text-[10px] font-bold uppercase tracking-widest mb-1">Faryad Sayadi</h4>
-                            <h2 class="text-xl font-bold text-white mb-3 leading-tight">Retusch</h2>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2.5 py-1 bg-white/5 rounded font-mono text-[11px] uppercase text-white/70 border border-white/20">Music & Sound</span>
-                            </div>
-                            <div class="mt-auto">
-                                <span class="inline-flex items-center justify-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono font-bold text-[10px] uppercase tracking-widest px-4 py-2.5 rounded-md w-full cursor-default">
-                                    Theatrical Release
-                                </span>
-                            </div>
-                        </div>
-                    </article>
-
-                </div>
-                <div class="absolute right-0 top-10 bottom-6 w-24 bg-gradient-to-l from-[#08070a] to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30"></div>
             </section>
 
         </div>
     </main>
 
     <!-- PROJECT MODAL -->
-    <div id="project-detail-modal" class="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
-        <div id="project-modal-wrapper" class="bg-[#111114] border border-white/10 rounded-2xl w-full max-w-5xl max-h-[92vh] overflow-hidden shadow-2xl shadow-black/50 scale-95 transition-transform duration-300 relative">
-            <button onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-white/5 border border-white/10 text-white/50 hover:text-white hover:bg-white/10 transition-all text-xl leading-none cursor-none">&times;</button>
-            <div class="p-6 md:p-10 overflow-y-auto max-h-[92vh]" id="project-modal-body"></div>
+    <div id="project-detail-modal" class="fixed inset-0 z-[10001] bg-black/75 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 flex items-center justify-center p-4 md:p-8">
+        <div id="project-modal-wrapper" class="card-surface p-6 md:p-10 max-w-5xl w-full transform scale-95 transition-all duration-300 relative overflow-y-auto max-h-[90vh]">
+            <button type="button" onclick="closeProjectModal()" class="absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full bg-[var(--color-secondary)] border border-[var(--color-accent-border)] text-xl leading-none">&times;</button>
+            <div id="project-modal-body"></div>
         </div>
     </div>
 
     <script type="module" src="js/main.js"></script>
-    <script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d18bf2e81b0945d9aa2992be22fb4f33"}'></script>
 </body>
+
 </html>

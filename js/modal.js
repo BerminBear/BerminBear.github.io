@@ -95,7 +95,7 @@ export function closeAboutModal() {
    PROJECT MODAL
    ========================================================= */
 
-const projectsData = {
+export const projectsData = {
     'tentacle-tango': {
         title: 'Tentacle Tango',
         studio: 'Cable Nest',
