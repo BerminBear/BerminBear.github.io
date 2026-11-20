@@ -15,14 +15,14 @@
     <canvas id="bg-particles" aria-hidden="true" class="fixed inset-0 w-full h-full pointer-events-none z-0"></canvas>
 
     <!-- NAVBAR -->
-<header id="site-header"></header>
+    <header id="site-header"></header>
 
     <!-- MAIN CONTENT -->
-    <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 md:pt-8 pb-20 relative z-10">
-        <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+    <main class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 relative z-10 min-h-screen flex items-center">
+        <section id="hero" class="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center lg:items-stretch">
 
             <!-- LEFT COLUMN -->
-            <div id="hero-text-col" class="order-2 lg:order-1 lg:col-span-5 flex flex-col items-center text-center animate-fade-up" style="animation-delay: 0.1s; animation-duration: 2.1s;">
+            <div id="hero-text-col" class="order-2 lg:order-1 lg:col-span-5 flex flex-col lg:justify-center gap-5 items-center text-center animate-fade-up" style="animation-delay: 0.1s; animation-duration: 2.1s;">
                 <button type="button" onclick="openAboutModal()" class="group cv-name-trigger flex flex-col items-center justify-center focus:outline-none relative">
                     <div class="relative flex items-center justify-center">
                         <h1 class="heading-display mb-0 flex items-center gap-3">
@@ -47,25 +47,26 @@
                     </svg>
                 </button>
 
-                <h2 class="heading-sub text-sm md:text-[15px] mt-1 mb-2 tracking-widest">
-                    Technical Audio &amp; Dialogue Designer
-                </h2>
+                <div>
+                    <h2 class="heading-sub text-sm md:text-[15px] mb-2 tracking-widest">
+                        Technical Audio &amp; Dialogue Designer
+                    </h2>
 
-                <p class="medieval-meta text-[13px] md:text-[14px] leading-relaxed font-semibold">
-                    5 Released games <span class="text-[var(--color-muted)] mx-1">·</span> 2 shortfilms <span class="text-[var(--color-muted)] mx-1">·</span> 4+ years of experience
-                </p>
+                    <p class="medieval-meta text-[13px] md:text-[14px] leading-relaxed font-semibold">
+                        5 Released games <span class="text-[var(--color-muted)] mx-1">·</span> 2 shortfilms <span class="text-[var(--color-muted)] mx-1">·</span> 4+ years of experience
+                    </p>
+                </div>
 
                 <!-- LINKS -->
-                <div class="w-full mt-4 grid grid-cols-2 sm:grid-cols-5 gap-1.5 label-mono text-xs sm:text-[12px] font-semibold">
-                    <a href="projects.html" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">Projects</a>
+                <div class="w-full grid grid-cols-2 sm:grid-cols-4 gap-1.5 label-mono text-xs sm:text-[12px] font-semibold">
                     <button type="button" onclick="openAboutModal()" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] focus:outline-none">About</button>
                     <a href="https://www.linkedin.com/in/benji-natalli-salmonsson-791188290/" target="_blank" rel="noopener noreferrer" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">LinkedIn</a>
                     <a href="mailto:Benjamin.Salmonsson@outlook.com" class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">Email</a>
-                    <a href="Benjamin-Natalli-CV.pdf" download class="nav-link col-span-2 sm:col-span-1 py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">CV</a>
+                    <a href="Benjamin-Natalli-CV.pdf" download class="nav-link py-2 px-2 rounded bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)]">CV</a>
                 </div>
 
                 <!-- DIVIDER -->
-                <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
+                <div class="w-full flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
                         <polygon points="12,1 18,6 12,11 6,6" fill="none" stroke="currentColor" stroke-width="1.3" />
@@ -94,7 +95,7 @@
                 </section>
 
                 <!-- DIVIDER -->
-                <div class="w-full my-3 flex items-center gap-3 opacity-65" aria-hidden="true">
+                <div class="w-full flex items-center gap-3 opacity-65" aria-hidden="true">
                     <span class="h-[1px] flex-1 bg-[var(--color-accent-border)]"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 12" class="w-5 h-3 text-[var(--color-accent)]">
                         <polygon points="12,1 18,6 12,11 6,6" fill="none" stroke="currentColor" stroke-width="1.3" />
@@ -103,7 +104,7 @@
                 </div>
 
                 <!-- HIGHLIGHTS -->
-                <div id="highlights" class="w-full mt-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div id="highlights" class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <article class="project-card group card-surface text-center flex flex-col" data-project-id="skeletons" data-audio-preview="sounds/previews/skeletons.mp3">
                         <div class="media-preview relative w-full aspect-video rounded-tr-[6px] overflow-hidden bg-[var(--color-secondary)] border-b border-[var(--color-accent-border)]">
                             <img src="images/cards/skeletons-card.jpg" alt="Skeletons" class="media-img absolute inset-0 w-full h-full object-cover">
@@ -153,7 +154,7 @@
                 </div>
 
                 <!-- VIEW ALL PROJECTS -->
-                <div class="mt-6 w-full">
+                <div class="w-full">
                     <a href="projects.html" class="view-all-btn medieval-cta no-transform flex items-center justify-center w-full px-8 py-3.5 rounded-md border border-[var(--color-accent-border)] card-surface uppercase text-xs font-bold">
                         View all projects →
                     </a>
@@ -161,8 +162,8 @@
             </div>
 
             <!-- RIGHT COLUMN: SHOWCASE -->
-            <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
-                <div class="grid grid-cols-5 items-end text-center" role="tablist" aria-label="Showcase modes">
+            <div id="hero-stage-col" class="order-1 lg:order-2 lg:col-span-7 w-full lg:sticky lg:top-8 flex flex-col lg:h-full animate-fade-up" style="animation-delay: 0.75s; animation-duration: 2.3s;">
+                <div class="grid grid-cols-5 items-end text-center shrink-0" role="tablist" aria-label="Showcase modes">
                     <button type="button" data-stage-mode="showreel" class="stage-tab is-active focus:outline-none">Showreel</button>
                     <button type="button" data-stage-mode="music" class="stage-tab focus:outline-none">Music</button>
                     <button type="button" data-stage-mode="dialogue" class="stage-tab focus:outline-none">Dialogue</button>
@@ -170,13 +171,9 @@
                     <button type="button" data-stage-mode="tools" class="stage-tab focus:outline-none">Tools</button>
                 </div>
 
-                <div id="showcase-stage" class="min-h-[340px] sm:min-h-[520px] lg:min-h-[700px] flex-1 w-full overflow-hidden stage-panel relative z-20 p-4 sm:p-7 flex flex-col justify-center"></div>
+                <div id="showcase-stage" class="h-[360px] sm:h-[520px] lg:h-auto lg:flex-1 w-full overflow-hidden stage-panel relative z-20 p-4 sm:p-7 flex flex-col justify-center"></div>
             </div>
         </section>
-
-        <footer class="text-center label-mono text-xs text-[var(--color-muted)] pt-10 pb-2 w-full">
-            <p>© 2026 Benjamin Natalli Salmonsson.</p>
-        </footer>
     </main>
 
     <!-- ABOUT MODAL -->
@@ -204,7 +201,7 @@
             const uiFont = "font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: normal;";
 
             const renderAudioList = (headerLeft, headerRight, items) => `
-                <div class="w-full flex flex-col gap-5 animate-fade-up" style="animation-duration: 0.65s;">
+                <div class="w-full h-full flex flex-col justify-center gap-5 animate-fade-up" style="animation-duration: 0.65s;">
                     <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">
                         <span>${headerLeft}</span>
                         <span>${headerRight}</span>
@@ -220,7 +217,7 @@
 
             const views = {
                 showreel: `
-                    <video id="hero-showcase" class="w-full h-full min-h-[280px] sm:min-h-[460px] lg:min-h-[640px] object-cover rounded-lg bg-[var(--color-secondary)]" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
+                    <video id="hero-showcase" class="w-full h-full object-cover rounded-lg bg-[var(--color-secondary)]" playsinline preload="metadata" controls poster="images/dialogue-showcase-poster.jpg">
                         <source src="videos/dialogue-showcase.mp4" type="video/mp4">
                     </video>
                 `,
@@ -237,7 +234,7 @@
                     { label: "World / Foley Transitions", src: "sounds/sfx/world-foley.mp3" }
                 ]),
                 tools: `
-                    <div class="w-full flex flex-col gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
+                    <div class="w-full h-full flex flex-col justify-center gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
                         <div class="text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">Frameworks, Scripting &amp; Middleware</div>
                         <h3 class="text-xl sm:text-2xl font-semibold leading-relaxed" style="${uiFont}">
                             Technical Audio Systems &amp; Workflow Automation

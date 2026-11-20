@@ -10,24 +10,49 @@ export function initHeaderDrawer({
     const host = document.getElementById("site-header");
     if (!host) return;
 
-    host.className = "fixed top-0 left-0 w-full z-50 pointer-events-none";
+    const edgeOffset = 20;
+
+    host.style.position = "fixed";
+    host.style.top = "0";
+    host.style.left = "0";
+    host.style.width = "100%";
+    host.style.zIndex = "120";
+    host.style.pointerEvents = "none";
+
     host.innerHTML = `
-        <div class="w-full max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 pt-5 flex items-start">
+        <div style="width: 100%; padding: ${edgeOffset}px 0 0 ${edgeOffset}px; display: flex; align-items: flex-start;">
             <button
                 type="button"
                 id="drawer-toggle-btn"
                 aria-label="Toggle navigation menu"
                 aria-expanded="false"
                 aria-controls="left-column-drawer"
-                class="pointer-events-auto nav-link inline-flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-modal-bg)] border border-[var(--color-accent-border)] opacity-0 transition-all duration-700 ease-out focus:outline-none"
+                class="nav-link"
+                style="
+                    pointer-events: auto;
+                    position: relative;
+                    z-index: 122;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    margin: 0;
+                    border-radius: 6px;
+                    background: #080808;
+                    color: #ffffff;
+                    border: 1px solid rgba(255, 255, 255, 0.28);
+                    opacity: 1;
+                    transition: opacity 0.4s ease, border-color 0.25s ease, box-shadow 0.3s ease, transform 0.3s ease;
+                "
             >
                 <svg
                     id="drawer-toggle-icon"
-                    class="w-4 h-4 transition-transform duration-500 ease-out"
+                    style="width: 16px; height: 16px; transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);"
                     viewBox="0 0 20 20"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="1.6"
+                    stroke-width="1.8"
                     aria-hidden="true"
                 >
                     <path d="M3 6h14M3 10h14M3 14h14" stroke-linecap="round" />
@@ -38,29 +63,67 @@ export function initHeaderDrawer({
         <aside
             id="left-column-drawer"
             aria-hidden="true"
-            class="pointer-events-auto fixed top-0 left-0 h-full bg-[var(--color-modal-bg)]/95 backdrop-blur-md border-r border-[var(--color-accent-border)] z-40 flex flex-col justify-between p-6 sm:p-8 shadow-2xl transition-transform duration-500 ease-out"
-            style="width: 380px; max-width: 90vw; transform: translateX(-100%);"
+            style="
+                pointer-events: auto;
+                position: fixed;
+                top: 0;
+                left: 0;
+                margin: 0;
+                height: 100vh;
+                width: 380px;
+                max-width: 90vw;
+                z-index: 121;
+                background: rgba(8, 8, 8, 0.96);
+                backdrop-filter: blur(10px);
+                border-right: 1px solid rgba(255, 255, 255, 0.18);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: ${edgeOffset}px 24px ${edgeOffset}px;
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+                transform: translateX(-100%);
+                transition: transform 0.48s cubic-bezier(0.22, 1, 0.36, 1);
+            "
         >
             <div>
-                <div class="flex items-center justify-between pb-5 mb-6 border-b border-[var(--color-accent-border)]">
-                    <span class="label-mono text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">
+                <div style="display: flex; align-items: center; justify-content: space-between; height: 40px; padding-left: 52px; margin-bottom: 18px;">
+                    <span class="label-mono" style="line-height: 1; font-size: 12px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #8c8c8c;">
                         Navigation
                     </span>
                     <button
                         type="button"
                         id="drawer-close-btn"
                         aria-label="Close navigation menu"
-                        class="label-mono text-xs uppercase tracking-widest text-[var(--color-muted)] hover:text-white transition-colors"
+                        class="label-mono"
+                        style="line-height: 1; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: #b8b8b8; background: transparent; border: none;"
                     >
-                        [ CLOSE ]
+                        [ CLOSE / ESC ]
                     </button>
                 </div>
 
-                <nav aria-label="Drawer navigation" class="flex flex-col gap-2.5">
+                <div style="height: 1px; background: rgba(255, 255, 255, 0.14); margin-bottom: 22px;"></div>
+
+                <nav aria-label="Drawer navigation" style="display: flex; flex-direction: column; gap: 10px;">
                     ${links.map((item) => `
                         <a
                             href="${item.href}"
-                            class="nav-link py-3 px-4 rounded-md bg-[var(--color-secondary)] border border-[var(--color-accent-border)] font-mono text-xs sm:text-sm font-semibold uppercase tracking-widest flex items-center justify-between"
+                            class="nav-link"
+                            style="
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                padding: 12px 16px;
+                                border-radius: 6px;
+                                background: #1a1a1a;
+                                color: #e5e5e5;
+                                border: 1px solid rgba(255, 255, 255, 0.16);
+                                font-family: var(--font-mono, monospace);
+                                font-size: 13px;
+                                font-weight: 600;
+                                letter-spacing: 0.12em;
+                                text-transform: uppercase;
+                                text-decoration: none;
+                            "
                         >
                             <span>${item.label}</span>
                             <span aria-hidden="true">→</span>
@@ -69,7 +132,7 @@ export function initHeaderDrawer({
                 </nav>
             </div>
 
-            <p class="label-mono text-[11px] text-[var(--color-muted)] tracking-widest uppercase">
+            <p class="label-mono" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #767676;">
                 Press ESC or click outside to close
             </p>
         </aside>
@@ -80,13 +143,22 @@ export function initHeaderDrawer({
     const closeBtn = document.getElementById("drawer-close-btn");
     const drawer = document.getElementById("left-column-drawer");
     const infoCol = document.getElementById("hero-text-col");
+    const stageCol = document.getElementById("hero-stage-col");
+
+    if (!toggleBtn || !toggleIcon || !closeBtn || !drawer) return;
 
     let isOpen = false;
 
     const syncDrawerWidth = () => {
-        if (infoCol && window.innerWidth >= 1024) {
+        if (infoCol && stageCol && window.innerWidth >= 1024) {
+            const infoRect = infoCol.getBoundingClientRect();
+            const stageRect = stageCol.getBoundingClientRect();
+            const midpoint = Math.round((infoRect.right + stageRect.left) / 2);
+            drawer.style.width = `${Math.max(280, midpoint)}px`;
+            drawer.style.maxWidth = "none";
+        } else if (infoCol && window.innerWidth >= 1024) {
             const rect = infoCol.getBoundingClientRect();
-            drawer.style.width = `${Math.round(rect.left + rect.width + 20)}px`;
+            drawer.style.width = `${Math.max(280, Math.round(rect.right + 16))}px`;
             drawer.style.maxWidth = "none";
         } else {
             drawer.style.width = "380px";
@@ -103,18 +175,15 @@ export function initHeaderDrawer({
         toggleIcon.style.transform = open ? "rotate(90deg)" : "rotate(0deg)";
     };
 
-    // Mjuk infade av knappen efter start (samma idé som scroll-knappen)
-    setTimeout(() => {
-        toggleBtn.classList.remove("opacity-0");
-        toggleBtn.classList.add("opacity-100");
-    }, 300);
-
     toggleBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         setOpen(!isOpen);
     });
 
-    closeBtn.addEventListener("click", () => setOpen(false));
+    closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        setOpen(false);
+    });
 
     document.addEventListener("click", (e) => {
         if (isOpen && !drawer.contains(e.target) && !toggleBtn.contains(e.target)) {
@@ -123,7 +192,9 @@ export function initHeaderDrawer({
     });
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && isOpen) setOpen(false);
+        if (e.key === "Escape" && isOpen) {
+            setOpen(false);
+        }
     });
 
     window.addEventListener("resize", () => {

@@ -229,6 +229,13 @@ a:hover, button:hover, .nav-link:hover {
     transition: border-color 0.3s ease, box-shadow 0.35s ease, transform 0.3s ease;
 }
 
+.stage-panel {
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 /* Projektmoduler: behåll sin vanliga bakgrund/färg inuti, men låt bordern lysa ljusare vitt vid hover */
 .project-card {
     background: var(--color-modal-bg);
