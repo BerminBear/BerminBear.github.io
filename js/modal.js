@@ -277,15 +277,22 @@ function buildProjectModalHTML(id) {
         </span>
     `;
 
+    const librariesHtml = p.libraries ? `
+        <p class="mt-2.5 text-xs text-slate-400 code-font leading-relaxed">
+            <span class="text-slate-500 uppercase tracking-wider">Libraries &amp; Instruments:</span> ${p.libraries}
+        </p>
+    ` : '';
+
     const spotifySection = p.spotifyEmbed ? `
         <div class="pt-4 border-t border-white/10">
             <span class="text-theme-accent font-bold uppercase tracking-wider block mb-3 text-xs code-font">Project Soundtrack</span>
             <iframe style="border-radius:12px" src="${p.spotifyEmbed}" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" class="opacity-90 hover:opacity-100 transition-opacity"></iframe>
+            ${librariesHtml}
         </div>
     ` : '';
 
     return `
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-start">
             <div class="md:col-span-5">
                 <div class="w-full rounded-xl overflow-hidden border border-white/5 bg-[#0a0a0c] aspect-video relative group">
                     <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover">
@@ -295,57 +302,45 @@ function buildProjectModalHTML(id) {
                         </video>
                     ` : ''}
                 </div>
+
                 <div class="mt-4 grid grid-cols-2 gap-2 text-xs code-font">
                     <div class="bg-white/5 rounded-lg p-3 border border-white/5">
                         <span class="text-slate-500 uppercase tracking-wider block text-[10px] mb-1">Engine</span>
                         <span class="text-white font-medium">${p.engine}</span>
                     </div>
                     <div class="bg-white/5 rounded-lg p-3 border border-white/5">
-                        <span class="text-slate-500 uppercase tracking-wider block text-[10px] mb-1">DAW</span>
-                        <span class="text-white font-medium">${p.daw}</span>
-                    </div>
-                    <div class="bg-white/5 rounded-lg p-3 border border-white/5">
-                        <span class="text-slate-500 uppercase tracking-wider block text-[10px] mb-1">Time</span>
-                        <span class="text-white font-medium">${p.time}</span>
-                    </div>
-                    <div class="bg-white/5 rounded-lg p-3 border border-white/5">
-                        <span class="text-slate-500 uppercase tracking-wider block text-[10px] mb-1">Studio</span>
-                        <span class="text-white font-medium">${p.studio}</span>
+                        <span class="text-slate-500 uppercase tracking-wider block text-[10px] mb-1">Platform</span>
+                        <span class="text-white font-medium">${p.console}</span>
                     </div>
                 </div>
-                <div class="mt-4">
+
+                <div class="mt-4 hidden md:block">
                     ${platformBtn}
                 </div>
             </div>
-            <div class="md:col-span-7 space-y-6 max-h-[75vh] overflow-y-auto pr-2">
+
+            <div class="md:col-span-7 space-y-5 md:max-h-[75vh] md:overflow-y-auto md:pr-2">
                 <div>
                     <span class="code-font text-theme-accent text-xs tracking-widest uppercase">${p.studio}</span>
-                    <h2 class="text-3xl font-extrabold text-white mt-1 leading-tight">${p.title}</h2>
-                    <p class="text-sm text-slate-400 code-font mt-1">${p.role}</p>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1 leading-tight">${p.title}</h2>
+                    <p class="text-xs sm:text-sm text-slate-400 code-font mt-1">${p.role}</p>
                 </div>
+
                 <div class="flex flex-wrap gap-2">
-                    ${p.tags.map(t => `<span class="px-3 py-1.5 bg-white/5 rounded-md border border-white/10 font-mono text-[10px] font-bold uppercase text-white/50">${t}</span>`).join('')}
+                    ${p.tags.map(t => `<span class="px-3 py-1 bg-white/5 rounded-md border border-white/10 font-mono text-[10px] font-bold uppercase text-white/60">${t}</span>`).join('')}
                 </div>
+
                 <div class="h-[1px] bg-white/10"></div>
-                <div class="space-y-3 text-sm">
-                    <div class="flex gap-4">
-                        <span class="text-slate-500 code-font text-xs uppercase w-20 shrink-0">Genre</span>
-                        <span class="text-slate-200">${p.genre}</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <span class="text-slate-500 code-font text-xs uppercase w-20 shrink-0">Console</span>
-                        <span class="text-slate-200">${p.console}</span>
-                    </div>
-                    <div class="flex gap-4">
-                        <span class="text-slate-500 code-font text-xs uppercase w-20 shrink-0">Comms</span>
-                        <span class="text-slate-200">${p.comms}</span>
-                    </div>
-                </div>
-                <div class="h-[1px] bg-white/10"></div>
+
                 <div class="text-sm text-slate-300 leading-relaxed">
                     <p>${p.description}</p>
                 </div>
+
                 ${spotifySection}
+
+                <div class="pt-2 md:hidden">
+                    ${platformBtn}
+                </div>
             </div>
         </div>
     `;
