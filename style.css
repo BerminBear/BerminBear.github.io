@@ -769,3 +769,42 @@ section {
     color: var(--color-accent-hover);
     text-shadow: 0 0 10px var(--color-glow-soft);
 }
+
+/* ==========================================================================
+   STJÄRNVISUALIZER
+   ========================================================================== */
+:root {
+    /* Färg på stjärnor, glöd, linjer och gnistor (RGB-triplett) */
+    --stars-rgb: 244, 205, 120;
+
+    /* Hur starkt allt reagerar på musiken (0.5 = lugnt, 1.5 = intensivt) */
+    --stars-reactivity: 1;
+    --stars-boost: 2.4;             /* hur mycket ljusare stjärnorna blir */
+
+    /* Glöd */
+    --stars-glow: 1;                /* glödens storlek */
+    --stars-glow-opacity: 0.5;
+
+    /* Konstellationslinjer */
+    --stars-lines: 1;               /* 0 = inga linjer */
+    --stars-link-distance: 200;     /* px mellan stjärnor som kopplas ihop */
+
+    /* Fyrverkerier vid bas-kick */
+    --stars-burst-count: 14;        /* gnistor per explosion */
+    --stars-burst-size: 1;          /* hur långt gnistorna flyger */
+    --stars-beat-sensitivity: 1;    /* högre = fler kickar upptäcks */
+
+    /* Modulernas genomskinlighet så stjärnorna syns genom dem */
+    --color-modal-bg-rgb: 8, 8, 8;
+    --module-alpha: 0.62;           /* 1 = helt ogenomskinliga */
+    --module-blur: 3px;
+}
+
+.stage-panel,
+.tech-card,
+.card-surface:not(#about-modal-wrapper):not(#project-modal-wrapper),
+.project-card {
+    background: rgba(var(--color-modal-bg-rgb), var(--module-alpha)) !important;
+    -webkit-backdrop-filter: blur(var(--module-blur));
+    backdrop-filter: blur(var(--module-blur));
+}

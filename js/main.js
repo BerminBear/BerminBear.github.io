@@ -7,7 +7,6 @@ import { initParticles } from './particles.js';
 import { initHeaderDrawer } from './header-drawer.js';
 import { initStackIcons } from './stack-icons.js';
 import { initShowcaseStage } from './showcase-stage.js';
-import { initBgVisualizer } from './bg-visualizer.js';
 
 function safeRun(label, fn) {
     try {
@@ -23,10 +22,9 @@ function initApp() {
     safeRun('modal', () => initModal());
     safeRun('projectCards', () => initProjectCards());
     safeRun('mediaPreviews', () => initMediaPreviews());
-    safeRun('particles', () => initParticles({ count: 36 }));
+    safeRun('particles', () => initParticles({ count: 56 }));
     safeRun('stackIcons', () => initStackIcons());
     safeRun('showcaseStage', () => initShowcaseStage());
-    safeRun('bgVisualizer', () => initBgVisualizer({ preset: 'horizon', showSwitcher: true }));
 }
 
 if (document.readyState === 'loading') {
