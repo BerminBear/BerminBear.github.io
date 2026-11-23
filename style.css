@@ -619,6 +619,7 @@ section {
    ========================================================================== */
 .audio-panel {
     display: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .audio-panel.is-visible {
@@ -642,23 +643,129 @@ section {
     text-shadow: 0 0 8px rgba(var(--highlight-rgb), 0.12);
 }
 
-/* Två svagare strålkastare från kanterna, mörkare mot mitten */
+/* Valt spår (även när det är pausat): mörkare guld */
+.audio-row.is-selected {
+    background-color: rgba(184, 153, 97, 0.07);
+    border-bottom-color: rgba(184, 153, 97, 0.34) !important;
+}
+
+.audio-row.is-selected .audio-row-title {
+    color: var(--playing-gold) !important;
+}
+
+.audio-row.is-selected .row-play-btn {
+    border-color: rgba(184, 153, 97, 0.55);
+    color: var(--playing-gold);
+}
+
+/* Aktivt spelande spår: strålkastare från kanterna + klarare guld */
 .audio-row.is-playing {
     background-color: transparent;
     background-image:
         linear-gradient(
             to right,
-            rgba(var(--highlight-rgb), 0.075) 0%,
+            rgba(var(--highlight-rgb), 0.08) 0%,
             rgba(var(--highlight-rgb), 0.02) 22%,
             rgba(var(--highlight-rgb), 0) 48%,
             rgba(var(--highlight-rgb), 0.02) 78%,
-            rgba(var(--highlight-rgb), 0.075) 100%
+            rgba(var(--highlight-rgb), 0.08) 100%
         );
-    border-bottom-color: rgba(var(--highlight-rgb), 0.26) !important;
-    box-shadow: 0 6px 14px -12px rgba(var(--highlight-rgb), 0.12);
+    border-bottom-color: rgba(var(--highlight-rgb), 0.32) !important;
+    box-shadow: 0 6px 14px -12px rgba(var(--highlight-rgb), 0.14);
 }
 
 .audio-row.is-playing .audio-row-title {
     color: var(--color-accent-hover) !important;
-    text-shadow: 0 0 6px rgba(var(--highlight-rgb), 0.14);
+    text-shadow: 0 0 8px rgba(var(--highlight-rgb), 0.18);
+}
+
+/* Lysande tid när spåret är valt eller spelas */
+.audio-row.is-selected .row-time {
+    color: var(--playing-gold) !important;
+    text-shadow: 0 0 8px rgba(184, 153, 97, 0.35);
+}
+
+.audio-row.is-playing .row-time {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 10px var(--color-glow-strong), 0 0 18px var(--color-glow-soft);
+}
+
+.row-play-btn,
+.row-mute-btn {
+    background: rgba(255, 255, 255, 0.02);
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.row-mute-btn.is-muted {
+    color: var(--color-muted);
+    opacity: 0.65;
+}
+
+.row-wave {
+    touch-action: none;
+    border-radius: 4px;
+    transition: filter 0.25s ease, opacity 0.25s ease;
+}
+
+.audio-row.is-selected .row-wave {
+    filter: drop-shadow(0 0 6px rgba(184, 153, 97, 0.35));
+}
+
+.audio-row.is-playing .row-wave {
+    filter: drop-shadow(0 0 10px rgba(231, 198, 126, 0.55));
+}
+
+.mini-player-bar {
+    position: fixed;
+    bottom: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
+    z-index: 90;
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.65rem;
+    padding: 0.55rem 0.8rem;
+    border-radius: 8px;
+    background: rgba(8, 8, 8, 0.96);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--color-accent-border);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.78);
+    transition: border-color 0.3s ease, box-shadow 0.35s ease, background-color 0.3s ease;
+}
+
+@media (min-width: 640px) {
+    .mini-player-bar {
+        bottom: 1rem;
+        left: 1rem;
+        right: auto;
+        justify-content: flex-start;
+        max-width: min(380px, calc(100vw - 2rem));
+    }
+}
+
+.mini-player-bar.is-active {
+    display: flex;
+}
+
+.mini-player-bar.is-playing {
+    border-color: rgba(var(--highlight-rgb), 0.48);
+    background-color: rgba(10, 10, 10, 0.96);
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(var(--highlight-rgb), 0.15) 0%,
+            rgba(var(--highlight-rgb), 0.04) 25%,
+            rgba(var(--highlight-rgb), 0) 50%,
+            rgba(var(--highlight-rgb), 0.04) 75%,
+            rgba(var(--highlight-rgb), 0.15) 100%
+        );
+    box-shadow:
+        0 0 18px var(--color-glow-soft),
+        0 12px 28px rgba(0, 0, 0, 0.82);
+}
+
+.mini-player-bar.is-playing #mini-track-title {
+    color: var(--color-accent-hover);
+    text-shadow: 0 0 10px var(--color-glow-soft);
 }

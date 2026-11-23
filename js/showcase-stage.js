@@ -13,6 +13,22 @@ const PAUSE_ICON_SVG = `
     </svg>
 `;
 
+const VOL_ON_SVG = `
+    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+    </svg>
+`;
+
+const VOL_MUTED_SVG = `
+    <svg viewBox="0 0 24 24" class="w-4 h-4 fill-none stroke-current" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="currentColor" stroke="none" />
+        <line x1="23" y1="9" x2="17" y2="15" />
+        <line x1="17" y1="9" x2="23" y2="15" />
+    </svg>
+`;
+
 const TRACK_LISTS = {
     music: {
         headerLeft: "Selected Tracks",
@@ -42,10 +58,34 @@ const TRACK_LISTS = {
     }
 };
 
+function formatTime(sec) {
+    if (!Number.isFinite(sec) || sec < 0) return "0:00";
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${String(s).padStart(2, "0")}`;
+}
+
+function buildFallbackPeaks(seedStr, count = 64) {
+    let hash = 2166136261;
+    for (let i = 0; i < seedStr.length; i++) {
+        hash ^= seedStr.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+    }
+    const peaks = [];
+    for (let i = 0; i < count; i++) {
+        hash ^= (hash << 13) + i * 97;
+        hash >>>= 0;
+        const r = (hash % 1000) / 1000;
+        const envelope = 0.35 + 0.65 * Math.sin((i / Math.max(1, count - 1)) * Math.PI);
+        peaks.push(Math.max(0.18, Math.min(1, (0.22 + r * 0.78) * envelope)));
+    }
+    return peaks;
+}
+
 function renderAudioPanel(mode, { headerLeft, headerRight, items }) {
     return `
-        <div data-panel="${mode}" class="audio-panel w-full h-full flex-col justify-center gap-1 animate-fade-up" style="animation-duration: 0.65s;">
-            <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 mb-1 border-b border-[var(--color-accent-border)]" style="${UI_FONT}">
+        <div data-panel="${mode}" class="audio-panel w-full h-full min-h-0 overflow-y-auto flex-col justify-start sm:justify-center gap-1 pr-1 animate-fade-up" style="animation-duration: 0.65s;">
+            <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 mb-1 border-b border-[var(--color-accent-border)] shrink-0" style="${UI_FONT}">
                 <span>${headerLeft}</span>
                 <span>${headerRight}</span>
             </div>
@@ -54,26 +94,39 @@ function renderAudioPanel(mode, { headerLeft, headerRight, items }) {
                     <div
                         data-audio-row
                         data-track-label="${label}"
-                        class="audio-row flex flex-col sm:flex-row sm:items-center justify-between gap-3 py-3.5 px-2 cursor-pointer select-none"
+                        class="audio-row flex items-center justify-between gap-2.5 sm:gap-3.5 py-3 px-2 cursor-pointer select-none"
                     >
-                        <span class="audio-row-title text-base sm:text-[17px] font-semibold leading-relaxed text-[var(--color-text)]" style="${UI_FONT}">
-                            ${label}
-                        </span>
-                        <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto" data-controls-wrap>
-                            <audio id="audio-${mode}-${idx}" controls preload="metadata" src="${src}" class="h-9 w-full sm:w-56"></audio>
-                            <label class="flex items-center gap-2 text-xs text-[var(--color-muted)] shrink-0" style="${UI_FONT}">
-                                <span>Vol</span>
-                                <input
-                                    type="range"
-                                    min="0"
-                                    max="1"
-                                    step="0.01"
-                                    value="0.8"
-                                    data-audio-target="audio-${mode}-${idx}"
-                                    aria-label="Volym för ${label}"
-                                    class="w-24 accent-[var(--playing-gold)] cursor-pointer"
-                                />
-                            </label>
+                        <div class="flex items-center gap-2.5 min-w-0 max-w-[42%] sm:max-w-[44%] shrink">
+                            <button
+                                type="button"
+                                data-row-play
+                                aria-label="Play ${label}"
+                                class="row-play-btn w-8 h-8 rounded-full border border-[var(--color-accent-border)] flex items-center justify-center text-[var(--color-accent-hover)] shrink-0"
+                            >
+                                ${PLAY_ICON_SVG}
+                            </button>
+                            <span class="audio-row-title text-sm sm:text-base font-semibold leading-snug text-[var(--color-text)] truncate" style="${UI_FONT}">
+                                ${label}
+                            </span>
+                        </div>
+
+                        <div class="flex items-center gap-2.5 flex-1 min-w-0" data-controls-wrap>
+                            <canvas
+                                data-row-wave
+                                aria-label="Waveform timeline for ${label}"
+                                class="row-wave flex-1 min-w-[80px] h-8 sm:h-9 block cursor-grab active:cursor-grabbing"
+                            ></canvas>
+                            <span data-row-time class="row-time text-[11px] font-semibold text-[var(--color-muted)] tabular-nums w-9 text-right shrink-0" style="${UI_FONT}">0:00</span>
+                            <button
+                                type="button"
+                                data-row-mute
+                                aria-label="Toggle mute for ${label}"
+                                aria-pressed="false"
+                                class="row-mute-btn w-8 h-8 rounded-full border border-[var(--color-accent-border)] flex items-center justify-center text-[var(--color-muted)] hover:text-[var(--color-accent-hover)] shrink-0"
+                            >
+                                ${VOL_ON_SVG}
+                            </button>
+                            <audio id="audio-${mode}-${idx}" preload="metadata" src="${src}"></audio>
                         </div>
                     </div>
                 `).join("")}
@@ -84,7 +137,7 @@ function renderAudioPanel(mode, { headerLeft, headerRight, items }) {
 
 function renderToolsPanel() {
     return `
-        <div data-panel="tools" class="audio-panel w-full h-full flex-col justify-center gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
+        <div data-panel="tools" class="audio-panel w-full h-full min-h-0 overflow-y-auto flex-col justify-center gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
             <div class="text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${UI_FONT}">Frameworks, Scripting & Middleware</div>
             <h3 class="text-xl sm:text-2xl font-semibold leading-relaxed" style="${UI_FONT}">
                 Technical Audio Systems & Workflow Automation
@@ -102,7 +155,20 @@ function renderToolsPanel() {
     `;
 }
 
-export function initShowcaseStage() {
+function ensureDistantBgVisualizer(preset = "horizon") {
+    let canvas = document.getElementById("distant-bg-visualizer");
+    if (!canvas) {
+        canvas = document.createElement("canvas");
+        canvas.id = "distant-bg-visualizer";
+        canvas.setAttribute("aria-hidden", "true");
+        canvas.className = "fixed inset-0 w-full h-full pointer-events-none z-[1] transition-opacity duration-700 opacity-0";
+        document.body.prepend(canvas);
+    }
+    canvas.dataset.bgPreset = preset;
+    return canvas;
+}
+
+export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
     const stage = document.getElementById("showcase-stage");
     const tabs = document.querySelectorAll(".stage-tab");
     if (!stage || !tabs.length) return;
@@ -110,10 +176,88 @@ export function initShowcaseStage() {
     const miniBar = document.getElementById("mini-audio-bar");
     const miniToggle = document.getElementById("mini-play-toggle");
     const miniTitle = document.getElementById("mini-track-title");
-    const miniSlider = document.getElementById("mini-volume-slider");
+    const bgCanvas = ensureDistantBgVisualizer(bgPreset);
+
+    let miniMuteBtn = miniBar?.querySelector("#mini-mute-toggle");
+    if (miniBar && !miniMuteBtn) {
+        miniMuteBtn = document.createElement("button");
+        miniMuteBtn.type = "button";
+        miniMuteBtn.id = "mini-mute-toggle";
+        miniMuteBtn.className = "row-mute-btn w-7 h-7 rounded-full border border-[var(--color-accent-border)] flex items-center justify-center text-[var(--color-muted)] shrink-0";
+        miniMuteBtn.setAttribute("aria-label", "Toggle mute");
+        miniMuteBtn.innerHTML = VOL_ON_SVG;
+        miniBar.appendChild(miniMuteBtn);
+    }
 
     let activeAudio = null;
     let activeLabel = "";
+    let bgPresence = 0;
+
+    let audioCtx = null;
+    let analyser = null;
+    let freqData = null;
+    const connectedAudios = new WeakSet();
+    const rowPeaksMap = new WeakMap();
+
+    function ensureAudioAnalyser(audioEl) {
+        if (!audioEl) return;
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        if (!audioCtx) {
+            audioCtx = new AudioContextClass();
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 128;
+            analyser.smoothingTimeConstant = 0.84;
+            freqData = new Uint8Array(analyser.frequencyBinCount);
+            analyser.connect(audioCtx.destination);
+        }
+
+        if (audioCtx.state === "suspended") {
+            audioCtx.resume().catch(() => {});
+        }
+
+        if (!connectedAudios.has(audioEl)) {
+            try {
+                const source = audioCtx.createMediaElementSource(audioEl);
+                source.connect(analyser);
+                connectedAudios.add(audioEl);
+            } catch (_) {}
+        }
+    }
+
+    async function loadRealPeaks(audioEl, label) {
+        if (!audioEl?.src || rowPeaksMap.has(audioEl)) return;
+        const fallback = buildFallbackPeaks(label || audioEl.src, 64);
+        rowPeaksMap.set(audioEl, fallback);
+
+        try {
+            const res = await fetch(audioEl.src);
+            if (!res.ok) return;
+            const arrBuf = await res.arrayBuffer();
+            const decodeCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            const decoded = await decodeCtx.decodeAudioData(arrBuf.slice(0));
+            const channel = decoded.getChannelData(0);
+            const barCount = 64;
+            const blockSize = Math.max(1, Math.floor(channel.length / barCount));
+            const peaks = [];
+            for (let i = 0; i < barCount; i++) {
+                let max = 0;
+                const start = i * blockSize;
+                const end = Math.min(channel.length, start + blockSize);
+                for (let j = start; j < end; j++) {
+                    const v = Math.abs(channel[j]);
+                    if (v > max) max = v;
+                }
+                peaks.push(Math.max(0.16, Math.min(1, max)));
+            }
+            rowPeaksMap.set(audioEl, peaks);
+            const row = audioEl.closest("[data-audio-row]");
+            if (row) drawRowWaveform(row, audioEl);
+        } catch (_) {
+            // Behåll fallback-vågformen om avkodning inte tillåts
+        }
+    }
 
     stage.innerHTML = `
         <div data-panel="showreel" class="audio-panel is-visible showreel-stage-wrap">
@@ -132,48 +276,232 @@ export function initShowcaseStage() {
     const allAudios = Array.from(stage.querySelectorAll("audio"));
     const allVideos = Array.from(stage.querySelectorAll("video"));
 
-    function syncPlayingHighlights() {
-        const anyAudioPlaying = allAudios.some((a) => !a.paused && !a.ended);
+    function drawRowWaveform(row, audioEl) {
+        const waveCanvas = row.querySelector("[data-row-wave]");
+        if (!waveCanvas) return;
 
-        allRows.forEach((row) => {
-            const rowAudio = row.querySelector("audio");
-            const isRowPlaying = Boolean(rowAudio && !rowAudio.paused && !rowAudio.ended);
-            row.classList.toggle("is-playing", isRowPlaying);
-        });
+        const rect = waveCanvas.getBoundingClientRect();
+        const width = Math.max(60, Math.floor(rect.width || 180));
+        const height = Math.max(24, Math.floor(rect.height || 34));
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-        if (miniBar) {
-            miniBar.classList.toggle("is-playing", anyAudioPlaying);
+        if (waveCanvas.width !== Math.floor(width * dpr) || waveCanvas.height !== Math.floor(height * dpr)) {
+            waveCanvas.width = Math.floor(width * dpr);
+            waveCanvas.height = Math.floor(height * dpr);
         }
+
+        const ctx = waveCanvas.getContext("2d");
+        if (!ctx) return;
+
+        const peaks = rowPeaksMap.get(audioEl) || buildFallbackPeaks(row.dataset.trackLabel || "track", 64);
+        const progress = audioEl.duration > 0 ? Math.min(1, Math.max(0, audioEl.currentTime / audioEl.duration)) : 0;
+        const isPlaying = Boolean(audioEl && !audioEl.paused && !audioEl.ended);
+        const isSelected = Boolean(audioEl && audioEl === activeAudio);
+
+        ctx.save();
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, width, height);
+
+        const bars = peaks.length;
+        const step = width / bars;
+        const barW = Math.max(2, step * 0.58);
+
+        if (isPlaying || isSelected) {
+            ctx.shadowColor = isPlaying ? "rgba(231, 198, 126, 0.55)" : "rgba(184, 153, 97, 0.35)";
+            ctx.shadowBlur = isPlaying ? 8 : 5;
+        }
+
+        for (let i = 0; i < bars; i++) {
+            const x = i * step;
+            const barPos = (i + 0.5) / bars;
+            const passed = barPos <= progress;
+            const h = Math.max(4, peaks[i] * (height - 6));
+            const y = (height - h) / 2;
+
+            if (passed) {
+                ctx.fillStyle = isPlaying
+                    ? "#f2d694"
+                    : isSelected
+                        ? "#c5a467"
+                        : "rgba(214, 184, 128, 0.78)";
+            } else {
+                ctx.fillStyle = isSelected
+                    ? "rgba(184, 153, 97, 0.28)"
+                    : "rgba(255, 255, 255, 0.16)";
+            }
+
+            ctx.beginPath();
+            ctx.roundRect(x, y, barW, h, 1);
+            ctx.fill();
+        }
+
+        if (progress > 0 || isSelected || isPlaying) {
+            const px = Math.min(width - 1.5, Math.max(1.5, progress * width));
+            ctx.shadowColor = isPlaying ? "rgba(239, 225, 195, 0.85)" : "rgba(184, 153, 97, 0.5)";
+            ctx.shadowBlur = isPlaying ? 10 : 6;
+            ctx.fillStyle = isPlaying ? "#EFE1C3" : "#c5a467";
+            ctx.fillRect(px - 0.75, 2, 1.5, height - 4);
+
+            ctx.beginPath();
+            ctx.arc(px, height / 2, isPlaying ? 3.2 : 2.6, 0, Math.PI * 2);
+            ctx.fill();
+        }
+
+        ctx.restore();
     }
 
-    function syncMiniBar() {
+    function drawDistantBgVisualizer(nowSec) {
+        if (!bgCanvas) return;
+        const isPlaying = Boolean(activeAudio && !activeAudio.paused && !activeAudio.ended);
+        const targetPresence = isPlaying ? 1 : 0;
+        bgPresence += (targetPresence - bgPresence) * 0.035;
+
+        bgCanvas.style.opacity = String(Math.min(1, bgPresence * 0.9));
+        if (bgPresence < 0.01) {
+            const ctx = bgCanvas.getContext("2d");
+            if (ctx) ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            return;
+        }
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        if (bgCanvas.width !== Math.floor(width * dpr) || bgCanvas.height !== Math.floor(height * dpr)) {
+            bgCanvas.width = Math.floor(width * dpr);
+            bgCanvas.height = Math.floor(height * dpr);
+        }
+
+        const ctx = bgCanvas.getContext("2d");
+        if (!ctx) return;
+
+        if (isPlaying && analyser && freqData) {
+            analyser.getByteFrequencyData(freqData);
+        }
+
+        ctx.save();
+        ctx.scale(dpr, dpr);
+        ctx.clearRect(0, 0, width, height);
+
+        const preset = bgCanvas.dataset.bgPreset || "horizon";
+        const baseAlpha = 0.09 * bgPresence;
+
+        if (preset === "rings") {
+            const cx = width * 0.68;
+            const cy = height * 0.5;
+            const maxR = Math.min(width, height) * 0.42;
+            for (let rIdx = 0; rIdx < 4; rIdx++) {
+                const bin = freqData ? freqData[rIdx * 6] / 255 : 0.2;
+                const radius = maxR * (0.28 + rIdx * 0.2) + bin * 26 * bgPresence;
+                ctx.beginPath();
+                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(214, 184, 128, ${(baseAlpha * (1 - rIdx * 0.18)).toFixed(4)})`;
+                ctx.lineWidth = 1.2;
+                ctx.stroke();
+            }
+        } else if (preset === "bars") {
+            const count = 32;
+            const span = width * 0.55;
+            const startX = width * 0.4;
+            const gap = span / count;
+            const baseY = height * 0.72;
+            for (let i = 0; i < count; i++) {
+                const bin = freqData ? freqData[Math.min(freqData.length - 1, i * 2)] / 255 : 0.15;
+                const h = (8 + bin * 95) * bgPresence;
+                ctx.fillStyle = `rgba(214, 184, 128, ${(baseAlpha * 0.85).toFixed(4)})`;
+                ctx.fillRect(startX + i * gap, baseY - h, Math.max(2, gap * 0.35), h);
+            }
+        } else {
+            const horizonY = height * 0.66;
+            for (let layer = 0; layer < 2; layer++) {
+                ctx.beginPath();
+                const steps = 64;
+                for (let s = 0; s <= steps; s++) {
+                    const t = s / steps;
+                    const x = t * width;
+                    const binIdx = freqData
+                        ? Math.min(freqData.length - 1, Math.floor(t * (freqData.length * 0.7)))
+                        : 0;
+                    const amp = freqData ? (freqData[binIdx] / 255) * 34 : 8;
+                    const wave =
+                        Math.sin(t * Math.PI * (3 + layer) + nowSec * (0.7 + layer * 0.3)) *
+                        (10 + amp * bgPresence * (layer === 0 ? 1 : 0.55));
+                    const y = horizonY + layer * 24 + wave;
+                    if (s === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = `rgba(214, 184, 128, ${(baseAlpha * (layer === 0 ? 1 : 0.55)).toFixed(4)})`;
+                ctx.lineWidth = layer === 0 ? 1.4 : 1;
+                ctx.stroke();
+            }
+        }
+
+        ctx.restore();
+    }
+
+    function animateFrame(nowMs) {
+        drawDistantBgVisualizer(nowMs / 1000);
+        requestAnimationFrame(animateFrame);
+    }
+
+    requestAnimationFrame(animateFrame);
+
+    function syncRowUI(row, audioEl) {
+        const isPlaying = Boolean(audioEl && !audioEl.paused && !audioEl.ended);
+        const isActive = Boolean(audioEl && audioEl === activeAudio);
+        row.classList.toggle("is-playing", isPlaying);
+        row.classList.toggle("is-selected", isActive);
+
+        const playBtn = row.querySelector("[data-row-play]");
+        if (playBtn) {
+            playBtn.innerHTML = isPlaying ? PAUSE_ICON_SVG : PLAY_ICON_SVG;
+            playBtn.setAttribute("aria-label", isPlaying ? `Pause ${row.dataset.trackLabel}` : `Play ${row.dataset.trackLabel}`);
+        }
+
+        const timeEl = row.querySelector("[data-row-time]");
+        if (timeEl) {
+            timeEl.textContent = formatTime(audioEl.currentTime);
+        }
+
+        const muteBtn = row.querySelector("[data-row-mute]");
+        if (muteBtn) {
+            const muted = Boolean(audioEl.muted);
+            muteBtn.innerHTML = muted ? VOL_MUTED_SVG : VOL_ON_SVG;
+            muteBtn.setAttribute("aria-pressed", String(muted));
+            muteBtn.classList.toggle("is-muted", muted);
+        }
+
+        drawRowWaveform(row, audioEl);
+    }
+
+    function syncAllUI() {
+        allRows.forEach((row) => {
+            const audioEl = row.querySelector("audio");
+            if (audioEl) syncRowUI(row, audioEl);
+        });
+
+        const anyAudioPlaying = allAudios.some((a) => !a.paused && !a.ended);
+
         if (!miniBar || !activeAudio) {
             miniBar?.classList.remove("is-active", "is-playing");
             return;
         }
+
         miniBar.classList.add("is-active");
+        miniBar.classList.toggle("is-playing", anyAudioPlaying);
         if (miniTitle) miniTitle.textContent = activeLabel || "Audio Track";
+
         if (miniToggle) {
             const isPaused = activeAudio.paused;
             miniToggle.innerHTML = isPaused ? PLAY_ICON_SVG : PAUSE_ICON_SVG;
             miniToggle.setAttribute("aria-label", isPaused ? "Play" : "Pause");
         }
-        if (miniSlider && !activeAudio.muted) {
-            miniSlider.value = String(activeAudio.volume);
-        }
-        syncPlayingHighlights();
-    }
 
-    function setTrackVolume(audioEl, vol) {
-        const clamped = Math.max(0, Math.min(1, vol));
-        audioEl.volume = clamped;
-        const row = audioEl.closest("[data-audio-row]");
-        const rowSlider = row?.querySelector('input[type="range"]');
-        if (rowSlider && String(clamped) !== rowSlider.value) {
-            rowSlider.value = String(clamped);
-        }
-        if (audioEl === activeAudio && miniSlider && String(clamped) !== miniSlider.value) {
-            miniSlider.value = String(clamped);
+        if (miniMuteBtn) {
+            const muted = Boolean(activeAudio.muted);
+            miniMuteBtn.innerHTML = muted ? VOL_MUTED_SVG : VOL_ON_SVG;
+            miniMuteBtn.setAttribute("aria-pressed", String(muted));
+            miniMuteBtn.classList.toggle("is-muted", muted);
         }
     }
 
@@ -189,25 +517,27 @@ export function initShowcaseStage() {
         audioEl.volume = 0.8;
         const row = audioEl.closest("[data-audio-row]");
         const label = row?.dataset.trackLabel || "Audio Track";
+        rowPeaksMap.set(audioEl, buildFallbackPeaks(label, 64));
 
         audioEl.addEventListener("play", () => {
+            ensureAudioAnalyser(audioEl);
+            loadRealPeaks(audioEl, label);
             pauseOtherAudio(audioEl);
             allVideos.forEach((vid) => vid.pause());
             activeAudio = audioEl;
             activeLabel = label;
-            syncMiniBar();
+            syncAllUI();
         });
 
-        audioEl.addEventListener("pause", syncMiniBar);
-        audioEl.addEventListener("ended", syncMiniBar);
-
-        audioEl.addEventListener("volumechange", () => {
-            if (!audioEl.muted) {
-                setTrackVolume(audioEl, audioEl.volume);
-            }
+        audioEl.addEventListener("pause", syncAllUI);
+        audioEl.addEventListener("ended", syncAllUI);
+        audioEl.addEventListener("loadedmetadata", () => {
+            if (row) drawRowWaveform(row, audioEl);
         });
-
-        audioEl.addEventListener("click", (e) => e.stopPropagation());
+        audioEl.addEventListener("timeupdate", () => {
+            if (row) syncRowUI(row, audioEl);
+        });
+        audioEl.addEventListener("volumechange", syncAllUI);
     });
 
     allVideos.forEach((vid) => {
@@ -216,18 +546,7 @@ export function initShowcaseStage() {
             allVideos.forEach((otherVid) => {
                 if (otherVid !== vid) otherVid.pause();
             });
-            syncMiniBar();
-        });
-    });
-
-    stage.querySelectorAll('input[type="range"][data-audio-target]').forEach((slider) => {
-        const targetAudio = document.getElementById(slider.dataset.audioTarget);
-        if (!targetAudio) return;
-
-        slider.addEventListener("click", (e) => e.stopPropagation());
-        slider.addEventListener("input", (e) => {
-            e.stopPropagation();
-            setTrackVolume(targetAudio, parseFloat(slider.value));
+            syncAllUI();
         });
     });
 
@@ -235,17 +554,93 @@ export function initShowcaseStage() {
         const audioEl = row.querySelector("audio");
         if (!audioEl) return;
 
-        row.addEventListener("click", () => {
+        const playBtn = row.querySelector("[data-row-play]");
+        const muteBtn = row.querySelector("[data-row-mute]");
+        const waveCanvas = row.querySelector("[data-row-wave]");
+        const controlsWrap = row.querySelector("[data-controls-wrap]");
+        let isScrubbing = false;
+
+        controlsWrap?.addEventListener("click", (e) => e.stopPropagation());
+
+        playBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            ensureAudioAnalyser(audioEl);
+            loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
+            activeAudio = audioEl;
+            activeLabel = row.dataset.trackLabel || "Audio Track";
             if (audioEl.paused) {
                 audioEl.play().catch(() => {});
             } else {
                 audioEl.pause();
             }
+            syncAllUI();
+        });
+
+        muteBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            audioEl.muted = !audioEl.muted;
+            syncAllUI();
+        });
+
+        function seekFromClientX(clientX) {
+            if (!waveCanvas) return;
+            const rect = waveCanvas.getBoundingClientRect();
+            if (!rect.width) return;
+            const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
+            ensureAudioAnalyser(audioEl);
+            loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
+            activeAudio = audioEl;
+            activeLabel = row.dataset.trackLabel || "Audio Track";
+            if (audioEl.duration > 0) {
+                audioEl.currentTime = ratio * audioEl.duration;
+            }
+            syncAllUI();
+        }
+
+        waveCanvas?.addEventListener("pointerdown", (e) => {
+            e.stopPropagation();
+            e.preventDefault();
+            isScrubbing = true;
+            waveCanvas.setPointerCapture(e.pointerId);
+            seekFromClientX(e.clientX);
+        });
+
+        waveCanvas?.addEventListener("pointermove", (e) => {
+            if (!isScrubbing) return;
+            e.stopPropagation();
+            seekFromClientX(e.clientX);
+        });
+
+        const stopScrub = (e) => {
+            if (!isScrubbing) return;
+            e.stopPropagation();
+            isScrubbing = false;
+            if (waveCanvas?.hasPointerCapture?.(e.pointerId)) {
+                waveCanvas.releasePointerCapture(e.pointerId);
+            }
+            syncAllUI();
+        };
+
+        waveCanvas?.addEventListener("pointerup", stopScrub);
+        waveCanvas?.addEventListener("pointercancel", stopScrub);
+
+        row.addEventListener("click", () => {
+            ensureAudioAnalyser(audioEl);
+            loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
+            activeAudio = audioEl;
+            activeLabel = row.dataset.trackLabel || "Audio Track";
+            if (audioEl.paused) {
+                audioEl.play().catch(() => {});
+            } else {
+                audioEl.pause();
+            }
+            syncAllUI();
         });
     });
 
     miniToggle?.addEventListener("click", () => {
         if (!activeAudio) return;
+        ensureAudioAnalyser(activeAudio);
         if (activeAudio.paused) {
             activeAudio.play().catch(() => {});
         } else {
@@ -253,9 +648,35 @@ export function initShowcaseStage() {
         }
     });
 
-    miniSlider?.addEventListener("input", () => {
+    miniMuteBtn?.addEventListener("click", () => {
         if (!activeAudio) return;
-        setTrackVolume(activeAudio, parseFloat(miniSlider.value));
+        activeAudio.muted = !activeAudio.muted;
+        syncAllUI();
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.code !== "Space" || e.repeat) return;
+        if (!activeAudio) return;
+
+        const tag = document.activeElement?.tagName?.toLowerCase();
+        const isEditable = document.activeElement?.isContentEditable;
+        if (tag === "input" || tag === "textarea" || tag === "select" || isEditable) return;
+        if (tag === "button" || tag === "a") return;
+
+        const projectModal = document.getElementById("project-detail-modal");
+        const aboutModal = document.getElementById("about-detail-modal");
+        const modalOpen =
+            (projectModal && !projectModal.classList.contains("hidden")) ||
+            (aboutModal && !aboutModal.classList.contains("hidden"));
+        if (modalOpen) return;
+
+        e.preventDefault();
+        ensureAudioAnalyser(activeAudio);
+        if (activeAudio.paused) {
+            activeAudio.play().catch(() => {});
+        } else {
+            activeAudio.pause();
+        }
     });
 
     function setMode(mode) {
@@ -269,7 +690,15 @@ export function initShowcaseStage() {
         tabs.forEach((btn) => {
             btn.classList.toggle("is-active", btn.dataset.stageMode === targetMode);
         });
+        syncAllUI();
     }
+
+    window.addEventListener("resize", () => {
+        allRows.forEach((row) => {
+            const audioEl = row.querySelector("audio");
+            if (audioEl) drawRowWaveform(row, audioEl);
+        });
+    }, { passive: true });
 
     tabs.forEach((btn) => {
         btn.addEventListener("click", () => setMode(btn.dataset.stageMode));
