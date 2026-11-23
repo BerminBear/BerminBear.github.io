@@ -13,7 +13,7 @@
     /* Highlight / Champagneguld (ändra dessa för att byta highlight överallt) */
     --highlight-rgb: 226, 207, 165;
     --color-accent: rgb(var(--highlight-rgb));
-    --color-accent-hover: #EFE1C3;
+    --color-accent-hover: #e7c67e;
 
     /* SVG-ikoner: grå i viloläge, champagneguld vid hover */
     --color-icon-tint: var(--color-muted);
@@ -31,7 +31,19 @@
         rgba(var(--highlight-rgb), 0.25) 0%,
         rgba(var(--highlight-rgb), 0.08) 48%,
         rgba(var(--highlight-rgb), 0) 100%
+
     );
+    --color-spotlight-grad: linear-gradient(
+        to top,
+        rgba(var(--highlight-rgb), 0.25) 0%,
+        rgba(var(--highlight-rgb), 0.08) 48%,
+        rgba(var(--highlight-rgb), 0) 100%
+    );
+
+    /* Aktiv ljudrad & mini-bar i samma guldton */
+    --playing-gold-rgb: 214, 184, 128;
+    --playing-gold: #b89961;
+    --playing-gold-bright: #EFE1C3;
 
     /* Fonter */
     --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
@@ -600,4 +612,53 @@ section {
     color: var(--color-icon-hover) !important;
     transform: translateY(-2px) scale(1.1);
     filter: drop-shadow(0 0 12px var(--color-glow-strong));
+}
+
+/* ==========================================================================
+   10. SHOWCASE PANELS, AUDIO ROWS & MINI PLAYER BAR
+   ========================================================================== */
+.audio-panel {
+    display: none;
+}
+
+.audio-panel.is-visible {
+    display: flex;
+}
+
+.audio-row {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: color 0.22s ease, border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.3s ease;
+}
+
+.audio-row:hover {
+    border-bottom-color: rgba(var(--highlight-rgb), 0.32) !important;
+    background-color: rgba(var(--highlight-rgb), 0.015);
+}
+
+.audio-row:hover .audio-row-title {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 8px rgba(var(--highlight-rgb), 0.12);
+}
+
+/* Två svagare strålkastare från kanterna, mörkare mot mitten */
+.audio-row.is-playing {
+    background-color: transparent;
+    background-image:
+        linear-gradient(
+            to right,
+            rgba(var(--highlight-rgb), 0.075) 0%,
+            rgba(var(--highlight-rgb), 0.02) 22%,
+            rgba(var(--highlight-rgb), 0) 48%,
+            rgba(var(--highlight-rgb), 0.02) 78%,
+            rgba(var(--highlight-rgb), 0.075) 100%
+        );
+    border-bottom-color: rgba(var(--highlight-rgb), 0.26) !important;
+    box-shadow: 0 6px 14px -12px rgba(var(--highlight-rgb), 0.12);
+}
+
+.audio-row.is-playing .audio-row-title {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 6px rgba(var(--highlight-rgb), 0.14);
 }

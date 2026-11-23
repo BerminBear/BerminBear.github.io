@@ -142,133 +142,32 @@
         </div>
     </div>
 
-<script>
-        (function () {
-            const stage = document.getElementById("showcase-stage");
-            const tabs = document.querySelectorAll(".stage-tab");
-            if (!stage || !tabs.length) return;
+    <div id="mini-audio-bar" class="mini-player-bar" role="region" aria-label="Active audio controls">
+        <button
+            type="button"
+            id="mini-play-toggle"
+            class="label-mono text-[11px] uppercase tracking-wider px-2.5 py-1 rounded border border-[var(--color-accent-border)] text-[var(--color-accent-hover)] shrink-0"
+        >
+            Pause
+        </button>
+        <span id="mini-track-title" class="text-xs sm:text-sm font-medium truncate max-w-[150px] sm:max-w-[220px]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+            —
+        </span>
+        <label class="flex items-center gap-1.5 text-[11px] text-[var(--color-muted)] shrink-0" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+            <span>Vol</span>
+            <input
+                id="mini-volume-slider"
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.8"
+                aria-label="Global track volume"
+                class="w-20 accent-[var(--color-accent)] cursor-pointer"
+            />
+        </label>
+    </div>
 
-            const uiFont = "font-family: 'Plus Jakarta Sans', sans-serif; letter-spacing: normal;";
-
-            const renderAudioList = (headerLeft, headerRight, items) => `
-                <div class="w-full h-full flex flex-col justify-center gap-5 animate-fade-up" style="animation-duration: 0.65s;">
-                    <div class="flex items-center justify-between text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">
-                        <span>${headerLeft}</span>
-                        <span>${headerRight}</span>
-                    </div>
-                    ${items.map(({ label, src }, idx) => `
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 sm:p-5 rounded-lg bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">
-                            <span class="text-base sm:text-lg font-semibold leading-relaxed" style="${uiFont}">${label}</span>
-                            <div class="flex flex-col sm:flex-row sm:items-center gap-3 w-full sm:w-auto">
-                                <audio id="track-audio-${idx}" controls preload="metadata" src="${src}" class="h-9 w-full sm:w-60"></audio>
-                                <label class="flex items-center gap-2 text-xs text-[var(--color-muted)] shrink-0" style="${uiFont}">
-                                    <span>Vol</span>
-                                    <input
-                                        type="range"
-                                        min="0"
-                                        max="1"
-                                        step="0.01"
-                                        value="0.8"
-                                        data-audio-target="track-audio-${idx}"
-                                        aria-label="Volym för ${label}"
-                                        class="w-24 accent-[var(--color-accent)] cursor-pointer"
-                                    />
-                                </label>
-                            </div>
-                        </div>
-                    `).join("")}
-                </div>
-            `;
-
-            const views = {
-                showreel: `
-                    <div class="showreel-stage-wrap">
-                        <video id="hero-showcase" class="w-full h-full object-cover rounded-lg bg-[var(--color-secondary)]" playsinline preload="none" controls>
-                            <source src="videos/showreel.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                `,
-                music: renderAudioList("Selected Tracks", "Audio Reel", [
-    { label: "Fire Emblem Inspired", src: "sounds/tracks/track-01.mp3" },
-    { label: "Tentacle Tango Boss 3", src: "sounds/tracks/track-02.mp3" },
-    { label: "Tentacle Tango Menu Music", src: "sounds/tracks/track-03.mp3" },
-    { label: "Tentacle Tango Map Overview", src: "sounds/tracks/track-04.mp3" }
-]),
-                dialogue: renderAudioList("Dialogue &amp; VO Pipeline", "Routing &amp; Edit", [
-                    { label: "VO Cleanup &amp; Bus Routing", src: "sounds/dialogue/vo-routing.mp3" },
-                    { label: "Dynamic / Contextual Dialogue", src: "sounds/dialogue/contextual-vo.mp3" }
-                ]),
-                sound: renderAudioList("Sound Design", "Game &amp; Film", [
-                    { label: "Combat &amp; Creature Layering", src: "sounds/sfx/combat-creature.mp3" },
-                    { label: "World / Foley Transitions", src: "sounds/sfx/world-foley.mp3" }
-                ]),
-                tools: `
-                    <div class="w-full h-full flex flex-col justify-center gap-5 text-center animate-fade-up" style="animation-duration: 0.65s;">
-                        <div class="text-xs font-medium text-[var(--color-muted)] pb-2.5 border-b border-[var(--color-accent-border)]" style="${uiFont}">Frameworks, Scripting &amp; Middleware</div>
-                        <h3 class="text-xl sm:text-2xl font-semibold leading-relaxed" style="${uiFont}">
-                            Technical Audio Systems &amp; Workflow Automation
-                        </h3>
-                        <p class="text-base text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto" style="${uiFont}">
-                            Automation frameworks, batch/validation scripts and middleware implementation across Unreal Engine, Unity, Wwise, FMOD Studio and Reaper.
-                        </p>
-                        <div class="flex flex-wrap justify-center gap-2.5 pt-2 font-mono text-xs font-medium">
-                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Lua</span>
-                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Python</span>
-                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">C / C++ / C# / Java</span>
-                            <span class="px-3 py-1.5 rounded bg-[var(--color-secondary)] border border-[var(--color-accent-border)]">Wwise &amp; FMOD</span>
-                        </div>
-                    </div>
-                `
-            };
-
-            function pauseAllMediaExcept(currentEl) {
-                document.querySelectorAll("audio, video").forEach((media) => {
-                    if (media !== currentEl) {
-                        media.pause();
-                    }
-                });
-            }
-
-            function bindMediaEvents() {
-                stage.querySelectorAll("audio, video").forEach((el) => {
-                    if (el.tagName === "AUDIO") {
-                        el.volume = 0.8;
-                    }
-                    el.addEventListener("play", () => {
-                        pauseAllMediaExcept(el);
-                    });
-                });
-
-                stage.querySelectorAll('input[type="range"][data-audio-target]').forEach((slider) => {
-                    const targetAudio = document.getElementById(slider.dataset.audioTarget);
-                    if (!targetAudio) return;
-
-                    targetAudio.volume = parseFloat(slider.value);
-
-                    slider.addEventListener("input", () => {
-                        targetAudio.volume = parseFloat(slider.value);
-                    });
-
-                    targetAudio.addEventListener("volumechange", () => {
-                        if (!targetAudio.muted) {
-                            slider.value = String(targetAudio.volume);
-                        }
-                    });
-                });
-            }
-
-            function renderMode(mode) {
-                stage.querySelectorAll("video, audio").forEach((el) => el.pause());
-                stage.innerHTML = views[mode] || views.showreel;
-                tabs.forEach((btn) => btn.classList.toggle("is-active", btn.dataset.stageMode === mode));
-                bindMediaEvents();
-            }
-
-            tabs.forEach((btn) => btn.addEventListener("click", () => renderMode(btn.dataset.stageMode)));
-            renderMode("showreel");
-        })();
-    </script>
-    
     <script type="module" src="js/main.js"></script>
 </body>
 
