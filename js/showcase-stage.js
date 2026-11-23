@@ -155,20 +155,7 @@ function renderToolsPanel() {
     `;
 }
 
-function ensureDistantBgVisualizer(preset = "horizon") {
-    let canvas = document.getElementById("distant-bg-visualizer");
-    if (!canvas) {
-        canvas = document.createElement("canvas");
-        canvas.id = "distant-bg-visualizer";
-        canvas.setAttribute("aria-hidden", "true");
-        canvas.className = "fixed inset-0 w-full h-full pointer-events-none z-[1] transition-opacity duration-700 opacity-0";
-        document.body.prepend(canvas);
-    }
-    canvas.dataset.bgPreset = preset;
-    return canvas;
-}
-
-export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
+export function initShowcaseStage() {
     const stage = document.getElementById("showcase-stage");
     const tabs = document.querySelectorAll(".stage-tab");
     if (!stage || !tabs.length) return;
@@ -176,7 +163,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
     const miniBar = document.getElementById("mini-audio-bar");
     const miniToggle = document.getElementById("mini-play-toggle");
     const miniTitle = document.getElementById("mini-track-title");
-    const bgCanvas = ensureDistantBgVisualizer(bgPreset);
 
     let miniMuteBtn = miniBar?.querySelector("#mini-mute-toggle");
     if (miniBar && !miniMuteBtn) {
@@ -191,40 +177,9 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
 
     let activeAudio = null;
     let activeLabel = "";
-    let bgPresence = 0;
 
-    let audioCtx = null;
-    let analyser = null;
-    let freqData = null;
-    const connectedAudios = new WeakSet();
+    let decodeCtx = null;
     const rowPeaksMap = new WeakMap();
-
-    function ensureAudioAnalyser(audioEl) {
-        if (!audioEl) return;
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContextClass) return;
-
-        if (!audioCtx) {
-            audioCtx = new AudioContextClass();
-            analyser = audioCtx.createAnalyser();
-            analyser.fftSize = 128;
-            analyser.smoothingTimeConstant = 0.84;
-            freqData = new Uint8Array(analyser.frequencyBinCount);
-            analyser.connect(audioCtx.destination);
-        }
-
-        if (audioCtx.state === "suspended") {
-            audioCtx.resume().catch(() => {});
-        }
-
-        if (!connectedAudios.has(audioEl)) {
-            try {
-                const source = audioCtx.createMediaElementSource(audioEl);
-                source.connect(analyser);
-                connectedAudios.add(audioEl);
-            } catch (_) {}
-        }
-    }
 
     async function loadRealPeaks(audioEl, label) {
         if (!audioEl?.src || rowPeaksMap.has(audioEl)) return;
@@ -235,7 +190,11 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
             const res = await fetch(audioEl.src);
             if (!res.ok) return;
             const arrBuf = await res.arrayBuffer();
-            const decodeCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+            if (!decodeCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                decodeCtx = new AudioContextClass();
+            }
             const decoded = await decodeCtx.decodeAudioData(arrBuf.slice(0));
             const channel = decoded.getChannelData(0);
             const barCount = 64;
@@ -350,102 +309,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         ctx.restore();
     }
 
-    function drawDistantBgVisualizer(nowSec) {
-        if (!bgCanvas) return;
-        const isPlaying = Boolean(activeAudio && !activeAudio.paused && !activeAudio.ended);
-        const targetPresence = isPlaying ? 1 : 0;
-        bgPresence += (targetPresence - bgPresence) * 0.035;
-
-        bgCanvas.style.opacity = String(Math.min(1, bgPresence * 0.9));
-        if (bgPresence < 0.01) {
-            const ctx = bgCanvas.getContext("2d");
-            if (ctx) ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-            return;
-        }
-
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-        if (bgCanvas.width !== Math.floor(width * dpr) || bgCanvas.height !== Math.floor(height * dpr)) {
-            bgCanvas.width = Math.floor(width * dpr);
-            bgCanvas.height = Math.floor(height * dpr);
-        }
-
-        const ctx = bgCanvas.getContext("2d");
-        if (!ctx) return;
-
-        if (isPlaying && analyser && freqData) {
-            analyser.getByteFrequencyData(freqData);
-        }
-
-        ctx.save();
-        ctx.scale(dpr, dpr);
-        ctx.clearRect(0, 0, width, height);
-
-        const preset = bgCanvas.dataset.bgPreset || "horizon";
-        const baseAlpha = 0.09 * bgPresence;
-
-        if (preset === "rings") {
-            const cx = width * 0.68;
-            const cy = height * 0.5;
-            const maxR = Math.min(width, height) * 0.42;
-            for (let rIdx = 0; rIdx < 4; rIdx++) {
-                const bin = freqData ? freqData[rIdx * 6] / 255 : 0.2;
-                const radius = maxR * (0.28 + rIdx * 0.2) + bin * 26 * bgPresence;
-                ctx.beginPath();
-                ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(214, 184, 128, ${(baseAlpha * (1 - rIdx * 0.18)).toFixed(4)})`;
-                ctx.lineWidth = 1.2;
-                ctx.stroke();
-            }
-        } else if (preset === "bars") {
-            const count = 32;
-            const span = width * 0.55;
-            const startX = width * 0.4;
-            const gap = span / count;
-            const baseY = height * 0.72;
-            for (let i = 0; i < count; i++) {
-                const bin = freqData ? freqData[Math.min(freqData.length - 1, i * 2)] / 255 : 0.15;
-                const h = (8 + bin * 95) * bgPresence;
-                ctx.fillStyle = `rgba(214, 184, 128, ${(baseAlpha * 0.85).toFixed(4)})`;
-                ctx.fillRect(startX + i * gap, baseY - h, Math.max(2, gap * 0.35), h);
-            }
-        } else {
-            const horizonY = height * 0.66;
-            for (let layer = 0; layer < 2; layer++) {
-                ctx.beginPath();
-                const steps = 64;
-                for (let s = 0; s <= steps; s++) {
-                    const t = s / steps;
-                    const x = t * width;
-                    const binIdx = freqData
-                        ? Math.min(freqData.length - 1, Math.floor(t * (freqData.length * 0.7)))
-                        : 0;
-                    const amp = freqData ? (freqData[binIdx] / 255) * 34 : 8;
-                    const wave =
-                        Math.sin(t * Math.PI * (3 + layer) + nowSec * (0.7 + layer * 0.3)) *
-                        (10 + amp * bgPresence * (layer === 0 ? 1 : 0.55));
-                    const y = horizonY + layer * 24 + wave;
-                    if (s === 0) ctx.moveTo(x, y);
-                    else ctx.lineTo(x, y);
-                }
-                ctx.strokeStyle = `rgba(214, 184, 128, ${(baseAlpha * (layer === 0 ? 1 : 0.55)).toFixed(4)})`;
-                ctx.lineWidth = layer === 0 ? 1.4 : 1;
-                ctx.stroke();
-            }
-        }
-
-        ctx.restore();
-    }
-
-    function animateFrame(nowMs) {
-        drawDistantBgVisualizer(nowMs / 1000);
-        requestAnimationFrame(animateFrame);
-    }
-
-    requestAnimationFrame(animateFrame);
-
     function syncRowUI(row, audioEl) {
         const isPlaying = Boolean(audioEl && !audioEl.paused && !audioEl.ended);
         const isActive = Boolean(audioEl && audioEl === activeAudio);
@@ -520,7 +383,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         rowPeaksMap.set(audioEl, buildFallbackPeaks(label, 64));
 
         audioEl.addEventListener("play", () => {
-            ensureAudioAnalyser(audioEl);
             loadRealPeaks(audioEl, label);
             pauseOtherAudio(audioEl);
             allVideos.forEach((vid) => vid.pause());
@@ -559,12 +421,12 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         const waveCanvas = row.querySelector("[data-row-wave]");
         const controlsWrap = row.querySelector("[data-controls-wrap]");
         let isScrubbing = false;
+        let wasMutedBeforeScrub = false;
 
         controlsWrap?.addEventListener("click", (e) => e.stopPropagation());
 
         playBtn?.addEventListener("click", (e) => {
             e.stopPropagation();
-            ensureAudioAnalyser(audioEl);
             loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
             activeAudio = audioEl;
             activeLabel = row.dataset.trackLabel || "Audio Track";
@@ -587,7 +449,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
             const rect = waveCanvas.getBoundingClientRect();
             if (!rect.width) return;
             const ratio = Math.min(1, Math.max(0, (clientX - rect.left) / rect.width));
-            ensureAudioAnalyser(audioEl);
             loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
             activeAudio = audioEl;
             activeLabel = row.dataset.trackLabel || "Audio Track";
@@ -601,6 +462,8 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
             e.stopPropagation();
             e.preventDefault();
             isScrubbing = true;
+            wasMutedBeforeScrub = Boolean(audioEl.muted);
+            audioEl.muted = true;
             waveCanvas.setPointerCapture(e.pointerId);
             seekFromClientX(e.clientX);
         });
@@ -608,6 +471,7 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         waveCanvas?.addEventListener("pointermove", (e) => {
             if (!isScrubbing) return;
             e.stopPropagation();
+            audioEl.muted = true;
             seekFromClientX(e.clientX);
         });
 
@@ -618,6 +482,7 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
             if (waveCanvas?.hasPointerCapture?.(e.pointerId)) {
                 waveCanvas.releasePointerCapture(e.pointerId);
             }
+            audioEl.muted = wasMutedBeforeScrub;
             syncAllUI();
         };
 
@@ -625,7 +490,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         waveCanvas?.addEventListener("pointercancel", stopScrub);
 
         row.addEventListener("click", () => {
-            ensureAudioAnalyser(audioEl);
             loadRealPeaks(audioEl, row.dataset.trackLabel || "Audio Track");
             activeAudio = audioEl;
             activeLabel = row.dataset.trackLabel || "Audio Track";
@@ -640,7 +504,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
 
     miniToggle?.addEventListener("click", () => {
         if (!activeAudio) return;
-        ensureAudioAnalyser(activeAudio);
         if (activeAudio.paused) {
             activeAudio.play().catch(() => {});
         } else {
@@ -671,7 +534,6 @@ export function initShowcaseStage({ bgPreset = "horizon" } = {}) {
         if (modalOpen) return;
 
         e.preventDefault();
-        ensureAudioAnalyser(activeAudio);
         if (activeAudio.paused) {
             activeAudio.play().catch(() => {});
         } else {

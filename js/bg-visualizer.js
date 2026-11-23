@@ -14,7 +14,6 @@ export function initBgVisualizer({
         canvas.id = "distant-bg-visualizer";
         canvas.setAttribute("aria-hidden", "true");
         canvas.className = "fixed inset-0 w-full h-full pointer-events-none z-[1]";
-        canvas.style.filter = "blur(0.6px)";
         document.body.prepend(canvas);
     }
 
@@ -25,17 +24,17 @@ export function initBgVisualizer({
     let audioCtx = null;
     let analyser = null;
     let freqData = null;
-    let timeData = null;
     const connectedElements = new WeakSet();
+    const blockedElements = new WeakSet();
 
     let trackedMedia = null;
-    let presence = 0; // 0 = helt osynlig, 1 = aktiv i bakgrunden
+    let presence = 0;
     let smoothBass = 0;
     let smoothMid = 0;
     let smoothHigh = 0;
 
     function ensureAudioGraph(mediaEl) {
-        if (!mediaEl) return;
+        if (!mediaEl || blockedElements.has(mediaEl)) return;
         const AudioContextClass = window.AudioContext || window.webkitAudioContext;
         if (!AudioContextClass) return;
 
@@ -43,9 +42,8 @@ export function initBgVisualizer({
             audioCtx = new AudioContextClass();
             analyser = audioCtx.createAnalyser();
             analyser.fftSize = 256;
-            analyser.smoothingTimeConstant = 0.86;
+            analyser.smoothingTimeConstant = 0.82;
             freqData = new Uint8Array(analyser.frequencyBinCount);
-            timeData = new Uint8Array(analyser.fftSize);
             analyser.connect(audioCtx.destination);
         }
 
@@ -59,12 +57,11 @@ export function initBgVisualizer({
                 source.connect(analyser);
                 connectedElements.add(mediaEl);
             } catch (_) {
-                // Elementet kan redan vara kopplat till en annan AudioContext
+                blockedElements.add(mediaEl);
             }
         }
     }
 
-    // Fångar automatiskt upp alla <audio>-element på sidan när de börjar spela
     document.addEventListener(
         "play",
         (e) => {
@@ -76,20 +73,22 @@ export function initBgVisualizer({
         true
     );
 
-    function sampleBands() {
-        if (!analyser || !freqData) {
-            smoothBass *= 0.92;
-            smoothMid *= 0.92;
-            smoothHigh *= 0.92;
+    function sampleBands(t, hasLiveAnalyser) {
+        if (!hasLiveAnalyser || !analyser || !freqData) {
+            const synthBass = 0.34 + 0.22 * Math.sin(t * 1.9);
+            const synthMid = 0.28 + 0.2 * Math.cos(t * 2.7);
+            const synthHigh = 0.22 + 0.16 * Math.sin(t * 4.1);
+            smoothBass += (synthBass - smoothBass) * 0.14;
+            smoothMid += (synthMid - smoothMid) * 0.14;
+            smoothHigh += (synthHigh - smoothHigh) * 0.15;
             return;
         }
 
         analyser.getByteFrequencyData(freqData);
-        if (timeData) analyser.getByteTimeDomainData(timeData);
 
         const len = freqData.length;
-        const bassEnd = Math.max(1, Math.floor(len * 0.12));
-        const midEnd = Math.max(bassEnd + 1, Math.floor(len * 0.48));
+        const bassEnd = Math.max(1, Math.floor(len * 0.14));
+        const midEnd = Math.max(bassEnd + 1, Math.floor(len * 0.5));
 
         let bassSum = 0;
         for (let i = 0; i < bassEnd; i++) bassSum += freqData[i];
@@ -104,94 +103,144 @@ export function initBgVisualizer({
         const mid = midSum / ((midEnd - bassEnd) * 255);
         const high = highSum / ((len - midEnd) * 255);
 
-        smoothBass += (bass - smoothBass) * 0.14;
-        smoothMid += (mid - smoothMid) * 0.14;
-        smoothHigh += (high - smoothHigh) * 0.16;
+        smoothBass += (bass - smoothBass) * 0.16;
+        smoothMid += (mid - smoothMid) * 0.16;
+        smoothHigh += (high - smoothHigh) * 0.18;
     }
 
-    function drawHorizon(width, height, t) {
-        const baseY = height * 0.64;
-        const layers = 3;
+    function drawHorizon(width, height, t, hasLiveAnalyser) {
+        const baseY = height * 0.62;
+        const steps = 96;
+        const points = [];
 
-        for (let l = 0; l < layers; l++) {
-            ctx.beginPath();
-            const steps = 80;
-            const layerFade = 1 - l * 0.28;
+        for (let i = 0; i <= steps; i++) {
+            const u = i / steps;
+            const x = u * width;
+            const edgeDamp = Math.pow(Math.sin(u * Math.PI), 0.75);
 
-            for (let i = 0; i <= steps; i++) {
-                const u = i / steps;
-                const x = u * width;
-                const edgeDamp = Math.sin(u * Math.PI); // dämpa ut mot skärmkanterna
+            const binIdx = hasLiveAnalyser && freqData
+                ? Math.min(freqData.length - 1, Math.floor(u * (freqData.length * 0.72)))
+                : 0;
+            const binVal = hasLiveAnalyser && freqData
+                ? freqData[binIdx] / 255
+                : 0.3 + 0.22 * Math.sin(u * 12 + t * 2.4);
 
-                const binIdx = freqData
-                    ? Math.min(freqData.length - 1, Math.floor(u * (freqData.length * 0.65)))
-                    : 0;
-                const binVal = freqData ? freqData[binIdx] / 255 : 0;
+            const primaryWave =
+                Math.sin(u * Math.PI * 3.0 + t * 0.75) * 0.65 +
+                Math.cos(u * Math.PI * 5.5 - t * 0.45) * 0.35;
+            const detailWave = Math.sin(u * Math.PI * 11.0 + t * 1.4) * (0.2 + smoothHigh * 0.6);
 
-                const waveA = Math.sin(u * Math.PI * (2.5 + l * 0.9) + t * (0.55 + l * 0.22));
-                const waveB = Math.cos(u * Math.PI * (5.0 - l * 0.6) - t * 0.35);
-
-                const amplitude = (10 + smoothBass * 36 + binVal * 28) * edgeDamp * presence * layerFade;
-                const y = baseY + l * 22 + (waveA * 0.7 + waveB * 0.3) * amplitude;
-
-                if (i === 0) ctx.moveTo(x, y);
-                else ctx.lineTo(x, y);
-            }
-
-            const alpha = (0.11 * presence * layerFade).toFixed(4);
-            ctx.strokeStyle = `rgba(214, 184, 128, ${alpha})`;
-            ctx.lineWidth = l === 0 ? 1.5 : 1;
-            ctx.stroke();
+            const amp = (18 + smoothBass * 54 + binVal * 46) * edgeDamp * presence;
+            const y = baseY + (primaryWave + detailWave * 0.35) * amp;
+            points.push({ x, y });
         }
+
+        // Fyllt band nedåt från huvudkurvan för mer kropp och djup
+        const fillGrad = ctx.createLinearGradient(0, baseY - 80, 0, Math.min(height, baseY + 210));
+        fillGrad.addColorStop(0, `rgba(231, 198, 126, ${(0.24 * presence).toFixed(4)})`);
+        fillGrad.addColorStop(0.55, `rgba(214, 184, 128, ${(0.09 * presence).toFixed(4)})`);
+        fillGrad.addColorStop(1, "rgba(214, 184, 128, 0)");
+
+        ctx.beginPath();
+        points.forEach((pt, idx) => {
+            if (idx === 0) ctx.moveTo(pt.x, pt.y);
+            else ctx.lineTo(pt.x, pt.y);
+        });
+        ctx.lineTo(width, height);
+        ctx.lineTo(0, height);
+        ctx.closePath();
+        ctx.fillStyle = fillGrad;
+        ctx.fill();
+
+        // Sekundär fyllig undre våg
+        ctx.beginPath();
+        for (let i = 0; i <= steps; i++) {
+            const u = i / steps;
+            const x = u * width;
+            const edgeDamp = Math.sin(u * Math.PI);
+            const wave2 = Math.sin(u * Math.PI * 2.2 - t * 0.55 + 0.9) * (16 + smoothMid * 36) * edgeDamp * presence;
+            const y = baseY + 28 + wave2;
+            if (i === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = `rgba(214, 184, 128, ${(0.28 * presence).toFixed(4)})`;
+        ctx.lineWidth = 1.6;
+        ctx.stroke();
+
+        // Tydlig huvudkurva med mjukt glow
+        ctx.save();
+        ctx.shadowColor = `rgba(231, 198, 126, ${(0.55 * presence).toFixed(3)})`;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        points.forEach((pt, idx) => {
+            if (idx === 0) ctx.moveTo(pt.x, pt.y);
+            else ctx.lineTo(pt.x, pt.y);
+        });
+        ctx.strokeStyle = `rgba(231, 198, 126, ${(0.52 * presence).toFixed(4)})`;
+        ctx.lineWidth = 2.2;
+        ctx.stroke();
+        ctx.restore();
     }
 
-    function drawRings(width, height, t) {
-        const cx = width * 0.68;
-        const cy = height * 0.5;
-        const maxRadius = Math.min(width, height) * 0.44;
+    function drawRings(width, height, t, hasLiveAnalyser) {
+        const cx = width * 0.65;
+        const cy = height * 0.52;
+        const maxRadius = Math.min(width, height) * 0.45;
         const ringCount = 5;
 
-        for (let r = 0; r < ringCount; r++) {
+        for (let r = ringCount - 1; r >= 0; r--) {
             const ratio = (r + 1) / ringCount;
-            const binIdx = freqData ? Math.min(freqData.length - 1, r * 7) : 0;
-            const binVal = freqData ? freqData[binIdx] / 255 : 0;
+            const binIdx = hasLiveAnalyser && freqData ? Math.min(freqData.length - 1, r * 8) : 0;
+            const binVal = hasLiveAnalyser && freqData
+                ? freqData[binIdx] / 255
+                : 0.3 + 0.2 * Math.sin(t * 2.2 + r);
 
-            const pulse = (smoothBass * 28 + binVal * 18) * (1 - ratio * 0.35) * presence;
-            const drift = Math.sin(t * 0.6 + r * 1.1) * 4 * presence;
-            const radius = maxRadius * (0.22 + ratio * 0.72) + pulse + drift;
+            const pulse = (smoothBass * 38 + binVal * 26) * (1 - ratio * 0.25) * presence;
+            const drift = Math.sin(t * 0.8 + r * 1.1) * 5 * presence;
+            const radius = Math.max(10, maxRadius * (0.2 + ratio * 0.75) + pulse + drift);
 
             ctx.beginPath();
-            ctx.arc(cx, cy, Math.max(8, radius), 0, Math.PI * 2);
-            const alpha = (0.105 * presence * (1 - r * 0.15)).toFixed(4);
-            ctx.strokeStyle = `rgba(214, 184, 128, ${alpha})`;
-            ctx.lineWidth = r === 0 ? 1.4 : 1;
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            const ringAlpha = (0.38 * presence * (1 - r * 0.14)).toFixed(4);
+            ctx.strokeStyle = `rgba(231, 198, 126, ${ringAlpha})`;
+            ctx.lineWidth = r === 0 ? 2.2 : 1.5;
             ctx.stroke();
+
+            if (r === 1 || r === 3) {
+                ctx.fillStyle = `rgba(214, 184, 128, ${(0.055 * presence).toFixed(4)})`;
+                ctx.fill();
+            }
         }
     }
 
-    function drawBars(width, height) {
-        const barCount = 42;
-        const span = Math.min(width * 0.62, 860);
-        const startX = width * 0.68 - span * 0.5;
-        const baseY = height * 0.72;
+    function drawBars(width, height, t, hasLiveAnalyser) {
+        const barCount = 48;
+        const span = Math.min(width * 0.72, 920);
+        const startX = width * 0.5 - span * 0.5 + (width > 900 ? width * 0.12 : 0);
+        const baseY = height * 0.7;
         const step = span / barCount;
-        const barW = Math.max(2, step * 0.34);
+        const barW = Math.max(3, step * 0.48);
 
         for (let i = 0; i < barCount; i++) {
             const u = i / Math.max(1, barCount - 1);
-            const edgeDamp = Math.sin(u * Math.PI);
-            const binIdx = freqData
-                ? Math.min(freqData.length - 1, Math.floor(u * (freqData.length * 0.65)))
+            const edgeDamp = Math.pow(Math.sin(u * Math.PI), 0.7);
+            const binIdx = hasLiveAnalyser && freqData
+                ? Math.min(freqData.length - 1, Math.floor(u * (freqData.length * 0.72)))
                 : 0;
-            const binVal = freqData ? freqData[binIdx] / 255 : 0;
+            const binVal = hasLiveAnalyser && freqData
+                ? freqData[binIdx] / 255
+                : 0.25 + 0.25 * Math.abs(Math.sin(u * 12 + t * 2.6));
 
-            const barH = (4 + (binVal * 105 + smoothMid * 25) * edgeDamp) * presence;
+            const barH = (8 + (binVal * 135 + smoothBass * 36 + smoothMid * 24) * edgeDamp) * presence;
             const x = startX + i * step;
-            const alpha = (0.095 * presence * (0.4 + 0.6 * edgeDamp)).toFixed(4);
 
-            ctx.fillStyle = `rgba(214, 184, 128, ${alpha})`;
+            const barGrad = ctx.createLinearGradient(0, baseY - barH, 0, baseY);
+            barGrad.addColorStop(0, `rgba(239, 225, 195, ${(0.52 * presence * (0.5 + 0.5 * edgeDamp)).toFixed(4)})`);
+            barGrad.addColorStop(1, `rgba(214, 184, 128, ${(0.18 * presence * (0.5 + 0.5 * edgeDamp)).toFixed(4)})`);
+
+            ctx.fillStyle = barGrad;
             ctx.beginPath();
-            ctx.roundRect(x, baseY - barH, barW, barH, 1.5);
+            ctx.roundRect(x, baseY - barH, barW, barH, 2);
             ctx.fill();
         }
     }
@@ -204,8 +253,15 @@ export function initBgVisualizer({
             !trackedMedia.muted
         );
 
+        const hasLiveAnalyser = Boolean(
+            trackedMedia &&
+            connectedElements.has(trackedMedia) &&
+            analyser &&
+            freqData
+        );
+
         const targetPresence = isPlaying ? 1 : 0;
-        presence += (targetPresence - presence) * 0.04;
+        presence += (targetPresence - presence) * 0.06;
 
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -221,15 +277,15 @@ export function initBgVisualizer({
         ctx.clearRect(0, 0, width, height);
 
         if (presence > 0.008) {
-            if (isPlaying) sampleBands();
             const t = nowMs / 1000;
+            sampleBands(t, hasLiveAnalyser);
 
             if (currentPreset === "rings") {
-                drawRings(width, height, t);
+                drawRings(width, height, t, hasLiveAnalyser);
             } else if (currentPreset === "bars") {
-                drawBars(width, height);
+                drawBars(width, height, t, hasLiveAnalyser);
             } else {
-                drawHorizon(width, height, t);
+                drawHorizon(width, height, t, hasLiveAnalyser);
             }
         }
 
@@ -239,13 +295,12 @@ export function initBgVisualizer({
 
     requestAnimationFrame(render);
 
-    // Liten diskret preset-växlare i nedre högra hörnet så du kan testa alla 3 lägen
     let switcherEl = null;
     if (showSwitcher) {
         switcherEl = document.createElement("button");
         switcherEl.type = "button";
         switcherEl.className =
-            "fixed bottom-4 right-4 z-40 hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--color-accent-border)] bg-[var(--color-modal-bg)]/90 text-[10px] uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-accent-hover)]";
+            "fixed bottom-4 right-4 z-40 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-[var(--color-accent-border)] bg-[var(--color-modal-bg)]/95 text-[10px] uppercase tracking-widest text-[var(--color-muted)] hover:text-[var(--color-accent-hover)]";
         switcherEl.title = "Byt bakgrundsvisualizer";
         const updateLabel = () => {
             switcherEl.textContent = `BG Viz: ${currentPreset}`;
