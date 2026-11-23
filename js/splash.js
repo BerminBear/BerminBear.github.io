@@ -1,34 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // TOGGLE: Sätt till true för att hoppa över index och gå direkt till home.html
+    const skipSplashTemporarily = false;
 
-    const skipSplashTemporarily = true; 
-    
     if (skipSplashTemporarily) {
         window.location.replace("home.html");
         return;
-
- /*   const urlParams = new URLSearchParams(window.location.search);
-    const isReplay = urlParams.get('replay') === 'true';
-    
-    const splashSeen = sessionStorage.getItem("splashSeen");
-
-    // Skicka till home.html om splashen redan har setts OCH det inte är en replay
-    if (splashSeen === "true" && !isReplay) {
-        window.location.replace("home.html");
-        return;
-        */
     }
+
     const urlParams = new URLSearchParams(window.location.search);
-    
+    const isReplay = urlParams.get("replay") === "true";
 
     const container = document.getElementById("splash-container");
     const text1 = document.getElementById("text-part-1");
     const text2 = document.getElementById("text-part-2");
     const buttons = document.getElementById("splash-buttons");
-    
+
     const listenBtn = document.getElementById("listen-btn");
     const skipTopBtn = document.getElementById("skip-top-btn");
     const skipLinkBtn = document.getElementById("skip-link-btn");
-    
+
     const videoContainer = document.getElementById("video-container");
     const splashVideo = document.getElementById("splash-video");
     const pipBtn = document.getElementById("pip-btn");
@@ -36,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const proceedToHome = (e) => {
         if (e) e.preventDefault();
         sessionStorage.setItem("splashSeen", "true");
-        
+
         document.body.classList.add("opacity-0");
         setTimeout(() => {
             window.location.href = "home.html";
@@ -55,17 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             videoContainer.classList.remove("opacity-0", "pointer-events-none");
-            
-            [skipTopBtn, pipBtn].forEach(btn => {
+
+            [skipTopBtn, pipBtn].forEach((btn) => {
                 if (btn) {
                     btn.classList.remove("opacity-0", "pointer-events-none");
                     btn.classList.add("opacity-100", "pointer-events-auto");
                 }
             });
 
-            splashVideo.play().catch(err => {
+            splashVideo.play().catch((err) => {
                 console.warn("Video playback prevented:", err);
-                // Om autospelning blockeras vid replay, visa knappen direkt istället för att skicka tillbaka
                 if (isReplay) {
                     videoContainer.classList.add("opacity-0", "pointer-events-none");
                     container.style.display = "flex";

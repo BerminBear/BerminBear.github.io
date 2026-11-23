@@ -157,8 +157,8 @@ export function initHeaderDrawer({
                                     padding: 9px 16px;
                                     border-radius: 6px;
                                     background: ${isCurrent ? "#242424" : "#141414"};
-                                    color: ${isCurrent ? "#ffffff" : "#d4d4d4"};
-                                    border: 1px solid ${isCurrent ? "rgba(255, 255, 255, 0.55)" : "rgba(255, 255, 255, 0.16)"};
+                                    color: ${isCurrent ? "var(--color-accent-hover)" : "var(--color-text)"};
+border: 1px solid ${isCurrent ? "var(--color-accent-border-hover)" : "var(--color-border)"};
                                     font-family: var(--font-mono);
                                     font-size: 12px;
                                     font-weight: 700;
@@ -259,7 +259,7 @@ export function initHeaderDrawer({
             </div>
 
             <p class="label-mono" style="font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #767676;">
-                Press ESC or click outside to close
+                Press ESC or click close to collapse
             </p>
         </aside>
     `;
@@ -339,20 +339,6 @@ export function initHeaderDrawer({
     closeTopbarBtn?.addEventListener("click", (e) => {
         e.stopPropagation();
         applyMenuState(false);
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!isMenuExpanded) return;
-        if (hasOpenModal()) return;
-        if (e.target.closest("#project-detail-modal, #about-detail-modal, .project-card")) return;
-
-        if (
-            !drawer.contains(e.target) &&
-            !topBar.contains(e.target) &&
-            !toggleBtn.contains(e.target)
-        ) {
-            applyMenuState(false);
-        }
     });
 
     document.addEventListener("keydown", (e) => {

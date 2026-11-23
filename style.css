@@ -1,23 +1,39 @@
 /* ==========================================================================
-   1. VARIABLES & SETUP (MONOCHROME)
+   1. VARIABLES & SETUP
    ========================================================================== */
 :root {
+    /* Basfärger */
     --color-bg: #0C0C0C;
     --color-text: #B8B8B8;
     --color-muted: #767676;
     --color-text-muted: #767676;
-
-    --color-accent: #FFFFFF;
-    --color-accent-hover: #FFFFFF;
     --color-secondary: #1E1E1E;
     --color-modal-bg: #080808;
 
-    --color-accent-border: rgba(255, 255, 255, 0.12);
-    --color-accent-border-hover: rgba(255, 255, 255, 0.72);
-    --color-glow-soft: rgba(255, 255, 255, 0.18);
-    --color-glow-strong: rgba(255, 255, 255, 0.48);
+    /* Highlight / Champagneguld (ändra dessa för att byta highlight överallt) */
+    --highlight-rgb: 226, 207, 165;
+    --color-accent: rgb(var(--highlight-rgb));
+    --color-accent-hover: #EFE1C3;
 
-    /* --- FONTER --- */
+    /* SVG-ikoner: grå i viloläge, champagneguld vid hover */
+    --color-icon-tint: var(--color-muted);
+    --color-icon-hover: var(--color-accent-hover);
+
+    /* Borders & Glows härledda från samma highlight */
+    --color-border: rgba(255, 255, 255, 0.12);
+    --color-border-strong: rgba(255, 255, 255, 0.16);
+    --color-accent-border: rgba(var(--highlight-rgb), 0.16);
+    --color-accent-border-hover: rgba(var(--highlight-rgb), 0.78);
+    --color-glow-soft: rgba(var(--highlight-rgb), 0.18);
+    --color-glow-strong: rgba(var(--highlight-rgb), 0.45);
+    --color-spotlight-grad: linear-gradient(
+        to top,
+        rgba(var(--highlight-rgb), 0.25) 0%,
+        rgba(var(--highlight-rgb), 0.08) 48%,
+        rgba(var(--highlight-rgb), 0) 100%
+    );
+
+    /* Fonter */
     --font-heading: 'Cinzel Decorative', 'Cinzel', serif;
     --font-cinzel: 'Cinzel', serif;
     --font-body: 'EB Garamond', serif;
@@ -25,7 +41,7 @@
     --font-garamond: 'EB Garamond', serif;
     --font-tab: 'Cinzel', serif;
 
-    /* --- GLOBALA KORT-STORLEKAR --- */
+    /* Kortstorlekar */
     --card-width: 360px;
     --card-gap: 1.5rem;
 }
@@ -107,22 +123,26 @@ a, button, .nav-link {
 }
 
 a:hover, button:hover, .nav-link:hover {
-    color: #FFFFFF !important;
+    color: var(--color-accent-hover) !important;
     text-shadow: 0 0 14px var(--color-glow-strong), 0 0 26px var(--color-glow-soft);
 }
 
-.nav-link:hover {
-    border-color: rgba(255, 255, 255, 0.75) !important;
-    box-shadow: 0 0 18px var(--color-glow-soft), inset 0 0 10px rgba(255, 255, 255, 0.08);
+.nav-link:hover,
+.view-all-btn:hover {
+    border-color: var(--color-accent-border-hover) !important;
+    box-shadow: 0 0 18px var(--color-glow-soft), inset 0 0 10px rgba(var(--highlight-rgb), 0.08) !important;
 }
 
+/* ==========================================================================
+   3. COMPONENTS & DIVIDERS
+   ========================================================================== */
 .name-ribbon {
     display: inline-flex;
     align-items: center;
     padding: 0.25rem 0.7rem;
-    background-color: #141414;
-    color: #FFFFFF;
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    background-color: var(--color-modal-bg);
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent-border-hover);
     border-radius: 4px;
     font-family: var(--font-cinzel);
     font-size: 0.68rem;
@@ -141,9 +161,6 @@ a:hover, button:hover, .nav-link:hover {
     transition-delay: 120ms;
 }
 
-/* ==========================================================================
-   3. COMPONENTS & DIVIDERS
-   ========================================================================== */
 .name-divider {
     max-width: 280px !important;
     color: var(--color-text);
@@ -152,19 +169,19 @@ a:hover, button:hover, .nav-link:hover {
 }
 
 .group:hover .name-divider {
-    color: #FFFFFF;
+    color: var(--color-accent-hover);
     opacity: 1;
     filter: drop-shadow(0 0 10px var(--color-glow-strong));
     transform: scale(1.01);
 }
 
 .group:hover .heading-display {
-    color: #FFFFFF;
+    color: var(--color-accent-hover);
     text-shadow: 0 0 18px var(--color-glow-strong), 0 0 34px var(--color-glow-soft);
 }
 
 /* ==========================================================================
-   4. SPOTLIGHT TABS (UNDER-UP GRADIENT & GLOW WHEN SELECTED/HOVERED)
+   4. SPOTLIGHT TABS (TEXT GLOW ON HOVER, SPOTLIGHT ONLY WHEN CLICKED/ACTIVE)
    ========================================================================== */
 .stage-tab {
     position: relative;
@@ -178,7 +195,7 @@ a:hover, button:hover, .nav-link:hover {
     text-transform: uppercase;
     color: var(--color-muted);
     padding: 0.5rem 0.1rem 0.45rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    border-bottom: 1px solid var(--color-border);
     overflow: hidden;
     white-space: nowrap;
     z-index: 1;
@@ -201,7 +218,13 @@ a:hover, button:hover, .nav-link:hover {
     }
 }
 
-/* Mjuk spotlight som lyser uppåt nerifrån fliken */
+/* Endast namnet lyser vid hover på en inaktiv flik */
+.stage-tab:hover:not(.is-active) {
+    color: var(--color-accent-hover) !important;
+    text-shadow: 0 0 14px var(--color-glow-strong), 0 0 24px var(--color-glow-soft) !important;
+}
+
+/* Strålkastaren visas enbart när fliken är aktiv (klickad) */
 .stage-tab::after {
     content: "";
     position: absolute;
@@ -209,7 +232,7 @@ a:hover, button:hover, .nav-link:hover {
     right: 10%;
     bottom: 0;
     height: 100%;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0.08) 48%, rgba(255, 255, 255, 0) 100%);
+    background: var(--color-spotlight-grad);
     opacity: 0;
     transform: translateY(65%);
     pointer-events: none;
@@ -217,21 +240,19 @@ a:hover, button:hover, .nav-link:hover {
     transition: opacity 0.3s ease, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.stage-tab:hover::after,
 .stage-tab.is-active::after {
     opacity: 1;
     transform: translateY(0);
 }
 
-.stage-tab:hover,
 .stage-tab.is-active {
-    color: #FFFFFF !important;
-    border-bottom-color: rgba(255, 255, 255, 0.95);
+    color: var(--color-accent-hover) !important;
+    border-bottom-color: var(--color-accent-border-hover);
     text-shadow: 0 -2px 14px var(--color-glow-strong), 0 0 24px var(--color-glow-soft) !important;
 }
 
 /* ==========================================================================
-   5. CARDS, MODULES & MODALS (WHITE BORDER GLOW, KEEP INNER COLORS)
+   5. CARDS, MODULES & MODALS
    ========================================================================== */
 .tech-card,
 .stage-panel,
@@ -253,11 +274,10 @@ a:hover, button:hover, .nav-link:hover {
     border-bottom-right-radius: 10px;
 }
 
-/* Projektmoduler: behåll sin vanliga bakgrund/färg inuti, men låt bordern lysa ljusare vitt vid hover */
 .project-card {
     background: var(--color-modal-bg);
     color: var(--color-text);
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    border: 1px solid var(--color-border);
     border-radius: 10px;
     box-shadow: 0 10px 35px -5px rgba(0, 0, 0, 0.85);
     overflow: visible !important;
@@ -266,25 +286,24 @@ a:hover, button:hover, .nav-link:hover {
 }
 
 .project-card:hover {
-    border-color: rgba(255, 255, 255, 0.92) !important;
+    border-color: var(--color-accent-border-hover) !important;
     box-shadow:
-        0 0 0 1px rgba(255, 255, 255, 0.38),
-        0 0 24px rgba(255, 255, 255, 0.34),
-        0 0 44px rgba(255, 255, 255, 0.16),
+        0 0 0 1px rgba(var(--highlight-rgb), 0.32),
+        0 0 24px var(--color-glow-strong),
+        0 0 44px var(--color-glow-soft),
         0 12px 30px -8px rgba(0, 0, 0, 0.85) !important;
     transform: translateY(-2px);
 }
 
-/* Tooltip på projects.html */
 .card-tooltip {
     position: absolute;
     top: 0.75rem;
     right: 0.75rem;
     padding: 0.25rem 0.55rem;
     border-radius: 5px;
-    background: rgba(10, 10, 12, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    color: #FFFFFF;
+    background: var(--color-modal-bg);
+    border: 1px solid var(--color-accent-border-hover);
+    color: var(--color-accent-hover);
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 700;
@@ -302,20 +321,19 @@ a:hover, button:hover, .nav-link:hover {
     transform: translateY(0);
 }
 
-.card-surface:not(.project-card):hover,
-.view-all-btn:hover {
+.card-surface:not(.project-card):hover {
     border-color: var(--color-accent-border-hover) !important;
     box-shadow: 0 0 24px var(--color-glow-soft), 0 10px 30px -10px rgba(0, 0, 0, 0.85) !important;
 }
 
-/* --- EXPANDERANDE "EXPAND"-FLIK UNDER MODULEN --- */
+/* Expanderande flik under projektmodulen */
 .card-more-expand {
     position: absolute;
     left: 1rem;
     right: 1rem;
     top: calc(100% - 1px);
-    background: #101010;
-    border: 1px solid rgba(255, 255, 255, 0.72);
+    background: var(--color-modal-bg);
+    border: 1px solid var(--color-accent-border-hover);
     border-top: none;
     border-radius: 0 0 8px 8px;
     padding: 0 0.75rem;
@@ -325,7 +343,7 @@ a:hover, button:hover, .nav-link:hover {
     transform: translateY(-6px);
     pointer-events: none;
     z-index: 30;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8), 0 0 18px rgba(255, 255, 255, 0.22);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8), 0 0 18px var(--color-glow-soft);
     transition:
         max-height 0.32s cubic-bezier(0.22, 1, 0.36, 1),
         padding 0.32s cubic-bezier(0.22, 1, 0.36, 1),
@@ -351,8 +369,8 @@ a:hover, button:hover, .nav-link:hover {
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #FFFFFF;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+    color: var(--color-accent-hover);
+    text-shadow: 0 0 10px var(--color-glow-strong);
     white-space: nowrap;
 }
 
@@ -372,7 +390,7 @@ iframe {
    6. UTILITIES & ANIMATIONS
    ========================================================================== */
 html {
-    scrollbar-color: rgba(255, 255, 255, 0.45) var(--color-bg);
+    scrollbar-color: rgba(var(--highlight-rgb), 0.45) var(--color-bg);
     scrollbar-width: thin;
 }
 
@@ -386,7 +404,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.45) !important;
+    background-color: rgba(var(--highlight-rgb), 0.45) !important;
     border-radius: 10px;
 }
 
@@ -400,7 +418,7 @@ html {
 }
 
 .no-gold-hover:hover {
-    color: #ffffff !important;
+    color: var(--color-text) !important;
     text-shadow: none !important;
 }
 
@@ -415,7 +433,6 @@ html {
 /* ==========================================================================
    7. PROJEKTMODULER, INTER-FONT, CINZEL DECORATIVE LANE-TEXT & KARUSELL
    ========================================================================== */
-
 html,
 body,
 main,
@@ -423,7 +440,6 @@ section {
     overflow-anchor: none;
 }
 
-/* Lane-rubriker med Cinzel Decorative i kursiv stil för monokrom sofistikation */
 .lane-heading {
     font-family: var(--font-heading) !important;
     font-style: italic !important;
@@ -431,11 +447,10 @@ section {
     font-weight: 700 !important;
     letter-spacing: 0.04em !important;
     line-height: 1.15 !important;
-    color: rgba(255, 255, 255, 0.92) !important;
+    color: var(--color-text) !important;
     text-transform: none !important;
 }
 
-/* Inter på innehållet i modulkorten */
 .project-card,
 .project-card p,
 .project-card .card-studio-label,
@@ -459,7 +474,7 @@ section {
     font-family: 'Inter', sans-serif !important;
     font-weight: 800 !important;
     letter-spacing: -0.02em !important;
-    color: #FFFFFF !important;
+    color: var(--color-text) !important;
 }
 
 .lane-track .project-card {
@@ -498,9 +513,9 @@ section {
     z-index: 15;
     padding: 0.32rem 0.65rem;
     border-radius: 5px;
-    background: rgba(8, 8, 8, 0.86);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    color: #FFFFFF;
+    background: var(--color-modal-bg);
+    border: 1px solid var(--color-accent-border);
+    color: var(--color-accent-hover);
     font-family: var(--font-mono);
     font-size: 10px;
     font-weight: 700;
@@ -516,7 +531,7 @@ section {
     align-items: center;
     justify-content: center;
     padding: 1.25rem;
-    background: rgba(0, 0, 0, 0.88);
+    background: var(--color-bg);
     backdrop-filter: blur(8px);
 }
 
@@ -529,9 +544,60 @@ section {
     width: min(1160px, 94vw);
     max-height: 88vh;
     aspect-ratio: 16 / 9;
-    background: #080808;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: var(--color-modal-bg);
+    border: 1px solid var(--color-accent-border);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 24px 70px rgba(0, 0, 0, 0.92);
+}
+
+/* ==========================================================================
+   9. TECH STACK ICON STRIP
+   ========================================================================== */
+.stack-icon-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem;
+    width: 100%;
+    padding: 0.35rem 1rem;
+    color: var(--color-icon-tint);
+}
+
+@media (min-width: 640px) {
+    .stack-icon-strip {
+        padding: 0.35rem 1.5rem;
+    }
+}
+
+.stack-icon-item {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    color: var(--color-icon-tint);
+    transition: color 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+@media (min-width: 640px) {
+    .stack-icon-item {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+.stack-icon-item svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    fill: currentColor;
+}
+
+.stack-icon-item:hover {
+    color: var(--color-icon-hover) !important;
+    transform: translateY(-2px) scale(1.1);
+    filter: drop-shadow(0 0 12px var(--color-glow-strong));
 }

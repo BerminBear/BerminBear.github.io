@@ -1,10 +1,11 @@
 // js/main.js
 import { initModal } from './modal.js';
-import { initProjectCards } from './project-card.js'; // <-- NY IMPORT
+import { initProjectCards } from './project-card.js'; 
 import { initMediaPreviews } from './media-preview.js';
 import { initAnimations } from './animations.js';
 import { initParticles } from './particles.js';
 import { initHeaderDrawer } from './header-drawer.js';
+import { initStackIcons } from './stack-icons.js';
 
 function safeRun(label, fn) {
     try {
@@ -18,9 +19,10 @@ function initApp() {
     safeRun('headerDrawer', () => initHeaderDrawer());
     safeRun('animations', () => initAnimations());
     safeRun('modal', () => initModal());
-    safeRun('projectCards', () => initProjectCards()); // <-- KÖR DENNA FÖRST
+    safeRun('projectCards', () => initProjectCards());
     safeRun('mediaPreviews', () => initMediaPreviews());
     safeRun('particles', () => initParticles({ count: 36 }));
+    safeRun('stackIcons', () => initStackIcons());
 }
 
 if (document.readyState === 'loading') {
