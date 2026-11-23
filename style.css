@@ -770,33 +770,45 @@ section {
     text-shadow: 0 0 10px var(--color-glow-soft);
 }
 
-/* ==========================================================================
-   STJÄRNVISUALIZER
-   ========================================================================== */
 :root {
+    /* Hur länge ljuset hålls kvar efter transienter och vid fullt spektrum (0.5 = snabbare, 1.8 = längre hållning) */
+    --stars-hold: 1.2;
+
+/* Hur känsligt stjärnorna reagerar på melodiska runs (flöjt, stråke, brass) */
+    --stars-lead-sensitivity: 1;
+
+    /* Hur mycket stjärnorna mjukt "sväller" upp och ner vid uthållna toner / french horn legato */
+    --stars-swell-sensitivity: 1;
+
+    /* Känslighet och avklingning (decay) för highs (cymbaler / rides vid chorus) */
+    --stars-high-sensitivity: 1.1;
+    --stars-high-decay: 0.962;
+
     /* Färg på stjärnor, glöd, linjer och gnistor (RGB-triplett) */
     --stars-rgb: 244, 205, 120;
 
-    /* Hur starkt allt reagerar på musiken (0.5 = lugnt, 1.5 = intensivt) */
+    /* Hur starkt allt reagerar på musiken (0.8 = lugnt, 1.5 = intensivt) */
     --stars-reactivity: 1;
-    --stars-boost: 2.4;             /* hur mycket ljusare stjärnorna blir */
+    --stars-boost: 1.5;                     /* hur mycket ljusare stjärnorna blir */
+
+    /* Hur lätt en kick/snare triggas. Lägre = mer känslig. (Default: 0.05) */
+    --stars-beat-sensitivity: 0.05;
 
     /* Glöd */
-    --stars-glow: 1;                /* glödens storlek */
-    --stars-glow-opacity: 0.5;
+    --stars-glow: 0.75;                      /* glödens storlek */
+    --stars-glow-opacity: 0.3;
 
     /* Konstellationslinjer */
-    --stars-lines: 1;               /* 0 = inga linjer */
-    --stars-link-distance: 200;     /* px mellan stjärnor som kopplas ihop */
+    --stars-lines: 0.3;                     /* 0 = inga linjer */
+    --stars-link-distance: 200;             /* px mellan stjärnor som kopplas ihop */
 
     /* Fyrverkerier vid bas-kick */
-    --stars-burst-count: 14;        /* gnistor per explosion */
-    --stars-burst-size: 1;          /* hur långt gnistorna flyger */
-    --stars-beat-sensitivity: 1;    /* högre = fler kickar upptäcks */
+    --stars-burst-count: 10;                /* gnistor per explosion */
+    --stars-burst-size: 0.8;                /* hur långt gnistorna flyger */
 
     /* Modulernas genomskinlighet så stjärnorna syns genom dem */
     --color-modal-bg-rgb: 8, 8, 8;
-    --module-alpha: 0.62;           /* 1 = helt ogenomskinliga */
+    --module-alpha: 0.62;                   /* 1 = helt ogenomskinliga */
     --module-blur: 3px;
 }
 
@@ -807,4 +819,37 @@ section {
     background: rgba(var(--color-modal-bg-rgb), var(--module-alpha)) !important;
     -webkit-backdrop-filter: blur(var(--module-blur));
     backdrop-filter: blur(var(--module-blur));
+}
+
+/* ==========================================================================
+   11. HIDE UI & PARTICLE TOGGLE
+   ========================================================================== */
+#site-header,
+main,
+#about-detail-modal,
+#project-detail-modal,
+#showreel-lightbox {
+    transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+
+body.is-ui-hidden #site-header,
+body.is-ui-hidden main,
+body.is-ui-hidden #about-detail-modal,
+body.is-ui-hidden #project-detail-modal,
+body.is-ui-hidden #showreel-lightbox {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#toggle-particles-btn.is-off {
+    opacity: 0.6;
+    color: var(--color-muted);
+    border-color: var(--color-border);
+}
+
+body.is-ui-hidden #toggle-ui-btn {
+    border-color: var(--color-accent-border-hover);
+    color: var(--color-accent-hover);
+    box-shadow: 0 0 14px var(--color-glow-soft);
 }
