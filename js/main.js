@@ -7,6 +7,7 @@ import { initParticles } from './particles.js';
 import { initHeaderDrawer } from './header-drawer.js';
 import { initStackIcons } from './stack-icons.js';
 import { initShowcaseStage } from './showcase-stage.js';
+import { initBgVisualizer } from './bg-visualizer.js';
 
 function safeRun(label, fn) {
     try {
@@ -25,6 +26,7 @@ function initApp() {
     safeRun('particles', () => initParticles({ count: 36 }));
     safeRun('stackIcons', () => initStackIcons());
     safeRun('showcaseStage', () => initShowcaseStage());
+    safeRun('bgVisualizer', () => initBgVisualizer({ preset: 'horizon', showSwitcher: true }));
 }
 
 if (document.readyState === 'loading') {
