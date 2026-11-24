@@ -11,8 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const isReplay = urlParams.get("replay") === "true";
 
     const container = document.getElementById("splash-container");
-    const text1 = document.getElementById("text-part-1");
-    const text2 = document.getElementById("text-part-2");
+    const promptText = document.getElementById("splash-prompt-text");
     const buttons = document.getElementById("splash-buttons");
 
     const listenBtn = document.getElementById("listen-btn");
@@ -59,9 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     videoContainer.classList.add("opacity-0", "pointer-events-none");
                     container.style.display = "flex";
                     container.classList.remove("opacity-0", "pointer-events-none");
-                    text1.classList.remove("opacity-0");
-                    text2.classList.remove("opacity-0");
-                    buttons.classList.remove("opacity-0");
+                    promptText?.classList.remove("opacity-0");
+                    buttons?.classList.remove("opacity-0");
                 } else {
                     proceedToHome();
                 }
@@ -91,8 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         container.style.display = "none";
         startVideo();
     } else {
-        setTimeout(() => text1.classList.remove("opacity-0"), 850);
-        setTimeout(() => text2.classList.remove("opacity-0"), 2500);
-        setTimeout(() => buttons.classList.remove("opacity-0"), 4000);
+        setTimeout(() => promptText?.classList.remove("opacity-0"), 300);
+        setTimeout(() => buttons?.classList.remove("opacity-0"), 2000);
     }
 });
