@@ -144,8 +144,7 @@
         </div>
     </div>
 
-    <!-- MINI AUDIO PLAYER BAR -->
-<div id="mini-audio-bar" class="mini-player-bar" role="region" aria-label="Active audio controls">
+    <div id="mini-audio-bar" class="mini-player-bar" role="region" aria-label="Active audio controls">
         <button
             type="button"
             id="mini-play-toggle"
@@ -153,7 +152,16 @@
         >
             Pause
         </button>
-        <span id="mini-track-title" class="text-xs sm:text-sm font-medium truncate max-w-[150px] sm:max-w-[210px]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+        <button
+            type="button"
+            id="mini-mute-toggle"
+            class="label-mono text-[11px] uppercase tracking-wider px-2 py-1 rounded border border-[var(--color-accent-border)] text-[var(--color-accent-hover)] shrink-0"
+            aria-pressed="false"
+            title="Mute or unmute active track"
+        >
+            Mute
+        </button>
+        <span id="mini-track-title" class="text-xs sm:text-sm font-medium truncate max-w-[140px] sm:max-w-[200px]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
             —
         </span>
 

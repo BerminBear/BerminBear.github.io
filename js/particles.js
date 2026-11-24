@@ -14,12 +14,13 @@ export function initParticles({ count = 56, selector = '#bg-particles' } = {}) {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ---------- Knapp-kontroller (Particles + Hide UI) ---------- */
-    let particlesEnabled = true;
+    /* ---------- Knapp-kontroller (Particles + Hide UI + Mini Mute) ---------- */
+    let particlesEnabled = !prefersReduced;
     const particleBtn = document.querySelector('#toggle-particles-btn');
     const hideUiBtn = document.querySelector('#toggle-ui-btn');
+    const miniMuteBtn = document.querySelector('#mini-mute-toggle');
 
     const syncParticleBtn = () => {
         if (!particleBtn) return;
@@ -57,6 +58,36 @@ export function initParticles({ count = 56, selector = '#bg-particles' } = {}) {
     if (hideUiBtn) {
         syncUiBtn();
         hideUiBtn.addEventListener('click', () => setUiHidden(!document.body.classList.contains('is-ui-hidden')));
+    }
+
+    // Mute-knapp i mini-audio-bar
+    const getActiveAudio = () => {
+        const audios = Array.from(document.querySelectorAll('audio'));
+        return audios.find((a) => !a.paused && !a.ended) || audios.find((a) => a.currentTime > 0) || audios[0] || null;
+    };
+
+    const syncMiniMuteBtn = () => {
+        if (!miniMuteBtn) return;
+        const el = getActiveAudio();
+        const muted = Boolean(el && el.muted);
+        miniMuteBtn.textContent = muted ? 'Unmute' : 'Mute';
+        miniMuteBtn.setAttribute('aria-pressed', String(muted));
+        miniMuteBtn.classList.toggle('is-off', muted);
+    };
+
+    if (miniMuteBtn) {
+        syncMiniMuteBtn();
+        miniMuteBtn.addEventListener('click', () => {
+            const el = getActiveAudio();
+            if (!el) return;
+            el.muted = !el.muted;
+            // Trigga row-mute-btn om den finns på samma rad så ikonen i listan också uppdateras
+            const rowMute = el.closest('.audio-row')?.querySelector('.row-mute-btn');
+            if (rowMute) rowMute.classList.toggle('is-muted', el.muted);
+            syncMiniMuteBtn();
+        });
+        document.addEventListener('volumechange', syncMiniMuteBtn, true);
+        document.addEventListener('play', syncMiniMuteBtn, true);
     }
 
     /* ---------- Config från CSS ---------- */
